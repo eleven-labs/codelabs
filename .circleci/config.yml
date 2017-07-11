@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/codelabs
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: install yran
+          command: 'yarn install'
+      - run:
+          name: lint
+          command: yarn lint
+      - run:
+          name: test
+          command: yarn test

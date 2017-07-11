@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    nginx:
+        build: docker/nginx
+        volumes:
+            - ./:/var/www/codelabs
+        ports:
+            - 80:80
+    node:
+        build: docker/node
+        volumes:
+            - ./:/var/www/codelabs
+        command: bash -c "yarn && yarn dev"
