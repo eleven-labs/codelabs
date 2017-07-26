@@ -4,7 +4,7 @@ Un template de l'issue est déjà prêt lors de la création de cette dernière.
 Il faut alors expliquer le besoin fonctionnel de votre issue ainsi que la façon de valider le développement.
 
 Si votre issue permet la correction d'un bug, il faut ajouter le label `fix` à votre issue.
-Si votre issue permet de mettre en place une nouvelle fonctionnalité , il faut ajouter le label `feat`à votre issue.
+Si votre issue permet de mettre en place une nouvelle fonctionnalité, il faut ajouter le label `feat` à votre issue.
 
 Si vous ne pouvez pas remplir la partie spécification technique, il faut ajouter le label `to be specified`.
 Une fois le cadrage technique validé l'issue devra être complétée, elle est alors validée et envoyée dans dans le projet suivant https://github.com/orgs/eleven-labs/projects/2.
@@ -22,14 +22,14 @@ Pour un `fix` la branche doit se nommer.
 git checkout -b fix/NUMERO-D-ISSUE-TITRE
 ```
 
-Ensuite faites votre pull request avec les labels `fix`et `to be validated` .
+Ensuite faites votre pull request avec les labels `fix` et `to be validated` .
 
 Pour un `feat` la branche doit se nommer.
 ```sh
 git checkout -b feat/NUMERO-D-ISSUE-TITRE
 ```
 
-Ensuite faite votre pull request avec les labels `feat`et `to be validated` .
+Ensuite faite votre pull request avec les labels `feat` et `to be validated` .
 
 Il faut ensuite déplacer votre issue dans le projet https://github.com/orgs/eleven-labs/projects/2 dans la colonne `Review`.
 

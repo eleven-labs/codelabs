@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install yran
+          name: install yarn
           command: 'yarn install'
       - run:
           name: lint
