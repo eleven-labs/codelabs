@@ -10,7 +10,7 @@ import routes from './routes';
 
 const store = createStore();
 
-const Router = () => (
+const CodeLabs = () => (
   <Provider {...{ store }}>
     <BrowserRouter>
       {renderRoutes(routes)}
@@ -18,4 +18,4 @@ const Router = () => (
   </Provider>
 );
 
-ReactDOM.render(<Router />, document.getElementById('root'));
+ReactDOM.render(<CodeLabs />, document.getElementById('root'));

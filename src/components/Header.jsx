@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = () => (
-  <div>Header</div>;
+  <header className="header">Eleven&apos;s CodeLabs</header>
 );
 
-export default App;
+export default Header;

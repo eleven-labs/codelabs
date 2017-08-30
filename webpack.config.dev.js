@@ -63,6 +63,7 @@ module.exports = {
     ],
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: 'public/',
     hot: true,
     inline: true,

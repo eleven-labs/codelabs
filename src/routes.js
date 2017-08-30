@@ -10,14 +10,6 @@ export default [
         path: '/',
         exact: true,
         component: Home,
-        fetchData: async () => {
-          await setTimeout(() => {}, 1e3);
-          return 'tutu';
-        },
-      },
-      {
-        path: '/home',
-        component: Home,
       },
       {
         path: '/list',
