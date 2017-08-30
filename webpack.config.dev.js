@@ -15,8 +15,8 @@ module.exports = {
     'babel-polyfill',
     'setimmediate',
     'isomorphic-fetch',
-    path.join(__dirname, 'src', 'client', 'assets', 'scss', 'main.scss'),
-    path.join(__dirname, 'src', 'client', `index.${mode}`),
+    // path.join(__dirname, 'src', 'assets', 'scss', 'main.scss'),
+    path.join(__dirname, 'src', `index.${mode}`),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
