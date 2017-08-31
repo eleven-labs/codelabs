@@ -1,10 +1,14 @@
 import React from 'react';
-import App from './app';
+import { MemoryRouter } from 'react-router';
 import renderer from 'react-test-renderer';
+
+import { CodeLabApp } from '../../src/containers/App';
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <App></App>
+    <MemoryRouter>
+      <CodeLabApp />
+    </MemoryRouter>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

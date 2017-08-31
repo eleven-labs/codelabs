@@ -2,6 +2,20 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  React simple starter
+  <nav>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      home
+    </a>
+     
+    <a
+      href="/list"
+      onClick={[Function]}
+    >
+      list
+    </a>
+  </nav>
 </div>
 `;
