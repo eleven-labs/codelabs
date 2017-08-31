@@ -8,7 +8,7 @@ import { addTopic } from '../actions';
 const mapStateToProps = ({ courses, topics }) => ({ courses, topics });
 const mapDispatchToProps = { addTopic };
 
-export class App extends React.Component {
+class App extends React.Component {
   render() {
     const { courses, topics, route } = this.props;
 
