@@ -12,3 +12,5 @@ services:
         volumes:
             - ./:/var/www/codelabs
         command: bash -c "yarn && yarn start"
+        ports:
+            - 9000:9000
