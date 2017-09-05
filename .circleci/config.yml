@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/codelabs
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:8.1.2
     steps:
       - checkout
       - run:

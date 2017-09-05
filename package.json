@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack -p --progress --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --config ./webpack.config.dev.js --host 0.0.0.0 --public codelabs.dev:9000",
-    "test": "jest",
-    "test-update-snapshot": "jest --updateSnapshot",
+    "test": "jest --json",
+    "test-update-snapshot": "jest --json --updateSnapshot",
     "lint": "eslint --ext .js --ext .jsx src"
   },
   "author": "",
