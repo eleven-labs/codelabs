@@ -11,7 +11,9 @@ import { INITIAL_STATE } from '../constants';
 let enhancer;
 
 if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-  enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(applyMiddleware(thunk, api, createLogger()));
+  enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
+    applyMiddleware(thunk, api, createLogger()),
+  );
 } else {
   enhancer = applyMiddleware(thunk, api, createLogger());
 }
