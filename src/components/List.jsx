@@ -27,6 +27,8 @@ export default class CourseList extends Component {
   }
 
   courseRenderer(course) {
+    const date = new Date(course.date);
+
     return (
       <div className="posts-teaser slice" key={course.uuid}>
         <div className="container">
@@ -38,9 +40,9 @@ export default class CourseList extends Component {
 
           <time className="posts-date meta">
             <span className="meta-content">
-              {(new Date(course.date)).toLocaleString('fr-FR', dateOptions)}
+              {date.toLocaleString('fr-FR', dateOptions)}
               {' à '}
-              {(new Date(course.date)).toLocaleTimeString('fr-FR', timeOptions)}
+              {date.toLocaleTimeString('fr-FR', timeOptions)}
               {' par '}
               <a
                 className="author-link"
