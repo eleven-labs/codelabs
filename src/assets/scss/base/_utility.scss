@@ -1,0 +1,91 @@
+// Mix-ins
+
+%padding-small {
+  padding: $padding-x-small $padding-x-small * 2;
+
+  @media (max-width: 1000px) {
+    padding: $padding-x-small;
+  }
+}
+
+%padding-regular {
+  padding: $padding-small $padding-large;
+
+  @media (max-width: 1000px) {
+    padding: $padding-small * 1.5 $padding-large / 1.6;
+  }
+}
+
+%link-hover {
+  font-family: $font-family-headings;
+  line-height: 1.1;
+}
+
+%h1 {
+  font-family: $font-family-headings;
+  font-weight: lighter;
+  line-height: 1.1;
+  text-transform: uppercase;
+
+  @media (min-width: 480px) {
+    font-size: 5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 3rem;
+  }
+}
+
+%h2 {
+  font-family: $font-family-headings;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+
+  @media (min-width: 480px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
+}
+
+%h3 {
+  background: $brand-yellow;
+  display: inline-block;
+  font-family: $font-family-headings;
+  font-weight: lighter;
+  line-height: 1.1;
+  padding: .3em .5em;
+  text-transform: uppercase;
+
+  @media (min-width: 480px) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+  }
+}
+
+%h4 {
+  font-family: $font-family-headings;
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+// States
+.disabled {
+  opacity: .7;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
