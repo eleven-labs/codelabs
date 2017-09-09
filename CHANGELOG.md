@@ -1,4 +1,4 @@
-## [unreleased](https://gitlab.dnm.radiofrance.fr/cockpit/kami/compare/v0.1.0...HEAD)
+## [unreleased](https://github.com/eleven-labs/codelabs/compare/v0.1.0...HEAD)
 ### Ajouts
 - Une page d'accueil qui ressemble au [blog](http://blog.eleven-labs.com) 
 
