@@ -5,3 +5,4 @@ export const INITIAL_STATE = {
 };
 
 export const API_ROOT = '/api/';
+export const NOOP = () => {};
