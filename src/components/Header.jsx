@@ -3,7 +3,7 @@ import React from 'react';
 import Session from './Session';
 import Search from './Search';
 
-class Header extends React.Component {
+export default class Header extends React.Component {
   shouldComponentUpdate() {
     return false;
   }
@@ -20,5 +20,3 @@ class Header extends React.Component {
     );
   }
 }
-
-export default Header;
