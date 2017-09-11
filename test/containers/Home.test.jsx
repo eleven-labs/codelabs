@@ -1,5 +1,4 @@
 import React from 'react';
-// import jest from 'jest';
 import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 
