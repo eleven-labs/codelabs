@@ -4,7 +4,7 @@ Cette partie est purement technique, elle décrit les workflows qui nous permete
 
 ## Lister les tutos
 
-Le premier besoin qu'on a est de lister les tutos qu'on a, dans un bucket (en local ou en Amazon S3).
+Le premier besoin qu'on a est de lister et afficher les tutos qu'on a dans un bucket (en local ou en Amazon S3).
 
 La structure serait la suivante :
 
@@ -21,7 +21,7 @@ La structure serait la suivante :
 |   |   └── step3.md
 ```
 
-Pour pouvoir lister et afficher les tutos, on va avoir besoin d'un fichier qui nous fournira les détails (titre, description, date, ...) de chaque tuto. ce fichier doit être structuré de façon à ce qu'il soit facile à parser. On peut envisager du `json` ou du `yaml`, qu'on peut mettre quelque part dans notre bucket.
+Pour afficher les tutos, on va avoir besoin d'un fichier qui nous fournira les détails (titre, description, date, ...) de chaque tuto. ce fichier doit être structuré de façon à ce qu'il soit facile à parser. On peut envisager du `json` ou du `yaml`, qu'on peut mettre quelque part dans notre bucket.
 
 ```
 ├── index.json (ou index.yml)
@@ -120,3 +120,12 @@ courses:
       - Next.JS
 ```
 
+## Ouvrir le tuto
+
+Une fois l'utilisateur clique sur un tuto pour l'ouvrir, on va simplement charger les fichiers qu'il contient
+
+```
+https://s3.amazonaws.com/static.elevenlabs.com.production/tutos/fr-creer-une-api-avec-api-platform/home.md
+https://s3.amazonaws.com/static.elevenlabs.com.production/tutos/fr-creer-une-api-avec-api-platform/step1.md
+https://s3.amazonaws.com/static.elevenlabs.com.production/tutos/fr-creer-une-api-avec-api-platform/step2.md
+```
