@@ -120,12 +120,67 @@ courses:
       - Next.JS
 ```
 
+Exemple d'un service qui charge les tutos :
+
+```js
+// getTutos.js
+import urlJoin from 'url-join';
+import { BUCKET_ROOT } from '../constants';
+
+export default async () => {
+  return await (await fetch(urlJoin(BUCKET_ROOT, 'tutos'))).json();
+}
+```
+
+Exemple d'un composant React qui charge les tutos :
+
+```js
+// CourseList.jsx
+import { getTutos } from '../../services';
+
+export default class CourseList extends Component {
+  state = {
+    courses: [],
+  };
+
+  async componentDidMount() {
+    this.setState({
+      courses: await getTutos();
+    })
+  }
+
+  render() {
+    const { courses } = this.state;
+
+    return (
+      <div className="posts">
+        {courses.map(() => (
+          <div className="course" key={course.uuid}>
+            <h2 className="posts-title">
+              <a className="no-link-style" href={`/course/${course.permalink}`}>
+                {course.title}
+              </a>
+            </h2>
+
+            <p>{course.description}</p>
+
+            <a className="button" href={course.permalink}>Lire le tutoriel</a>
+          </div>
+        );)}
+      </div>
+    );
+  }
+}
+
+export default CourseList;
+```
+
 ## Ouvrir le tuto
 
 Une fois l'utilisateur clique sur un tuto pour l'ouvrir, on va simplement charger les fichiers qu'il contient
 
 ```
-https://s3.amazonaws.com/static.elevenlabs.com.production/tutos/fr-creer-une-api-avec-api-platform/home.md
-https://s3.amazonaws.com/static.elevenlabs.com.production/tutos/fr-creer-une-api-avec-api-platform/step1.md
-https://s3.amazonaws.com/static.elevenlabs.com.production/tutos/fr-creer-une-api-avec-api-platform/step2.md
+https://some/bucket/tutos/fr-creer-une-api-avec-api-platform/home.md
+https://some/bucket/tutos/fr-creer-une-api-avec-api-platform/step1.md
+https://some/bucket/tutos/fr-creer-une-api-avec-api-platform/step2.md
 ```
