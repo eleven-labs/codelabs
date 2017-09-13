@@ -1,15 +1,20 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router';
-import renderer from 'react-test-renderer';
+import { mount } from 'enzyme';
 
-import { CodeLabApp } from '../../src/containers/App';
+import App from '../../src/containers/App';
 
-it('renders correctly', () => {
-  const tree = renderer.create(
-    <MemoryRouter>
-      <CodeLabApp />
-    </MemoryRouter>
-  ).toJSON();
+describe('<App />', () => {
+  it('should render correctly', () => {
+    const loc = { pathname: '/', query: { a: 'b' } }
 
-  expect(tree).toMatchSnapshot();
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[loc]} initialIndex={0}>
+        <App />
+      </MemoryRouter>
+    );
+
+    expect(wrapper.find('Header')).toHaveLength(1);
+    expect(wrapper.find('Search')).toHaveLength(1);
+  });
 });

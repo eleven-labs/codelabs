@@ -1,0 +1,12 @@
+.splash {
+  background-image: url('../images/bg-header.png');
+
+  .title {
+    font-weight: bold;
+    font-size: $font-size-extra-large;
+    position: relative;
+    text-align: right;
+    text-transform: uppercase;
+    top: -2em;
+  }
+}

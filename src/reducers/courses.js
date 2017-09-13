@@ -1,3 +1,7 @@
-import { INITIAL_STATE } from '../constants';
+import handleAction from './handleActions';
+import { LOAD_COURSES_SUCCESS } from '../actions';
 
-export default (state = INITIAL_STATE.courses) => state;
+export default handleAction({
+  kind: 'courses',
+  [LOAD_COURSES_SUCCESS]: (state, action) => action.response,
+});
