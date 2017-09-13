@@ -11,11 +11,13 @@ La structure serait la suivante :
 ```
 ├── tutos
 |   ├── fr-creer-une-api-avec-api-platform
+|   |   ├── index.md
 |   |   ├── step1.md
 |   |   ├── step2.md
 |   |   ├── step3.md
 |   |   └── step4.md
 |   ├── en-migrate-a-react-client-side-application-to-server-side-with-nextjs
+|   |   ├── index.md
 |   |   ├── step1.md
 |   |   ├── step2.md
 |   |   └── step3.md
@@ -27,10 +29,10 @@ Pour afficher les tutos, on va avoir besoin d'un fichier qui nous fournira les d
 ├── index.json (ou index.yml)
 ├── tutos
 |   ├── fr-creer-une-api-avec-api-platform
-|   |   ├── step1.md
+|   |   ├── index.md
 |   |   ├── ...
 |   ├── en-migrate-a-react-client-side-application-to-server-side-with-nextjs
-|   |   ├── step1.md
+|   |   ├── index.md
 |   |   ├── ...
 ```
 
