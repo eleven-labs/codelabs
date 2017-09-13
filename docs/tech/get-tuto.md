@@ -108,7 +108,7 @@ import urlJoin from 'url-join';
 import { BUCKET_ROOT } from '../constants';
 
 export default async () => {
-  return await (await fetch(urlJoin(BUCKET_ROOT, 'tutos'))).json();
+  return await (await fetch(urlJoin(BUCKET_ROOT, 'tutos.json'))).json();
 }
 ```
 
@@ -168,7 +168,7 @@ https://some/bucket/tutos/fr-creer-une-api-avec-api-platform/step2.md
 ### Exemple d'un service qui ouvre un tuto
 
 ```js
-// opnTuto.js
+// openTuto.js
 import urlJoin from 'url-join';
 import { BUCKET_ROOT } from '../constants';
 
@@ -186,7 +186,7 @@ export default async ({ permalink, step_count }) => {
   return {
     steps: await Promise.all(
       [homeUrl, ...stepUrls].map(async (step, index) => (
-        (await fetch(step)).json()
+        (await fetch(step)).text()
       ))
     ),
   };
