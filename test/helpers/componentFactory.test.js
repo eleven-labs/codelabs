@@ -5,7 +5,7 @@ import componentFactory from '../../src/helpers/componentFactory';
 
 describe('Component Factory', () => {
   it('should create a paragraph component', () => {
-    const md = 'toto **lol**';
+    const md = 'toto **loo*k*ooool** co*o*l';
 
     const [componentFn] = componentFactory(md);
     const component = React.createElement(componentFn);

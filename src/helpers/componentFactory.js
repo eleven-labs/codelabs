@@ -21,14 +21,10 @@ function *traverse(md) {
   const ast = parse(md);
 
   yield* walk(ast);
-  // for (const child of ast.children) {
-  //   yield* ASTParser[child.type](child);
-  // }
 }
 
 function *walk(ast) {
   for (const child of ast.children) {
-    console.log(child);
     yield* ASTParser[child.type](child);
   }
 }
@@ -70,22 +66,30 @@ const createComponent = ast => {
       // TODO: getNodeType(ordered ? ...)
       types[ast.type],
       { ...props, key: index++ },
-      // TODO: recursive component creation
-      (() => {
+      (function toto() {
         if (ast.children && ast.children.length) {
           return ast.children.map(childAst => {
             console.log('before walk children', childAst);
-
-            if (childAst.children && childAst.children.length) {
-              return Array.from(walk(childAst));
+            if (!types[childAst.type]) {
+              return childAst.raw;
             }
 
-            return makeHtml(childAst);
+            return React.createElement(
+              types[childAst.type],
+              { key: index++ },
+              (() => {
+                if (childAst.children && childAst.children.length) {
+                  return [...walk(childAst)];
+                }
+
+                return makeHtml(childAst);
+              })(),
+            );
           });
         }
 
-        return ast.raw;
-      })(),
+        return makeHtml(ast.raw);
+      }()),
     )
   );
 
