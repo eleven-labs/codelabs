@@ -20,7 +20,7 @@ module.exports = {
     path.join(__dirname, 'src', `index.${mode}`),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json'],
     // Avoids : https://facebook.github.io/react/warnings/refs-must-have-owner.html
     alias: {
       react: path.resolve('node_modules/react'),
