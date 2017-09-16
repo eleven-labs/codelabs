@@ -19,7 +19,7 @@ const types = {
   Header(ast) {
     return `h${ast.depth}`;
   },
-  CodeBlock: 'code',
+  CodeBlock: 'pre',
   HtmlBlock: 'html',
   HorizontalRule: 'hr',
   Break: 'br',
@@ -32,7 +32,6 @@ const types = {
 };
 
 const voidElements = ['Break', 'HorizontalRule'];
-const extraLevelElements = ['ListItem'];
 
 const typeProps = {
   ...Object.keys(types).reduce((acc, key) => ({
@@ -61,6 +60,7 @@ export default md => [...traverse(md)];
  */
 function *traverse(md) {
   const ast = parse(md);
+  console.log(ast.children);
 
   yield* walk(ast);
 }
@@ -88,15 +88,29 @@ const buildContent = ast => {
     return null;
   }
 
-  if (hasOnlyStr(ast)) {
-    return ast.children[0].raw;
+  if (ast.type === 'Code') {
+    return ast.value;
   }
 
-  let children = [...walk(ast)];
+  // additional markup for the CodeBlock element
+  if (ast.type === 'CodeBlock') {
+    return React.createElement('code', {}, ast.value);
+  }
+
+  if (hasOnlyStr(ast) || ast.type === 'Code') {
+    return ast.children[0].value;
+  }
+
+  let children;
 
   // bypass the lone Paragraph inside the li
-  if (extraLevelElements.includes(ast.type)) {
+  if (ast.type === 'ListItem' && ast.children && ast.children.length === 1) {
     children = [...walk(ast.children[0])];
+  } else if (ast.type === 'ListItem' && ast.children && ast.children.length > 1) {
+    const [firstAst, ...rest] = ast.children;
+    children = [...walk(firstAst), ...walk({ ...ast, children: rest })];
+  } else {
+    children = [...walk(ast)];
   }
 
   return children.map((renderer, key) => (

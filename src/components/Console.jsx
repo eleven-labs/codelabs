@@ -11,6 +11,11 @@ const initialMD = `hello *cool*
 
 ---
 
+\`\`\`js
+console.log(lol);
+\`\`\`
+
+
 [lien](http://google.fr)
 
 `;
@@ -42,7 +47,7 @@ export default class Console extends React.Component {
 
   render() {
     const comps = componentFactory(this.state.md);
-
+    console.log(comps);
     return (
       <div>
         <textarea
@@ -57,9 +62,6 @@ export default class Console extends React.Component {
             {comps.map((renderer, key) => renderer({ key }))}
           </div>
         </div>
-        <pre>
-          {JSON.stringify(parse(this.state.md), null, 2)}
-        </pre>
       </div>
     );
   }
