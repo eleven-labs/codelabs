@@ -4,6 +4,8 @@ import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../helpers/componentFactory';
 
+const initialMD = `hello *cool*`;
+
 export default class Console extends React.Component {
   static propTypes = {
     md: PropTypes.string,
@@ -17,8 +19,7 @@ export default class Console extends React.Component {
     super(props);
 
     this.state = {
-      md: this.props.md,
-      ast: parse(this.props.md),
+      md: initialMD,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -27,13 +28,11 @@ export default class Console extends React.Component {
   onChange(event) {
     this.setState({
       md: event.currentTarget.value,
-      ast: parse(event.currentTarget.value),
     });
   }
 
   render() {
     const comps = componentFactory(this.state.md);
-    console.log(comps);
 
     return (
       <div>
@@ -46,14 +45,12 @@ export default class Console extends React.Component {
         />
         <div id="preview">
           <div className="generated-component">
-            {comps.map(renderer => {
-              return renderer();
-            })}
+            {comps.map((renderer, key) => renderer({ key }))}
           </div>
-          <pre>
-            {JSON.stringify(this.state.ast, null, 2)}
-          </pre>
         </div>
+        <pre>
+          {JSON.stringify(parse(this.state.md), null, 2)}
+        </pre>
       </div>
     );
   }

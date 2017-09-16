@@ -6,7 +6,32 @@
 /* eslint react/prefer-stateless-function: off */
 import React from 'react';
 import { parse } from 'markdown-to-ast';
-import { Converter } from 'showdown';
+// import { Converter } from 'showdown';
+
+const types = {
+  Document: 'div',
+  Paragraph: 'p',
+
+  BlockQuote: 'blockquote',
+  ListItem: 'li',
+  List: 'ul',
+  // Header: 'h2',
+  CodeBlock: 'code',
+  HtmlBlock: 'html',
+  // ReferenceDef: '--',
+  HorizontalRule: 'hr',
+  // Comment: '--',
+  // Str: 'span',
+  Break: 'br',
+  Emphasis: 'em',
+  Strong: 'strong',
+  Html: 'html',
+  Link: 'a',
+  Image: 'img',
+  Code: 'code',
+};
+
+let componentIndex = 0;
 
 /**
  * Root generator consumer (converts markdown to components)
@@ -29,74 +54,33 @@ function *walk(ast) {
   }
 }
 
-const types = {
-  Document: 'div',
-  Paragraph: 'p',
-
-  BlockQuote: 'blockquote',
-  ListItem: 'li',
-  // List: '--',
-  // Header: '--',
-  CodeBlock: 'code',
-  HtmlBlock: 'html',
-  // ReferenceDef: '--',
-  HorizontalRule: 'hr',
-  // Comment: '--',
-  // Str: 'span',
-  Break: 'br',
-  Emphasis: 'em',
-  Strong: 'strong',
-  Html: 'html',
-  Link: 'a',
-  Image: 'img',
-  Code: 'code',
-};
-
-const converter = new Converter({ noHeaderId: true });
-
-const makeHtml = ast => (
-  ast.type === 'Str' ? ast.raw : converter.makeHtml(ast.raw)
+const hasOnlyStr = ast => (
+  ast.children &&
+  ast.children.length === 1 &&
+  ast.children[0].type === 'Str'
 );
 
-let index = 0;
+const createComponent = ast => (
+  React.createFactory(class extends React.Component {
+    static displayName = ast.type;
+    static defaultProps = {};
 
-const createComponent = ast => {
-  const renderer = props => (
-    React.createElement(
-      // TODO: getNodeType(ordered ? ...)
-      types[ast.type],
-      { ...props, key: index++ },
-      (function toto() {
-        if (ast.children && ast.children.length) {
-          return ast.children.map(childAst => {
-            console.log('before walk children', childAst);
-            if (!types[childAst.type]) {
-              return childAst.raw;
-            }
+    render() {
+      let content;
+      const children = [...walk(ast)];
 
-            return React.createElement(
-              types[childAst.type],
-              { key: index++ },
-              (() => {
-                if (childAst.children && childAst.children.length) {
-                  return [...walk(childAst)];
-                }
+      if (hasOnlyStr(ast)) {
+        content = ast.children[0].raw;
+      } else {
+        content = children.map((renderer, key) => (
+          typeof renderer === 'function' ? renderer({ key }) : renderer
+        ));
+      }
 
-                return makeHtml(childAst);
-              })(),
-            );
-          });
-        }
-
-        return makeHtml(ast.raw);
-      }()),
-    )
-  );
-
-  renderer.displayName = ast.type;
-
-  return renderer;
-};
+      return React.createElement(types[ast.type], { key: componentIndex++ }, content);
+    }
+  })
+);
 
 /**
  * Markdown Syntax Parser
@@ -106,9 +90,11 @@ const ASTParser = Object.keys(types).reduce((acc, key) => ({
   *[key](child) {
     yield createComponent(child);
   },
-  // TODO: List, ...
 }), {
   *Str(child) {
     yield child.raw;
+  },
+  *Header(child) {
+    yield React.createElement(`h${child.depth}`, {}, [...walk(child)]);
   },
 });
