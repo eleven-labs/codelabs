@@ -6,7 +6,6 @@
 /* eslint react/prefer-stateless-function: off */
 import React from 'react';
 import { parse } from 'markdown-to-ast';
-// import { Converter } from 'showdown';
 
 const types = {
   Document: 'div',
@@ -14,14 +13,15 @@ const types = {
 
   BlockQuote: 'blockquote',
   ListItem: 'li',
-  List: 'ul',
-  // Header: 'h2',
+  List(ast) {
+    return ast.ordered ? 'ol' : 'ul';
+  },
+  Header(ast) {
+    return `h${ast.depth}`;
+  },
   CodeBlock: 'code',
   HtmlBlock: 'html',
-  // ReferenceDef: '--',
   HorizontalRule: 'hr',
-  // Comment: '--',
-  // Str: 'span',
   Break: 'br',
   Emphasis: 'em',
   Strong: 'strong',
@@ -29,6 +29,23 @@ const types = {
   Link: 'a',
   Image: 'img',
   Code: 'code',
+};
+
+const voidElements = ['Break', 'HorizontalRule'];
+const extraLevelElements = ['ListItem'];
+
+const typeProps = {
+  ...Object.keys(types).reduce((acc, key) => ({
+    ...acc,
+    [key]() {
+      return {};
+    },
+  }), {}),
+  Link(ast) {
+    return {
+      href: ast.url,
+    };
+  },
 };
 
 let componentIndex = 0;
@@ -49,8 +66,10 @@ function *traverse(md) {
 }
 
 function *walk(ast) {
-  for (const child of ast.children) {
-    yield* ASTParser[child.type](child);
+  if (ast.children) {
+    for (const child of ast.children) {
+      yield* ASTParser[child.type](child);
+    }
   }
 }
 
@@ -60,24 +79,51 @@ const hasOnlyStr = ast => (
   ast.children[0].type === 'Str'
 );
 
+const resolveLocalName = ast => (
+  typeof types[ast.type] === 'function' ? types[ast.type](ast) : types[ast.type]
+);
+
+const buildContent = ast => {
+  if (voidElements.includes(ast.type)) {
+    return null;
+  }
+
+  if (hasOnlyStr(ast)) {
+    return ast.children[0].raw;
+  }
+
+  let children = [...walk(ast)];
+
+  // bypass the lone Paragraph inside the li
+  if (extraLevelElements.includes(ast.type)) {
+    children = [...walk(ast.children[0])];
+  }
+
+  return children.map((renderer, key) => (
+    typeof renderer === 'function' ? renderer({ key }) : renderer
+  ));
+};
+
+const buildProps = ast => ({
+  key: componentIndex++,
+  ...typeProps[ast.type](ast),
+});
+
 const createComponent = ast => (
   React.createFactory(class extends React.Component {
     static displayName = ast.type;
     static defaultProps = {};
 
+    shouldComponentUpdate() {
+      return false;
+    }
+
     render() {
-      let content;
-      const children = [...walk(ast)];
-
-      if (hasOnlyStr(ast)) {
-        content = ast.children[0].raw;
-      } else {
-        content = children.map((renderer, key) => (
-          typeof renderer === 'function' ? renderer({ key }) : renderer
-        ));
-      }
-
-      return React.createElement(types[ast.type], { key: componentIndex++ }, content);
+      return React.createElement(
+        resolveLocalName(ast),
+        buildProps(ast),
+        buildContent(ast),
+      );
     }
   })
 );
@@ -85,16 +131,15 @@ const createComponent = ast => (
 /**
  * Markdown Syntax Parser
  */
-const ASTParser = Object.keys(types).reduce((acc, key) => ({
-  ...acc,
-  *[key](child) {
-    yield createComponent(child);
-  },
-}), {
+const ASTParser = {
+  ...Object.keys(types).reduce((acc, key) => ({
+    ...acc,
+    *[key](child) {
+      yield createComponent(child);
+    },
+  }), {}),
+
   *Str(child) {
     yield child.raw;
   },
-  *Header(child) {
-    yield React.createElement(`h${child.depth}`, {}, [...walk(child)]);
-  },
-});
+};

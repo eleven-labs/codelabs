@@ -4,7 +4,16 @@ import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../helpers/componentFactory';
 
-const initialMD = `hello *cool*`;
+const initialMD = `hello *cool*
+
+- yeah
+- lol
+
+---
+
+[lien](http://google.fr)
+
+`;
 
 export default class Console extends React.Component {
   static propTypes = {
