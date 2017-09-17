@@ -3,9 +3,13 @@
 /* eslint no-restricted-syntax: off */
 /* eslint no-plusplus: off */
 /* eslint arrow-parens: off */
-/* eslint react/prefer-stateless-function: off */
 import React from 'react';
 import { parse } from 'markdown-to-ast';
+
+const REGEX_TAG_OPENING = /<(\w+)\b[^<]*>/g;
+const REGEX_TAG_CLOSING = /<\/(\w+)\b[^<]*>/g;
+const REGEX_TAG_BOUNDARIES = /(<(\/)?(\w+)\b[^<]*>)/g;
+const REGEX_TAG = /<(\w+)\b[^<]*(?:(?!<\/(\1)>)<[^<]*)*<\/(\1)>/g;
 
 const types = {
   Document: 'div',
@@ -25,13 +29,14 @@ const types = {
   Break: 'br',
   Emphasis: 'em',
   Strong: 'strong',
-  Html: 'html',
+  Html: 'div',
   Link: 'a',
   Image: 'img',
   Code: 'code',
 };
 
-const voidElements = ['Break', 'HorizontalRule'];
+const voidElements = ['Break', 'HorizontalRule', 'Image'];
+const valueElements = ['Code', 'Html'];
 
 const typeProps = {
   ...Object.keys(types).reduce((acc, key) => ({
@@ -88,7 +93,17 @@ const buildContent = ast => {
     return null;
   }
 
-  if (ast.type === 'Code') {
+  if (valueElements.includes(ast.type)) {
+    if (ast.type === 'Html') {
+      if (ast.value.match(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/)) {
+        return '';
+      }
+
+      return React.createElement('p', {
+        dangerouslySetInnerHTML: { __html: ast.value },
+      });
+    }
+
     return ast.value;
   }
 
@@ -97,7 +112,7 @@ const buildContent = ast => {
     return React.createElement('code', {}, ast.value);
   }
 
-  if (hasOnlyStr(ast) || ast.type === 'Code') {
+  if (hasOnlyStr(ast)) {
     return ast.children[0].value;
   }
 
@@ -109,6 +124,30 @@ const buildContent = ast => {
   } else if (ast.type === 'ListItem' && ast.children && ast.children.length > 1) {
     const [firstAst, ...rest] = ast.children;
     children = [...walk(firstAst), ...walk({ ...ast, children: rest })];
+  } else if (ast.type === 'Paragraph') {
+    // console.log('ast', ast);
+    // console.log('has tags', ast.raw.match(REGEX_TAG));
+
+    // const htmlMatch = ast.raw.match(REGEX_TAG);
+    // let newMD = ast.raw;
+
+    // if (htmlMatch) {
+    //   newMD = htmlMatch.reduce((acc, match) => {
+    //     const parts = [
+    //       '\n',
+    //       match.match(REGEX_TAG_OPENING)[0],
+    //       match.replace(REGEX_TAG_BOUNDARIES, ''),
+    //       match.match(REGEX_TAG_CLOSING)[0],
+    //     ];
+
+    //     return acc.replace(match, parts.join('\n'));
+    //   }, newMD);
+
+    //   console.log(newMD);
+    //   console.log(parse(newMD));
+    // }
+
+    children = [...walk(ast)];
   } else {
     children = [...walk(ast)];
   }
@@ -152,7 +191,6 @@ const ASTParser = {
       yield createComponent(child);
     },
   }), {}),
-
   *Str(child) {
     yield child.raw;
   },

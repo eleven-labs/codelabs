@@ -4,12 +4,26 @@ import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../helpers/componentFactory';
 
+
 const initialMD = `hello *cool*
 
 - yeah
 - lol
 
+\`mmm\`
+
+hhghghg 
+
+<a href="http://google.com">
+g**ooooooo**gle
+</a>
+
+<script>
+alert('toto');
+</script>
+
 ---
+
 
 \`\`\`js
 console.log(lol);
@@ -47,7 +61,8 @@ export default class Console extends React.Component {
 
   render() {
     const comps = componentFactory(this.state.md);
-    console.log(comps);
+    //console.log(comps);
+
     return (
       <div>
         <textarea
