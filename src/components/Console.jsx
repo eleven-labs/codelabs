@@ -12,10 +12,8 @@ const initialMD = `hello *cool*
 
 \`mmm\`
 
-hhghghg 
-
 <a href="http://google.com">
-g**ooooooo**gle
+google
 </a>
 
 <script>
@@ -24,6 +22,7 @@ alert('toto');
 
 ---
 
+<hr />
 
 \`\`\`js
 console.log(lol);
@@ -32,6 +31,13 @@ console.log(lol);
 
 [lien](http://google.fr)
 
+<div>
+  <div>
+    <div>
+      foo
+    </div>
+  </div>
+</div>
 `;
 
 export default class Console extends React.Component {
@@ -59,9 +65,13 @@ export default class Console extends React.Component {
     });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.md !== nextState.md;
+  }
+
   render() {
     const comps = componentFactory(this.state.md);
-    //console.log(comps);
+    console.log(comps);
 
     return (
       <div>

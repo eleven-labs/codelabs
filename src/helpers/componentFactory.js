@@ -6,10 +6,10 @@
 import React from 'react';
 import { parse } from 'markdown-to-ast';
 
-const REGEX_TAG_OPENING = /<(\w+)\b[^<]*>/g;
-const REGEX_TAG_CLOSING = /<\/(\w+)\b[^<]*>/g;
-const REGEX_TAG_BOUNDARIES = /(<(\/)?(\w+)\b[^<]*>)/g;
-const REGEX_TAG = /<(\w+)\b[^<]*(?:(?!<\/(\1)>)<[^<]*)*<\/(\1)>/g;
+// const REGEX_TAG_OPENING = /<(\w+)\b[^<]*>/g;
+// const REGEX_TAG_CLOSING = /<\/(\w+)\b[^<]*>/g;
+// const REGEX_TAG_BOUNDARIES = /(<(\/)?(\w+)\b[^<]*>)/g;
+// const REGEX_TAG = /<(\w+)\b[^<]*(?:(?!<\/(\1)>)<[^<]*)*<\/(\1)>/g;
 
 const types = {
   Document: 'div',
@@ -24,7 +24,7 @@ const types = {
     return `h${ast.depth}`;
   },
   CodeBlock: 'pre',
-  HtmlBlock: 'html',
+  // HtmlBlock: 'html',
   HorizontalRule: 'hr',
   Break: 'br',
   Emphasis: 'em',
@@ -78,10 +78,10 @@ function *walk(ast) {
   }
 }
 
-const hasOnlyStr = ast => (
+const hasOnlyType = (ast, type) => (
   ast.children &&
   ast.children.length === 1 &&
-  ast.children[0].type === 'Str'
+  ast.children[0].type === type
 );
 
 const resolveLocalName = ast => (
@@ -93,15 +93,13 @@ const buildContent = ast => {
     return null;
   }
 
-  if (valueElements.includes(ast.type)) {
+  if (valueElements.includes(ast.type) || hasOnlyType(ast, 'Html')) {
     if (ast.type === 'Html') {
       if (ast.value.match(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/)) {
         return '';
       }
 
-      return React.createElement('p', {
-        dangerouslySetInnerHTML: { __html: ast.value },
-      });
+      return { __html: ast.value };
     }
 
     return ast.value;
@@ -112,7 +110,7 @@ const buildContent = ast => {
     return React.createElement('code', {}, ast.value);
   }
 
-  if (hasOnlyStr(ast)) {
+  if (hasOnlyType(ast, 'Str')) {
     return ast.children[0].value;
   }
 
@@ -124,30 +122,6 @@ const buildContent = ast => {
   } else if (ast.type === 'ListItem' && ast.children && ast.children.length > 1) {
     const [firstAst, ...rest] = ast.children;
     children = [...walk(firstAst), ...walk({ ...ast, children: rest })];
-  } else if (ast.type === 'Paragraph') {
-    // console.log('ast', ast);
-    // console.log('has tags', ast.raw.match(REGEX_TAG));
-
-    // const htmlMatch = ast.raw.match(REGEX_TAG);
-    // let newMD = ast.raw;
-
-    // if (htmlMatch) {
-    //   newMD = htmlMatch.reduce((acc, match) => {
-    //     const parts = [
-    //       '\n',
-    //       match.match(REGEX_TAG_OPENING)[0],
-    //       match.replace(REGEX_TAG_BOUNDARIES, ''),
-    //       match.match(REGEX_TAG_CLOSING)[0],
-    //     ];
-
-    //     return acc.replace(match, parts.join('\n'));
-    //   }, newMD);
-
-    //   console.log(newMD);
-    //   console.log(parse(newMD));
-    // }
-
-    children = [...walk(ast)];
   } else {
     children = [...walk(ast)];
   }
@@ -172,11 +146,16 @@ const createComponent = ast => (
     }
 
     render() {
-      return React.createElement(
-        resolveLocalName(ast),
-        buildProps(ast),
-        buildContent(ast),
-      );
+      let content = buildContent(ast);
+      const props = buildProps(ast);
+
+      // eslint-disable-next-line no-underscore-dangle
+      if (content && content.__html) {
+        props.dangerouslySetInnerHTML = content;
+        content = null;
+      }
+
+      return React.createElement(resolveLocalName(ast), props, content);
     }
   })
 );
