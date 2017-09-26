@@ -7,3 +7,5 @@ npm-debug.log
 # IntelliJ
 *.iml
 /.idea
+
+/coverage

@@ -1,0 +1,90 @@
+.site-header {
+  align-items: center;
+  background: $brand-color;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px 45px;
+  width: 100%;
+
+  .branding-container {
+    flex: auto;
+  }
+
+  .branding {
+    display: inline-block;
+    height: 60px;
+    width: 160px;
+
+    @media (max-width: 480px) {
+      height: 40px;
+      margin-bottom: 5px;
+      width: 120px;
+    }
+
+    &:hover {
+      background: none;
+      text-decoration: none;
+    }
+
+    &::before {
+      background: url('../images/logo_eleven_lab.svg') top left no-repeat;
+      background-size: contain;
+      content: '';
+      display: block;
+      height: 60px;
+      width: 160px;
+
+      @media (max-width: 480px) {
+        height: 40px;
+        margin: 0 auto;
+        width: 120px;
+      }
+    }
+  }
+
+  a {
+    color: $header-link-color;
+  }
+
+  .avatar {
+    border-radius: .2rem;
+    float: left;
+    height: 2rem;
+    margin-right: 1rem;
+    margin-top: -3px;
+    width: 2rem;
+  }
+
+  .site-title {
+    float: left;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .site-nav {
+    ul {
+      display: inline-block;
+      line-height: 1.5;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: .4rem;
+    }
+  }
+
+  .branding-container,
+  .search-bar,
+  .site-nav {
+    @media (max-width: 480px) {
+      flex: 0 0 100%;
+      text-align: center;
+    }
+  }
+}
