@@ -28,6 +28,7 @@ alert('toto');
 console.log(lol);
 \`\`\`
 
+![](http://lorempixel.com/400/200/abstract/)
 
 [lien](http://google.fr)
 

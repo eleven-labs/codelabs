@@ -50,6 +50,11 @@ const typeProps = {
       href: ast.url,
     };
   },
+  Image(ast) {
+    return {
+      src: ast.url,
+    };
+  },
 };
 
 let componentIndex = 0;
