@@ -5,7 +5,7 @@ import { parse } from 'markdown-to-ast';
 import componentFactory from '../helpers/componentFactory';
 
 
-const initialMD = `hello *cool*
+const initialMD = `hello *world*
 
 - yeah
 - lol
@@ -31,6 +31,8 @@ console.log(lol);
 ![](http://lorempixel.com/400/200/abstract/)
 
 [lien](http://google.fr)
+
+http://google.fr
 
 <div>
   <div>
