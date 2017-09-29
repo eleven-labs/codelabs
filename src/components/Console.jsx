@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { parse } from 'markdown-to-ast';
 
-import componentFactory from '../helpers/componentFactory';
+import componentFactory from '../services/componentFactory';
 
+// this is rediculous, I can't beleive I'm doing this. this is because of my IDE.
+const script = [
+  ['<', 'script', '>'].join(''),
+  'alert(\'toto\');',
+  ['</', 'script', '>'].join(''),
+].join();
 
 const initialMD = `hello *world*
 
@@ -16,9 +22,7 @@ const initialMD = `hello *world*
 google
 </a>
 
-<script>
-alert('toto');
-</script>
+${script}
 
 ---
 
@@ -74,7 +78,6 @@ export default class Console extends React.Component {
 
   render() {
     const comps = componentFactory(this.state.md);
-    console.log(comps);
 
     return (
       <div>
