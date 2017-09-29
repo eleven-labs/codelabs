@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import componentFactory from '../../src/helpers/componentFactory';
+import componentFactory from '../../src/services/componentFactory';
 
 describe('Component Factory', () => {
   it('should create a paragraph component', () => {
