@@ -10,7 +10,7 @@ const script = [
   ['<', 'script', '>'].join(''),
   'alert(\'toto\');',
   ['</', 'script', '>'].join(''),
-].join();
+].join('');
 
 const initialMD = `hello *world*
 
@@ -81,13 +81,17 @@ export default class Console extends React.Component {
     const comps = componentFactory(this.state.md);
 
     return (
-      <div>
+      <div className="codelabs-ast-console" style={{ padding: 20 }}>
         <textarea
           id="markdown"
-          cols={100}
-          rows={10}
+          rows={15}
           value={this.state.md}
           onChange={this.onChange}
+          style={{
+            fontFamily: 'monospace',
+            fontSize: 14,
+            width: '100%',
+          }}
         />
         <div id="preview">
           <div className="generated-component">
