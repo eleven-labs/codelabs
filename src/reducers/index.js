@@ -1,11 +1,15 @@
-import { combineReducers } from 'redux';
+import { LOAD_COURSES_SUCCESS } from '../actions';
+import { INITIAL_STATE } from '../constants';
 
-import courses from './courses';
-import topics from './topics';
+const handleActions = cases => (state = INITIAL_STATE, action) => (
+  (!action || !cases[action.type]) ? state : cases[action.type](state, action)
+);
 
-const rootReducer = combineReducers({
-  courses,
-  topics,
+export default handleActions({
+  [LOAD_COURSES_SUCCESS]: (state, action) => ({
+    courses: [
+      ...state.courses,
+      ...action.response,
+    ],
+  }),
 });
-
-export default rootReducer;

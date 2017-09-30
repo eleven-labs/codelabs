@@ -4,7 +4,8 @@ import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../services/componentFactory';
 
-// this is rediculous, I can't beleive I'm doing this. this is because of my IDE.
+// this is ridiculous, I can't beleive I'm doing this.
+// the script tag breaks eslint, even inside string literals.
 const script = [
   ['<', 'script', '>'].join(''),
   'alert(\'toto\');',
