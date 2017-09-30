@@ -1,3 +1,4 @@
+import 'core-js';
 import React from 'react';
 import { mount } from 'enzyme';
 
@@ -38,7 +39,7 @@ console.log(lol);
     </div>
   </div>
 </div>
-    `;
+`;
 
     const components = componentFactory(md);
     const wrapper = mount(

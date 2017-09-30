@@ -1,8 +1,3 @@
-export const INITIAL_STATE = {
-  topics: [],
-  courses: [],
-};
-
 export const API_ROOT = '/api/';
 export const NOOP = () => {};
 

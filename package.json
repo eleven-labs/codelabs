@@ -14,8 +14,13 @@
   },
   "author": "",
   "jest": {
+    "setupFiles": [
+      "<rootDir>/test/config/shims.js",
+      "<rootDir>/test/config/setup.js",
+      "<rootDir>/test/config/mocks/modules.js"
+    ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/mocks/media.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/config/mocks/media.js"
     }
   },
   "devDependencies": {
@@ -34,6 +39,7 @@
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.7",
     "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-airbnb-base": "^12.0.1",

@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'source-map',
   target: 'web',
   entry: [
-    'babel-polyfill',
+    'core-js',
     'setimmediate',
     'isomorphic-fetch',
     path.join(__dirname, 'node_modules', 'font-awesome', 'scss', 'font-awesome.scss'),
