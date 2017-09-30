@@ -1,4 +1,3 @@
-import 'core-js';
 import React from 'react';
 import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';

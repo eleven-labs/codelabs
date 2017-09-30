@@ -1,6 +1,3 @@
-/* eslint-disable arrow-parens */
-import uuid from 'uuid';
-
 import { CALL_API, Request } from '../services';
 
 // A Redux middleware that interprets actions with CALL_API info specified.
@@ -53,7 +50,6 @@ export default store => next => async action => {
     headers: {
       ...headers,
       'Content-Type': 'application/json;charset=UTF-8',
-      'x-query-token': uuid.v4(),
     },
   };
 
