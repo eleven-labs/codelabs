@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../services/componentFactory';
+import { getPost, getPosts } from '../services/console/posts';
 
 // this is ridiculous. can't believe I'm doing this.
 // the script tag breaks eslint, even inside string literals.
@@ -17,7 +18,7 @@ const initialMD = `### hello **world**
 - yeah
 - lol
 
-\`mmm\`
+\`console.log('hello world');\`
 
 <a href="http://google.com">
 google
@@ -74,9 +75,20 @@ export default class Console extends React.Component {
 
     this.state = {
       md: initialMD,
+      postPaths: [],
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onPostSelected = this.onPostSelected.bind(this);
+  }
+
+  componentDidMount() {
+    const postPaths = getPosts().map(post => post.replace('./', ''));
+    this.setState({ postPaths });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.md !== nextState.md || this.state.postPaths !== nextState.postPaths;
   }
 
   onChange(event) {
@@ -85,15 +97,28 @@ export default class Console extends React.Component {
     });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.md !== nextState.md;
+  async onPostSelected(event) {
+    event.persist();
+
+    this.setState({
+      md: await getPost(event.target.value),
+    });
   }
 
   render() {
+    const { postPaths } = this.state;
     const comps = componentFactory(this.state.md);
 
     return (
       <div className="codelabs-ast-console" style={{ padding: 20 }}>
+        <p>
+          <select onChange={this.onPostSelected}>
+            <option value="0">--- Select a post ---</option>
+            {postPaths.map(post => (
+              <option value={post} key={post}>{post.replace('.md', '')}</option>
+            ))}
+          </select>
+        </p>
         <textarea
           id="markdown"
           rows={15}

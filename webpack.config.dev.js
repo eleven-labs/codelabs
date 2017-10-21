@@ -50,6 +50,9 @@ module.exports = {
       // JS
       { test: /\.jsx?$/, use: [{ loader: 'babel-loader' }] },
 
+      // md
+      { test: /\.md$/, use: [{ loader: 'raw-loader' }] },
+
       // Images
       { test: /\.(jpe?g|png|gif)$/i, use: [{ loader: 'url-loader' }] },
 

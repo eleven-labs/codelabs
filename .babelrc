@@ -4,6 +4,7 @@
     "syntax-trailing-function-commas",
     "transform-class-properties",
     "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "syntax-dynamic-import"
   ]
 }

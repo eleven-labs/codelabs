@@ -1,3 +1,4 @@
+import { hasOnlyType } from '../../helpers/ast';
 import { AST_NODES } from '../../constants';
 
 const typeProps = {
@@ -7,6 +8,9 @@ const typeProps = {
       return {};
     },
   }), {}),
+  Paragraph(ast) {
+    return hasOnlyType(ast, 'Image') ? { className: 'has-image-only' } : {};
+  },
   Link(ast) {
     return {
       href: ast.url,
