@@ -2,13 +2,13 @@ version: '2'
 
 services:
     nginx:
-        build: docker/nginx
+        build: Docker/nginx
         volumes:
             - ./:/var/www/codelabs
         ports:
             - 80:80
     node:
-        build: docker/node
+        build: Docker/node
         volumes:
             - ./:/var/www/codelabs
         # 'npm rebuild node-sass' adds the missing binding for the container's version of node (6, 7, 8, ...)
