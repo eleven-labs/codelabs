@@ -1,0 +1,18 @@
+pre {
+  @media (min-width: 480px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+  }
+
+  .hljs {
+    margin: 0;
+    border-radius: 3px;
+    line-height: 1.4;
+    padding: 15px;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 100%;  
+  }
+}

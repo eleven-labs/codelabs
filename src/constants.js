@@ -11,14 +11,14 @@ export const VALUE_ELEMENTS = ['Code', 'Html'];
 
 export const AST_NODES = {
   Document: 'div',
-  Paragraph: 'p',
+  Paragraph: 'div',
   BlockQuote: 'blockquote',
   ListItem: 'li',
 
   List: ast => (ast.ordered ? 'ol' : 'ul'),
   Header: ast => `h${ast.depth}`,
 
-  CodeBlock: 'pre',
+  CodeBlock: 'div',
   // HtmlBlock: 'html',
   HorizontalRule: 'hr',
   Break: 'br',

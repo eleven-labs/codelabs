@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Highlight from '../../components/Highlight';
 import { hasOnlyType } from '../../helpers/ast';
 import {
   VALUE_ELEMENTS,
@@ -33,9 +34,12 @@ export default walker => ast => {
     return ast.value;
   }
 
-  // additional markup for the CodeBlock element
+  // special markup for the CodeBlock element
   if (ast.type === 'CodeBlock') {
-    return React.createElement('code', {}, ast.value);
+    return React.createFactory(Highlight)({
+      language: ast.lang,
+      children: ast.value,
+    });
   }
 
   if (hasOnlyType(ast, 'Str')) {

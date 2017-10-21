@@ -1,7 +1,6 @@
-const webpack = require('webpack');
+//const webpack = require('webpack');
 const path = require('path');
-
-const port = +process.env.PORT || 9000;
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -10,11 +9,12 @@ module.exports = {
     'babel-polyfill',
     'setimmediate',
     'isomorphic-fetch',
-    path.join(__dirname, 'src', 'client', 'assets', 'scss', 'main.scss'),
-    path.join(__dirname, 'src', 'client', `index.prod`),
+    path.join(__dirname, 'node_modules', 'font-awesome', 'scss', 'font-awesome.scss'),
+    path.join(__dirname, 'src', 'assets', 'scss', 'main.scss'),
+    path.join(__dirname, 'src', 'index.dev'),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json'],
     // Avoids : https://facebook.github.io/react/warnings/refs-must-have-owner.html
     alias: {
       react: path.resolve('node_modules/react'),
@@ -30,11 +30,6 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': 'production'
-      }
-    }),
   ],
   module: {
     rules: [
@@ -47,14 +42,14 @@ module.exports = {
       { test: /\.jsx?$/, use: [{ loader: 'babel-loader' }] },
 
       // Images
-      { test: /\.(jpe?g|png|gif)$/i, use: [{ loader: 'url-loader', options: { limit: 10240 } }] },
+      { test: /\.(jpe?g|png|gif)$/i, use: [{ loader: 'url-loader' }] },
 
       // Font
-      { test: /\.svg(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 65000, mimetype: 'image/svg+xml' } }] },
-      { test: /\.woff(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 65000, mimetype: 'application/font-woff' } }] },
-      { test: /\.woff2(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 65000, mimetype: 'application/font-woff2' } }] },
-      { test: /\.[ot]tf(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 65000, mimetype: 'application/octet-stream' } }] },
-      { test: /\.eot(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 65000, mimetype: 'application/vnd.ms-fontobject' } }] },
+      { test: /\.svg(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader' }] },
+      { test: /\.woff(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader' }] },
+      { test: /\.woff2(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader' }] },
+      { test: /\.[ot]tf(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader' }] },
+      { test: /\.eot(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader' }] },
     ],
   },
 };

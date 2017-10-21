@@ -12,6 +12,7 @@ module.exports = {
     'babel-polyfill',
     'setimmediate',
     'isomorphic-fetch',
+    path.join(__dirname, 'node_modules', 'highlight.js', 'styles', 'railscasts.css'),
     path.join(__dirname, 'node_modules', 'font-awesome', 'scss', 'font-awesome.scss'),
     path.join(__dirname, 'src', 'assets', 'scss', 'main.scss'),
     path.join(__dirname, 'src', `index.${mode}`),

@@ -29,8 +29,18 @@ ${script}
 
 <hr />
 
+\`\`\`bash
+aws acm request-certificate --domain-name "blog.eleven-labs.com" --region "us-east-1"
+\`\`\`
+
 \`\`\`js
-console.log(lol);
+// special markup for the CodeBlock element
+if (ast.type === 'CodeBlock') {
+  return React.createFactory(Highlight)({
+    language: ast.lang,
+    children: ast.value,
+  });
+}
 \`\`\`
 
 ![](http://lorempixel.com/400/200/abstract/)
