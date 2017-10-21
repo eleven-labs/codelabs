@@ -18,10 +18,12 @@ const resolveRenderer = (renderer, key) => (
  * builds the content of an AST node.
  */
 export default walker => ast => {
+  // TODO: comment...
   if (VOID_ELEMENTS.includes(ast.type)) {
     return null;
   }
 
+  // TODO: comment...
   if (VALUE_ELEMENTS.includes(ast.type) || hasOnlyType(ast, 'Html')) {
     if (ast.type === 'Html') {
       if (ast.value.match(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/)) {
@@ -34,7 +36,7 @@ export default walker => ast => {
     return ast.value;
   }
 
-  // special markup for the CodeBlock element
+  // Special markup for the CodeBlock element
   if (ast.type === 'CodeBlock') {
     return React.createFactory(Highlight)({
       language: ast.lang,
@@ -42,6 +44,7 @@ export default walker => ast => {
     });
   }
 
+  // TODO: comment...
   if (hasOnlyType(ast, 'Str')) {
     return ast.children[0].value;
   }

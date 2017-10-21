@@ -16,7 +16,7 @@ import { AST_NODES } from '../../constants';
 function *walk(ast) {
   if (ast.children) {
     for (const child of ast.children) {
-      yield* ASTParser[child.type](child);
+      yield* ASTParser[child.type] ? ASTParser[child.type](child) : '';
     }
   }
 }

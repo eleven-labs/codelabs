@@ -12,7 +12,7 @@ const script = [
   ['</', 'script', '>'].join(''),
 ].join('');
 
-const initialMD = `hello *world*
+const initialMD = `### hello **world**
 
 - yeah
 - lol
