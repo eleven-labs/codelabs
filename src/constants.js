@@ -11,7 +11,7 @@ export const VALUE_ELEMENTS = ['Code', 'Html'];
 
 export const AST_NODES = {
   Document: 'div',
-  Paragraph: 'div',
+  Paragraph: 'p',
   BlockQuote: 'blockquote',
   ListItem: 'li',
 

@@ -43,6 +43,8 @@ if (ast.type === 'CodeBlock') {
 }
 \`\`\`
 
+> La subtilité de cette étape consiste à faire la demande de certificat dans la région us-east-1 (N. Virginia), sinon le certificat ne pourra pas être utilisé sur la future distribution Amazon Cloudfront.
+
 ![](http://lorempixel.com/400/200/abstract/)
 
 [lien](http://google.fr)
@@ -104,7 +106,7 @@ export default class Console extends React.Component {
           }}
         />
         <div id="preview">
-          <div className="generated-component">
+          <div className="generated-component post-content">
             {comps.map((renderer, key) => renderer({ key }))}
           </div>
         </div>
