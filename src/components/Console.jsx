@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../services/componentFactory';
-import { getPost, getPosts } from '../services/console/posts';
 
 // this is ridiculous. can't believe I'm doing this.
 // the script tag breaks eslint, even inside string literals.
@@ -82,11 +81,6 @@ export default class Console extends React.Component {
     this.onPostSelected = this.onPostSelected.bind(this);
   }
 
-  componentDidMount() {
-    const postPaths = getPosts().map(post => post.replace('./', ''));
-    this.setState({ postPaths });
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.md !== nextState.md || this.state.postPaths !== nextState.postPaths;
   }
@@ -111,14 +105,14 @@ export default class Console extends React.Component {
 
     return (
       <div className="codelabs-ast-console" style={{ padding: 20 }}>
-        <p>
+        {false && <p>
           <select onChange={this.onPostSelected}>
             <option value="0">--- Select a post ---</option>
             {postPaths.map(post => (
               <option value={post} key={post}>{post.replace('.md', '')}</option>
             ))}
           </select>
-        </p>
+        </p>}
         <textarea
           id="markdown"
           rows={15}
