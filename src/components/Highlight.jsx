@@ -17,7 +17,7 @@ class Highlight extends Component {
   componentDidUpdate () {
     if (this.element) {
       highlight.initHighlighting.called = false;
-      highlight.highlightBlock(this.refs.code);
+      highlight.highlightBlock(this.element);
     }
   }
 

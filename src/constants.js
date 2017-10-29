@@ -1,6 +1,7 @@
 export const API_ROOT = '/api/';
 export const NOOP = () => {};
 
+// for InlineHtml block detection
 // const REGEX_TAG_OPENING = /<(\w+)\b[^<]*>/g;
 // const REGEX_TAG_CLOSING = /<\/(\w+)\b[^<]*>/g;
 // const REGEX_TAG_BOUNDARIES = /(<(\/)?(\w+)\b[^<]*>)/g;

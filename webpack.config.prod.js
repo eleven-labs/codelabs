@@ -1,6 +1,9 @@
-//const webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+
+const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
+const mode = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 
 module.exports = {
   devtool: 'source-map',
@@ -9,9 +12,10 @@ module.exports = {
     'babel-polyfill',
     'setimmediate',
     'isomorphic-fetch',
+    path.join(__dirname, 'node_modules', 'highlight.js', 'styles', 'railscasts.css'),
     path.join(__dirname, 'node_modules', 'font-awesome', 'scss', 'font-awesome.scss'),
     path.join(__dirname, 'src', 'assets', 'scss', 'main.scss'),
-    path.join(__dirname, 'src', 'index.dev'),
+    path.join(__dirname, 'src', `index.${mode}`),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -30,6 +34,11 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(NODE_ENV),
+      },
+    }),
   ],
   module: {
     rules: [
