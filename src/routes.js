@@ -17,7 +17,8 @@ export default [{
       component: Console,
     },
     {
-      path: '/course/:id',
+      path: '/course/:lang/:permalink',
+      exact: true,
       component: CoursePage,
     },
   ],

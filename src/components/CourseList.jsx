@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import urlJoin from 'url-join';
 
 const dateOptions = {
   year: 'numeric',
-  month: 'short',
+  month: 'long',
   day: 'numeric',
 };
 
@@ -24,16 +25,29 @@ export default class CourseList extends Component {
   constructor(props) {
     super(props);
     this.courseRenderer = this.courseRenderer.bind(this);
+    this.authorsRenderer = this.authorsRenderer.bind(this);
   }
 
-  courseRenderer(course) {
+  authorsRenderer(author) {
+    return (
+      <a
+        className="author-link"
+        href={urlJoin('http://blog.eleven-labs.com/authors/', author.username)}
+        key={author.username}
+      >
+        {author.name}
+      </a>
+    );
+  }
+
+  courseRenderer(course, index) {
     const date = new Date(course.date);
 
     return (
-      <div className="posts-teaser slice" key={course.uuid}>
+      <div className="posts-teaser slice" key={index}>
         <div className="container">
           <h2 className="posts-title">
-            <a className="no-link-style" href={`/course/${course.permalink}`}>
+            <a className="no-link-style" href={urlJoin('/course/', course.permalink)}>
               {course.title}
             </a>
           </h2>
@@ -41,15 +55,8 @@ export default class CourseList extends Component {
           <time className="posts-date meta">
             <span className="meta-content">
               {date.toLocaleString('fr-FR', dateOptions)}
-              {' à '}
-              {date.toLocaleTimeString('fr-FR', timeOptions)}
               {' par '}
-              <a
-                className="author-link"
-                href={`http://blog.eleven-labs.com/authors/${course.author.username}`}
-              >
-                {course.author.name}
-              </a>
+              {course.authors.map(this.authorsRenderer)}
             </span>
           </time>
 

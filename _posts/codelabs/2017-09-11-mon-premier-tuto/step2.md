@@ -4,7 +4,7 @@ excerpt: Pour rendre l'expérience utilisateur de nos applications web de plus e
 cover: /assets/2017-09-11-mon-premier-tuto/step2.jpg
 ---
 
-P```yaml
+```yaml
 # parameters.yml
 parameters:
     database_host: '%env(POSTGRES_HOST)%'

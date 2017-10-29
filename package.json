@@ -10,7 +10,7 @@
     "test": "jest --no-cache --coverage",
     "test-update-snapshot": "jest --json --updateSnapshot",
     "lint": "eslint --ext .js --ext .jsx src",
-    "fake-api": "cd ./fixtures && json-server courses.js --routes routes.json"
+    "fake-api": "cd ./fixtures && json-server index.json --routes routes.json"
   },
   "author": "",
   "jest": {
