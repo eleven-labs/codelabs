@@ -1,6 +1,7 @@
 import App from './containers/App';
 import Homepage from './containers/Home';
-import Course from './containers/Course';
+import Console from './components/Console';
+import CoursePage from './containers/Course';
 
 export default [{
   component: App,
@@ -11,8 +12,14 @@ export default [{
       component: Homepage,
     },
     {
-      path: '/course/:id',
-      component: Course,
-    }
+      path: '/console',
+      exact: true,
+      component: Console,
+    },
+    {
+      path: '/course/:lang/:permalink',
+      exact: true,
+      component: CoursePage,
+    },
   ],
 }];

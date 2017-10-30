@@ -3,18 +3,22 @@
   "permalink": "/fr/mon-premier-tuto/",
   "excerpt": "Pour rendre l'expérience utilisateur de nos applications web de plus en plus agréable, nous somme de plus en plus obligé d'utiliser plusieurs technologies en même temps. Nous allons mettre en place un flux infini en utilisant un backend Symfony et un front en ReactJs.",
   "step_count": 2,
+  "date": "2017-09-11",
+  "cover": "/assets/2017-09-11-mon-premier-tuto/cover.jpg",
   "authors": [
-    {"name":"captainjojo"}
+    {
+      "name": "Jonathan Jalouzot",
+      "username": "captainjojo"
+    }
   ],
   "categories": [
-    {"name": "Symfony"},
-    {"name": "javascript"}
+    "Symfony",
+    "javascript"
   ],
   "tags": [
-    {"name": "php"},
-    {"name": "Symfony"},
-    {"name": "react"},
-    {"name": "redux"}
-  ],
-  "cover": "/assets/2017-09-11-mon-premier-tuto/cover.jpg"
+    "php",
+    "Symfony",
+    "react",
+    "redux"
+  ]
 }
