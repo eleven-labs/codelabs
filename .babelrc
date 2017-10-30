@@ -1,9 +1,10 @@
 {
-  "presets": ["es2015", "es2016", "es2017", "react"],
+  "presets": ["env", "react"],
   "plugins": [
     "syntax-trailing-function-commas",
     "transform-class-properties",
     "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "syntax-dynamic-import"
   ]
 }

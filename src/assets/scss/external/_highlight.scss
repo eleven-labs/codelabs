@@ -1,0 +1,29 @@
+// scss-lint:disable ColorVariable
+code,
+pre {
+  font-family: Menlo, Monaco, 'Courier New', monospace;
+}
+
+code {
+  background-color: rgba(0, 0, 0, .04);
+  border-radius: 3px;
+  padding: .25em .5rem;
+}
+
+pre {
+  @media (min-width: 480px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+  }
+
+  .hljs {
+    margin: 0;
+    border-radius: 3px;
+    line-height: 1.4;
+    padding: 15px;
+    font-size: 100%;  
+  }
+}
