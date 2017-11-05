@@ -58,7 +58,9 @@ export class Course extends React.Component {
   }
 
   async loadMd(path) {
-    return componentFactory(await import(`../../_posts/codelabs/${path}`));
+    const response = await fetch('https://storage.googleapis.com/tutos/codelabs/2017-09-11-mon-premier-tuto/step1.md');
+
+    return componentFactory(await response.text());
   }
 
   async loadIndex(course) {

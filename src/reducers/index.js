@@ -12,9 +12,6 @@ const handleActions = cases => (state = {}, action) => (
 
 export default handleActions({
   [LOAD_COURSES_SUCCESS]: (state, action) => ({
-    courses: [
-      ...(state.courses || []),
-      ...action.response,
-    ],
+    courses: action.response,
   }),
 });

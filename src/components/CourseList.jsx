@@ -62,13 +62,13 @@ export default class CourseList extends Component {
 
           <p>{course.description}</p>
 
-          <a className="button" href={course.permalink}>Lire le tutoriel</a>
+          <a className="button" href={urlJoin('/course/', course.permalink)}>Lire le tutoriel</a>
         </div>
       </div>
     );
   }
 
-  render() {    
+  render() {
     return (
       <div className="posts">
         {this.props.courses.map(this.courseRenderer)}
