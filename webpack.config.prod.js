@@ -26,7 +26,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, '_posts'),
     filename: 'codelabs.js',
     library: 'CodeLabs',
     libraryTarget: 'umd',
