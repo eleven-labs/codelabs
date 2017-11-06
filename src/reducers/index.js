@@ -1,4 +1,7 @@
-import { LOAD_COURSES_SUCCESS } from '../actions';
+import {
+  LOAD_COURSES_SUCCESS,
+  LOAD_STEP_SUCCESS,
+} from '../actions';
 
 /**
  * Creates the main reducer.
@@ -12,6 +15,11 @@ const handleActions = cases => (state = {}, action) => (
 
 export default handleActions({
   [LOAD_COURSES_SUCCESS]: (state, action) => ({
+    ...state,
     courses: action.response,
+  }),
+  [LOAD_STEP_SUCCESS]: (state, action) => ({
+    ...state,
+    currentStepMD: action.response,
   }),
 });

@@ -24,10 +24,6 @@ export class Home extends React.Component {
 
   componentDidMount() {
     this.props.loadCourses();
-
-    fetch('https://the-wilson-post.appspot.com/api/posts').then(posts => {
-      console.log(posts);
-    });
   }
 
   render() {

@@ -5,17 +5,22 @@ import urlJoin from 'url-join';
 
 import Splash from '../components/Splash';
 
-import { loadCourses } from '../actions';
+import {
+  loadCourses,
+  loadStep,
+} from '../actions';
 import { NOOP } from '../constants';
 
 import componentFactory from '../services/componentFactory';
 
-const mapStateToProps = ({ courses }) => ({ courses });
-const mapDispatchToProps = { loadCourses };
+const mapStateToProps = ({ courses, currentStepMD }) => ({ courses, currentStepMD });
+const mapDispatchToProps = { loadCourses, loadStep };
 
 export class Course extends React.Component {
   static propTypes = {
     course: PropTypes.shape(),
+    loadCourses: PropTypes.func,
+    loadStep: PropTypes.func,
   };
 
   state = {
@@ -26,11 +31,10 @@ export class Course extends React.Component {
   constructor(props) {
     super(props);
 
-    this.loadIndex = this.loadIndex.bind(this);
-    this.loadStep = this.loadStep.bind(this);
-    this.loadMd = this.loadMd.bind(this);
+    this.loadInternalStep = this.loadInternalStep.bind(this);
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
+    this.go = this.go.bind(this);
   }
 
   async componentDidMount() {
@@ -49,31 +53,38 @@ export class Course extends React.Component {
       );
     }
 
-    this.setState({
-      course,
-      steps: {
-        index: await this.loadIndex(course),
-      },
+    this.setState({ course }, async () => {
+      await this.loadInternalStep(0);
+
+      this.setState({
+        steps: {
+          index: componentFactory(this.props.currentStepMD),
+        },
+      });
     });
   }
 
-  async loadMd(path) {
-    const response = await fetch('https://storage.googleapis.com/tutos/codelabs/2017-09-11-mon-premier-tuto/step1.md');
+  componentWillReceiveProps(nextProps) {
+    const { currentStepMD } = nextProps;
+    const { steps, currentStep } = this.state;
 
-    return componentFactory(await response.text());
+    if (currentStepMD) {
+      this.setState({
+        steps: {
+          ...steps,
+          [`step${currentStep}`]: componentFactory(currentStepMD),
+        },
+      });
+    }
   }
 
-  async loadIndex(course) {
-    let { match: { params: { permalink } } } = this.props;
-    return this.loadMd(`${course.date}-${permalink}/index.md`);
-  }
-
-  async loadStep(stepIndex) {
+  loadInternalStep(stepIndex) {
     const { course } = this.state;
+
     let { match: { params: { permalink } } } = this.props;
     const step = stepIndex <= 0 ? 'index' : `step${stepIndex}`;
 
-    return this.loadMd(`${course.date}-${permalink}/${step}.md`);
+    return this.props.loadStep(`${course.date}-${permalink}/${step}.md`);
   }
 
   next() {
@@ -87,12 +98,8 @@ export class Course extends React.Component {
   async go(direction) {
     const nextStep = this.state.currentStep + direction;
 
-    this.setState({
-      currentStep: nextStep,
-      steps: {
-        ...this.state.steps,
-        [`step${nextStep}`]: await this.loadStep(nextStep),
-      },
+    this.setState({ currentStep: nextStep }, () => {
+      this.loadInternalStep(nextStep);
     });
   }
 
