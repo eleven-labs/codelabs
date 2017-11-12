@@ -1,6 +1,8 @@
 language: node
 sudo: false
 script:
+  - yarn install
+  - yarn build
   - node createjson.js
 deploy:
   provider: gcs
@@ -9,6 +11,7 @@ deploy:
   bucket: "tutos"
   skip_cleanup: true
   acl: public-read
+  cache_control: "public,max-age=60"
   local-dir: _posts
   on:
-    branch: master
+    branch: deploy-prod
