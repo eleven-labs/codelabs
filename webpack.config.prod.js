@@ -27,10 +27,10 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '_posts'),
-    filename: 'tutos/codelabs.js',
+    filename: 'codelabs.js',
     library: 'CodeLabs',
     libraryTarget: 'umd',
-    publicPath: '/',
+    publicPath: '/tutos/',
     umdNamedDefine: true,
   },
   plugins: [
