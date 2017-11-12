@@ -15,3 +15,10 @@ deploy:
   local-dir: _posts
   on:
     branch: deploy-prod
+deploy:
+  provider: gae
+  keyfile: "codelabs-1ddb09746a38.json.enc"
+  project: "codelabs-179614"
+  local-dir: nginx
+  on:
+    branch: deploy-prod
