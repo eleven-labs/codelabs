@@ -17,7 +17,7 @@ deploy:
     branch: deploy-prod
 deploy:
   provider: gae
-  keyfile: "codelabs-1ddb09746a38.json.enc"
+  keyfile: "codelabs-1ddb09746a38.json"
   project: "codelabs-179614"
   local-dir: nginx
   on:
