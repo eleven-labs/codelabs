@@ -20,6 +20,7 @@ deploy:
   keyfile: "codelabs-1ddb09746a38.json"
   project: "codelabs-179614"
   local-dir: nginx
+  skip_cleanup: true
   on:
     branch: deploy-prod
 before_install:
