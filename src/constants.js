@@ -1,4 +1,5 @@
-export const API_ROOT = '/api/';
+// TODO: think about dev environment
+export const API_ROOT = 'https://storage.googleapis.com/tutos/codelabs/';
 export const NOOP = () => {};
 
 // for InlineHtml block detection

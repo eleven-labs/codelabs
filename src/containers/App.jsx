@@ -9,12 +9,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { courses, route } = this.props;
+    const { route } = this.props;
 
     return (
       <div>
         <Header />
-        {route && renderRoutes(route.routes, { courses })}
+        {route && renderRoutes(route.routes)}
       </div>
     );
   }

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
 const mode = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
@@ -25,7 +26,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, '_posts'),
     filename: 'codelabs.js',
     library: 'CodeLabs',
     libraryTarget: 'umd',
@@ -39,6 +40,10 @@ module.exports = {
         NODE_ENV: JSON.stringify(NODE_ENV),
       },
     }),
+    new HtmlWebpackPlugin({
+      title: 'Eleven\'s Codelabs',
+      template: './src/index.ejs',
+    }),
   ],
   module: {
     rules: [
@@ -49,6 +54,9 @@ module.exports = {
 
       // JS
       { test: /\.jsx?$/, use: [{ loader: 'babel-loader' }] },
+
+      // md
+      { test: /\.md$/, use: [{ loader: 'raw-loader' }] },
 
       // Images
       { test: /\.(jpe?g|png|gif)$/i, use: [{ loader: 'url-loader' }] },
