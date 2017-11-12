@@ -26,7 +26,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(__dirname, 'nginx/www'),
+    path: path.join(__dirname, 'www'),
     filename: 'codelabs.js',
     library: 'CodeLabs',
     libraryTarget: 'umd',
