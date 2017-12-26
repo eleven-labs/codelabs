@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import urlJoin from 'url-join';
 
 import Splash from '../components/Splash';
+import Steps from '../components/Steps';
 
 import {
   loadCourses,
@@ -111,6 +112,7 @@ export class Course extends React.Component {
       } = {},
     } = this.state;
 
+
     return (
       <div className="home container">
         <div>
@@ -125,6 +127,10 @@ export class Course extends React.Component {
             style={{ float: 'right' }}
           >next</button>
         </div>
+
+        <p>{course.time} minutes</p>
+
+        <Steps course={course} currentStep={currentStep}/>
 
         <div className="post-content">
           {step.map((renderer, key) => renderer({ key }))}

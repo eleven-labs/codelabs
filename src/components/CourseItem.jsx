@@ -31,6 +31,8 @@ const CourseItem = ({ course }) => {
           </a>
         </h2>
 
+        <p>{course.time} minutes</p>
+
         <time className="posts-date meta">
           <span className="meta-content">
             {date.toLocaleString('fr-FR', dateOptions)}
