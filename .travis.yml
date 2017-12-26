@@ -1,14 +1,26 @@
 language: node
 sudo: false
 script:
+  - yarn install
+  - yarn build
   - node createjson.js
 deploy:
-  provider: gcs
-  access_key_id: $GCS_ACCESS_KEY_ID
-  secret_access_key: $GCS_SECRET_ACCESS_KEY
-  bucket: "tutos"
-  skip_cleanup: true
-  acl: public-read
-  local-dir: _posts
-  on:
-    branch: master
+  - provider: gcs
+    access_key_id: $GCS_ACCESS_KEY_ID
+    secret_access_key: $GCS_SECRET_ACCESS_KEY
+    bucket: "tutos"
+    skip_cleanup: true
+    acl: public-read
+    cache_control: "public,max-age=60"
+    local-dir: _posts
+    on:
+      branch: master
+  - provider: gae
+    keyfile: "codelabs-1ddb09746a38.json"
+    project: "codelabs-179614"
+    local-dir: nginx
+    skip_cleanup: true
+    on:
+      branch: master
+before_install:
+  - openssl aes-256-cbc -K $encrypted_1d9c94ec092f_key -iv $encrypted_1d9c94ec092f_iv -in codelabs-1ddb09746a38.json.enc -out codelabs-1ddb09746a38.json -d
