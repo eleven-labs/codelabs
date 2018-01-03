@@ -70,13 +70,6 @@ module.exports = {
     hot: true,
     inline: true,
     port,
-    proxy: [
-      {
-        context: ['/api/**'],
-        target: 'http://localhost:3000',
-        secure: false,
-      },
-    ],
     stats: {
       chunks: false,
     },

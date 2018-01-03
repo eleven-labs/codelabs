@@ -1,9 +1,3 @@
----
-title: la step 1
-excerpt: Pour rendre l'expérience utilisateur de nos applications web de plus en plus agréable, nous somme de plus en plus obligé d'utiliser plusieurs technologies en même temps. Nous allons mettre en place un flux infini en utilisant un backend Symfony et un front en ReactJs.
-cover: /assets/2017-09-11-mon-premier-tuto/step1.jpg
----
-
 Pour rendre l'expérience utilisateur de nos applications web de plus en plus agréable, nous somme de plus en plus obligé d'utiliser plusieurs technologies en même temps. Nous allons mettre en place un flux infini en utilisant un backend Symfony et un front en ReactJs.
 
 ### Mise en place du backend

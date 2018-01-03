@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack -p --progress --config ./webpack.config.prod.js",
-    "start-client": "webpack-dev-server --config ./webpack.config.dev.js --host 0.0.0.0 --public codelabs.dev:9000 --content-base ./public/",
-    "start": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"yarn start-client\" \"yarn fake-api\"",
+    "start-client": "webpack-dev-server --config ./webpack.config.dev.js --host 0.0.0.0 --public codelabs.local:9000 --content-base ./public/",
+    "start": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"yarn start-client\"",
     "test": "jest --no-cache --coverage",
     "test-update-snapshot": "jest --json --updateSnapshot",
     "lint": "eslint --ext .js --ext .jsx src",
-    "fake-api": "cd ./fixtures && json-server index.json --routes routes.json",
-    "serve-prod": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"serve ./public\" \"yarn fake-api\""
+    "serve-prod": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"serve ./public\""
   },
   "author": "",
   "jest": {
