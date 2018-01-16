@@ -5,14 +5,14 @@ class Search extends Component {
   constructor(props) {
     super(props);
 
-    this.onChnage = this.onChnage.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   state = {
     needle: '',
   };
 
-  onChnage(event) {
+  onChange(event) {
     this.setState({ needle: event.target.value });
   }
 
@@ -23,7 +23,7 @@ class Search extends Component {
       <div className="search-bar">
         <input
           value={needle}
-          onChange={this.onChnage}
+          onChange={this.onChange}
         />
         <button>
           <span className="fa fa-search" />
