@@ -16,7 +16,7 @@ figure {
 
 html {
   background: $background-color;
-  font-size: 10px;
+  font-size: 62.5%;
 }
 // Typography
 ::selection {
@@ -32,14 +32,6 @@ body {
   font-family: $font-family-headings;
   font-weight: lighter;
   word-wrap: break-word;
-
-  @media (min-width: 480px) {
-    font-size: $font-size;
-  }
-
-  @media (max-width: 480px) {
-    font-size: $font-size-mobile;
-  }
 }
 
 blockquote p:last-child,
