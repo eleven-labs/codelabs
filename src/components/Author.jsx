@@ -5,7 +5,7 @@ import urlJoin from 'url-join';
 const Author = ({ author }) => (
   <a
     className="author-link"
-    href={urlJoin('http://blog.eleven-labs.com/authors/', author.username)}
+    href={urlJoin('https://blog.eleven-labs.com/authors/', author.username)}
     key={author.username}
   >
     {author.name}
