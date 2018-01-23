@@ -1,0 +1,11 @@
+.course-list {
+  &__container {
+    padding-left: 0;
+    padding-right: 0;
+    @media (min-width: em(768px)) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+}

@@ -1,24 +1,24 @@
 .slice {
-  border-bottom: 1px solid $border-color;
-  padding-bottom: 2.5em;
-  padding-top: 2.5em;
+  border-bottom: em(1px) solid $border-color;
+  padding-bottom: em(25px);
+  padding-top: em(25px);
 
-  @media (min-width: 30em) {
-    padding-bottom: 3em;
-    padding-top: 3em;
+  @media (min-width: em(480px)) {
+    padding-bottom: em(30px);
+    padding-top: em(30px);
   }
 }
 
 .container {
   margin: 0 auto;
   padding: 2.5em;
-  max-width: $max-width-layout;
+  max-width: em($max-width-layout);
 
-  @media (min-width: 30em) {
-    padding: 4.5em;
+  @media (min-width: em(480px)) {
+    padding: em(45px);
   }
 
-  @media (min-width: 85em) {
+  @media (min-width: em(1360px)) {
     padding-left: 0;
     padding-right: 0;
   }

@@ -4,6 +4,9 @@ import urlJoin from 'url-join';
 
 import CourseItem from './CourseItem';
 
+import play from '../assets/images/icons/icon_play.svg';
+import clock from '../assets/images/icons/icon_clock.svg';
+
 const courseRenderer = (course, index) => (
   <CourseItem course={course} key={index} />
 );
@@ -19,7 +22,7 @@ export default class CourseList extends Component {
 
   render() {
     return (
-      <div className="posts">
+      <div className="course-list">
         {this.props.courses.map(courseRenderer)}
       </div>
     );
