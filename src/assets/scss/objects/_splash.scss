@@ -3,6 +3,7 @@
   &__container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     @media (min-width: em(480px)) {
       padding-top: em(65px);
       padding-bottom: em(65px);
@@ -15,6 +16,7 @@
       display: block;
       flex: 0 0 auto;
       max-width: em(115px);
+      max-height: em(115px);
       margin: 0 em(40px);
     }
   }

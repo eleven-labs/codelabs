@@ -23,7 +23,9 @@ export default class CourseList extends Component {
   render() {
     return (
       <div className="course-list">
-        {this.props.courses.map(courseRenderer)}
+        <div className="course-list__container container">
+          {this.props.courses.map(courseRenderer)}
+        </div>
       </div>
     );
   }
