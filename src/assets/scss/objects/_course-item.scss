@@ -1,0 +1,96 @@
+.course-item {
+  $margin: 1.5%;
+
+  border: em(1px) solid $brand-light-grey;
+  @media (min-width: em(768px)) {
+    width: 49.25%;
+  }
+
+  &+& {
+    margin-top: em(20px);
+    @media (min-width: em(768px)) {
+      margin-top: 0;
+    }
+  }
+
+  &:nth-child(2n) {
+    @media (min-width: em(768px)) {
+      margin-left: $margin;
+    }
+  }
+
+  &:nth-child(n+3) {
+    @media (min-width: em(768px)) {
+      margin-top: $margin;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: em(10px) em(35px);
+    background-color: $brand-light-grey;
+    &-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__icon {
+    width: em(50px);
+  }
+
+  &__duration {
+    $context: 26px;
+
+    font-size: em($context);
+    margin: 0 0 0 em(6px, $context);
+  }
+
+  &__container {
+    padding: em(35px);
+  }
+
+  &__title {
+    $context: 24px;
+
+    font-size: em($context);
+    font-family: "Din";
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: em(10px, $context);
+  }
+
+  &__details {
+    $context: 15px;
+
+    position: relative;
+    display: inline-block;
+    font-size: em($context);
+    margin-bottom: em(15px, $context);
+    font-family: "Din";
+    font-weight: lighter;
+    letter-spacing: em(0.5px, $context);
+    text-transform: uppercase;
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      bottom: em(-2px, $context);
+      left: em(-5px, $context);
+      height: em(15px, $context);
+      width: calc(100% + #{em(20px, $context)});
+      background-color: $brand-yellow;
+      z-index: -1;
+    } 
+  }
+
+  &__description {
+    font-size: em(20px);
+    margin: 0;
+  }
+}

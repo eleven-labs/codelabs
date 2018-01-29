@@ -16,7 +16,6 @@ figure {
 
 html {
   background: $background-color;
-  font-size: 62.5%;
 }
 // Typography
 ::selection {
@@ -116,13 +115,13 @@ hr {
   margin: 1em 0;
 }
 
-a:not(.no-link-style) {
+a {
   color: $brand-black;
   display: inline-block;
   letter-spacing: .05em;
   text-decoration: underline;
 
-  &:hover {
+  &:hover, &:focus {
     background: $brand-yellow;
     text-decoration: none;
   }
@@ -130,6 +129,19 @@ a:not(.no-link-style) {
   &:visited,
   &:visited:hover {
     color: $button-hover;
+  }
+}
+
+.no-link-style {
+  text-decoration: none;
+  &:hover, &:focus {
+    background: none;
+    text-decoration: underline;
+  }
+
+  &:visited,
+  &:visited:hover {
+    color: inherit;
   }
 }
 

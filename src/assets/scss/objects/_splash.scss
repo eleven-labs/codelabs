@@ -3,19 +3,21 @@
   &__container {
     display: flex;
     flex-direction: row;
-    @media (min-width: 30em) {
-      padding-top: 6.5em;
-      padding-bottom: 6.5em;
+    align-items: center;
+    @media (min-width: em(480px)) {
+      padding-top: em(65px);
+      padding-bottom: em(65px);
     }
   }
 
   &__icon {
     display: none;
-    @media (min-width: 48em) {
+    @media (min-width: em(768px)) {
       display: block;
       flex: 0 0 auto;
-      max-width: 11.5em;
-      margin: 0 4em;
+      max-width: em(115px);
+      max-height: em(115px);
+      margin: 0 em(40px);
     }
   }
 
@@ -24,15 +26,15 @@
   }
 
   &__title {
+    font-size: em(35px);
     font-family: "Din";
-    font-size: 3.5em;
     font-weight: lighter;
     text-transform: uppercase;
   }
 
   &__description {
+    font-size: em(25px);
     font-family: "Din";
-    font-size: 2.5em;
     font-weight: lighter;
     margin: 0;
   } 

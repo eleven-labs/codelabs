@@ -1,3 +1,6 @@
+// Browser context
+$browser-context: 16px;
+
 // Typography
 $font-family-main: Helvetica, Arial, sans-serif;
 $font-family-headings: 'din', Helvetica, Arial, sans-serif;
@@ -13,8 +16,11 @@ $padding-x-small: 3%;
 // Button
 $button-hover: #999;
 
-// Brand colours
+// Brand colors
 $brand-color: #fff;
+$brand-yellow: #fbe300;
+$brand-black: #323334;
+$brand-light-grey: #eff0f1;
 $background-color: #fff;
 $border-color: rgba(0, 0, 0, .1); // rgba recommended if using feature images
 
@@ -33,9 +39,6 @@ $feature-image-size: cover; // options include "cover", "contain", "auto"
 $header-desc-background-color: #fbe300;
 $header-desc-text-color: #fff;
 
-// brand colors
-$brand-yellow: #fbe300;
-$brand-black: #323334;
+// Layout
+$max-width-layout: 1360px;
 
-// layout
-$max-width-layout: 136em;
