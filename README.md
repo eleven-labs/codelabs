@@ -6,9 +6,9 @@
 ## 1/ “Au programme…”
 
 Le but de cette partie est de présenter deux éléments : 
-1/Une brève présentation de ce qui va être présenté dans le tutoriel
-2/ Les différentes notions techniques abordées
-3/ Les prérequis matériels ou softwares
+1/Une brève présentation de ce qui va être présenté dans le tutoriel  
+2/ Les différentes notions techniques abordées  
+3/ Les prérequis matériels ou softwares  
 
 ## 2/ Mise à disposition des ressources
 
