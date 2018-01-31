@@ -19,7 +19,7 @@ Il y a des petites subtilités de configuration ? On les donne
 En bref il faut que le participant ait tout de prêt à la fin de cette partie.
 
 
-## Les étapes de mise en place
+## 3/ Les étapes de mise en place
 
 On peut maintenant s’attaquer au vrai tutoriel et rentrer dans le vif du sujet.  
 Il est important de découper intelligemment les étapes.  
@@ -32,7 +32,7 @@ Chaque étape doit disposer d’un moyen de tester si le résultat est correct a
 Une fois le parcours du tutorial complété, il s’agit maintenant d’accompagner le lecteur dans la vérification de son travail.  
 En lui donnant les moyens d’observer le résultat de ces actions, en attirant son attention vers certains points critiques où des erreurs sont faciles, à tester sa création...
 
-## Félicitations
+## 5/ Félicitations
 
 1/ Ici, on commence par féliciter le courageux qui a su aller au bout du tutoriel.  
 2/ Ensuite, on lui fait un petit récap’ de tout le travail accompli, de ce qu’il est maintenant capable de mettre en place.  
