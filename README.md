@@ -24,13 +24,13 @@ En bref il faut que le participant ait tout de prêt à la fin de cette partie.
 On peut maintenant s’attaquer au vrai tutoriel et rentrer dans le vif du sujet.  
 Il est important de découper intelligemment les étapes.  
 Une étape doit faire le focus sur un élément spécifique et être considérée un peu comme une marche d’escalier. La fin d’une étape doit être une avancée significative, mais aussi une possibilité de s’arrêter, et revenir facilement vers ce qui a déjà été fait.  
-Chaque étape doit disposer d’un moyen de tester si le résultat est correct avant d’avancer à la suivante. elle doit aussi mettre en garde si des erreurs fréquentes peuvent constituer des pièges.
+Chaque étape doit disposer d’un moyen de tester si le résultat est correct avant d’avancer à la suivante. Elle doit aussi mettre en garde si des erreurs fréquentes peuvent constituer des pièges.
 
 
 ## 4/ Vérification et tests
 
-Une fois le parcours du tutorial complété, il s’agit maintenant d’accompagner le lecteur dans la vérification de son travail.  
-En lui donnant les moyens d’observer le résultat de ces actions, en attirant son attention vers certains points critiques où des erreurs sont faciles, à tester sa création...
+Une fois le parcours du tutoriel complété, il s’agit maintenant d’accompagner le lecteur dans la vérification de son travail.  
+En lui donnant les moyens d’observer le résultat de ses actions, en attirant son attention vers certains points critiques où des erreurs sont faciles, à tester sa création...
 
 ## 5/ Félicitations
 
