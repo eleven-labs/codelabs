@@ -11,9 +11,9 @@ class Splash extends Component {
   render() {
     return (
       <div className="splash">
-        <div class="splash__container container">
+        <div className="splash__container container">
           <img className="splash__icon" src={flask} alt="" />
-          <div class="splash__text">
+          <div className="splash__text">
             <h2 className="splash__title">
               Bienvenue sur Eleven Code Labs
             </h2>
