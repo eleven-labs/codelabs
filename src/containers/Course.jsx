@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import urlJoin from 'url-join';
 
 import Splash from '../components/Splash';
-import Steps from '../components/Steps';
+import Summary from '../components/Summary';
 
 import {
   loadCourses,
@@ -36,6 +36,7 @@ export class Course extends React.Component {
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
     this.go = this.go.bind(this);
+    this.gotoStep = this.gotoStep.bind(this);
   }
 
   async componentDidMount() {
@@ -104,6 +105,12 @@ export class Course extends React.Component {
     });
   }
 
+  gotoStep(step) {
+    this.setState({ currentStep: step }, () => {
+      this.loadInternalStep(this.state.currentStep);
+    });
+  }
+
   render() {
     const {
       course = {},
@@ -118,25 +125,27 @@ export class Course extends React.Component {
     } = this.state;
 
     return (
-      <div className="home container">
-        <div>
-          <button
-            onClick={this.previous}
-            disabled={currentStep === 0}
-          >previous</button>
+      <div className="codelabs-course home">
+        <Summary
+          stepTitles={stepTitles}
+          currentStep={currentStep}
+          gotoStep={this.gotoStep}
+        />
 
-          <button
-            onClick={this.next}
-            disabled={currentStep === stepTitles.length - 1}
-            style={{ float: 'right' }}
-          >next</button>
-        </div>
+        <div className="post-content container">
+          <div>
+            <button
+              onClick={this.previous}
+              disabled={currentStep === 0}
+            >previous</button>
 
-        <p>{course.time} minutes</p>
-
-        <Steps stepTitles={stepTitles} currentStep={currentStep} />
-
-        <div className="post-content">
+            <button
+              onClick={this.next}
+              disabled={currentStep === stepTitles.length - 1}
+              style={{ float: 'right' }}
+            >next</button>
+          </div>
+          <p>{course.time} minutes</p>
           {step.map((renderer, key) => renderer({ key }))}
         </div>
       </div>
