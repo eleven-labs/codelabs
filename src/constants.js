@@ -1,5 +1,5 @@
 // TODO: think about dev environment
-export const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/tutos/codelabs/' : 'http://codelabs.local/';
+export const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/tutos/codelabs/' : `http://${location.hostname}:9000/`;
 export const NOOP = () => {};
 
 // for InlineHtml block detection

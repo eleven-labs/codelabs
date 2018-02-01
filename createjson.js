@@ -1,34 +1,35 @@
 const fs = require('fs');
-const path = require("path");
+const path = require('path');
 
-var p = "_posts/codelabs/"
-var indexJson = [];
+const codelabsPath = '_posts/codelabs/';
+const indexJson = [];
 
-function readDir(p) {
-  fs.readdir(p, function (err, files) {
-      if (err) {
-        console.log(err);
-        throw err;
-      }
+function readDir(lolPath) {
+  fs.readdir(lolPath, (err, files) => {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
 
-      files.map(function (file) {
-           if (fs.statSync(path.join(p, file)).isDirectory()) {
-            readDir(path.join(p, file));
-          }
+    files
+      .map((file) => {
+        if (fs.statSync(path.join(lolPath, file)).isDirectory()) {
+          readDir(path.join(lolPath, file));
+        }
 
-          return path.join(p, file);
-      }).filter(function (file) {
-          return fs.statSync(file).isFile();
-      }).forEach(function (file) {
-          if (path.extname(file) === '.json' && file !== '_posts/codelabs/index.json') {
-            var obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-            indexJson.push(obj);
+        return path.join(lolPath, file);
+      })
+      .filter((file) => fs.statSync(file).isFile())
+      .forEach((file) => {
+        if (path.extname(file) === '.json' && file !== '_posts/codelabs/index.json') {
+          const obj = JSON.parse(fs.readFileSync(file, 'utf8'));
+          indexJson.push(obj);
 
-            var json = JSON.stringify(indexJson);
-            fs.writeFileSync('_posts/codelabs/index.json', json, 'utf8');
-          }
+          const json = JSON.stringify(indexJson);
+          fs.writeFileSync('_posts/codelabs/index.json', json, 'utf8');
+        }
       });
   });
 }
 
-readDir(p);
+readDir(codelabsPath);
