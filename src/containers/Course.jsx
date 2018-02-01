@@ -96,7 +96,7 @@ export class Course extends React.Component {
     this.go(-1);
   }
 
-  async go(direction) {
+  go(direction) {
     const nextStep = this.state.currentStep + direction;
 
     this.setState({ currentStep: nextStep }, () => {
