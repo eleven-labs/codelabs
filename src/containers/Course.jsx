@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import urlJoin from 'url-join';
 
 import Splash from '../components/Splash';
-import Steps from '../components/Steps';
+import Summary from '../components/Summary';
 
 import {
   loadCourses,
@@ -126,7 +126,7 @@ export class Course extends React.Component {
 
     return (
       <div className="codelabs-course home">
-        <Steps
+        <Summary
           stepTitles={stepTitles}
           currentStep={currentStep}
           gotoStep={this.gotoStep}
