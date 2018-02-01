@@ -2,23 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import urlJoin from 'url-join';
 
-const renderStep = (course, step, currentStep) => {
+const renderStep = ({ title, isCurrentStep }) => {
+  const props = isCurrentStep ? { className: 'hljs' } : {};
+
   return (
-    <li className={currentStep === step ? 'hljs' : ''}>
-      { course[`step_${step}_title`] }
-    </li>
+    <li key={title} {...props}>{title}</li>
   );
 };
 
-const Steps = ({ course, currentStep }) => (
-  <div>
-    <h3>Step</h3>
-    <ul>
-      {
-        Array.from({length: course.step_count + 1}, (v, k) => k).map((step) => renderStep(course, step, currentStep))
-      }
-    </ul>
-  </div>
-);
+const Steps = ({ stepTitles = [], currentStep }) => {
+  return (
+    <div>
+      <h3>Steps</h3>
+      <ul>
+        {stepTitles.map((title, index) => (
+          renderStep({
+            title,
+            isCurrentStep: currentStep === index,
+          })
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+Steps.PropTypes = {
+  stepTitles: PropTypes.arrayOf(PropTypes.string),
+  currentStep: PropTypes.number,
+};
+
+Steps.defaultProps = {
+  stepTitles: {},
+  currentStep: 0,
+};
 
 export default Steps;

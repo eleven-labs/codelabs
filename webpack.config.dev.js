@@ -66,7 +66,10 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: 'public/',
+    contentBase: [
+      path.join(__dirname, 'public'),
+      path.join(__dirname, '_posts', 'codelabs'),
+    ],
     hot: true,
     inline: true,
     port,

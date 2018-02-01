@@ -96,7 +96,7 @@ export class Course extends React.Component {
     this.go(-1);
   }
 
-  async go(direction) {
+  go(direction) {
     const nextStep = this.state.currentStep + direction;
 
     this.setState({ currentStep: nextStep }, () => {
@@ -105,13 +105,17 @@ export class Course extends React.Component {
   }
 
   render() {
-    const { course = {}, currentStep } = this.state;
+    const {
+      course = {},
+      course: { stepTitles = [] } = {},
+      currentStep,
+    } = this.state;
+
     const {
       steps: {
         [currentStep === 0 ? 'index' : `step${currentStep}`]: step = [],
       } = {},
     } = this.state;
-
 
     return (
       <div className="home container">
@@ -123,14 +127,14 @@ export class Course extends React.Component {
 
           <button
             onClick={this.next}
-            disabled={currentStep === course.step_count}
+            disabled={currentStep === stepTitles.length - 1}
             style={{ float: 'right' }}
           >next</button>
         </div>
 
         <p>{course.time} minutes</p>
 
-        <Steps course={course} currentStep={currentStep}/>
+        <Steps stepTitles={stepTitles} currentStep={currentStep} />
 
         <div className="post-content">
           {step.map((renderer, key) => renderer({ key }))}

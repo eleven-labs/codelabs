@@ -43,7 +43,7 @@ const CourseItem = ({ course }) => {
         </h2>
 
         <p className="course-item__details">
-          <time datetime={date.toISOString()}>{date.toLocaleString('fr-FR', dateOptions)}</time>
+          <time dateTime={date.toISOString()}>{date.toLocaleString('fr-FR', dateOptions)}</time>
           {' par '}
           {course.authors.map(authorRenderer)}
         </p>
