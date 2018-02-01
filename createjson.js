@@ -4,8 +4,8 @@ const path = require('path');
 const codelabsPath = '_posts/codelabs/';
 const indexJson = [];
 
-function readDir(lolPath) {
-  fs.readdir(lolPath, (err, files) => {
+function readDir(dirPath) {
+  fs.readdir(dirPath, (err, files) => {
     if (err) {
       console.log(err);
       throw err;
@@ -13,11 +13,11 @@ function readDir(lolPath) {
 
     files
       .map((file) => {
-        if (fs.statSync(path.join(lolPath, file)).isDirectory()) {
-          readDir(path.join(lolPath, file));
+        if (fs.statSync(path.join(dirPath, file)).isDirectory()) {
+          readDir(path.join(dirPath, file));
         }
 
-        return path.join(lolPath, file);
+        return path.join(dirPath, file);
       })
       .filter((file) => fs.statSync(file).isFile())
       .forEach((file) => {
