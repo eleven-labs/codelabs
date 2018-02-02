@@ -1,6 +1,7 @@
 import {
   LOAD_COURSES_SUCCESS,
   LOAD_STEP_SUCCESS,
+  SET_CURRENT_COURSE,
 } from '../actions';
 
 /**
@@ -21,5 +22,11 @@ export default handleActions({
   [LOAD_STEP_SUCCESS]: (state, action) => ({
     ...state,
     currentStepMD: action.response,
+  }),
+  [SET_CURRENT_COURSE]: (state, action) => ({
+    ...state,
+    currentCourse: state.courses.find(course => (
+      course.permalink === action.permalink
+    )),
   }),
 });

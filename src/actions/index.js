@@ -16,6 +16,13 @@ export const loadCourses = () => ({
 });
 
 
+export const SET_CURRENT_COURSE = 'SET_CURRENT_COURSE';
+
+export const setCurrentCourse = (permalink) => ({
+  type: SET_CURRENT_COURSE,
+  permalink,
+});
+
 export const LOAD_STEP_REQUEST = 'LOAD_STEP_REQUEST';
 export const LOAD_STEP_SUCCESS = 'LOAD_STEP_SUCCESS';
 export const LOAD_STEP_FAILURE = 'LOAD_STEP_FAILURE';
