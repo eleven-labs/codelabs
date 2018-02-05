@@ -19,9 +19,11 @@ const mapStateToProps = ({
   courses,
   currentStepMD,
   currentCourse,
+  currentStepIndex,
 }) => ({
   courses,
   currentStepMD,
+  currentStepIndex,
   course: currentCourse,
 });
 
@@ -33,7 +35,22 @@ const mapDispatchToProps = {
 
 export class Course extends React.Component {
   static propTypes = {
+    courses: PropTypes.arrayOf(PropTypes.shape()),
+    currentStepMD: PropTypes.string,
+    currentStepIndex: PropTypes.number,
+
     course: PropTypes.shape(),
+    loadCourses: PropTypes.func,
+    loadStep: PropTypes.func,
+    setCurrentCourse: PropTypes.func,
+  };
+
+  static defaultProps = {
+    courses: null,
+    currentStepMD: '',
+    currentStepIndex: null,
+
+    course: null,
     loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
@@ -65,7 +82,7 @@ export class Course extends React.Component {
       },
     } = this.props;
 
-    const { course, courses, currentStepMD } = nextProps;
+    const { course, courses, currentStepMD, currentStepIndex } = nextProps;
     const { steps = {}, currentStep } = this.state;
 
     // Set the course in redux's store.
@@ -95,11 +112,7 @@ export class Course extends React.Component {
 
   async loadInternalStep(stepIndex) {
     const { course } = this.state;
-
-    let { match: { params: { permalink } } } = this.props;
-    const step = stepIndex <= 0 ? 'index' : `step${stepIndex}`;
-
-    await this.props.loadStep(`${course.date}-${permalink}/${step}.md`);ç
+    await this.props.loadStep(course, stepIndex);
   }
 
   next() {
