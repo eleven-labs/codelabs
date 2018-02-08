@@ -1,0 +1,19 @@
+{
+  title: "Tuto",
+  permalink: "/fr/tuto",
+  excerpt: "Mon premier tuto",
+  stepTitles: [
+    "Intro",
+    "La suite",
+    "La fin"
+  ],
+  date: "03-11-87",
+  cover: "/assets/03-11-87-TUTO/cover.jpg",
+  time: 10,
+  authors: [
+    {
+      name: "Jonathan Jalouzot",
+      username: "captainjojo"
+    }
+  ]
+}
