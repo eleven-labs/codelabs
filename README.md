@@ -1,12 +1,13 @@
 # Codelabs
 
-> Le principe de ce nouveau projet est plutôt simple : Doter Eleven Labs de sa propre plateforme de tutos, simple, belle et intuitive (rien que ça). L'idée étant de commencer dans ce [style là](http://eleven-labs.us12.list-manage.com/track/click?u=10742232891cd45dd4db4277e&id=d9e264840f&e=d71465835f).
+> Le principe de ce nouveau projet est plutôt simple : doter Eleven Labs de sa propre plateforme de tutos, simple, belle et intuitive (rien que ça). L'idée étant de commencer dans ce [style là](http://eleven-labs.us12.list-manage.com/track/click?u=10742232891cd45dd4db4277e&id=d9e264840f&e=d71465835f).
 >
-> C'est sur cette plateforme qu'iraient les tutos qui aujourd'hui sont rédigés sous formes d'articles de blogs, ou de workshops. Cela permettrait à chacun de les suivre, étape par étape.
+> C'est sur cette plateforme qu'iront les tutos qui aujourd'hui sont rédigés sous formes d'articles de blogs, ou de workshops. Cela permettrait à chacun de les suivre, étape par étape.
 >
 > —— [@MaxLf](https://github.com/MaxLf)
 
 [![CircleCI](https://circleci.com/gh/eleven-labs/codelabs/tree/master.svg?style=svg)](https://circleci.com/gh/eleven-labs/codelabs/tree/master)
+  
 # Comment rédiger son tutoriel Codelabs
 
 ## 1/ “Au programme…”
@@ -93,7 +94,7 @@ Dans le dossier `_posts/codelabs` ajoutez un dossier pour votre codelabs avec le
 ```bash
 AAAA-MM-DD-titre
 ```
-Puis créez l'architecture suivante:
+Puis créez l'architecture suivante :
 
 ├── index.json
 ├── index.md
@@ -103,7 +104,7 @@ Puis créez l'architecture suivante:
 
 **2 - index.json**
 
-C'est le fichier qui permet de configurer votre codelabs. Il doit absolument comporter les informations suivantes
+C'est le fichier qui permet de configurer votre codelabs. Il doit absolument comporter les informations suivantes :
 
 
 ```json
@@ -130,13 +131,13 @@ C'est le fichier qui permet de configurer votre codelabs. Il doit absolument com
 
 **3 - index.md**
 
-Il s'agit du fichier de description du tutoriel. Cette étapes permet d'expliquer ce que la personne va apprendre, ce qui'l a besoin d'installer avant de commencer le tutoriel.
+Il s'agit du fichier de description du tutoriel. Cette étape permet d'expliquer ce que la personne va apprendre et ce qu'il a besoin d'installer avant de commencer le tutoriel.
 
 Il s'agit d'un fichier en markdown.
 
 **4 - step.md**
 
-Le découpage du codelabs ce fait par étape, il faut alors créer un fichier markdown par étape.
+Le découpage du codelabs se fait par étape, il faut alors créer un fichier markdown par étape.
 
 Votre codelabs doit être écrit en [markdown](https://guides.github.com/features/mastering-markdown/). Il existe de nombreuses solutions online pour écrire en markdown comme par exemple :
 
@@ -180,4 +181,4 @@ Ne mettez pas d'image ayant une résolution trop grande sur vos articles. Cela e
 **2 - Optimiser vos images**
 
 Toujours afin de garder des performances satisfaisantes, optimisez vos images à l'aide de logiciels adaptés.
-Des logiciels comme [ImageOptim](https://imageoptim.com/) sur Mac, [Trimage](https://trimage.org/) sur Lisnux ou [FileOptimizer](http://nikkhokkho.sourceforge.net/static.php?page=FileOptimizer) sur Windows offrent des interfaces très faciles d'utilisation et des compressions efficaces.
+Des logiciels comme [ImageOptim](https://imageoptim.com/) sur Mac, [Trimage](https://trimage.org/) sur Linux ou [FileOptimizer](http://nikkhokkho.sourceforge.net/static.php?page=FileOptimizer) sur Windows offrent des interfaces très faciles d'utilisation et des compressions efficaces.
