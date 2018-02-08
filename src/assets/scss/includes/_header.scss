@@ -7,10 +7,6 @@
   padding: 20px 45px;
   width: 100%;
 
-  .branding-container {
-    flex: auto;
-  }
-
   .branding {
     display: inline-block;
     height: 60px;
@@ -57,10 +53,12 @@
   }
 
   .site-title {
+    flex: auto;
     float: left;
     font-size: 1rem;
     font-weight: bold;
     line-height: 1.5;
+    text-align: center;
   }
 
   .site-nav {

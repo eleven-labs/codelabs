@@ -1,5 +1,6 @@
 {
   "title": "Mon premier tuto",
+  "slug": "mon-premier-tuto",
   "permalink": "/fr/mon-premier-tuto/",
   "excerpt": "Pour rendre l'expérience utilisateur de nos applications web de plus en plus agréable, nous somme de plus en plus obligé d'utiliser plusieurs technologies en même temps. Nous allons mettre en place un flux infini en utilisant un backend Symfony et un front en ReactJs.",
   "stepTitles": [

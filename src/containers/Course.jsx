@@ -9,19 +9,51 @@ import Summary from '../components/Summary';
 import {
   loadCourses,
   loadStep,
+  setCurrentCourse,
 } from '../actions';
 import { NOOP } from '../constants';
 
 import componentFactory from '../services/componentFactory';
 
-const mapStateToProps = ({ courses, currentStepMD }) => ({ courses, currentStepMD });
-const mapDispatchToProps = { loadCourses, loadStep };
+const mapStateToProps = ({
+  courses,
+  currentStepMD,
+  currentCourse,
+  currentStepIndex,
+}) => ({
+  courses,
+  currentStepMD,
+  currentStepIndex,
+  course: currentCourse,
+});
+
+const mapDispatchToProps = {
+  loadCourses,
+  loadStep,
+  setCurrentCourse,
+};
 
 export class Course extends React.Component {
   static propTypes = {
+    courses: PropTypes.arrayOf(PropTypes.shape()),
+    currentStepMD: PropTypes.string,
+    currentStepIndex: PropTypes.number,
+
     course: PropTypes.shape(),
     loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
+    setCurrentCourse: PropTypes.func,
+  };
+
+  static defaultProps = {
+    courses: null,
+    currentStepMD: '',
+    currentStepIndex: null,
+
+    course: null,
+    loadCourses: PropTypes.func,
+    loadStep: PropTypes.func,
+    setCurrentCourse: PropTypes.func,
   };
 
   state = {
@@ -39,54 +71,48 @@ export class Course extends React.Component {
     this.gotoStep = this.gotoStep.bind(this);
   }
 
-  async componentDidMount() {
-    let {
-      course,
+  componentDidMount() {
+    this.props.loadCourses();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
       match: {
         params: { lang, permalink },
       },
     } = this.props;
 
-    if (!course) {
-      await this.props.loadCourses();
+    const { course, courses, currentStepMD, currentStepIndex } = nextProps;
+    const { steps = {}, currentStep } = this.state;
 
-      course = this.props.courses.find(
-        post => post.permalink === `/${lang}/${permalink}/`
-      );
+    // Set the course in redux's store.
+    if (!this.props.courses && courses) {
+      this.props.setCurrentCourse(`/${lang}/${permalink}/`);
     }
 
-    this.setState({ course }, async () => {
-      await this.loadInternalStep(0);
-
-      this.setState({
-        steps: {
-          index: componentFactory(this.props.currentStepMD),
-        },
+    // Set the course in the state and load the first step.
+    if (!this.props.course && course) {
+      this.setState({ course }, () => {
+        this.loadInternalStep(0);
       });
-    });
-  }
+    }
 
-  componentWillReceiveProps(nextProps) {
-    const { currentStepMD } = nextProps;
-    const { steps, currentStep } = this.state;
-
+    // When a step is loaded, we build the body using componentFactory.
     if (currentStepMD) {
+      const key = currentStep === 0 ? 'index' : `step${currentStep}`;
+
       this.setState({
         steps: {
           ...steps,
-          [`step${currentStep}`]: componentFactory(currentStepMD),
+          [key]: componentFactory(currentStepMD),
         },
       });
     }
   }
 
-  loadInternalStep(stepIndex) {
+  async loadInternalStep(stepIndex) {
     const { course } = this.state;
-
-    let { match: { params: { permalink } } } = this.props;
-    const step = stepIndex <= 0 ? 'index' : `step${stepIndex}`;
-
-    return this.props.loadStep(`${course.date}-${permalink}/${step}.md`);
+    await this.props.loadStep(course, stepIndex);
   }
 
   next() {
