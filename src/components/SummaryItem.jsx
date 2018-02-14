@@ -6,9 +6,11 @@ import { NOOP } from '../constants';
 
 const SummaryItem = ({ title, onClick, isCurrentStep, index }) => (
   <li
-    className={cx('summary-step', { current: isCurrentStep })}
+    className={cx('summary__step', { '-current': isCurrentStep })}
     onClick={onClick}
-  >{index + 1} - {title}</li>
+  >
+    <span class="summary__step-number">{index + 1}</span><span class="summary__step-title">{title}</span>
+  </li>
 );
 
 SummaryItem.PropTypes = {

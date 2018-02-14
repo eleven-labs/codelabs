@@ -151,14 +151,14 @@ export class Course extends React.Component {
     } = this.state;
 
     return (
-      <div className="codelabs-course home">
+      <div className="course container">
         <Summary
           stepTitles={stepTitles}
           currentStep={currentStep}
           gotoStep={this.gotoStep}
         />
 
-        <div className="post-content container">
+        <div className="course__content">
           <div>
             <button
               onClick={this.previous}
