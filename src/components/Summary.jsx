@@ -6,9 +6,9 @@ import SummaryItem from './SummaryItem';
 
 const Summary = ({ stepTitles = [], currentStep, gotoStep }) => {
   return (
-    <div className="codelabs-summary">
-      <h3>Étapes</h3>
-      <ul>
+    <nav className="summary">
+      <h3 class="visually-hidden">Étapes</h3>
+      <ul class="summary__steps">
         {stepTitles.map((title, index) => (
           <SummaryItem
             key={title}
@@ -19,7 +19,7 @@ const Summary = ({ stepTitles = [], currentStep, gotoStep }) => {
           />
         ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 

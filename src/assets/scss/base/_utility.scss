@@ -110,11 +110,6 @@ example :
 }
 
 @mixin flex($flow) {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
   display: flex;
-
   flex-flow: $flow;
 }
