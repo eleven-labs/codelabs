@@ -16,6 +16,10 @@ figure {
 
 html {
   background: $background-color;
+  font-size: 75%;
+  @media (min-width: 768px) {
+    font-size: 100%;
+  }
 }
 // Typography
 ::selection {
