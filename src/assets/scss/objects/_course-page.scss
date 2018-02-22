@@ -1,48 +1,3 @@
-.course {
-  @include flex(row wrap);
-  @media (min-width: em(768px)) {
-    flex-wrap: nowrap;
-  }
-
-  &__content {
-    flex: 1 1 em(400px);
-
-    h3 {
-      $context: 17px;
-
-      display: inline-block;
-      background-color: $brand-yellow;
-      font-size: em($context);
-      font-weight: 300;
-      text-transform: uppercase;
-      margin-bottom: em(16px, $context);
-      padding: em(5px, $context) em(10px, $context);
-    }
-
-    p, ol, ul {
-      $context: 20px;
-
-      font-size: em($context);
-      margin-bottom: em(32px, $context);
-
-      code {
-        font-size: em(16px, $context);
-      }
-    }
-
-    pre {
-      $context: 16px;
-
-      font-size: em($context);
-      margin: 0 0 em(32px, $context);
-    }
-
-    a {
-      letter-spacing: normal;
-    }
-  }
-}
-
 .summary {
   flex: 1 1 em(200px);
   margin: 0 0 em(70px);
@@ -54,6 +9,7 @@
   &__steps {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     list-style: none;
     margin: 0;
     @media (min-width: em(768px)) {
@@ -65,8 +21,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 0;
+    flex: 1 1 em(150px);
     cursor: pointer;
+    padding: em(10px);
     text-align: center;
     @media (min-width: em(768px)) {
       flex-direction: row;
@@ -76,7 +33,7 @@
 
     & + & {
       @media (min-width: em(768px)) {
-        margin-top: 60px;
+        margin-top: em(60px);
       }
     }
   }
@@ -106,6 +63,88 @@
     margin: em(15px) 0 0;
     @media (min-width: em(768px)) {
       margin: 0 0 0 em(15px);
+    }
+  }
+}
+
+.course {
+  @include flex(row wrap);
+  @media (min-width: em(768px)) {
+    flex-wrap: nowrap;
+  }
+
+  &__content {
+    flex: 1 1 em(400px);
+    width: 100%;
+  }
+
+  &__navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__button {
+    background-color: $brand-yellow;
+    border-radius: 50%;
+    width: em(110px);
+    height: em(110px);
+    &[disabled] {
+      visibility: hidden;
+    }
+
+    &.-previous {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__duration {
+    $context: 20px;
+
+    font-size: $context;
+    &:before {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBhdGggZD0iTTMwIDBDMTMuNDU4IDAgMCAxMy40NTggMCAzMHMxMy40NTggMzAgMzAgMzAgMzAtMTMuNDU4IDMwLTMwUzQ2LjU0MiAwIDMwIDB6bTAgNThDMTQuNTYxIDU4IDIgNDUuNDM5IDIgMzBTMTQuNTYxIDIgMzAgMnMyOCAxMi41NjEgMjggMjgtMTIuNTYxIDI4LTI4IDI4eiIvPjxwYXRoIGQ9Ik0zMCA2YTEgMSAwIDAgMC0xIDF2MjNIMTRhMSAxIDAgMSAwIDAgMmgxNmExIDEgMCAwIDAgMS0xVjdhMSAxIDAgMCAwLTEtMXoiLz48L3N2Zz4=");
+      display: inline-block;
+      margin-right: em(10px, $context);
+      width: em(35px, $context);
+      vertical-align: middle;
+    }
+  }
+
+  &__text {
+    h3 {
+      $context: 17px;
+
+      display: inline-block;
+      background-color: $brand-yellow;
+      font-size: em($context);
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-bottom: em(16px, $context);
+      padding: em(5px, $context) em(10px, $context);
+    }
+
+    p, ol, ul {
+      $context: 20px;
+
+      font-size: em($context);
+      margin-bottom: em(32px, $context);
+
+      code {
+        font-size: em(16px, $context);
+      }
+    }
+
+    pre {
+      $context: 16px;
+
+      font-size: em($context);
+      margin: 0 0 em(32px, $context);
+      word-wrap: normal;
+    }
+
+    a {
+      letter-spacing: normal;
     }
   }
 }

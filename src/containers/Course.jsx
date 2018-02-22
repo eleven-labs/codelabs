@@ -6,6 +6,9 @@ import urlJoin from 'url-join';
 import Splash from '../components/Splash';
 import Summary from '../components/Summary';
 
+import clock from '../assets/images/icons/icon_clock.svg';
+import arrow from '../assets/images/icons/icon_arrow.svg';
+
 import {
   loadCourses,
   loadStep,
@@ -158,22 +161,25 @@ export class Course extends React.Component {
           gotoStep={this.gotoStep}
         />
 
-        <div className="course__content">
-          <div>
+        <article className="course__content">
+          <p className="course__duration" data-icon={clock}>{course.time} minutes</p>
+          <div className="course__text">{step.map((renderer, key) => renderer({ key }))}</div>
+          <div className="course__navigation">
             <button
+              type="button"
+              className="course__button -previous"
               onClick={this.previous}
               disabled={currentStep === 0}
-            >previous</button>
+            ><img alt="Précédent" src={arrow}></img></button>
 
             <button
+              type="button"
+              className="course__button -next"
               onClick={this.next}
               disabled={currentStep === stepTitles.length - 1}
-              style={{ float: 'right' }}
-            >next</button>
+            ><img alt="Suivant" src={arrow}></img></button>
           </div>
-          <p>{course.time} minutes</p>
-          {step.map((renderer, key) => renderer({ key }))}
-        </div>
+        </article>
       </div>
     );
   }
