@@ -116,6 +116,7 @@ export class Course extends React.Component {
   async loadInternalStep(stepIndex) {
     const { course } = this.state;
     await this.props.loadStep(course, stepIndex);
+    document.documentElement.scrollTop = 0
   }
 
   next() {
