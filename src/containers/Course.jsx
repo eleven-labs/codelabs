@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import urlJoin from 'url-join';
 
-import Splash from '../components/Splash';
 import Summary from '../components/Summary';
 
 import clock from '../assets/images/icons/icon_clock.svg';
@@ -46,6 +44,8 @@ export class Course extends React.Component {
     loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
+
+    match: PropTypes.shape(),
   };
 
   static defaultProps = {
@@ -54,15 +54,11 @@ export class Course extends React.Component {
     currentStepIndex: null,
 
     course: null,
-    loadCourses: PropTypes.func,
-    loadStep: PropTypes.func,
-    setCurrentCourse: PropTypes.func,
+    loadCourses: NOOP,
+    loadStep: NOOP,
+    setCurrentCourse: NOOP,
+    match: { params: {} },
   };
-
-  state = {
-    steps: [],
-    currentStep: 0,
-  }
 
   constructor(props) {
     super(props);
@@ -73,6 +69,11 @@ export class Course extends React.Component {
     this.go = this.go.bind(this);
     this.gotoStep = this.gotoStep.bind(this);
   }
+
+  state = {
+    steps: [],
+    currentStep: 0,
+  };
 
   componentDidMount() {
     this.props.loadCourses();
@@ -96,7 +97,7 @@ export class Course extends React.Component {
     // Set the course in the state and load the first step.
     if (!this.props.course && course) {
       this.setState({ course }, () => {
-        this.loadInternalStep(0);
+        this.loadInternalStep(currentStepIndex);
       });
     }
 

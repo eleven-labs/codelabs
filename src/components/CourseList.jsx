@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import urlJoin from 'url-join';
+// import urlJoin from 'url-join';
 
 import CourseItem from './CourseItem';
 
-import play from '../assets/images/icons/icon_play.svg';
-import clock from '../assets/images/icons/icon_clock.svg';
+// import play from '../assets/images/icons/icon_play.svg';
+// import clock from '../assets/images/icons/icon_clock.svg';
 
 const courseRenderer = (course, index) => (
   <CourseItem course={course} key={index} />
