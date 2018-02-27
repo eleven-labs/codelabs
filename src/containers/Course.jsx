@@ -20,11 +20,9 @@ const mapStateToProps = ({
   courses,
   currentStepMD,
   currentCourse,
-  currentStepIndex,
 }) => ({
   courses,
   currentStepMD,
-  currentStepIndex,
   course: currentCourse,
 });
 
@@ -38,7 +36,6 @@ export class Course extends React.Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape()),
     currentStepMD: PropTypes.string,
-    currentStepIndex: PropTypes.number,
 
     course: PropTypes.shape(),
     loadCourses: PropTypes.func,
@@ -51,7 +48,6 @@ export class Course extends React.Component {
   static defaultProps = {
     courses: null,
     currentStepMD: '',
-    currentStepIndex: null,
 
     course: null,
     loadCourses: NOOP,
@@ -86,7 +82,7 @@ export class Course extends React.Component {
       },
     } = this.props;
 
-    const { course, courses, currentStepMD, currentStepIndex } = nextProps;
+    const { course, courses, currentStepMD } = nextProps;
     const { steps = {}, currentStep } = this.state;
 
     // Set the course in redux's store.
@@ -97,7 +93,7 @@ export class Course extends React.Component {
     // Set the course in the state and load the first step.
     if (!this.props.course && course) {
       this.setState({ course }, () => {
-        this.loadInternalStep(currentStepIndex);
+        this.loadInternalStep(0);
       });
     }
 
