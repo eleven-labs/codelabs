@@ -7,8 +7,8 @@ import SummaryItem from './SummaryItem';
 const Summary = ({ stepTitles = [], currentStep, gotoStep }) => {
   return (
     <nav className="summary">
-      <h3 class="visually-hidden">Étapes</h3>
-      <ul class="summary__steps">
+      <h3 className="visually-hidden">Étapes</h3>
+      <ul className="summary__steps">
         {stepTitles.map((title, index) => (
           <SummaryItem
             key={title}

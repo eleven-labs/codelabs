@@ -9,7 +9,8 @@ const SummaryItem = ({ title, onClick, isCurrentStep, index }) => (
     className={cx('summary__step', { '-current': isCurrentStep })}
     onClick={onClick}
   >
-    <span class="summary__step-number">{index + 1}</span><span class="summary__step-title">{title}</span>
+    <span className="summary__step-number">{index + 1}</span>
+    <span className="summary__step-title">{title}</span>
   </li>
 );
 
