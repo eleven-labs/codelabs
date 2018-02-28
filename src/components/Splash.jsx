@@ -20,8 +20,10 @@ class Splash extends Component {
               Cette plateforme ? C’est votre nouvelle source de tutoriels,
               orientés développement d'applicatifs web et mobile et maîtrise d’outils DevOps !
               Vous pourrez y suivre à votre rythme des exercices complets,
-              allant du développement d'applications à des cas pratiques vous faisant découvrir un nouvel outil.
-              Garez tranquillement votre vaisseau, enfilez votre combinaison, et rejoignez-nous dans le laboratoire !
+              allant du développement d'applications
+              à des cas pratiques vous faisant découvrir un nouvel outil.
+              Garez tranquillement votre vaisseau, enfilez votre combinaison,
+              et rejoignez-nous dans le laboratoire !
               Votre siège vous attend !
             </p>
           </div>
