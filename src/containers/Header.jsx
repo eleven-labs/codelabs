@@ -1,50 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 
-import logo from '../assets/images/logo_eleven_codelabs.png';
+import clock from '../assets/images/icons/icon_clock.svg';
 
 const mapStateToProps = ({
   currentCourse,
-  currentStepIndex,
 }) => ({
   currentCourse,
-  currentStepIndex,
 });
 
 export class Header extends React.Component {
   static propTypes = {
     currentCourse: PropTypes.shape(),
-    currentStepIndex: PropTypes.number,
   };
 
   static defaultProps = {
     currentCourse: {},
-    currentStepIndex: null,
   };
 
   render() {
     const {
-      currentCourse: {
-        title = '',
-        stepTitles = [],
-      },
-      currentStepIndex,
+      currentCourse,
     } = this.props;
 
+    const headerClasses = cx('site-header container', {
+      '-yellow': currentCourse.title,
+    });
+
     return (
-      <nav className="site-header">
-        <div className="branding">
-          <a href="/" className="branding__content">
-            <img className="branding__image" alt="Eleven Codelabs" src={logo}></img>
-          </a>
+      <nav className={headerClasses}>
+        <div className="branding-container">
+          <a href="/" className="branding" />
         </div>
 
-        <div className="site-title">
-          <h2>{title}</h2>
-          {stepTitles.length > 0 && (
-            <h3>{currentStepIndex + 1} - {stepTitles[currentStepIndex]}</h3>
-          )}
+        <div className="course-header">
+          {currentCourse && <h2 className="course-header__title">{currentCourse.title}</h2>}
+          <p className="course-header__duration" data-icon={clock}>{/*course.time*/} minutes</p>
         </div>
       </nav>
     );
