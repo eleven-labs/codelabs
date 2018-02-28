@@ -43,7 +43,7 @@ const CourseItem = ({ course }) => {
           {course.authors.map(authorRenderer)}
         </p>
 
-        <p className="course-item__description">{course.description}</p>
+        <p className="course-item__description">{course.excerpt}</p>
       </div>
     </article>
   );
