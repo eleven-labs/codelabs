@@ -4,7 +4,6 @@ import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 
-import App from './containers/App';
 import createStore from './store/prod';
 import routes from './routes';
 

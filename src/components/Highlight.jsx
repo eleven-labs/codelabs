@@ -1,11 +1,11 @@
-import highlight from 'highlight.js'
+import highlight from 'highlight.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Highlight extends Component {
   static propTypes = {
-    children: PropTypes.node,
-    language: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    language: PropTypes.string.isRequired,
   };
 
   componentDidMount() {
@@ -13,8 +13,8 @@ class Highlight extends Component {
       highlight.highlightBlock(this.element);
     }
   }
-  
-  componentDidUpdate () {
+
+  componentDidUpdate() {
     if (this.element) {
       highlight.initHighlighting.called = false;
       highlight.highlightBlock(this.element);

@@ -1,9 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';
 
-import Header from './Header';
+import ConnectedHeader from './Header';
 
 export default class App extends React.Component {
+  static propTypes = {
+    route: PropTypes.shape(),
+  };
+
+  static defaultProps = {
+    route: undefined,
+  };
+
   shouldComponentUpdate() {
     return false;
   }
@@ -13,7 +22,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Header />
+        <ConnectedHeader />
         {route && renderRoutes(route.routes)}
       </div>
     );

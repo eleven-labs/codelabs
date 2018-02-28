@@ -9,7 +9,7 @@
     "start": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"yarn start-client\"",
     "test": "jest --no-cache --coverage",
     "test-update-snapshot": "jest --json --updateSnapshot",
-    "lint": "eslint --ext .js --ext .jsx src",
+    "lint": "eslint ./src --ext js,jsx",
     "serve-prod": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"serve ./public\""
   },
   "author": "",

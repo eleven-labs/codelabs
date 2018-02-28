@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import urlJoin from 'url-join';
 
@@ -11,11 +11,6 @@ const dateOptions = {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
-};
-
-const timeOptions = {
-  hour: '2-digit',
-  minute: '2-digit',
 };
 
 const authorRenderer = (author, index) => (
@@ -52,10 +47,10 @@ const CourseItem = ({ course }) => {
       </div>
     </article>
   );
-}
+};
 
-CourseItem.PropTypes = {
-  course: PropTypes.shape(),
+CourseItem.propTypes = {
+  course: PropTypes.shape().isRequired,
 };
 
 export default CourseItem;

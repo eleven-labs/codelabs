@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { parse } from 'markdown-to-ast';
+// import { parse } from 'markdown-to-ast';
 
 import componentFactory from '../services/componentFactory';
 
@@ -95,7 +95,7 @@ export default class Console extends React.Component {
     event.persist();
 
     this.setState({
-      md: await getPost(event.target.value),
+      // md: await getPost(event.target.value),
     });
   }
 

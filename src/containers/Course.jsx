@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import urlJoin from 'url-join';
 
-import Splash from '../components/Splash';
 import Summary from '../components/Summary';
 
 import clock from '../assets/images/icons/icon_clock.svg';
@@ -22,11 +20,9 @@ const mapStateToProps = ({
   courses,
   currentStepMD,
   currentCourse,
-  currentStepIndex,
 }) => ({
   courses,
   currentStepMD,
-  currentStepIndex,
   course: currentCourse,
 });
 
@@ -40,29 +36,25 @@ export class Course extends React.Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape()),
     currentStepMD: PropTypes.string,
-    currentStepIndex: PropTypes.number,
 
     course: PropTypes.shape(),
     loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
+
+    match: PropTypes.shape(),
   };
 
   static defaultProps = {
     courses: null,
     currentStepMD: '',
-    currentStepIndex: null,
 
     course: null,
-    loadCourses: PropTypes.func,
-    loadStep: PropTypes.func,
-    setCurrentCourse: PropTypes.func,
+    loadCourses: NOOP,
+    loadStep: NOOP,
+    setCurrentCourse: NOOP,
+    match: { params: {} },
   };
-
-  state = {
-    steps: [],
-    currentStep: 0,
-  }
 
   constructor(props) {
     super(props);
@@ -73,6 +65,11 @@ export class Course extends React.Component {
     this.go = this.go.bind(this);
     this.gotoStep = this.gotoStep.bind(this);
   }
+
+  state = {
+    steps: [],
+    currentStep: 0,
+  };
 
   componentDidMount() {
     this.props.loadCourses();
@@ -85,7 +82,7 @@ export class Course extends React.Component {
       },
     } = this.props;
 
-    const { course, courses, currentStepMD, currentStepIndex } = nextProps;
+    const { course, courses, currentStepMD } = nextProps;
     const { steps = {}, currentStep } = this.state;
 
     // Set the course in redux's store.

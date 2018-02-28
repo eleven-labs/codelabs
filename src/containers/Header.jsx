@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Search from '../components/Search';
-
 const mapStateToProps = ({
   currentCourse,
   currentStepIndex,
-}) => ({
+}) => ({
   currentCourse,
   currentStepIndex,
 });
@@ -44,8 +42,6 @@ export class Header extends React.Component {
             <h3>{currentStepIndex + 1} - {stepTitles[currentStepIndex]}</h3>
           )}
         </div>
-
-        <Search />
       </nav>
     );
   }
