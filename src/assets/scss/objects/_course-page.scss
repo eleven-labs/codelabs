@@ -117,19 +117,6 @@
     }
   }
 
-  &__duration {
-    $context: 20px;
-
-    font-size: $context;
-    &:before {
-      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBhdGggZD0iTTMwIDBDMTMuNDU4IDAgMCAxMy40NTggMCAzMHMxMy40NTggMzAgMzAgMzAgMzAtMTMuNDU4IDMwLTMwUzQ2LjU0MiAwIDMwIDB6bTAgNThDMTQuNTYxIDU4IDIgNDUuNDM5IDIgMzBTMTQuNTYxIDIgMzAgMnMyOCAxMi41NjEgMjggMjgtMTIuNTYxIDI4LTI4IDI4eiIvPjxwYXRoIGQ9Ik0zMCA2YTEgMSAwIDAgMC0xIDF2MjNIMTRhMSAxIDAgMSAwIDAgMmgxNmExIDEgMCAwIDAgMS0xVjdhMSAxIDAgMCAwLTEtMXoiLz48L3N2Zz4=");
-      display: inline-block;
-      margin-right: em(10px, $context);
-      width: em(35px, $context);
-      vertical-align: middle;
-    }
-  }
-
   &__text {
     h3 {
       $context: 17px;

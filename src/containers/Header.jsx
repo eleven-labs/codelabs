@@ -25,7 +25,7 @@ export class Header extends React.Component {
       currentCourse,
     } = this.props;
 
-    const headerClasses = cx('site-header container', {
+    const headerClasses = cx('container site-header', {
       '-yellow': currentCourse.title,
     });
 
@@ -36,8 +36,8 @@ export class Header extends React.Component {
         </div>
 
         <div className="course-header">
-          {currentCourse && <h2 className="course-header__title">{currentCourse.title}</h2>}
-          <p className="course-header__duration" data-icon={clock}>{/*course.time*/} minutes</p>
+          {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
+          {currentCourse.time && <p className="course-header__duration" data-icon={clock}>{currentCourse.time} minutes</p>}
         </div>
       </nav>
     );
