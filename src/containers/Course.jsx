@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Summary from '../components/Summary';
 
+import clock from '../assets/images/icons/icon_clock.svg';
 import arrow from '../assets/images/icons/icon_arrow.svg';
 
 import {
@@ -139,7 +140,6 @@ export class Course extends React.Component {
 
   render() {
     const {
-      course = {},
       course: { stepTitles = [] } = {},
       currentStep,
     } = this.state;
@@ -159,9 +159,6 @@ export class Course extends React.Component {
         />
 
         <article className="course__content">
-          {stepTitles.length > 0 && (
-            <h1 className="course__chapter">{currentStep + 1} - {stepTitles[currentStep]}</h1>
-          )}
           <div className="course__text">{step.map((renderer, key) => renderer({ key }))}</div>
           <div className="course__navigation">
             <button

@@ -7,42 +7,37 @@ import clock from '../assets/images/icons/icon_clock.svg';
 
 const mapStateToProps = ({
   currentCourse,
-  currentStepIndex,
 }) => ({
   currentCourse,
-  currentStepIndex,
 });
 
 export class Header extends React.Component {
   static propTypes = {
     currentCourse: PropTypes.shape(),
-    currentStepIndex: PropTypes.number,
   };
 
   static defaultProps = {
     currentCourse: {},
-    currentStepIndex: null,
   };
 
   render() {
     const {
       currentCourse,
-      currentStepIndex,
     } = this.props;
 
-    const headerClasses = cx('site-header', {
+    const headerClasses = cx('container site-header', {
       '-yellow': currentCourse.title,
     });
 
     return (
-      <nav className={headerClasses + ' container'}>
+      <nav className={headerClasses}>
         <div className="branding-container">
           <a href="/" className="branding" />
         </div>
 
         <div className="course-header">
-          {currentCourse && <h2 className="course-header__title">{currentCourse.title}</h2>}
-          <p className="course-header__duration" data-icon={clock}>{/*course.time*/} minutes</p>
+          {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
+          {currentCourse.time && <p className="course-header__duration" data-icon={clock}>{currentCourse.time} minutes</p>}
         </div>
       </nav>
     );
