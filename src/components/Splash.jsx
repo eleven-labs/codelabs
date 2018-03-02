@@ -17,14 +17,14 @@ class Splash extends Component {
               Bienvenue sur Eleven Code Labs
             </h2>
             <p className="splash__description">
-              Cette plateforme ? C’est votre nouvelle source de tutoriels,
-              orientés développement d'applicatifs web et mobile et maîtrise d’outils DevOps !
-              Vous pourrez y suivre à votre rythme des exercices complets,
-              allant du développement d'applications
-              à des cas pratiques vous faisant découvrir un nouvel outil.
+              Cette plateforme ? C&rsquo;est votre nouvelle source de tutoriels,
+              orient&eacute;s d&eacute;veloppement d'applicatifs web et mobile et ma&icirc;trise d&rsquo;outils DevOps !
+              Vous pourrez y suivre &agrave; votre rythme des exercices complets,
+              allant du d&eacute;veloppement d'applications
+              &agrave; des cas pratiques vous faisant d&eacute;couvrir un nouvel outil.
               Garez tranquillement votre vaisseau, enfilez votre combinaison,
               et rejoignez-nous dans le laboratoire !
-              Votre siège vous attend !
+              Votre si&egrave;ge vous attend !
             </p>
           </div>
         </div>
