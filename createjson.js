@@ -4,6 +4,32 @@ const path = require('path');
 const codelabsPath = '_posts/codelabs/';
 const indexJson = [];
 
+const calculateDuration = wordCount => (wordCount < 360 ? 1 : Math.ceil(wordCount / 180));
+
+const getDuration = course => {
+  const coursePath = `${codelabsPath}/${course.date}-${course.slug}`;
+
+  return [...Array(course.stepTitles.length)]
+    .map((_, index) => `${coursePath}/${index === 0 ? 'index' : `step${index}`}.md`)
+    .map(stepPath => fs.readFileSync(stepPath, 'utf8'))
+    .reduce((acc, md, index) => {
+      const words = md
+        .replace(/\n/g, ' ')
+        .split(' ')
+        .filter(word => Boolean(word) && /\w|\d|\b/g.test(word));
+
+      const stepDuration = calculateDuration(words.length);
+
+      return {
+        ...acc,
+        [index + 1]: stepDuration,
+        total: acc.total + stepDuration,
+      };
+    }, {
+      total: 0,
+    });
+};
+
 function readDir(dirPath) {
   fs.readdir(dirPath, (err, files) => {
     if (err) {
@@ -23,10 +49,12 @@ function readDir(dirPath) {
       .forEach((file) => {
         if (path.extname(file) === '.json' && file !== '_posts/codelabs/index.json') {
           const obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-          indexJson.push(obj);
 
+          obj.duration = getDuration(obj);
+
+          indexJson.push(obj);
           const json = JSON.stringify(indexJson);
-          fs.writeFileSync('_posts/codelabs/index.json', json, 'utf8');
+          fs.writeFileSync(`${codelabsPath}/index.json`, json, 'utf8');
         }
       });
   });
