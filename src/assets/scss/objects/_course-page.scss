@@ -52,7 +52,7 @@
     width: em(70px, $context);
     height: em(70px, $context);
     .-current & {
-      background-color: #b8b8b8;
+      background-color: $brand-yellow;
     }
   }
 
@@ -86,9 +86,10 @@
 
   &__button {
     background-color: $brand-yellow;
-    border-radius: 50%;
-    width: em(110px);
-    height: em(110px);
+    border: none;
+    border-radius: 30%;
+    width: em(70px);
+    height: em(70px);
     &[disabled] {
       visibility: hidden;
     }
