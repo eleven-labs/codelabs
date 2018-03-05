@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import logo from '../assets/images/logo_eleven_codelabs.png';
+
 const mapStateToProps = ({
   currentCourse,
   currentStepIndex,
@@ -32,8 +34,10 @@ export class Header extends React.Component {
 
     return (
       <nav className="site-header">
-        <div className="branding-container">
-          <a href="/" className="branding" />
+        <div className="branding">
+          <a href="/" className="branding__content">
+            <img className="branding__image" alt="Eleven Codelabs" src={logo}></img>
+          </a>
         </div>
 
         <div className="site-title">
