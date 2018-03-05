@@ -26,7 +26,7 @@ const CourseItem = ({ course }) => {
         <img className="course-item__icon" src={play} alt="" />
         <div className="course-item__heading-right">
           <img className="course-item__icon" src={clock} alt="" />
-          <p className="course-item__duration">{course.time} mins</p>
+          <p className="course-item__duration">{course.duration.total} mins</p>
         </div>
       </div>
 

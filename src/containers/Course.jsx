@@ -140,8 +140,10 @@ export class Course extends React.Component {
 
   render() {
     const {
-      course = {},
-      course: { stepTitles = [] } = {},
+      course: {
+        duration = {},
+        stepTitles = [],
+      } = {},
       currentStep,
     } = this.state;
 
@@ -160,7 +162,7 @@ export class Course extends React.Component {
         />
 
         <article className="course__content">
-          <p className="course__duration" data-icon={clock}>{course.time} minutes</p>
+          <p className="course__duration" data-icon={clock}>{duration.total} minutes</p>
           <div className="course__text">{step.map((renderer, key) => renderer({ key }))}</div>
           <div className="course__navigation">
             <button
