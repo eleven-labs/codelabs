@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import flask from '../assets/images/icons/icon_flask.svg';
+import flask from '../assets/images/icons/icon_flask.png';
 
 class Splash extends Component {
   shouldComponentUpdate() {
