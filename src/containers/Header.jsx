@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 
 import clock from '../assets/images/icons/icon_clock.svg';
+import rocket from '../assets/images/icons/icon_rocket.svg';
+import english from '../assets/images/icons/icon_english.svg';
 
 const mapStateToProps = ({
   currentCourse,
@@ -25,21 +27,61 @@ export class Header extends React.Component {
       currentCourse,
     } = this.props;
 
-    const headerClasses = cx('container site-header', {
+    const headerClasses = cx('site-header', {
       '-yellow': currentCourse.title,
     });
 
     return (
-      <nav className={headerClasses}>
-        <div className="branding-container">
-          <a href="/" className="branding" />
-        </div>
+      <header className={headerClasses}>
+        <div className="container site-header__content">
+          <div className="branding">
+            <a href="/" className="branding__content" />
+          </div>
 
-        <div className="course-header">
-          {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
-          {currentCourse.time && <p className="course-header__duration" data-icon={clock}>{currentCourse.time} minutes</p>}
+          <div className="course-header">
+            {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
+            {currentCourse.time && <p className="course-header__duration" data-icon={clock}>{currentCourse.time} minutes</p>}
+          </div>
+
+          <div className="links">
+            <ul className="links__list -social">
+              <li className="links__item">
+                <a className="no-link-style tracked-link" href="https://blog.eleven-labs.com/feed.xml" title="Ajoutez-nous à votre veille" rel="nofollow noreferrer"><i className="fa fa-fw fa-rss"></i></a>
+              </li>
+
+              <li className="links__item">
+                <a className="no-link-style tracked-link" href="https://github.com/eleven-labs" title="Suivez-nous sur GitHub" rel="nofollow noreferrer"><i className="fa fa-fw fa-github"></i></a>
+              </li>
+
+              <li className="links__item">
+                <a className="no-link-style tracked-link" href="https://twitter.com/eleven_labs" title="Suivez-nous sur Twitter" rel="nofollow noreferrer"><i className="fa fa-fw fa-twitter"></i></a>
+              </li>
+
+              <li className="links__item">
+                <a className="no-link-style tracked-link" href="https://www.facebook.com/11Labs" title="Suivez-nous sur Facebook" rel="nofollow noreferrer"><i className="fa fa-fw fa-facebook"></i></a>
+              </li>
+
+              <li className="links__item">
+                <a className="no-link-style tracked-link" href="https://fr.linkedin.com/company/eleven-labs" title="Suivez-nous sur LinkedIn" rel="nofollow noreferrer"><i className="fa fa-fw fa-linkedin"></i></a>
+              </li>
+
+              <li className="links__item">
+                <a className="no-link-style tracked-link" href="https://eleven-labs.com" title="Découvrez Eleven Labs" rel="nofollow">
+                  <img className="corporate-logo" src={rocket} alt="Découvrez Eleven Labs" height="19"></img>
+                </a>
+              </li>
+            </ul>
+
+         {/*<ul className="links__list -language">
+              <li className="links__item">
+                <a className="page-link no-link-style" href="/en" title="Switch to English">
+                  <img src={english} alt="Switch to English" title="Switch to English" width="18" height="12"></img>
+                </a>
+              </li>
+            </ul>*/}
+          </div>
         </div>
-      </nav>
+      </header>
     );
   }
 }
