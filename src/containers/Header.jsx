@@ -5,7 +5,6 @@ import cx from 'classnames';
 
 import clock from '../assets/images/icons/icon_clock.svg';
 import rocket from '../assets/images/icons/icon_rocket.svg';
-import english from '../assets/images/icons/icon_english.svg';
 
 const mapStateToProps = ({
   currentCourse,
@@ -71,14 +70,6 @@ export class Header extends React.Component {
                 </a>
               </li>
             </ul>
-
-         {/*<ul className="links__list -language">
-              <li className="links__item">
-                <a className="page-link no-link-style" href="/en" title="Switch to English">
-                  <img src={english} alt="Switch to English" title="Switch to English" width="18" height="12"></img>
-                </a>
-              </li>
-            </ul>*/}
           </div>
         </div>
       </header>
