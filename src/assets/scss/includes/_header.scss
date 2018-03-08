@@ -29,6 +29,7 @@
   margin-bottom: em(5px);
   height: em(40px);
   width: em(120px);
+
   @media (min-width: em(768px)) {
     margin: 0 em(30px) 0 0;
     height: em(60px);
@@ -48,6 +49,8 @@
       margin: 0 auto;
       height: em(40px);
       width: em(120px);
+      max-width: 100%;
+
       @media (min-width: em(768px)) {
         margin: 0;
         height: em(60px);

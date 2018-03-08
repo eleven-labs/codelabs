@@ -5,6 +5,7 @@ import cx from 'classnames';
 
 import clock from '../assets/images/icons/icon_clock.svg';
 import rocket from '../assets/images/icons/icon_rocket.svg';
+import logo from '../assets/images/logo_eleven_codelabs.png';
 
 const mapStateToProps = ({
   currentCourse,
@@ -34,7 +35,9 @@ export class Header extends React.Component {
       <header className={headerClasses}>
         <div className="container site-header__content">
           <div className="branding">
-            <a href="/" className="branding__content" />
+            <a href="/" className="branding__content">
+              <img className="branding__image" alt="Eleven Codelabs" src={logo} />
+            </a>
           </div>
 
           <div className="course-header">
