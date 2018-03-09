@@ -105,15 +105,13 @@ C'est le fichier qui permet de configurer votre codelabs. Il doit absolument com
 {
   "title": "TITRE",
   "permalink": "URL",
-  "excerpt": "DESCIPTION",
+  "excerpt": "DESCRIPTION",
   "stepTitles": [
     "TITRE STEP 1",
     "TITRE STEP 2",
     "TITRE STEP 3"
   ],
   "date": "DATE",
-  "cover": "URL DE LA COVER",
-  "time": "TEMPS",
   "authors": [
     {
       "name": "NOM DE L'AUTHOR",
