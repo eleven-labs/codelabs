@@ -53,7 +53,7 @@
     width: em(50px, $context);
     height: em(50px, $context);
     .-current & {
-      background-color: #b8b8b8;
+      background-color: $brand-yellow;
     }
   }
 
@@ -99,10 +99,10 @@
     position: fixed;
     bottom: em(20px);
     background-color: $brand-yellow;
-    border-style: none;
-    border-radius: 50%;
-    width: em(60px);
-    height: em(60px);
+    border: none;
+    border-radius: 30%;
+    width: em(70px);
+    height: em(70px);
     &[disabled] {
       visibility: hidden;
     }

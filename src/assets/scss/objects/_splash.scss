@@ -15,8 +15,7 @@
     @media (min-width: em(768px)) {
       display: block;
       flex: 0 0 auto;
-      max-width: em(115px);
-      max-height: em(115px);
+      max-width: em(150px);
       margin: 0 em(40px);
     }
   }
@@ -26,16 +25,18 @@
   }
 
   &__title {
-    font-size: em(35px);
+    font-size: em(31px);
     font-family: "Din";
     font-weight: lighter;
+    line-height: 2;
     text-transform: uppercase;
   }
 
   &__description {
-    font-size: em(25px);
+    font-size: em(22px);
     font-family: "Din";
     font-weight: lighter;
+    line-height: 1.4;
     margin: 0;
   } 
 }

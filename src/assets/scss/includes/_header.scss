@@ -42,20 +42,18 @@
       background: none;
       text-decoration: none;
     }
+  }
 
-    &::before {
-      background: url('../images/logo_eleven_lab.svg') top left no-repeat;
-      background-size: contain;
-      content: '';
-      display: block;
-      margin: 0 auto;
-      height: em(40px);
-      width: em(120px);
-      @media (min-width: em(768px)) {
-        margin: 0;
-        height: em(60px);
-        width: em(160px);
-      }
+  &__image {
+    display: block;
+    margin: 0 auto;
+    height: em(40px);
+    width: em(120px);
+    max-width: 100%;
+    @media (min-width: em(768px)) {
+      margin: 0;
+      height: em(60px);
+      width: em(160px);
     }
   }
 }
@@ -111,7 +109,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: em(200px);
+  max-width: em(165px);
   @media (min-width: em(768px)) {
     margin: 0 0 0 em(30px);
   }
