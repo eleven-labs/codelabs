@@ -1,76 +1,143 @@
 .site-header {
-  align-items: center;
   background: $brand-color;
   border-bottom: 1px solid $border-color;
-  display: flex;
-  flex-flow: row wrap;
-  padding: 20px 45px;
-  width: 100%;
 
-  .branding__content {
-    display: inline-block;
-    margin-bottom: 5px;
-    width: 120px;
-    @media (min-width: 48em) {
-      margin-bottom: 0;
-      width: 160px;
-    }
+  &.-yellow {
+    background-color: $brand-yellow;
+  }
 
-    &:hover {
-      background: none;
-      text-decoration: none;
-    }
-
-    &__image {
-      display: block;
-      max-width: 100%;
+  &__content {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    width: 100%;
+    @media (min-width: em(768px)) {
+      flex-flow: row nowrap;
+      height: auto;
+      margin: 0 auto;
+      width: 100%;
     }
   }
 
   a {
     color: $header-link-color;
   }
+}
 
-  .avatar {
-    border-radius: .2rem;
-    float: left;
-    height: 2rem;
-    margin-right: 1rem;
-    margin-top: -3px;
-    width: 2rem;
+.branding {
+  display: inline-block;
+  margin-bottom: em(5px);
+  height: em(40px);
+  width: em(120px);
+  @media (min-width: em(768px)) {
+    margin: 0 em(30px) 0 0;
+    height: em(60px);
+    width: em(160px);
+    max-width: em(255px);
+    flex: 1 1 em(200px);
   }
 
-  .site-title {
-    flex: auto;
-    float: left;
-    font-size: 1rem;
-    font-weight: bold;
-    line-height: 1.5;
-    text-align: center;
+  &__content {
+    &:hover {
+      background: none;
+      text-decoration: none;
+    }
   }
 
-  .site-nav {
-    ul {
-      display: inline-block;
-      line-height: 1.5;
-      list-style: none;
+  &__image {
+    display: block;
+    margin: 0 auto;
+    height: em(40px);
+    width: em(120px);
+    max-width: 100%;
+    @media (min-width: em(768px)) {
       margin: 0;
-      padding: 0;
-      text-align: center;
+      height: em(60px);
+      width: em(160px);
     }
+  }
+}
 
-    li {
-      display: inline-block;
-      margin-right: .4rem;
+.avatar {
+  border-radius: .2rem;
+  float: left;
+  height: 2rem;
+  margin-right: 1rem;
+  margin-top: -3px;
+  width: 2rem;
+}
+
+.course-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  @media (min-width: em(768px)) {
+    flex-direction: row;
+    align-items: baseline;
+    flex: 1 1 em(400px);
+  }
+
+  &__title {
+    $context: 24px;
+
+    font-size: em($context);
+    margin-bottom: em(20px, $context);
+    @media (min-width: em(768px)) {
+      margin-bottom: 0;
     }
   }
 
-  .branding,
-  .search-bar,
-  .site-nav {
-    @media (max-width: 480px) {
-      flex: 0 0 100%;
-      text-align: center;
+  &__duration {
+    $context: 20px;
+
+    font-size: $context;
+    margin: 0;
+    &:before {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBhdGggZD0iTTMwIDBDMTMuNDU4IDAgMCAxMy40NTggMCAzMHMxMy40NTggMzAgMzAgMzAgMzAtMTMuNDU4IDMwLTMwUzQ2LjU0MiAwIDMwIDB6bTAgNThDMTQuNTYxIDU4IDIgNDUuNDM5IDIgMzBTMTQuNTYxIDIgMzAgMnMyOCAxMi41NjEgMjggMjgtMTIuNTYxIDI4LTI4IDI4eiIvPjxwYXRoIGQ9Ik0zMCA2YTEgMSAwIDAgMC0xIDF2MjNIMTRhMSAxIDAgMSAwIDAgMmgxNmExIDEgMCAwIDAgMS0xVjdhMSAxIDAgMCAwLTEtMXoiLz48L3N2Zz4=");
+      display: inline-block;
+      margin-right: em(10px, $context);
+      width: em(35px, $context);
+      vertical-align: middle;
+    }
+  }
+}
+
+.links {
+  $margin: em(8px);
+
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: em(165px);
+  @media (min-width: em(768px)) {
+    margin: 0 0 0 em(30px);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    list-style: none;
+    text-align: center;
+
+    &.-language:before {
+      content: "";
+      display: inline-block;
+      margin: 0 $margin;
+      width: em(1px);
+      height: em(24px);
+      background-color: $brand-black;
+      vertical-align: middle;
+    }
+  }
+
+  &__item {
+    & + & {
+      margin-left: $margin;
     }
   }
 }

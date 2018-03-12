@@ -1,9 +1,9 @@
 .summary {
   flex: 1 1 em(200px);
-  margin: 0 0 em(70px);
+  margin: 0 0 em(30px);
   @media (min-width: em(768px)) {
-    max-width: em(370px);
-    margin: 0 em(70px) 0 0;
+    max-width: em(255px);
+    margin: 0 em(30px) 0 0;
   }
 
   &__steps {
@@ -28,18 +28,19 @@
     @media (min-width: em(768px)) {
       flex-direction: row;
       flex: 1 1 em(70px);
+      padding: 0;
       text-align: left;
     }
 
     & + & {
       @media (min-width: em(768px)) {
-        margin-top: em(60px);
+        margin-top: em(20px);
       }
     }
   }
 
   &__step-number {
-    $context: 40px;
+    $context: 32px;
 
     font-size: em($context);
     display: flex;
@@ -49,20 +50,22 @@
     flex: 0 0 auto;
     border: 2px solid $brand-yellow;
     border-radius: 50%;
-    width: em(70px, $context);
-    height: em(70px, $context);
+    width: em(50px, $context);
+    height: em(50px, $context);
     .-current & {
       background-color: $brand-yellow;
     }
   }
 
   &__step-title {
+    $context: 18px;
+
     color: #bbc1c4;
-    font-size: em(22px);
+    font-size: $context;
     line-height: 1.1;
-    margin: em(15px) 0 0;
+    margin: em(15px, $context) 0 0;
     @media (min-width: em(768px)) {
-      margin: 0 0 0 em(15px);
+      margin: 0 0 0 em(15px, $context);
     }
   }
 }
@@ -75,7 +78,15 @@
 
   &__content {
     flex: 1 1 em(400px);
+    margin-bottom: em(60px);
     width: 100%;
+  }
+
+  &__chapter {
+    $context: 20px;
+
+    font-size: em($context);
+    margin-bottom: em(20px, $context);
   }
 
   &__navigation {
@@ -85,6 +96,8 @@
   }
 
   &__button {
+    position: fixed;
+    bottom: em(20px);
     background-color: $brand-yellow;
     border: none;
     border-radius: 30%;
@@ -96,19 +109,11 @@
 
     &.-previous {
       transform: rotate(180deg);
+      left: em(20px);
     }
-  }
 
-  &__duration {
-    $context: 20px;
-
-    font-size: $context;
-    &:before {
-      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBhdGggZD0iTTMwIDBDMTMuNDU4IDAgMCAxMy40NTggMCAzMHMxMy40NTggMzAgMzAgMzAgMzAtMTMuNDU4IDMwLTMwUzQ2LjU0MiAwIDMwIDB6bTAgNThDMTQuNTYxIDU4IDIgNDUuNDM5IDIgMzBTMTQuNTYxIDIgMzAgMnMyOCAxMi41NjEgMjggMjgtMTIuNTYxIDI4LTI4IDI4eiIvPjxwYXRoIGQ9Ik0zMCA2YTEgMSAwIDAgMC0xIDF2MjNIMTRhMSAxIDAgMSAwIDAgMmgxNmExIDEgMCAwIDAgMS0xVjdhMSAxIDAgMCAwLTEtMXoiLz48L3N2Zz4=");
-      display: inline-block;
-      margin-right: em(10px, $context);
-      width: em(35px, $context);
-      vertical-align: middle;
+    &.-next {
+      right: em(20px);
     }
   }
 
