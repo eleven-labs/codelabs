@@ -11,12 +11,8 @@
 
 .container {
   margin: 0 auto;
-  padding: 2.5em;
+  padding: em(20px);
   max-width: em($max-width-layout);
-
-  @media (min-width: em(480px)) {
-    padding: em(45px);
-  }
 
   @media (min-width: em(1360px)) {
     padding-left: 0;
