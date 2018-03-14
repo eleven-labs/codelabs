@@ -1,7 +1,26 @@
-cool
+## GraphQL c'est quoi
 
-Pour rendre l'expérience utilisateur de nos applications web de plus en plus agréable, nous somme de plus en plus obligé d'utiliser plusieurs technologies en même temps. Nous allons mettre en place un flux infini en utilisant un backend Symfony et un front en ReactJs.
+GraphQL est un language de requête initié par Facebook en 2012 et développé en 2015. [Facebook Manifest](http://facebook.github.io/graphql/October2016/). GraphQL permet de se plugguer à n'importe quel type de base de données ou d'API. Le but de GraphQL est de décrire les données et les fonctions disponible entre les applications client-server.
 
-### Mise en place du backend
+GraphQL **ne stocke donc pas** de données. Il va seulement décrire la donnée et savoir comment allez la récupérer sur vos différentes applications backend.
 
-Notre site est tout d'abord un site en Symfony 3.3. La mise en place est assez basique, il vous suffit d'installer Symfony en suivant le tutoriel suivant sur le [site officiel](https://symfony.com/doc/current/setup.html).  Pour la suite de notre projet, nous allons avoir besoin de stocker les données du flux, pour cela nous allons mettre en place une base de données [Postgresql](https://www.postgresql.org/). Il vous suffit de changer dans votre fichier de configuration les paramètres par default de la database doctrine.
+Je vous invite à lire l'article de notre blog expliquant comment fonctionne GrpahQL.
+
+## Qu'allons nous faire ?
+
+Dans ce tutoriel nous allons mettre en place un serveur GraphQL via le framework [apollo](https://www.apollographql.com).
+
+Le but est de comprendre:
+- la mise en place un serveur GraphQL
+- la création des requêtes pour lire la donnée
+- la création des requêtes d'ecriture des données
+
+## Pré-requis
+
+Nous allons utilisé une base de données PostgreSQL pour le stockage des données.
+
+Le serveur [apollo](https://www.apollographql.com) sera en nodeJS en version 9. L'utilisation de [yarn](https://yarnpkg.com/lang/en/) comme gestionnaire de dépendance.
+
+Le code javascript sera en ES6 avec l'utilisation de [Babel](https://babeljs.io/learn-es2015/) pour la compilation.
+
+Si vous ne souhaitez pas installer node sur votre machine, vous pouvez utiliser [Docker](https://www.docker.com/). Le code fournit pour le tutoriel disponible [ici](https://github.com/duck-invaders/graphql-apollo), contient un fichier `docker-compose.yml` vous permettant d'installer le projet.

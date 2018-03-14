@@ -4,7 +4,7 @@ const path = require('path');
 const codelabsPath = '_posts/codelabs/';
 const indexJson = [];
 
-const calculateDuration = wordCount => (wordCount < 360 ? 1 : Math.ceil(wordCount / 180));
+const calculateDuration = wordCount => (wordCount < 100 ? 1 : Math.ceil(wordCount / 50));
 
 const getDuration = course => {
   const coursePath = `${codelabsPath}/${course.date}-${course.slug}`;
@@ -26,8 +26,8 @@ const getDuration = course => {
         total: acc.total + stepDuration,
       };
     }, {
-      total: 0,
-    });
+        total: 0,
+      });
 };
 
 function readDir(dirPath) {

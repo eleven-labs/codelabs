@@ -1,19 +1,18 @@
 {
   "title": "GraphQL avec Apollo",
-  "permalink": "/fr/graphql-apollo",
-  "excerpt": "Mon premier tuto",
+  "permalink": "/fr/graphql-avec-apollo/",
+  "excerpt": "Dans ce tutoriel nous allons mettre en place un serveur GraphQL via le framework apollo",
+  "slug": "graphql-avec-apollo",
   "stepTitles": [
-    "Pré-requis",
-    "Installation de l'environnement de dévelopement",
+    "Introduction",
     "Installation du serveur GraphQL",
     "Configuration de la BDD",
     "Création des types GraphQL",
     "Resolver des query",
     "Resolver des mutations"
   ],
-  "date": "20-03-2018",
+  "date": "2018-03-20",
   "cover": "/assets/2018-03-20-graphql-avec-apollo/cover.jpg",
-  "time": 10,
   "authors": [
     {
       "name": "Jonathan Jalouzot",
