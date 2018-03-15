@@ -78,7 +78,7 @@ Suivez la procédure sur le repo du blog Eleven-Labs [ici](https://github.com/el
 
 -------------------------
 
-Créer votre article
+Créer votre codelabs
 ----------------------------
 
 **1 - Ajoutez votre tuto**
@@ -90,11 +90,13 @@ AAAA-MM-DD-titre
 ```
 Puis créez l'architecture suivante :
 
+```
 ├── index.json
 ├── index.md
 ├── step1.md
 ├── step2.md
 ├── step3.md
+```
 
 **2 - index.json**
 
