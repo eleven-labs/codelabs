@@ -42,7 +42,7 @@ export class Header extends React.Component {
 
           <div className="course-header">
             {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
-            {currentCourse.time && <p className="course-header__duration" data-icon={clock}>{currentCourse.time} minutes</p>}
+            {currentCourse.duration && <p className="course-header__duration" data-icon={clock}>{currentCourse.duration.total} minutes</p>}
           </div>
 
           <div className="links">
