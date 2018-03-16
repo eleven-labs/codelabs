@@ -7,14 +7,22 @@ import { Provider } from 'react-redux';
 import createStore from './store/dev';
 import routes from './routes';
 
+
+import { InstantSearch } from 'react-instantsearch/dom';
+
 const store = createStore();
 
+const APP_ID = 'UDC7EDJ4AB';
+const API_KEY = 'f749c4469d8f8cfd15584ab18e4deba8'; // Search-Only API Key
+
 const CodeLabs = () => (
-  <Provider {...{ store }}>
-    <BrowserRouter>
-      {renderRoutes(routes)}
-    </BrowserRouter>
-  </Provider>
+  <InstantSearch appId={APP_ID} apiKey={API_KEY} indexName='codelabs'>
+    <Provider {...{ store }}>
+      <BrowserRouter>
+        {renderRoutes(routes)}
+      </BrowserRouter>
+    </Provider>
+  </InstantSearch>
 );
 
 ReactDOM.render(<CodeLabs />, document.getElementById('root'));

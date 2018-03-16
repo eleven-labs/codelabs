@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { Hits } from 'react-instantsearch/dom';
+
 import Splash from '../components/Splash';
 import CourseList from '../components/CourseList';
 
@@ -10,6 +12,8 @@ import { NOOP } from '../constants';
 
 const mapStateToProps = ({ courses }) => ({ courses });
 const mapDispatchToProps = { loadCourses };
+
+const HitEntry = (hit) => <div>{hit.name}</div>;
 
 export class Home extends React.Component {
   static propTypes = {
@@ -33,6 +37,7 @@ export class Home extends React.Component {
       <div className="home">
         <Splash />
         <CourseList courses={courses} />
+        <Hits hitComponent={HitEntry} />
       </div>
     );
   }
