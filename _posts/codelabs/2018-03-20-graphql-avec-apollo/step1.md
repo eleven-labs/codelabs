@@ -2,7 +2,7 @@
 
 Si vous souhaitez utiliser [Docker](https://www.docker.com/), je vous invite a cloner le projet [github](https://github.com/duck-invaders/graphql-apollo).
 
-Une fois cloné vous pouvez lancer:
+Une fois cloné vous pouvez lancer :
 
 ```bash
 docker-compose up -d
@@ -14,7 +14,7 @@ et vous devez ajouter la ligne suivante dans votre `/etc/hosts`
 127.0.0.1 apollo.local
 ```
 
-Si vous travaillez dans le docker, les commandes suivantes doivent être lancé dans la machine docker.
+Si vous travaillez dans le container docker, les commandes suivantes doivent être lancées dans la machine docker.
 
 ```bash
 docker-compose exec node sh
@@ -28,7 +28,7 @@ On commence par configurer le gestionnaire de package yarn.
 yarn init
 ```
 
-Suivre les instructions en laissant le comme entry point le fichier `index.js`.
+Suivre les instructions en laissant comme `entry point` le fichier `index.js`.
 
 Il faut ensuite installer l'ensemble des packages suivant pour l'utiliser babel.
 
@@ -42,7 +42,7 @@ Puis vous devez installer le package `apollo-server-express` avec `graphql` et `
 yarn add apollo-server-express graphql express
 ````
 
-Une fois terminé vous devez ajouter le script pour start le projet. Dans le fichier `package.json` il faut ajouter:
+Une fois terminé vous devez ajouter le script pour start le projet. Dans le fichier `package.json` il faut ajouter :
 
 ```json
 "scripts": {
@@ -52,7 +52,7 @@ Une fois terminé vous devez ajouter le script pour start le projet. Dans le fic
 
 ## Mise en place du server
 
-Il nous reste a mettre en place le serveur express qui permettra de lancer le GraphQL.
+Il nous reste à mettre en place le serveur express qui permettra de lancer le GraphQL.
 
 Ajouter le code suivant dans le fichier `index.js`.
 
@@ -76,7 +76,7 @@ app.get('/', function (req, res) {
 app.listen(PORT);
 ```
 
-Si tout est ok, vous devez en faisant un `yarn start` avoir le resultat suivant sur l'url [`127.0.0.1:3000`](http://127.0.0.1:3000/)
+Si tout est ok, vous devez en faisant un `yarn start` avoir le résultat suivant sur l'url [`127.0.0.1:3000`](http://127.0.0.1:3000/)
 
 ![Hello Word](/assets/2018-03-20-graphql-avec-apollo/hello.png)
 

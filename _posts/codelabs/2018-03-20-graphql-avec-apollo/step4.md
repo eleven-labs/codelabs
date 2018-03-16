@@ -2,12 +2,12 @@
 
 Avant de mettre en place les `resolvers` pour les query en lecture. Vous devez créer le type query.
 
-Il faut ensuite créer un type avec l'ensemble des fonctions que vous souhaitez avoir. Nous allons:
+Il faut ensuite créer un type avec l'ensemble des fonctions que vous souhaitez avoir. Nous allons :
 - récupérer l'ensemble des astronautes
-- récupérer un astronautes
-- récupérer une planets
+- récupérer un astronaute
+- récupérer une planète
 
-Ajoutez le fichier `schemas.js` à la racine de votre projet. Importez l'ensemble des types que nous avons défini à l'étape d'avant.
+Ajoutez le fichier `schemas.js` à la racine de votre projet. Importez l'ensemble des types que nous avons défini à l'étape précédente.
 
 ```javascript
 import Astronaute from './typedefs/astronaute';
@@ -31,7 +31,7 @@ const SchemaDefinition = `
 
 ## Configuration de GraphQL
 
-Toujours dans le même fichier `schemas.js` vous devez dire à votre serveur GraphQL où est votre schémas.
+Toujours dans le même fichier `schemas.js` vous devez dire à votre serveur GraphQL où est votre schéma.
 
 Pour cela vous devez ajouter le module `graphql-tools`.
 
@@ -105,7 +105,7 @@ app.listen(PORT);
 
 Nous ajoutons au même moment l'IDE GraphiQL qui est contenu dans la librairie Apollo. L'IDE permet d'afficher directement la documentation, ainsi que d'effectuer les query.
 
-Si tout est ok vous devriez avoir accès à l'url suivant [http://127.0.0.1:3000/graphiql](http://127.0.0.1:3000/graphiql) et vois la doucmentation.
+Si tout est ok vous devriez avoir accès à l'url suivant [http://127.0.0.1:3000/graphiql](http://127.0.0.1:3000/graphiql) et voir la doucmentation (à droite).
 
 ![Documentation](/assets/2018-03-20-graphql-avec-apollo/documentation.png)
 
@@ -173,14 +173,14 @@ Si tout est ok la réponse à votre requête est
 
 Et si vous ajoutez des astronautes dans votre base de donnnées et changer la requête en
 
-```json
+```javascript
 {
   astronautes {
     id,
     pseudo
   }
 }
-````
+```
 
 la réponse est donc
 
@@ -203,7 +203,7 @@ la réponse est donc
     ]
   }
 }
-````
+```
 
 Maintenant nous allons modifer le resolver pour récupérer via l'id.
 
@@ -271,9 +271,9 @@ const resolvers = {
 export default resolvers;
 ```
 
-Comme vous pouvez le voir c'est assez simple, il suffit de spécifier pour chaque attribus comment le récupérer.
+Comme vous pouvez le voir c'est assez simple, il suffit de spécifier pour chaque attribut comment le récupérer.
 
-Terminons par créer le resolver pour la `planet`.
+Enfin créons le resolver pour la `planet`.
 
 Ajouter le fichier `planet.js` au dossier resolvers.
 
@@ -316,9 +316,9 @@ import PlanetResolver from './resolvers/planet';
 export const resolvers = merge(AstronauteResolver, PlanetResolver);
 ```
 
-Si tout est ok, la requete suivante doit fonctionner.
+Si tout est ok, la requête suivante doit fonctionner.
 
-```json
+```javascript
 {
   astronautes {
     id,

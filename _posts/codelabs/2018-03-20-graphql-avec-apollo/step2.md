@@ -1,6 +1,6 @@
 ## Création de la base de données
 
-Si vous utlisez le docker, la base de données postgreSQL est comprise dans le projet.
+Si vous utilisez le container docker, la base de données postgreSQL est comprise dans le projet.
 
 Si vous n'utilisez pas le docker, vous devez installer un postgreSQL sur votre machine via la documentation [suivante](https://www.postgresql.org/download/)
 
@@ -14,7 +14,7 @@ Pour cela il faut l'installer via
 yarn add knex pg
 ```
 
-Nous allons commencer par gérer a connexion à la base de données en ajoutant un fichier `pg.js` à la racine du projet.
+Nous allons commencer par gérer la connexion à la base de données en ajoutant un fichier `pg.js` à la racine du projet.
 
 ```javascript
 import Knex from 'knex';
@@ -34,7 +34,7 @@ const pg = Knex({
 export default pg;
 ```
 
-Puis nous allons créer le schéma de base de données. Dans la suite du tutoriel nous allons imaginer que l'application doit gérer les astronautes d'Eleven-labs, les liens avec leurs planètes et leurs grades.
+Puis nous allons créer le schéma de base de données. Dans la suite du tutoriel nous allons imaginer que l'application doit gérer les astronautes d'Eleven Labs, les liens avec leurs planètes et leurs grades.
 
 Commençons par créer le dossier `schemas` qui contiendra l'ensemble des schémas de la base de données.
 
@@ -94,7 +94,7 @@ export default { up, down };
 
 ### Planets-Astronautes
 
-Ajoutez le fichier `planet-astronaute.js` contenant la table de liaison entre un astronaute et sa planete.
+Ajoutez le fichier `planet-astronaute.js` contenant la table de liaison entre un astronaute et sa planète.
 
 ```javascript
 const up = function up(pg) {

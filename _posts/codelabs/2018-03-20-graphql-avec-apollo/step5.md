@@ -1,6 +1,6 @@
 ## Création d'un type mutation
 
-Comme pour la query nous devons definir les mutations possibles. Il s'agit la aussi d'une fonction prenant en entré un type input et qui renvoi un object.
+Comme pour la query nous devons définir les mutations possibles. Il s'agit là aussi d'une fonction prenant en entrée un type input et qui renvoie un objet.
 
 ### Type Input
 
@@ -108,13 +108,13 @@ const resolvers = {
 export default resolvers;
 ```
 
-La fonction `saveAstronaute` prend l'input en entrée, sauvegarde dans la base et renvoi l'object sauvegardé.
+La fonction `saveAstronaute` prend l'input en entrée, sauvegarde dans la base et renvoie l'objet sauvegardé.
 
 ## Testons
 
 Dans GraphiQL vous pouvez mettre la query suivante
 
-```json
+```javascript
 mutation saveAstronaute($astronaute: AstronauteInput!) {
   saveAstronaute(input: $astronaute) {
     id

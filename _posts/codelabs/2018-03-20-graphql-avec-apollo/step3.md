@@ -1,16 +1,16 @@
-## Types object
+## Types objet
 
 Nous allons commencer par créer les types GraphQL pour les trois principaux objets.
 
 - Astronaute
-- Planet
+- Planète
 - Grade
 
 Commencez par créer le dossier `typedefs` qui contiendra les types GraphQL.
 
 ### Grade
 
-On commence par `grade` qui est l'object le plus simple il ne contient que le nom du grade.
+On commence par `grade` qui est l'objet le plus simple il ne contient que le nom du grade.
 
 Ajoutez le fichier `grade.js` avec le code suivant.
 
@@ -25,7 +25,7 @@ const Grade = `
 export default Grade;
 ```
 
-### Planet
+### Planète
 
 Ajouter le fichier `planet.js` avec le code suivant.
 
@@ -42,7 +42,7 @@ const Planet = `
 export default Planet;
 ```
 
-Comme vous le remarquez, le type GraphQL ne suit pas directment le type postgreSQL. Ici on permet la récupération directement dans l'object `planet` de l'ensemble des `astronautes`.
+Comme vous le remarquez, le type GraphQL ne suit pas directement le type postgreSQL. Ici on permet la récupération directement dans l'object `planet` de l'ensemble des `astronautes`.
 
 ### Astronaute
 
@@ -62,6 +62,6 @@ const Astronaute = `
 export default Astronaute;
 ```
 
-Dans le cas de l'astronaute, l'object contient directement le `grade` et la `planet`.
+Dans le cas de l'astronaute, l'objet contient directement le `grade` et la `planet`.
 
 Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-apollo/tree/codelabs-step3)
