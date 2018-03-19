@@ -4,11 +4,10 @@ import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 
+import { InstantSearch } from 'react-instantsearch/dom';
+
 import createStore from './store/dev';
 import routes from './routes';
-
-
-import { InstantSearch } from 'react-instantsearch/dom';
 
 const store = createStore();
 

@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 
+import { SearchBox } from 'react-instantsearch/dom';
+
 import clock from '../assets/images/icons/icon_clock.svg';
 import rocket from '../assets/images/icons/icon_rocket.svg';
 import logo from '../assets/images/logo_eleven_codelabs.png';
 
-import Search from '../components/Search'; // <-- ?
-import { SearchBox } from 'react-instantsearch/dom';
+// import Search from '../components/Search'; // <-- ?
 
 const mapStateToProps = ({
   currentCourse,

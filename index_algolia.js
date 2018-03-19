@@ -6,22 +6,18 @@ const index = client.initIndex('codelabs');
 const data = require('./_posts/codelabs/index.json');
 
 index.addObjects(data, (err, content) => {
-  if (err)
-    console.error(err);
+  if (err) {
+    console.error(content);
+  }
 });
 
 index.setSettings({
-  'searchableAttributes': [
+  searchableAttributes: [
     'title',
-    'tags'
-  ]
+    'tags',
+  ],
 }, (err, content) => {
-  if (err)
+  if (err) {
     console.log(content);
+  }
 });
-
-/*
-index.search('mon s', (err, content) => {
-  console.log(content);
-});
-*/
