@@ -10,22 +10,24 @@ index.clearIndex((err, content) => {
   if (err) {
     console.error(content);
   }
+  
+  index.addObjects(data, (err, content) => {
+    if (err) {
+      console.error(content);
+    }
+    
+    index.setSettings({
+      searchableAttributes: [
+        'title',
+        'tags',
+        'excerpt',
+      ],
+    }, (err, content) => {
+      if (err) {
+        console.error(content);
+      }
+    });
+  });
 });
 
-index.addObjects(data, (err, content) => {
-  if (err) {
-    console.error(content);
-  }
-});
 
-index.setSettings({
-  searchableAttributes: [
-    'title',
-    'tags',
-    'excerpt',
-  ],
-}, (err, content) => {
-  if (err) {
-    console.error(content);
-  }
-});
