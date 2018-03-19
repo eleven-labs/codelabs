@@ -10,8 +10,8 @@ import routes from './routes';
 
 const store = createStore();
 
-const APP_ID = 'UDC7EDJ4AB';
-const API_KEY = 'f749c4469d8f8cfd15584ab18e4deba8'; // Search-Only API Key
+const APP_ID = '5IGTHBX5JS';
+const API_KEY = '7f7511d659569fcede7653d568b3206c'; // Search-Only API Key
 
 const CodeLabs = () => (
   <InstantSearch appId={APP_ID} apiKey={API_KEY} indexName="codelabs">
