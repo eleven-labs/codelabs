@@ -139,6 +139,7 @@ Votre codelabs doit être écrit en [markdown](https://guides.github.com/feature
  - http://dillinger.io
 
  Si vous avez besoin de mettre des images dans votre article il faut d'abord les ajouter dans le dossier suivant `_posts/assets/AAAA-MM-DD-titre/`, puis les insérer dans votre article.
+en utilsant l'url suivantes `https://storage.googleapis.com/tutos/assets/AAAA-MM-DD-titre`
 
 **5 - Publication**
 
