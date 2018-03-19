@@ -49,7 +49,7 @@ export class Header extends React.Component {
             {currentCourse.duration && <p className="course-header__duration" data-icon={clock}>{currentCourse.duration.total} minutes</p>}
           </div>
 
-          <SearchBox />
+          {!currentCourse.title && <SearchBox />}
 
           <div className="links">
             <ul className="links__list -social">
