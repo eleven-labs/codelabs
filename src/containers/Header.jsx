@@ -54,7 +54,7 @@ export class Header extends React.Component {
             &&
             <SearchBox
               translations={{
-                placeholder: 'Rechercher'
+                placeholder: 'Rechercher',
               }}
             />
           }
