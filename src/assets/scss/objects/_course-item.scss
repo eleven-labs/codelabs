@@ -3,7 +3,8 @@
 
   border: em(1px) solid $brand-light-grey;
   @media (min-width: em(768px)) {
-    width: 49.25%;
+    /* width: 49.25%; */
+    margin: 5px;
   }
 
   &+& {
