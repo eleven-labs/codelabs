@@ -1,14 +1,14 @@
 ## Création de la base de données
 
-Si vous utilisez le container docker, la base de données postgreSQL est comprise dans le projet.
+Si vous utilisez le container docker, la base de données PostgreSQL est comprise dans le projet.
 
-Si vous n'utilisez pas le docker, vous devez installer un postgreSQL sur votre machine via la documentation [suivante](https://www.postgresql.org/download/)
+Si vous n'utilisez pas le docker, vous devez installer un PostgreSQL sur votre machine via la documentation [suivante](https://www.postgresql.org/download/)
 
 ## Création du schéma
 
-Pour gérer la communication avec postgreSQL, nous allons utilisé la librairie [Knex](http://knexjs.org/).
+Pour gérer la communication avec PostgreSQL, nous allons utilisé la librairie [Knex](http://knexjs.org/).
 
-Pour cela il faut l'installer via
+Pour cela il faut l'installer via Yarn
 
 ```bash
 yarn add knex pg

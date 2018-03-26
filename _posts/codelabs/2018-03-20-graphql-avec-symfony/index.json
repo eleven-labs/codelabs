@@ -8,7 +8,7 @@
     "Installation du serveur GraphQL",
     "Configuration de la BDD",
     "Création des types GraphQL",
-    "Resolver des query",
+    "Resolver des queries",
     "Resolver des mutations"
   ],
   "date": "2018-03-20",

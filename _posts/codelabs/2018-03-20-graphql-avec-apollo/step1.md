@@ -1,6 +1,6 @@
 ## Installation de docker
 
-Si vous souhaitez utiliser [Docker](https://www.docker.com/), je vous invite a cloner le projet [github](https://github.com/duck-invaders/graphql-apollo).
+Si vous souhaitez utiliser [Docker](https://www.docker.com/), je vous invite à cloner le projet [github](https://github.com/duck-invaders/graphql-apollo).
 
 Une fois cloné vous pouvez lancer :
 
@@ -36,7 +36,7 @@ Il faut ensuite installer l'ensemble des packages suivant pour l'utiliser babel.
 yarn add --dev babel-cli babel-preset-env babel-preset-es2015 babel-preset-stage-0
 ```
 
-Puis vous devez installer le package `apollo-server-express` avec `graphql` et `express`
+Puis vous devez installer les packages `apollo-server-express`, `graphql` et `express`
 
 ```bash
 yarn add apollo-server-express graphql express
@@ -50,7 +50,7 @@ Une fois terminé vous devez ajouter le script pour start le projet. Dans le fic
 }
 ```
 
-## Mise en place du server
+## Mise en place du serveur
 
 Il nous reste à mettre en place le serveur express qui permettra de lancer le GraphQL.
 
@@ -61,13 +61,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { graphqlExpress } from 'apollo-server-express';
 
-//const myGraphQLSchema = // ... define or import your schema here!
 const PORT = 3000;
 
 const app = express();
-
-// bodyParser is needed just for POST.
-//app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }));
 
 app.get('/', function (req, res) {
     res.send('Hello World!')

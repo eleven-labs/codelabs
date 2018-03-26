@@ -1,10 +1,10 @@
 ## GraphQL c'est quoi
 
-GraphQL est un language de requête initié par Facebook en 2012 et développé en 2015. [Facebook Manifest](http://facebook.github.io/graphql/October2016/). GraphQL permet de se plugguer à n'importe quel type de base de données ou d'API. Le but de GraphQL est de décrire les données et les fonctions disponibles entre les applications client-server.
+GraphQL est un langage de requête initié par Facebook en 2012 et développé en 2015. [Facebook Manifest](http://facebook.github.io/graphql/October2016/). GraphQL permet de se brancher à n'importe quel type de base de données ou d'API. Le but de GraphQL est de décrire les données et les fonctions disponibles entre les applications client-serveur.
 
 GraphQL **ne stocke donc pas** de données. Il va seulement décrire le modèle donnée et savoir comment aller la récupérer sur vos différentes applications backend.
 
-Je vous invite à lire l'article de notre blog expliquant comment fonctionne GrpahQL.
+Je vous invite à lire l'article de notre blog expliquant comment [fonctionne GraphQL](https://blog.eleven-labs.com/fr/graphql-kesako/).
 
 ## Qu'allons nous faire ?
 
