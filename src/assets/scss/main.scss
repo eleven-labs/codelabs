@@ -33,20 +33,3 @@
 @import 'includes/footer';
 @import 'includes/md-content';
 @import 'includes/author';
-
-// Override Algolia classes
-.ais-Hits-list {
-  display: inline-flex;
-}
-
-.ais-Hits-item {
-  display: block;
-}
-
-.ais-SearchBox-submitIcon {
-  display: none;
-}
-
-.ais-SearchBox-resetIcon {
-  display: none;
-}

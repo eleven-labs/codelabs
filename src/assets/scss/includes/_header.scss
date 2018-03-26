@@ -26,12 +26,10 @@
 
 .branding {
   display: inline-block;
-  margin-bottom: em(5px);
-  height: em(40px);
+  margin-bottom: em(10px);
   width: em(120px);
   @media (min-width: em(768px)) {
     margin: 0 em(30px) 0 0;
-    height: em(60px);
     width: em(160px);
     max-width: em(255px);
     flex: 1 1 em(200px);
@@ -47,12 +45,10 @@
   &__image {
     display: block;
     margin: 0 auto;
-    height: em(40px);
     width: em(120px);
     max-width: 100%;
     @media (min-width: em(768px)) {
       margin: 0;
-      height: em(60px);
       width: em(160px);
     }
   }
