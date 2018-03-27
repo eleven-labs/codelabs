@@ -2,41 +2,39 @@ language: node
 sudo: false
 if: branch = master
 script:
-- yarn install
+  - yarn install
 before_deploy:
-- yarn install
-- node createjson.js
-- yarn build
-- node index_algolia.js
+  - yarn install
+  - node createjson.js
+  - yarn build
+  - node index_algolia.js
 branches:
   only:
-  - master
+    - master
 deploy:
-- provider: gcs
-  access_key_id: "$GCS_ACCESS_KEY_ID"
-  secret_access_key: "$GCS_SECRET_ACCESS_KEY"
-  bucket: tutos
-  skip_cleanup: true
-  acl: public-read
-  cache_control: public,max-age=60
-  local-dir: _posts
-  on:
-    branch: master
-- provider: gae
-  keyfile: codelabs-1ddb09746a38.json
-  project: codelabs-179614
-  local-dir: nginx
-  skip_cleanup: true
-  on:
-    branch: master
+  - provider: gcs
+    access_key_id: "$GCS_ACCESS_KEY_ID"
+    secret_access_key: "$GCS_SECRET_ACCESS_KEY"
+    bucket: tutos
+    skip_cleanup: true
+    acl: public-read
+    cache_control: public,max-age=60
+    local-dir: _posts
+    on:
+      branch: master
+  - provider: gae
+    keyfile: codelabs-1ddb09746a38.json
+    project: codelabs-179614
+    local-dir: nginx
+    skip_cleanup: true
+    on:
+      branch: master
 before_install:
-- openssl aes-256-cbc -K $encrypted_1d9c94ec092f_key -iv $encrypted_1d9c94ec092f_iv
-  -in codelabs-1ddb09746a38.json.enc -out codelabs-1ddb09746a38.json -d
+  - openssl aes-256-cbc -K $encrypted_1d9c94ec092f_key -iv $encrypted_1d9c94ec092f_iv -in codelabs-1ddb09746a38.json.enc -out codelabs-1ddb09746a38.json -d
 notifications:
   slack:
     secure: RMLFfJF2I3ZqzDgKkqwaFsrLmBcnQWABgAgkNWLZGym/2GsKQUaT4tD+vcvwxGRra9mhg7P/2dSF285rpWsMo7Hyi+Hq1qWYlgkM7Bz2oHHng/FNr0YVEVoZ+ezKZVlT8myaGQgrnLocJn0uPVV6GBK8l0txYmRBtBXP0DPnJLgII4FPQ4zXc710ofSFJ+ozLnZ+09OJZw+939O8hpVtAld7nbMortf+MKpvXOCJqycbFOncb0uPPE2MgOkxKmNZRmXrX/wFTxpotY1xQdKgUZrNpPGrRjrIMm8ZHGI/atoojG0PCY1jCYk+6RQVIdLAnBAZIiNbyzoogkTzHSJIBgkh/DTTMnVNYQ8ZPvO2sI0qlcSlcsFIX3Y9kh39CszsQslXs0AzAXbQMkoH8aWy9wm1tno1EiAP01DqWgXJhN2aYpxYISkEOI/5yVjQE2Ggm1LgFzHrdWWy4R27xdr0w+9+805KBeOp6yMPsJxM08nXA77CESDSCkNvediti6n9hWpIPBFwlB5C90S6WOHM2vPevSGHooMEjosGi6Rycg/D+/aecJEi4MhkfNY8VO7E1uyjkfi9URmouNZOE2rRTX7gjK2AZxz72pIOKtJc4yeB7dVdpzqTgFXi7PTtq4fxMFykWKIi2dbcUrcs2XTzhWqAmQKLWirmPrI0psCgWrU=
     template:
       - "Nouvelle version de codelabs en prod => %{commit}"
-    on_pull_requests: false
     on_success: always
     on_failure: never

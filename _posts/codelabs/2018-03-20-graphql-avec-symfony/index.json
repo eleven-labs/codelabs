@@ -1,7 +1,7 @@
 {
   "title": "GraphQL avec Symfony",
   "permalink": "/fr/graphql-avec-symfony/",
-  "excerpt": "Mon premier tuto",
+  "excerpt": "Dans ce tutoriel nous allons mettre en place un serveur GraphQL avec le framework Symfony",
   "slug": "graphql-avec-symfony",
   "stepTitles": [
     "Introduction",
