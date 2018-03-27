@@ -1,9 +1,12 @@
 language: node
 sudo: false
+if: branch = master
 script:
   - yarn install
-  - yarn build
+before_deploy:
+  - yarn install
   - node createjson.js
+  - yarn build
   - node index_algolia.js
 branches:
   only:
