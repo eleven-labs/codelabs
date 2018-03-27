@@ -1,9 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import urlJoin from 'url-join';
 
-import { Hits } from 'react-instantsearch/dom';
 import { connectHits } from 'react-instantsearch/connectors';
 
 import Splash from '../components/Splash';
