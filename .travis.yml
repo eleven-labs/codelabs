@@ -1,10 +1,16 @@
 language: node
 sudo: false
+if: branch = master
 script:
   - yarn install
-  - yarn build
+before_deploy:
+  - yarn install
   - node createjson.js
+  - yarn build
   - node index_algolia.js
+branches:
+  only:
+    - master
 
 deploy:
   - provider: gcs
@@ -27,6 +33,3 @@ deploy:
 before_install:
   - openssl aes-256-cbc -K $encrypted_1d9c94ec092f_key -iv $encrypted_1d9c94ec092f_iv -in codelabs-1ddb09746a38.json.enc -out codelabs-1ddb09746a38.json -d
 
-branches:
-  only:
-    - master
