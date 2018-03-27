@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import urlJoin from 'url-join';
 
 import { Hits } from 'react-instantsearch/dom';
+import { connectHits } from 'react-instantsearch/connectors';
 
 import Splash from '../components/Splash';
 // import CourseList from '../components/CourseList';
@@ -28,35 +29,38 @@ const authorRenderer = (author, index) => (
   <Author author={author} key={index} />
 );
 
+const CustomHits = connectHits(({ hits }) => (
+  hits.map(hit => <HitEntry hit={hit} />)
+));
+
 const HitEntry = ({ hit }) => {
   const date = new Date(hit.date);
 
-  return (
-    <article className="course-item">
-      <div className="course-item__heading">
-        <img className="course-item__icon" src={play} alt="" />
-        <div className="course-item__heading-right">
-          <img className="course-item__icon" src={clock} alt="" />
-          <p className="course-item__duration">{hit.duration.total} mins</p>
-        </div>
+  return (<article className="course-item">
+    <div className="course-item__heading">
+      <img className="course-item__icon" src={play} alt="" />
+      <div className="course-item__heading-right">
+        <img className="course-item__icon" src={clock} alt="" />
+        <p className="course-item__duration">{hit.duration.total} mins</p>
       </div>
+    </div>
 
-      <div className="course-item__container">
-        <h2 className="course-item__title">
-          <a className="no-link-style" href={urlJoin('/course/', hit.permalink)}>
-            {hit.title}
-          </a>
-        </h2>
+    <div className="course-item__container">
+      <h2 className="course-item__title">
+        <a className="no-link-style" href={urlJoin('/course/', hit.permalink)}>
+          {hit.title}
+        </a>
+      </h2>
 
-        <p className="course-item__details">
-          <time dateTime={date.toISOString()}>{date.toLocaleString('fr-FR', dateOptions)}</time>
-          {' par '}
-          {hit.authors.map(authorRenderer)}
-        </p>
+      <p className="course-item__details">
+        <time dateTime={date.toISOString()}>{date.toLocaleString('fr-FR', dateOptions)}</time>
+        {' par '}
+        {hit.authors.map(authorRenderer)}
+      </p>
 
-        <p className="course-item__description">{hit.excerpt}</p>
-      </div>
-    </article>
+      <p className="course-item__description">{hit.excerpt}</p>
+    </div>
+  </article>
   );
 };
 
@@ -85,10 +89,10 @@ export class Home extends React.Component {
     return (
       <div className="home">
         <Splash />
-        { /* <CourseList courses={courses} /> */ }
+        { /* <CourseList courses={courses} /> */}
         <div className="course-list">
           <div className="course-list__container container">
-            <Hits hitComponent={HitEntry} />
+            <CustomHits />
           </div>
         </div>
       </div>
