@@ -24,8 +24,9 @@
   }
 }
 
+
 .branding {
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: em(10px);
   width: em(120px);
   @media (min-width: em(768px)) {
@@ -45,12 +46,53 @@
   &__image {
     display: block;
     margin: 0 auto;
+    padding-right: 20px;
     width: em(120px);
     max-width: 100%;
     @media (min-width: em(768px)) {
       margin: 0;
       width: em(160px);
     }
+  }
+}
+
+
+.branding-blog {
+  display: inline-bloc;
+  margin-bottom: em(10px);
+  width: em(110px);
+  position: relative;
+  @media (min-width: em(768px)) {
+    margin: 0 em(30px) 0 0;
+    max-width: em(255px);
+  }
+
+  &__content {
+    &:hover {
+      background: none;
+      text-decoration: none;
+    }
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+    width: em(100px);
+    max-width: 100%;
+    @media (min-width: em(768px)) {
+      margin: 0;
+      width: em(160px);
+    }
+  }
+
+  span {
+    bottom: 0;
+    color: $brand-black;
+    font-family: $font-family-headings;
+    font-size: 0.7rem;
+    right: 0.2rem;
+    position: absolute;
+    text-transform: uppercase;
   }
 }
 
