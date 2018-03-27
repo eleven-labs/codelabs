@@ -1,0 +1,22 @@
+{
+  "title": "GraphQL avec Symfony",
+  "permalink": "/fr/graphql-avec-symfony/",
+  "excerpt": "Mon premier tuto",
+  "slug": "graphql-avec-symfony",
+  "stepTitles": [
+    "Introduction",
+    "Installation du serveur GraphQL",
+    "Configuration de la BDD",
+    "Création des types GraphQL",
+    "Resolver des queries",
+    "Resolver des mutations"
+  ],
+  "date": "2018-03-20",
+  "cover": "/assets/2018-03-20-graphql-avec-symfony/cover.jpg",
+  "authors": [
+    {
+      "name": "Jonathan Jalouzot",
+      "username": "captainjojo"
+    }
+  ]
+}
