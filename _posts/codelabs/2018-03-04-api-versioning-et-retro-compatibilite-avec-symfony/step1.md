@@ -4,7 +4,7 @@ Il nous faut implémenter une liste des versions dans la configuration de Symfon
 
 ### Spécifions les versions retrocompatibles
 
-Editez le fichier `app/config/parameters.yml` de votre projet (ou `config/services.yaml` sous Symfony 4) et ajoutez-y l'entrée suivante, sous `parameters` :
+Editez le fichier `app/config/parameters.yml` de votre projet (ou `config/services.yaml` sous Symfony 4) et ajoutez l'entrée suivante, sous `parameters` :
 
 ```yaml
 parameters:
@@ -23,7 +23,7 @@ Les changements de retrocompatibilité seront alors appliqués dans ce même ord
 
 Ainsi, dans le cas ou un client ajoute un header `X-Accept-Version: 0.9.0` dans ses requêtes, les changements de retrocompatibilité des versions seront joués respectivement dans l'ordre `1.1.0`, `1.0.0` puis `0.9.0`.
 
-La version `0.8.0` ne devra quant à elle pas être jouée car elle correspond à un modèle encore plus ancien que celui demandé.
+La version `0.8.0` ne devra pas être jouée, car elle correspond à un modèle encore plus ancien que celui demandé.
 
 ### Prochaine étape
 
