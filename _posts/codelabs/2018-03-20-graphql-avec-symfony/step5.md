@@ -1,8 +1,8 @@
-## Création d'un type mutation
+### Création d'un type mutation
 
 Comme pour la query nous devons définir les mutations possibles. Il s'agit là aussi d'une fonction prenant en entrée un type input et qui renvoie un objet.
 
-### Type Input
+#### Type Input
 
 Pour ce tutoriel nous allons seulement créer un nouvel astronaute. Nous avons donc besoin d'un seul type input pour l'astronaute.
 
@@ -17,7 +17,7 @@ AstronautInput:
                 type: 'String!'
 ```
 
-### Ajout de la mutation
+#### Ajout de la mutation
 
 Dans le dossier `config/graphql/types` vous devez ajouter un fichier `Mutation.yaml` qui contient.
 
@@ -58,7 +58,7 @@ overblog_graphql:
                     suffix: ~
 ```
 
-## Resolver de mutation
+### Resolver de mutation
 
 Comme pour les `resolvers` de query, il s'agit d'un service qui implémentes les interfaces `MutationInterface, AliasedInterface`.
 
@@ -113,7 +113,7 @@ Il ne vous reste plus qu'a configurer le service. Dans le fichier `config/servic
         tags: ['overblog_graphql.mutation']
 ```
 
-## Testons
+### Testons
 
 Dans GraphiQL vous pouvez mettre la query suivante
 
@@ -149,6 +149,6 @@ Si tout est ok pour devriez avoir cela comme réponse.
 
 Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-symfony/tree/codelabs-step5)
 
-## Conclusion
+### Conclusion
 
 Je vous invite à lire la documentation de [GraphQL](http://graphql.org/learn/) et du bundle [https://github.com/overblog/GraphQLBundle/](https://github.com/overblog/GraphQLBundle/) pour voir l'ensemble des fonctionnalités disponible dans GraphQL.

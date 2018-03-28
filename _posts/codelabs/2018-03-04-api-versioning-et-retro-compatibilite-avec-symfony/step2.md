@@ -1,6 +1,6 @@
 Nous allons donc agir sur la réponse de Symfony, ce qui signifie que nous devons implémenter un listener sur l'événement `kernel.response` du framework.
 
-# Ajout de la classe
+### Ajout de la classe
 
 Commençons donc par créer la classe PHP du listener. Créez un ficier `Acme\Event\Listener\VersionChangesListener` :
 
@@ -115,7 +115,7 @@ En effet, dans certains cas (certains endpoints d'API), les données renvoyées 
 
 Enfin, `$changes->apply()` joue les changements nécessaires.
 
-# Ajout du service Symfony
+### Ajout du service Symfony
 
 Afin que notre listener soit effectif, il ne nous reste plus qu'à déclarer le service dans l'injection de dépendance du framework :
 
@@ -129,6 +129,6 @@ acme.event.version_changes_listener:
 
 Le service `acme.version.changes_factory` est manquant à ce niveau, cela est normal, il sera déclaré dans la prochaine étape.
 
-# Prochaine étape
+### Prochaine étape
 
 Entrons dans le coeur du gestionnaire de changements de rétro-compatibilité en implémentant le service `ChangesFactory` qui nous permet d'instancier les classes de changements.

@@ -1,4 +1,4 @@
-## Installation de docker
+### Installation de docker
 
 Si vous souhaitez utiliser [Docker](https://www.docker.com/), je vous invite a cloner le projet [github](https://github.com/duck-invaders/graphql-symfony).
 
@@ -20,7 +20,7 @@ Si vous travaillez dans le container docker, les commandes suivantes doivent êt
 docker-compose exec php sh
 ```
 
-## Installer Symfony
+### Installer Symfony
 
 Comme nous utilisons un Symfony 4, nous allons mettre en place `flex`.
 
