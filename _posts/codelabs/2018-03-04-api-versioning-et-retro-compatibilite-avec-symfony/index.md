@@ -8,9 +8,9 @@ J'ai donc parcouru différentes solutions et j'ai choisi d'adopter [le modèle p
 
 ## Objectif
 
-Pour la suite de ce tutoriel Codelabs, nous allons imaginer que nous développons une API et que nous souhaitons sortir une nouvelle version `1.2.0` en production, qui incluera des changements au niveau de notre modèle de données par rapport aux versions précédentes.
+Pour la suite de ce tutoriel Codelabs, nous allons imaginer que nous développons une API et que nous souhaitons sortir une nouvelle version `1.2.0` en production, qui inclura des changements au niveau de notre modèle de données par rapport aux versions précédentes.
 
-L'objectif est alors de sortir en production notre nouvelle version, et que chaque client qui appelle notre API sans spécifier de version particulière puisse bénéficier de cette nouvelle version.
+L'objectif est alors de sortir en production notre nouvelle version et que chaque client qui appelle notre API sans spécifier de version particulière puisse en bénéficier.
 
 En revanche, si un client, lors de sa requête, spécifie une version (comme `1.1.0` par exemple), alors il doit continuer à récupérer le même modèle de données que précédemment.
 
@@ -24,9 +24,9 @@ Pour la suite de cet article, j'ai choisi de partir sur un numéro de version sp
 
 ## Pré-requis
 
-Avant de débuter l'implémentation technique, il vous faut disposer d'une instance Symfony. Vous pouvez vous rendre sur [http://symfony.com/download](http://symfony.com/download) pour en installer une version.
+Avant de débuter l'implémentation technique il vous faut disposer d'une instance Symfony. Vous pouvez vous rendre sur [http://symfony.com/download](http://symfony.com/download) pour en installer une version.
 
-Cet article n'est pas spécifique à Symfony 4, cependant, si vous souhaitez installer cette dernière version, vous pouvez directement utiliser composer :
+Cet article n'est pas spécifique à Symfony 4, cependant, si vous souhaitez installer cette dernière version vous pouvez directement utiliser composer :
 
 ```
 $ composer create-project symfony/skeleton api-versioning
