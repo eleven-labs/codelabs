@@ -1,4 +1,4 @@
-## Installation de docker
+### Installation de docker
 
 Si vous souhaitez utiliser [Docker](https://www.docker.com/), je vous invite à cloner le projet [github](https://github.com/duck-invaders/graphql-apollo).
 
@@ -20,7 +20,7 @@ Si vous travaillez dans le container docker, les commandes suivantes doivent êt
 docker-compose exec node sh
 ```
 
-## Initialisation de l'environnement Node
+### Initialisation de l'environnement Node
 
 On commence par configurer le gestionnaire de package yarn :
 
@@ -50,7 +50,7 @@ Une fois terminé, vous devez ajouter le script pour start le projet. Dans le fi
 }
 ```
 
-## Mise en place du serveur
+### Mise en place du serveur
 
 Il nous reste à mettre en place le serveur express qui permettra de lancer le GraphQL.
 

@@ -1,10 +1,10 @@
-## Création de la base de données
+### Création de la base de données
 
 Si vous utilisez le container docker, la base de données MySQL est comprise dans le projet.
 
 Si vous n'utilisez pas le docker, vous devez installer un MySQL sur votre machine via la documentation [suivante](https://www.mysql.com/fr/downloads/)
 
-## Création du schéma
+### Création du schéma
 
 Nous allons utiliser doctrine pour mettre en place le schéma de la base de données.
 
@@ -29,7 +29,7 @@ Puis nous allons créer le schéma de base de données. Dans la suite du tutorie
 
 Nous allons créer les trois entités doctrine.
 
-### Astronautes
+#### Astronautes
 
 Lancez la commande :
 
@@ -217,7 +217,7 @@ class Planet
 }
 ```
 
-### Grade
+#### Grade
 
 Lancez la commande :
 
@@ -283,7 +283,7 @@ class Grade
 }
 ```
 
-### Création de la base
+#### Création de la base
 
 Nous allons utiliser les commandes de doctrine.
 

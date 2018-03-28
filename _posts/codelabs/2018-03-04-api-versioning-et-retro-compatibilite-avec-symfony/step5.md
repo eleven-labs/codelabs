@@ -1,6 +1,6 @@
 Félicitations, vous avez terminés l'implémentation du versioning et de la gestion de rétro-compatibilité dans votre API !
 
-# Utilisation
+### Utilisation
 
 Vous pouvez dès maintenant tester votre implémentation en effectuant des requêtes à votre API et en spécifiant un header de version de la façon suivante :
 
@@ -14,7 +14,7 @@ Enfin, souvenez vous que si aucun header n'est spécifié, aucune rétro-compati
 
 Je suis prenneur de feedbacks sur cette implémentation donc n'hésitez pas à me contacter si vous avez des soucis de mise en place ou d'utilisation.
 
-# Conclusion
+### Conclusion
 
 Bien que les fichiers de retro-compatibilité soient simples à mettre en place par les développeurs, il ne faut pas se faire avoir par vos clients (d'API) et gérer trop de versions de rétro-compatibilité.
 

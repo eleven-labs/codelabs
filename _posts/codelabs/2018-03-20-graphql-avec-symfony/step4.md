@@ -1,4 +1,4 @@
-## Création du type Query
+### Création du type Query
 
 Avant de mettre en place les `resolvers` pour les query en lecture. Vous devez créer le type query.
 
@@ -31,7 +31,7 @@ Query:
 
 Si tout est ok, vous devez avoir la documentation qui s'affiche dans l'interface [GraphiQL](http://symfony.localhost/graphiql)
 
-## Création des resolvers
+### Création des resolvers
 
 Si vous essayez la query :
 

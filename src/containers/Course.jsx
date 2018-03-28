@@ -159,7 +159,7 @@ export class Course extends React.Component {
 
         <article className="course__content">
           {stepTitles.length > 0 && (
-            <h1 className="course__chapter">{currentStep + 1} - {stepTitles[currentStep]}</h1>
+            <h2 className="course__chapter">{currentStep + 1} - {stepTitles[currentStep]}</h2>
           )}
           <div className="course__text">{step.map((renderer, key) => renderer({ key }))}</div>
           <div className="course__navigation">
