@@ -74,6 +74,6 @@ app.listen(PORT);
 
 Si tout est ok, vous devriez, en faisant un `yarn start` avoir le résultat suivant sur l'url [`127.0.0.1:3000`](http://127.0.0.1:3000/)
 
-![Hello Word](https://storage.googleapis.com/tutos/assets/2018-03-20-graphql-avec-apollo/hello.png)
+![Hello Word](https://storage.googleapis.com/tutos/assets/2018-03-28-graphql-avec-apollo/hello.png)
 
 Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-apollo/tree/codelabs-step1)

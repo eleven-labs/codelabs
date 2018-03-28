@@ -107,7 +107,7 @@ Nous ajoutons au même moment l'IDE GraphiQL qui est contenu dans la librairie A
 
 Si tout est ok, vous devriez avoir accès à l'url suivante [http://127.0.0.1:3000/graphiql](http://127.0.0.1:3000/graphiql) et voir la doucmentation (à droite).
 
-![Documentation](https://storage.googleapis.com/tutos/assets/2018-03-20-graphql-avec-apollo/documentation.png)
+![Documentation](https://storage.googleapis.com/tutos/assets/2018-03-28-graphql-avec-apollo/documentation.png)
 
 
 ### Création des resolvers

@@ -32,7 +32,7 @@ composer create-project symfony/skeleton symfony
 
 Si tout est ok, vous devriez avoir la page de base de Symfony à l'adresse suivante [http://symfony.localhost/](http://symfony.localhost/)
 
-![symfony](https://storage.googleapis.com/tutos/assets/2018-03-20-graphql-avec-symfony/symfony.png)
+![symfony](https://storage.googleapis.com/tutos/assets/2018-03-28-graphql-avec-symfony/symfony.png)
 
 
 Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-symfony/tree/codelabs-step1)
