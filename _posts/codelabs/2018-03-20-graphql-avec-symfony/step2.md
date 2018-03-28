@@ -6,15 +6,15 @@ Si vous n'utilisez pas le docker, vous devez installer un MySQL sur votre machin
 
 ### Création du schéma
 
-Nous allons utiliser doctrine pour mettre en place le schémas de la base de données.
+Nous allons utiliser doctrine pour mettre en place le schéma de la base de données.
 
-Vous devez installer doctrine et maker (qui permet de générer les entity) en lançant
+Vous devez installer doctrine et maker (qui permet de générer les entity) en lançant :
 
 ```bash
 composer require doctrine maker
 ```
 
-Vous pouvez changer le fichier `.env` avec la connexion à votre de base de données. Dans le cadre de l'utilisation du container docker vous devez mettre.
+Vous pouvez changer le fichier `.env` avec la connexion à votre base de données. Dans le cadre de l'utilisation du container docker vous devez mettre :
 
 ```bash
 ###> doctrine/doctrine-bundle ###
@@ -31,7 +31,7 @@ Nous allons créer les trois entités doctrine.
 
 #### Astronautes
 
-Lancez la commande
+Lancez la commande :
 
 ```bash
 php bin/console make:entity Astronaut
@@ -39,7 +39,7 @@ php bin/console make:entity Astronaut
 
 Cela va créer le fichier `src/Entity/Astronaut.php`.
 
-Vous pouvez alors ajouter les `fields` que nous aurons besoin.
+Vous pouvez alors ajouter les `fields` que nous aurons besoin :
 
 ```php
 <?php
@@ -123,7 +123,7 @@ class Astronaut
 
 ### Planets
 
-Lancez la commande
+Lancez la commande :
 
 ```bash
 php bin/console make:entity Planet
@@ -131,7 +131,7 @@ php bin/console make:entity Planet
 
 Cela va créer le fichier `src/Entity/Planet.php`.
 
-Vous pouvez alors ajouter les `fields` que nous aurons besoin.
+Vous pouvez alors ajouter les `fields` dont nous aurons besoin :
 
 ```php
 <?php
@@ -219,7 +219,7 @@ class Planet
 
 #### Grade
 
-Lancez la commande
+Lancez la commande :
 
 ```bash
 php bin/console make:entity Grade
@@ -227,7 +227,7 @@ php bin/console make:entity Grade
 
 Cela va créer le fichier `src/Entity/Grade.php`.
 
-Vous pouvez alors ajouter les `fields` que nous aurons besoin.
+Vous pouvez alors ajouter les `fields` dont nous aurons besoin :
 
 ```php
 <?php
@@ -285,9 +285,9 @@ class Grade
 
 #### Création de la base
 
-Nous allons utilisé les commandes de doctrine.
+Nous allons utiliser les commandes de doctrine.
 
-Il faut d'abord créer la migration en lançant
+Il faut d'abord créer la migration en lançant :
 
 ```bash
 php bin/console doctrine:migrations:generate
@@ -295,12 +295,12 @@ php bin/console doctrine:migrations:generate
 
 Cela va générer un fichier dans le dossier `src/Migrations`
 
-Puis il faut lancer la migration pour créer les tables.
+Puis il faut lancer la migration pour créer les tables :
 
 ```bash
 php bin/console doctrine:migrations:migrate
 ```
 
-C'est bon vos tables sont créés.
+C'est bon ! Vos tables sont créés.
 
 Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-symfony/tree/codelabs-step2)

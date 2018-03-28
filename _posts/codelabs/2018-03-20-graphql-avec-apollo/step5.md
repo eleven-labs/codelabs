@@ -1,12 +1,12 @@
 ### Création d'un type mutation
 
-Comme pour la query nous devons définir les mutations possibles. Il s'agit là aussi d'une fonction prenant en entrée un type input et qui renvoie un objet.
+Comme pour la query, nous devons définir les mutations possibles. Il s'agit là aussi d'une fonction prenant en entrée un type input et renvoyant un objet.
 
 #### Type Input
 
-Pour ce tutoriel nous allons seulement créer un nouvel astronaute. Nous avons donc besoin d'un seul type input pour l'astronaute.
+Pour ce tutoriel, nous allons seulement créer un nouvel astronaute. Nous avons donc besoin d'un seul type input pour l'astronaute.
 
-Dans le dossier `typedefs` vous devez ajouter un fichier `astronauteInput.js` qui contient.
+Dans le dossier `typedefs` vous devez ajouter un fichier `astronauteInput.js` qui contient :
 
 ```javascript
 const AstronauteInput = `
@@ -21,7 +21,7 @@ export default AstronauteInput;
 
 #### Ajout de la mutation
 
-Dans le fichier `schemas.js` vous devez ajouter la mutation.
+Dans le fichier `schemas.js` vous devez ajouter la mutation :
 
 ```javascript
 import { makeExecutableSchema } from 'graphql-tools';
@@ -60,7 +60,7 @@ export default makeExecutableSchema({
 
 ### Resolver de mutation
 
-Dans le resolver du fichier `astronaute.js` vous devez ajouter la fonction permettant la mutation.
+Dans le resolver du fichier `astronaute.js` vous devez ajouter la fonction permettant la mutation :
 
 ```javascript
 import pg from './../pg';
@@ -108,11 +108,11 @@ const resolvers = {
 export default resolvers;
 ```
 
-La fonction `saveAstronaute` prend l'input en entrée, sauvegarde dans la base et renvoie l'objet sauvegardé.
+La fonction `saveAstronaute` prend l'input en entrée, sauvegarde dans la base et renvoie l'objet sauvegardé :
 
 ### Testons
 
-Dans GraphiQL vous pouvez mettre la query suivante
+Dans GraphiQL vous pouvez mettre la query suivante :
 
 ```javascript
 mutation saveAstronaute($astronaute: AstronauteInput!) {
@@ -123,7 +123,7 @@ mutation saveAstronaute($astronaute: AstronauteInput!) {
 }
 ```
 
-Puis dans `query variables` en bas à gauche
+Puis dans `query variables` en bas à gauche :
 
 ```json
 {
@@ -133,7 +133,7 @@ Puis dans `query variables` en bas à gauche
 }
 ```
 
-Si tout est ok pour devriez avoir cela comme réponse.
+Si tout est ok pour devriez avoir cela comme réponse :
 
 ```json
 {

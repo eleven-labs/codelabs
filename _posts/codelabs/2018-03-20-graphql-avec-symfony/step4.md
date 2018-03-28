@@ -3,13 +3,14 @@
 Avant de mettre en place les `resolvers` pour les query en lecture. Vous devez créer le type query.
 
 Il faut ensuite créer un type avec l'ensemble des fonctions que vous souhaitez avoir. Nous allons :
-- récupérer l'ensemble des astronautes
-- récupérer un astronaute
-- récupérer une planète
+
+- récupérer l'ensemble des astronautes ;
+- récupérer un astronaute ;
+- récupérer une planète.
 
 Commençons par créer le fichier `Query.yaml` dans le dossier `config/graphql/types`.
 
-Dans ce fichier nous allons identifier les points d'entré du graphql.
+Dans ce fichier nous allons identifier les points d'entrée du graphql :
 
 ```yaml
 Query:
@@ -32,7 +33,7 @@ Si tout est ok, vous devez avoir la documentation qui s'affiche dans l'interface
 
 ### Création des resolvers
 
-Si vous essayez la query
+Si vous essayez la query :
 
 ```json
 {
@@ -42,7 +43,7 @@ Si vous essayez la query
 }
 ```
 
-Vous devriez voir la réponse suivante
+Vous devriez voir la réponse suivante :
 
 ```json
 {
@@ -59,12 +60,13 @@ Le resolver est le code qui permet de récuperer la donnée dans le base.
 Dans le bundle il s'agit de **service** symfony.
 
 Il existe deux façons de créer un `resolver` :
-- en utilisant des services implémentant les interfaces `ResolverInterface, AliasedInterface`
-- en créant ses propres services
+
+- en utilisant des services implémentant les interfaces `ResolverInterface, AliasedInterface` ;
+- en créant ses propres services.
 
 On va commencer par créer les trois `resolver` via les interfaces.
 
-Dans le fichier `Query.yaml` vous devez ajouter les appels aux différents `resolver`.
+Dans le fichier `Query.yaml` vous devez ajouter les appels aux différents `resolver` :
 
 ```yaml
 Query:
@@ -92,7 +94,7 @@ Query:
 
 Puis nous allons créer les services. Créez le dossier `src/Resolver`.
 
-Puis ajoutez le fichier `PlanetResolver.php` avec
+Ajoutez le fichier `PlanetResolver.php` avec :
 
 ```php
 <?php
@@ -140,7 +142,7 @@ final class PlanetResolver implements ResolverInterface, AliasedInterface
 }
 ```
 
-Ajoutez le fichier `AstronautResolver.php` avec
+Ajoutez le fichier `AstronautResolver.php` avec :
 
 ```php
 <?php
@@ -188,7 +190,7 @@ final class AstronautResolver implements ResolverInterface, AliasedInterface
 }
 ```
 
-Ajoutez le fichier `AstronautsResolver.php` avec
+Ajoutez le fichier `AstronautsResolver.php` avec :
 
 ```php
 <?php
@@ -236,7 +238,7 @@ final class AstronautsResolver implements ResolverInterface, AliasedInterface
 }
 ```
 
-Si tout est ok la réponse à votre requête est
+Si tout est ok la réponse à votre requête est :
 
 ```json
 {
@@ -246,7 +248,7 @@ Si tout est ok la réponse à votre requête est
 }
 ```
 
-Et si vous ajoutez des astronautes dans votre base de donnnées et changer la requête en
+Et si vous ajoutez des astronautes dans votre base de donnnées et changez la requête en :
 
 ```javascript
 {
@@ -265,7 +267,7 @@ Et si vous ajoutez des astronautes dans votre base de donnnées et changer la re
 }
 ```
 
-La réponse devrait être
+La réponse devrait être :
 
 ```javascript
 {
@@ -307,7 +309,7 @@ Il manque le lien avec la planète, car dans un objet `Astronaut` nous n'avons p
 
 Nous allons donc mettre en place un autre `resolver`. Cette fois-ci via un service.
 
-Dans le fichier `Astronaut.yaml` nous allons ajouter le `resolver` pour la planète.
+Dans le fichier `Astronaut.yaml` nous allons ajouter le `resolver` pour la planète :
 
 ```yaml
 Astronaut:
@@ -325,7 +327,7 @@ Astronaut:
                 resolve: "@=service('planet.resolver').resolveInAstronaut(value, args, context, info)"
 ```
 
-Puis dans le `PlanetResolver.php` vous pouvez ajouter la fonction de resolve suivante.
+Puis dans le `PlanetResolver.php` vous pouvez ajouter la fonction de resolve suivante :
 
 ```php
 public function resolveInAstronaut(Astronaut $astronaut, $args, $context, $info)
@@ -334,7 +336,7 @@ public function resolveInAstronaut(Astronaut $astronaut, $args, $context, $info)
 }
 ```
 
-Vous devez ajouter la fonction suivante dans le `PlanetRepository.php`
+Vous devez ajouter la fonction suivante dans le `PlanetRepository.php` :
 
 ```php
 public function findByAstronaut($id)
@@ -348,7 +350,7 @@ public function findByAstronaut($id)
 }
 ```
 
-Si tous est bon le resultat de votre précedente requête doit être
+Si tout est bon le résultat de votre précédente requête doit être :
 
 ```json
 {

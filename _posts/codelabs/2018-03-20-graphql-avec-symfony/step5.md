@@ -1,12 +1,12 @@
 ### Création d'un type mutation
 
-Comme pour la query nous devons définir les mutations possibles. Il s'agit là aussi d'une fonction prenant en entrée un type input et qui renvoie un objet.
+Comme pour la query, nous devons définir les mutations possibles. Il s'agit là aussi d'une fonction prenant en entrée un type input et qui renvoie un objet.
 
 #### Type Input
 
 Pour ce tutoriel nous allons seulement créer un nouvel astronaute. Nous avons donc besoin d'un seul type input pour l'astronaute.
 
-Dans le dossier `config/graphql/types` vous devez ajouter un fichier `AstronautInput.yaml` qui contient.
+Dans le dossier `config/graphql/types` vous devez ajouter un fichier `AstronautInput.yaml` qui contient :
 
 ```yaml
 AstronautInput:
@@ -19,7 +19,7 @@ AstronautInput:
 
 #### Ajout de la mutation
 
-Dans le dossier `config/graphql/types` vous devez ajouter un fichier `Mutation.yaml` qui contient.
+Dans le dossier `config/graphql/types` vous devez ajouter un fichier `Mutation.yaml` qui contient :
 
 ```yaml
 MutationSuccess:
@@ -41,7 +41,7 @@ Mutation:
                         type: AstronautInput!
 ```
 
-Puis dans la configuration du bundle vous devez definir le point d'entré du type mutation. Dans le fichier `config/graphql.yaml``
+Puis dans la configuration du bundle vous devez definir le point d'entrée du type mutation. Dans le fichier `config/graphql.yaml`` :
 
 ```yaml
 overblog_graphql:
@@ -60,9 +60,9 @@ overblog_graphql:
 
 ### Resolver de mutation
 
-Comme pour les `resolvers` de query, il s'agit d'un service qui implémentes les interfaces `MutationInterface, AliasedInterface`.
+Comme pour les `resolvers` de query, il s'agit d'un service qui implémente les interfaces `MutationInterface, AliasedInterface`.
 
-Créez le dossier `src/Mutation` et ajouter le fichier `AstronautMutation.php` avec ceci
+Créez le dossier `src/Mutation` et ajouter le fichier `AstronautMutation.php` avec ceci :
 
 ```php
 <?php
@@ -105,7 +105,7 @@ final class AstronautMutation implements MutationInterface, AliasedInterface
     }
 }
 ```
-Il ne vous reste plus qu'a configurer le service. Dans le fichier `config/services.yaml`
+Il ne vous reste plus qu'à configurer le service. Dans le fichier `config/services.yaml` :
 
 ```yaml
     App\Mutation\:
@@ -115,7 +115,7 @@ Il ne vous reste plus qu'a configurer le service. Dans le fichier `config/servic
 
 ### Testons
 
-Dans GraphiQL vous pouvez mettre la query suivante
+Dans GraphiQL vous pouvez mettre la query suivante :
 
 ```javascript
 mutation NewAstronaut($astronaute: AstronautInput!) {
@@ -125,7 +125,7 @@ mutation NewAstronaut($astronaute: AstronautInput!) {
 }
 ```
 
-Puis dans `query variables` en bas à gauche
+Puis dans `query variables` en bas à gauche :
 
 ```json
 {
@@ -135,7 +135,7 @@ Puis dans `query variables` en bas à gauche
 }
 ```
 
-Si tout est ok pour devriez avoir cela comme réponse.
+Si tout est ok pour devriez avoir cela comme réponse :
 
 ```json
 {
@@ -151,4 +151,4 @@ Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-sym
 
 ### Conclusion
 
-Je vous invite à lire la documentation de [GraphQL](http://graphql.org/learn/) et du bundle [https://github.com/overblog/GraphQLBundle/](https://github.com/overblog/GraphQLBundle/) pour voir l'ensemble des fonctionnalités disponible dans GraphQL.
+Je vous invite à lire la documentation de [GraphQL](http://graphql.org/learn/) et du bundle [https://github.com/overblog/GraphQLBundle/](https://github.com/overblog/GraphQLBundle/) pour voir l'ensemble des fonctionnalités disponibles dans GraphQL.

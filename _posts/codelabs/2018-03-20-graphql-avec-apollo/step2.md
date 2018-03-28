@@ -6,9 +6,9 @@ Si vous n'utilisez pas le docker, vous devez installer un PostgreSQL sur votre m
 
 ### Création du schéma
 
-Pour gérer la communication avec PostgreSQL, nous allons utilisé la librairie [Knex](http://knexjs.org/).
+Pour gérer la communication avec PostgreSQL, nous allons utiliser la librairie [Knex](http://knexjs.org/).
 
-Pour cela il faut l'installer via Yarn
+Pour cela il faut l'installer via Yarn :
 
 ```bash
 yarn add knex pg
@@ -40,7 +40,7 @@ Commençons par créer le dossier `schemas` qui contiendra l'ensemble des schém
 
 #### Astroanutes
 
-Ajoutez le fichier `astronaute.js` contenant la table astronaute.
+Ajoutez le fichier `astronaute.js` contenant la table astronaute :
 
 ```javascript
 const up = function up(pg) {
@@ -73,7 +73,7 @@ Nous utiliserons les fonctions `up` et `down` pour la création de la base.
 
 #### Planets
 
-Ajoutez le fichier `planet.js` contenant la table planet.
+Ajoutez le fichier `planet.js` contenant la table planet :
 
 ```javascript
 const up = function up(pg) {
@@ -94,7 +94,7 @@ export default { up, down };
 
 #### Planets-Astronautes
 
-Ajoutez le fichier `planet-astronaute.js` contenant la table de liaison entre un astronaute et sa planète.
+Ajoutez le fichier `planet-astronaute.js` contenant la table de liaison entre un astronaute et sa planète :
 
 ```javascript
 const up = function up(pg) {
@@ -126,7 +126,7 @@ export default { up, down };
 
 #### Grades
 
-Ajouter le fichier `grade.js` contenant la table des grades.
+Ajouter le fichier `grade.js` contenant la table des grades :
 
 ```javascript
 const up = function up(pg) {
@@ -146,7 +146,7 @@ export default { up, down };
 
 #### Création de la base
 
-Ajouter le fichier `index.js` permettant de générer la base de données.
+Ajouter le fichier `index.js` permettant de générer la base de données :
 
 ```javascript
 import pg from './../pg';
@@ -186,7 +186,7 @@ planetAstronaute.down(pg).then(() => {
 });
 ```
 
-Vous pouvez ajouter votre script suivant dans le `package.json`.
+Vous pouvez ajouter votre script suivant dans le `package.json` :
 
 ```json
 "scripts": {
@@ -195,6 +195,6 @@ Vous pouvez ajouter votre script suivant dans le `package.json`.
 }
 ```
 
-Puis si vous lancez `yarn pg` vos tables sont créées.
+Si vous lancez `yarn pg`, vos tables sont créées.
 
 Retrouvez le code directement [ici](https://github.com/duck-invaders/graphql-apollo/tree/codelabs-step2)

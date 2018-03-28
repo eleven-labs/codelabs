@@ -6,7 +6,7 @@ Commençons par installer le bundle [https://github.com/overblog/GraphQLBundle](
 composer require overblog/graphql-bundle
 ```
 
-Nous ajoutons au même moment l'IDE GraphiQL qui est contenu dans la un autre bundle [https://github.com/overblog/GraphiQLBundle](https://github.com/overblog/GraphiQLBundle). L'IDE permet d'afficher directement la documentation, ainsi que d'effectuer les query.
+Nous ajoutons au même moment l'IDE GraphiQL qui est contenu dans un autre bundle [https://github.com/overblog/GraphiQLBundle](https://github.com/overblog/GraphiQLBundle). L'IDE permet d'afficher directement la documentation, ainsi que d'effectuer les query :
 
 ```bash
 composer req --dev overblog/graphiql-bundle
@@ -16,19 +16,19 @@ Normalement l'url [http://symfony.localhost/graphiql](http://symfony.localhost/g
 
 ### Types objet
 
-Nous allons commencer par créer les types GraphQL pour les trois principaux objets.
+Nous allons commencer par créer les types GraphQL pour les trois principaux objets :
 
 - Astronaute
 - Planète
 - Grade
 
-Nous allons mettre les types dans le dossier `config/graphql/types`.
+Nous allons ensuite mettre les types dans le dossier `config/graphql/types`.
 
 #### Grade
 
-On commence par `grade` qui est l'objet le plus simple il ne contient que le nom du grade.
+On commence par `grade` qui est l'objet le plus simple, il ne contient que le nom du grade.
 
-Ajoutez le fichier `Grade.yaml` avec le code suivant.
+Ajoutez le fichier `Grade.yaml` avec le code suivant :
 
 ```yaml
 Grade:
@@ -43,7 +43,7 @@ Grade:
 
 #### Planète
 
-Ajouter le fichier `Planet.yaml` avec le code suivant.
+Ajoutez le fichier `Planet.yaml` avec le code suivant :
 
 ```yaml
 Planet:
@@ -62,7 +62,7 @@ Comme vous le remarquez, le type GraphQL ne suit pas directement le type MySQL. 
 
 #### Astronaute
 
-Ajouter le fichier `Astronaut.yaml` avec le code suivant.
+Ajoutez le fichier `Astronaut.yaml` avec le code suivant :
 
 ```yaml
 Astronaut:
