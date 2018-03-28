@@ -4,7 +4,7 @@ Afin de pouvoir livrer rapidement de nouvelles fonctionnalités ou encore des mo
 
 Malheureusement, les manières de traiter réellement le sujet sont assez floues aujourd'hui.
 
-J'ai donc parcouru différentes solutions et j'ai choisi d'adopter [le modèle présenté par Stripe](https://stripe.com/blog/api-versioning), permettant d'appliquer une rétro-compatibilité du modèle de données pour les versions précédentes.
+J'ai donc parcouru différentes solutions et j'ai choisi d'adopter [le modèle présenté par Stripe](https://stripe.com/blog/api-versioning), permettant d'appliquer une retrocompatibilité du modèle de données pour les versions précédentes.
 
 ## Objectif
 
@@ -14,7 +14,7 @@ L'objectif est alors de sortir en production notre nouvelle version, et que chaq
 
 En revanche, si un client, lors de sa requête, spécifie une version (comme `1.1.0` par exemple), alors il doit continuer à récupérer le même modèle de données que précédemment.
 
-D'un point de vue technique, notre API devra appliquer une transformation sur le modèle de sortie afin d'assurer la rétro-compatibilité sur cette version. C'est vraiment la réponse de notre API qui sera versionnée.
+D'un point de vue technique, notre API devra appliquer une transformation sur le modèle de sortie afin d'assurer la retrocompatibilité sur cette version. C'est vraiment la réponse de notre API qui sera versionnée.
 
 ## Gestion du numéro de version
 
