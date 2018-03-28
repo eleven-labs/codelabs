@@ -1,4 +1,4 @@
-Nous allons donc agir sur la réponse de Symfony, ce qui signifie que nous devons implémenter un listener sur l'événement `kernel.response` du framework.
+Nous allons donc agir sur la réponse de Symfony en implémentant un listener sur l'événement `kernel.response` du framework.
 
 ### Ajout de la classe
 
@@ -50,11 +50,11 @@ class VersionChangesListener
 }
 ```
 
-La structure du listener est en place. Comme vous pouvez le voir, nous y injectons le service `RequestStack` de Symfony ainsi qu'un service nommé `ChangesFactory`. Nous allons créer ce service dans les étapes juste après.
+La structure du listener est en place. Nous y avons injecté le service `RequestStack` de Symfony ainsi qu'un service nommé `ChangesFactory`. Nous allons créer ce service dans les étapes suivantes.
 
-Le service `RequestStack` va nous servir à récupérer le numéro de version demandé en header de la requête et `ChangesFactory` s'occupera de nous instancier et de nous retourner les classes de changements de retrocompatibilité de notre API, par la suite.
+Le service `RequestStack` va nous servir à récupérer le numéro de version demandé en header de la requête et `ChangesFactory` s'occupera de nous instancier et de nous retourner les classes de changements de rétrocompatibilité de notre API.
 
-Ajoutons donc la méthode `onKernelResponse` qui sera déclenché par l'`EventManager` de Symfony :
+Ajoutons donc la méthode `onKernelResponse` qui sera déclenchée par l'`EventManager` de Symfony :
 
 ```php
     /**
@@ -109,9 +109,9 @@ Pour jouer les changements, il nous manque donc la méthode `apply()` :
     }
 ```
 
-On commence à deviner l'interface qui sera implémentée par les fichiers d'application de changements par la suite. Un premier appel à la méthode `supports()` permet de vérifier si les changements de ce fichier doivent être appliqués à cette version.
+On commence à deviner l'interface qui sera implémentée par les fichiers d'application de changements. Un premier appel à la méthode `supports()` permet de vérifier si les changements de ce fichier doivent être appliqués à cette version.
 
-En effet, dans certains cas (certains endpoints d'API), les données renvoyées ne seront jamais impactées par ces changements. Cette méthode permet de s'assurer que les changements doivent bien être appliqués.
+Dans certains cas (certains endpoints d'API), les données renvoyées ne seront jamais impactées par ces changements. Cette méthode permet de s'assurer que les changements doivent bien être appliqués.
 
 Enfin, `$changes->apply()` joue les changements nécessaires.
 
@@ -127,7 +127,7 @@ acme.event.version_changes_listener:
         - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 ```
 
-Le service `acme.version.changes_factory` est manquant à ce niveau, cela est normal, il sera déclaré dans la prochaine étape.
+Le service `acme.version.changes_factory` est manquant à ce niveau car déclaré dans la prochaine étape.
 
 ### Prochaine étape
 
