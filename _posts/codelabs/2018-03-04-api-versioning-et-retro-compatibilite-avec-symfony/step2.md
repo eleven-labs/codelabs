@@ -52,7 +52,7 @@ class VersionChangesListener
 
 La structure du listener est en place. Comme vous pouvez le voir, nous y injectons le service `RequestStack` de Symfony ainsi qu'un service nommé `ChangesFactory`. Nous allons créer ce service dans les étapes juste après.
 
-Le service `RequestStack` va nous servir à récupérer le numéro de version demandé en header de la requête et `ChangesFactory` s'occupera de nous instancier et de nous retourner les classes de changements de rétro-compatibilité de notre API, par la suite.
+Le service `RequestStack` va nous servir à récupérer le numéro de version demandé en header de la requête et `ChangesFactory` s'occupera de nous instancier et de nous retourner les classes de changements de retrocompatibilité de notre API, par la suite.
 
 Ajoutons donc la méthode `onKernelResponse` qui sera déclenché par l'`EventManager` de Symfony :
 
@@ -131,4 +131,4 @@ Le service `acme.version.changes_factory` est manquant à ce niveau, cela est no
 
 ### Prochaine étape
 
-Entrons dans le coeur du gestionnaire de changements de rétro-compatibilité en implémentant le service `ChangesFactory` qui nous permet d'instancier les classes de changements.
+Entrons dans le coeur du gestionnaire de changements de retrocompatibilité en implémentant le service `ChangesFactory` qui nous permet d'instancier les classes de changements.
