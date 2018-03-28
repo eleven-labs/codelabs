@@ -1,13 +1,14 @@
 ## Création du type Query
 
-Avant de mettre en place les `resolvers` pour les query en lecture. Vous devez créer le type query.
+Avant de mettre en place les `resolvers` pour les query en lecture, vous devez créer le type query.
 
 Il faut ensuite créer un type avec l'ensemble des fonctions que vous souhaitez avoir. Nous allons :
+
 - récupérer l'ensemble des astronautes
 - récupérer un astronaute
 - récupérer une planète
 
-Ajoutez le fichier `schemas.js` à la racine de votre projet. Importez l'ensemble des types que nous avons défini à l'étape précédente.
+Ajoutez le fichier `schemas.js` à la racine de votre projet. Importez l'ensemble des types que nous avons défini à l'étape précédente :
 
 ```javascript
 import Astronaute from './typedefs/astronaute';
@@ -32,16 +33,15 @@ const SchemaDefinition = `
 ## Configuration de GraphQL
 
 Toujours dans le même fichier `schemas.js` vous devez dire à votre serveur GraphQL où est votre schéma.
-
-Pour cela vous devez ajouter le module `graphql-tools`.
+Pour cela vous devez ajouter le module `graphql-tools` :
 
 ```
 yarn add graphql-tools
 ```
 
-Qui expose la fonction `makeExecutableSchema` qui prend en paramètre vos types.
+Ce module expose la fonction `makeExecutableSchema` qui prend en paramètre vos types.
 
-Vous devez avoir le code suivant.
+Vous devriez avoir le code suivant :
 
 ```javascript
 import { makeExecutableSchema } from 'graphql-tools';
@@ -70,18 +70,18 @@ export default makeExecutableSchema({
 });
 ```
 
-## Ajouter le resolver
+## Ajoutez le resolver
 
-Ajoutez un fichier `resolver.js` contenant seulement
+Ajoutez un fichier `resolver.js` contenant seulement :
 
 ```javascript
 export const resolvers = {}
 ```
 
-## Activer le serveur
+## Activez le serveur
 
-Il nous reste à dire à GraphQL comment récupérer notre schéma.
-Dans le fichier `index.js` vous devez importer le schéma.
+Il nous reste à indiquer à GraphQL comment récupérer notre schéma.
+Dans le fichier `index.js` vous devez importer ledit schéma :
 
 ```javascript
 import express from 'express';
@@ -105,14 +105,14 @@ app.listen(PORT);
 
 Nous ajoutons au même moment l'IDE GraphiQL qui est contenu dans la librairie Apollo. L'IDE permet d'afficher directement la documentation, ainsi que d'effectuer les query.
 
-Si tout est ok vous devriez avoir accès à l'url suivant [http://127.0.0.1:3000/graphiql](http://127.0.0.1:3000/graphiql) et voir la doucmentation (à droite).
+Si tout est ok, vous devriez avoir accès à l'url suivante [http://127.0.0.1:3000/graphiql](http://127.0.0.1:3000/graphiql) et voir la doucmentation (à droite).
 
 ![Documentation](https://storage.googleapis.com/tutos/assets/2018-03-20-graphql-avec-apollo/documentation.png)
 
 
 ## Création des resolvers
 
-Si vous essayez la query
+Si vous essayez la query :
 
 ```json
 {
@@ -122,7 +122,7 @@ Si vous essayez la query
 }
 ```
 
-Vous devriez voir la réponse suivante
+Vous devriez voir la réponse suivante :
 
 ```json
 {
@@ -132,11 +132,11 @@ Vous devriez voir la réponse suivante
 }
 ```
 
-Puisque pour l'instant vous n'avez aucun resolver.
+Et oui, pour l'instant vous n'avez aucun resolver !
 
-Le resolver est le code qui permet de récuperer la donnée dans le base.
+Le resolver est le code qui permet de récuperer la donnée dans la base.
 
-Dans une dossier `resolvers` vous devez ajouter le fichier `astronautes.js` avec le code suivant.
+Dans un dossier `resolvers` vous devez ajouter le fichier `astronautes.js` avec le code suivant :
 
 ```javascript
 import pg from './../pg';
@@ -153,7 +153,7 @@ const resolvers = {
 export default resolvers;
 ````
 
-Dans le fichier `resolver.js` il vous faut ajouter le resolver que nous venons de définir.
+Dans le fichier `resolver.js` il vous faut ajouter le resolver que nous venons de définir :
 
 ```javascript
 import AstronauteResolver from './resolvers/astronaute';
@@ -161,7 +161,7 @@ import AstronauteResolver from './resolvers/astronaute';
 export const resolvers = AstronauteResolver;
 ```
 
-Si tout est ok la réponse à votre requête est
+Si tout est ok la réponse à votre requête est :
 
 ```json
 {
@@ -171,7 +171,7 @@ Si tout est ok la réponse à votre requête est
 }
 ```
 
-Et si vous ajoutez des astronautes dans votre base de donnnées et changer la requête en
+Et si vous ajoutez des astronautes dans votre base de donnnées et changer la requête en :
 
 ```javascript
 {
@@ -182,7 +182,7 @@ Et si vous ajoutez des astronautes dans votre base de donnnées et changer la re
 }
 ```
 
-la réponse est donc
+la réponse est donc :
 
 ```json
 {
@@ -205,7 +205,7 @@ la réponse est donc
 }
 ```
 
-Maintenant nous allons modifer le resolver pour récupérer via l'id.
+Maintenant nous allons modifer le resolver pour récupérer via l'id :
 
 ```javascript
 import pg from './../pg';
@@ -229,7 +229,7 @@ const resolvers = {
 export default resolvers;
 ```
 
-Puis nous allons resoudre la récupération du `grade` et de la `planet`.
+Puis nous allons résoudre la récupération du `grade` et de la `planet` :
 
 ```javascript
 import pg from './../pg';
@@ -271,11 +271,11 @@ const resolvers = {
 export default resolvers;
 ```
 
-Comme vous pouvez le voir c'est assez simple, il suffit de spécifier pour chaque attribut comment le récupérer.
+Comme vous pouvez le voir, c'est assez simple, il suffit de spécifier pour chaque attribut comment le récupérer.
 
 Enfin créons le resolver pour la `planet`.
 
-Ajouter le fichier `planet.js` au dossier resolvers.
+Ajouter le fichier `planet.js` au dossier resolvers :
 
 ```javascript
 import pg from './../pg';
@@ -306,7 +306,7 @@ const resolvers = {
 export default resolvers;
 ```
 
-Puis dans le fichier `resolver.js` vous devez ajouter le resolver.
+Puis dans le fichier `resolver.js` vous devez ajouter le resolver :
 
 ```javascript
 import { merge } from 'lodash';
@@ -316,7 +316,7 @@ import PlanetResolver from './resolvers/planet';
 export const resolvers = merge(AstronauteResolver, PlanetResolver);
 ```
 
-Si tout est ok, la requête suivante doit fonctionner.
+Si tout est ok, la requête suivante doit fonctionner :
 
 ```javascript
 {
@@ -348,7 +348,7 @@ Si tout est ok, la requête suivante doit fonctionner.
 }
 ```
 
-La réponse doit ressembler à cela
+La réponse doit ressembler à cela :
 
 
 ```json
