@@ -1,4 +1,4 @@
-Nous allons donc implémenter la classe `Acme\VersionChanges\ChangesFactory`.
+A présent implémentons la classe `Acme\VersionChanges\ChangesFactory`.
 
 # Ajout de la classe
 
@@ -61,13 +61,13 @@ class ChangesFactory
 }
 ```
 
-Cette classe prend donc en entrée le tableau de versions déclaré dans en tant que `parameters` Symfony ainsi que le `RequestStack` que nous allons injecter par la suite dans nos fichiers d'application de changements de versions.
+Cette classe prend donc en entrée le tableau de versions déclaré en tant que `parameters` Symfony ainsi que le `RequestStack` que nous irons injecter dans nos fichiers d'application de changements de versions.
 
-Notez que, par la suite, vous pourrez avoir besoin d'injecter Doctrine, par exemple, afin de récupérer des données en base de données, et pas simplement de les re-modeler.
+Notez que, par la suite, vous pourrez avoir besoin d'injecter Doctrine afin de récupérer des données en base de données et pas simplement de les remodeler.
 
-Nous avons également écrit deux méthodes `has($version)` et `get($version)` assez simples, pour retourner une version.
+Nous avons également écrit deux méthodes, `has($version)` et `get($version)`, assez simples pour retourner une version.
 
-Cependant, les yeux les plus aguéris auront remarqués la présence dans le constructeur de l'appel à la méthode `prepare()` qui va nous permettre d'instancier les namespaces fournis dans la configuration en classes PHP utilisables.
+Cependant, les yeux les plus aguerris auront remarqué la présence dans le constructeur de l'appel à la méthode `prepare()` qui va nous permettre d'instancier les namespaces fournis dans la configuration en classes PHP utilisables.
 
 La méthode à ajouter est la suivante :
 
@@ -205,7 +205,7 @@ class ChangesFactoryTest extends \PHPUnit_Framework_TestCase
 }
 ```
 
-Aussi, pour rappel, même si nous n'écrivons pas de tests unitaires dans ce tutoriel, principalement afin d'en simplifier sa lecture, vous devriez en ajouter afin de vous assurer du comportement de vos méthodes.
+Pour rappel, n'oubliez pas de vous assurer du comportement de vos méthodes en écrivant des tests unitaires.
 
 # Ajout du service Symfony
 
