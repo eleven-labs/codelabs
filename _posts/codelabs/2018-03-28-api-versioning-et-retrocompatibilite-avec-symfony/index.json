@@ -1,7 +1,7 @@
 {
-  "title": "API versioning et rétro-compatibilité avec Symfony",
-  "slug": "api-versioning-et-retro-compatibilite-avec-symfony",
-  "permalink": "/fr/api-versioning-et-retro-compatibilite-avec-symfony/",
+  "title": "API versioning et rétrocompatibilité avec Symfony",
+  "slug": "api-versioning-et-retrocompatibilite-avec-symfony",
+  "permalink": "/fr/api-versioning-et-retrocompatibilite-avec-symfony/",
   "excerpt": "Lorsque vous avez besoin de faire évoluer votre API rapidement, vous êtes souvent bloqués par vos clients pour qui vous ne pouvez pas casser la compatibilité. Ce tutoriel vous explique comment mettre en place du versioning dans Symfony et comment gérer la rétro-compatibilité des sorties d'API.",
   "stepTitles": [
     "Introduction",
@@ -12,8 +12,8 @@
     "Conclusion"
   ],
   "time": 15,
-  "date": "2018-03-04",
-  "cover": "/assets/2018-03-04-api-versioning-et-retro-compatibilite-avec-symfony/cover.jpg",
+  "date": "2018-03-28",
+  "cover": "/assets/2018-03-28-api-versioning-et-retrocompatibilite-avec-symfony/cover.jpg",
   "authors": [
     {
       "name": "Vincent Composieux",
