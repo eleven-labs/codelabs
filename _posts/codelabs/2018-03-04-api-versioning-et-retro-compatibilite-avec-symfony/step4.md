@@ -77,7 +77,7 @@ Souvenez-vous, notre service `ChangesFactory` qui instancie ces classes de chang
 
 Nous allons maintenant pouvoir ajouter une classe de changements de version.
 
-Imaginons donc que nous ajoutons la classe `Acme\VersionChanges\Version101.php` qui permettra la rétro-compatibilité sur la version `1.0.1` de notre API.
+Imaginons donc que nous ajoutons la classe `Acme\VersionChanges\Version101.php` qui permettra la retrocompatibilité sur la version `1.0.1` de notre API.
 
 Par exemple, celle-ci aura pour objectif de supprimer les entrées de type `taxonomy` des réponses de notre API car il s'agit d'une fonctionnalité active uniquement depuis la version `1.0.2`.
 
