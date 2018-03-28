@@ -1,6 +1,6 @@
 ## Types objet
 
-Nous allons commencer par créer les types GraphQL pour les trois principaux objets.
+Nous allons commencer par créer les types GraphQL pour les trois principaux objets :
 
 - Astronaute
 - Planète
@@ -10,9 +10,9 @@ Commencez par créer le dossier `typedefs` qui contiendra les types GraphQL.
 
 ### Grade
 
-On commence par `grade` qui est l'objet le plus simple il ne contient que le nom du grade.
+On commence par `grade`, qui est l'objet le plus simple : il ne contient que le nom du grade.
 
-Ajoutez le fichier `grade.js` avec le code suivant.
+Ajoutez le fichier `grade.js` avec le code suivant :
 
 ```javascript
 const Grade = `
@@ -27,7 +27,7 @@ export default Grade;
 
 ### Planète
 
-Ajouter le fichier `planet.js` avec le code suivant.
+Ajoutez le fichier `planet.js` avec le code suivant :
 
 ```javascript
 const Planet = `
@@ -46,7 +46,7 @@ Comme vous le remarquez, le type GraphQL ne suit pas directement le type postgre
 
 ### Astronaute
 
-Ajouter le fichier `astronaute.js` avec le code suivant.
+Ajoutez le fichier `astronaute.js` avec le code suivant :
 
 ```javascript
 const Astronaute = `
