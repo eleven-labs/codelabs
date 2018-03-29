@@ -14,7 +14,7 @@
     @media (min-width: em(768px)) {
       flex-flow: row nowrap;
       height: auto;
-      margin: 0 auto;
+      margin: 10px;
       width: 100%;
     }
   }
@@ -31,8 +31,8 @@
   width: em(120px);
   @media (min-width: em(768px)) {
     margin: 0 em(30px) 0 0;
-    width: em(160px);
-    max-width: em(255px);
+    width: em(320px);
+    max-width: em(300px);
     flex: 1 1 em(200px);
   }
 
