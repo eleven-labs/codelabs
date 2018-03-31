@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import api from '../middlewares/api';
 import algolia from '../middlewares/algolia';
 import reducer from '../reducers';
-import localStorageMiddleware from '../middlewares/local-storage';
+import localStorageMiddleware from '../middlewares/course-progress';
 
 const enhancer = applyMiddleware(thunk, api, algolia, localStorageMiddleware());
 

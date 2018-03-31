@@ -1,12 +1,26 @@
-import {
-  getPersistedState,
-  persistState,
-} from '../services/local-storage';
 import resolve from '../helpers/resolve';
 import update from '../helpers/update';
 import { LOCAL_STORAGE_OPTIONS } from '../constants';
 
 const actions = ['SET_CURRENT_COURSE', 'LOAD_STEP_SUCCESS'];
+
+const getPersistedState = key => {
+  try {
+    const json = JSON.parse(localStorage.getItem(key));
+    return json || {};
+  } catch (ex) {
+    console.log(ex);
+    return {};
+  }
+};
+
+const persistState = (key, state) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(state));
+  } catch (ex) {
+    console.log(ex);
+  }
+};
 
 export default (options = LOCAL_STORAGE_OPTIONS) => store => next => action => {
   if (!actions.includes(action.type)) {

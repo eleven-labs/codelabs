@@ -6,7 +6,7 @@ import { createLogger } from 'redux-logger';
 
 import api from '../middlewares/api';
 import algolia from '../middlewares/algolia';
-import localStorageMiddleware from '../middlewares/local-storage';
+import localStorageMiddleware from '../middlewares/course-progress';
 import reducer from '../reducers';
 
 let enhancer;
