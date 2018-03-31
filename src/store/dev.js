@@ -6,6 +6,7 @@ import { createLogger } from 'redux-logger';
 
 import api from '../middlewares/api';
 import algolia from '../middlewares/algolia';
+import localStorageMiddleware from '../middlewares/local-storage';
 import reducer from '../reducers';
 
 let enhancer;
@@ -17,6 +18,7 @@ if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && wind
       api,
       algolia,
       createLogger(),
+      localStorageMiddleware(),
     ),
   );
 } else {
