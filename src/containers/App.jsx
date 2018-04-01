@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';
 
-import ConnectedHeader from './Header/Header';
+import ConnectedHeader from './Header';
 
 export default class App extends React.Component {
   static propTypes = {
