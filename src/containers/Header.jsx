@@ -5,9 +5,8 @@ import cx from 'classnames';
 import { SearchBox } from 'react-instantsearch/dom';
 
 import CourseTitle from '../components/Header/CourseTitle';
+import SocialLinks from '../components/Header/SocialLinks';
 import Logo from '../components/Header/Logo';
-
-import rocket from '../assets/images/icons/icon_rocket.svg';
 
 const mapStateToProps = ({
   currentCourse,
@@ -37,45 +36,15 @@ export class Header extends React.Component {
           <Logo />
           <CourseTitle course={currentCourse} />
 
-          {
-            !currentCourse.title
-            &&
+          {!currentCourse.title && (
             <SearchBox
               translations={{
                 placeholder: 'Rechercher',
               }}
             />
-          }
+          )}
 
-          <div className="links">
-            <ul className="links__list -social">
-              <li className="links__item">
-                <a className="no-link-style tracked-link" href="https://blog.eleven-labs.com/feed.xml" title="Ajoutez-nous à votre veille" rel="nofollow noreferrer"><i className="fa fa-fw fa-rss"></i></a>
-              </li>
-
-              <li className="links__item">
-                <a className="no-link-style tracked-link" href="https://github.com/eleven-labs" title="Suivez-nous sur GitHub" rel="nofollow noreferrer"><i className="fa fa-fw fa-github"></i></a>
-              </li>
-
-              <li className="links__item">
-                <a className="no-link-style tracked-link" href="https://twitter.com/eleven_labs" title="Suivez-nous sur Twitter" rel="nofollow noreferrer"><i className="fa fa-fw fa-twitter"></i></a>
-              </li>
-
-              <li className="links__item">
-                <a className="no-link-style tracked-link" href="https://www.facebook.com/11Labs" title="Suivez-nous sur Facebook" rel="nofollow noreferrer"><i className="fa fa-fw fa-facebook"></i></a>
-              </li>
-
-              <li className="links__item">
-                <a className="no-link-style tracked-link" href="https://fr.linkedin.com/company/eleven-labs" title="Suivez-nous sur LinkedIn" rel="nofollow noreferrer"><i className="fa fa-fw fa-linkedin"></i></a>
-              </li>
-
-              <li className="links__item">
-                <a className="no-link-style tracked-link" href="https://eleven-labs.com" title="Découvrez Eleven Labs" rel="nofollow">
-                  <img className="corporate-logo" src={rocket} alt="Découvrez Eleven Labs" height="19"></img>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <SocialLinks />
         </div>
       </header>
     );
