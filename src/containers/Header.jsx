@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { SearchBox } from 'react-instantsearch/dom';
 
-import Logo from './Logo';
+import Logo from '../components/Header/Logo';
 
-import clock from '../../assets/images/icons/icon_clock.svg';
-import rocket from '../../assets/images/icons/icon_rocket.svg';
+import clock from '../assets/images/icons/icon_clock.svg';
+import rocket from '../assets/images/icons/icon_rocket.svg';
 
 const mapStateToProps = ({
   currentCourse,
