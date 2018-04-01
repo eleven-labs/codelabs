@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { SearchBox } from 'react-instantsearch/dom';
 
+import CourseTitle from '../components/Header/CourseTitle';
 import Logo from '../components/Header/Logo';
 
-import clock from '../assets/images/icons/icon_clock.svg';
 import rocket from '../assets/images/icons/icon_rocket.svg';
 
 const mapStateToProps = ({
@@ -35,11 +35,7 @@ export class Header extends React.Component {
       <header className={headerClasses}>
         <div className="container site-header__content">
           <Logo />
-
-          <div className="course-header">
-            {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
-            {currentCourse.duration && <p className="course-header__duration" data-icon={clock}>{currentCourse.duration.total} minutes</p>}
-          </div>
+          <CourseTitle course={currentCourse} />
 
           {
             !currentCourse.title
