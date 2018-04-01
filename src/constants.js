@@ -35,11 +35,3 @@ export const AST_NODES = {
   Code: 'code',
 };
 
-export const LOCAL_STORAGE_OPTIONS = {
-  key: 'codelabs',
-  paths: [
-    'currentStepIndex',
-    'currentCourse.date',
-    'currentCourse.slug',
-  ],
-};

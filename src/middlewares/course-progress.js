@@ -1,10 +1,26 @@
 import resolve from '../helpers/resolve';
 import update from '../helpers/update';
-import { LOCAL_STORAGE_OPTIONS } from '../constants';
 
 const actions = ['SET_CURRENT_COURSE', 'LOAD_STEP_SUCCESS'];
 
-const getPersistedState = key => {
+const LOCAL_STORAGE_OPTIONS = {
+  key: 'codelabs',
+  paths: [
+    'currentStepIndex',
+    'currentCourse.date',
+    'currentCourse.slug',
+  ],
+};
+
+const courses = {
+  slug: {
+    title: '',
+    steps: [1, 2, 3],
+    // steps: { 1: true, 2: true, 3: false },
+  },
+};
+
+const getPersistedProgress = key => {
   try {
     const json = JSON.parse(localStorage.getItem(key));
     return json || {};
@@ -14,7 +30,7 @@ const getPersistedState = key => {
   }
 };
 
-const persistState = (key, state) => {
+const persistProgress = (key, state) => {
   try {
     localStorage.setItem(key, JSON.stringify(state));
   } catch (ex) {
@@ -28,10 +44,10 @@ export default (options = LOCAL_STORAGE_OPTIONS) => store => next => action => {
     return;
   }
 
-  const { key, paths } = options;
+  const { key } = options;
 
   // 1. get current persisted state
-  const persistedState = getPersistedState(key);
+  const persistedProgress = getPersistedProgress(key);
 
   next(action);
 
@@ -42,17 +58,21 @@ export default (options = LOCAL_STORAGE_OPTIONS) => store => next => action => {
   // TODO: 4. compare the persisted state against the local related state.
   // TODO: 5. if different, then update.
 
-  const newState = paths.reduce((acc, path) => (
-    update({ ...acc }, path, () => {
-      const value = resolve(state, path);
+  const newCourse = resolve(state, 'currentCourse');
+  const newStep = resolve(state, 'currentStepIndex');
+  const oldCourse = persistedProgress[newCourse.slug] || {};
+  const oldSteps = oldCourse.steps || [];
 
-      if (typeof value !== 'undefined') {
-        return value;
-      }
+  const newState = {
+    ...persistedProgress,
+    [newCourse.slug]: {
+      title: newCourse.title,
+      steps: [
+        ...oldSteps,
+        !oldSteps.includes(newStep) ? newStep : undefined,
+      ].filter(v => typeof v !== 'undefined').sort(),
+    },
+  };
 
-      return resolve(persistedState, path);
-    })
-  ), {});
-
-  persistState(key, newState);
+  persistProgress(key, newState);
 };

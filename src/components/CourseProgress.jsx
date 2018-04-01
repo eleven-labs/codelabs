@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const courseRenderer = course => (
+  <div key={course.title}>
+    {course.title}
+  </div>
+);
+
 class CourseProgress extends Component {
   static propTypes = {
-    info: PropTypes.shape(),
+    courses: PropTypes.arrayOf(PropTypes.shape()),
   };
 
   static defaultProps = {
-    info: undefined,
+    courses: [],
   };
 
   render() {
-    const { info } = this.props;
+    const { courses } = this.props;
 
     return (
       <div className="progress">
-        <div>
-          {info.currentCourse} | {info.slug}
-        </div>
-        <div>
-          {info.currentStepIndex}
-        </div>
+        {courses.map(courseRenderer)}
       </div>
     );
   }
