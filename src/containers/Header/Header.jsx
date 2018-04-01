@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-
 import { SearchBox } from 'react-instantsearch/dom';
+
+import Logo from './Logo';
 
 import clock from '../../assets/images/icons/icon_clock.svg';
 import rocket from '../../assets/images/icons/icon_rocket.svg';
-import codelabsLogo from '../../assets/images/logo_eleven_codelabs.png';
-import blogLogo from '../../assets/images/logo_eleven_blog.svg';
 
 const mapStateToProps = ({
   currentCourse,
@@ -26,9 +25,7 @@ export class Header extends React.Component {
   };
 
   render() {
-    const {
-      currentCourse,
-    } = this.props;
+    const { currentCourse } = this.props;
 
     const headerClasses = cx('site-header', {
       '-yellow': currentCourse.title,
@@ -37,15 +34,7 @@ export class Header extends React.Component {
     return (
       <header className={headerClasses}>
         <div className="container site-header__content">
-          <div className="branding">
-            <a href="/" className="branding__content">
-              <img className="branding__image" alt="Eleven Codelabs" src={codelabsLogo} />
-            </a>
-            <a className="branding-blog no-link-style" href="https://blog.eleven-labs.com/" >
-              <img alt="Le Blog" src={blogLogo} />
-              <span className="brand-title">Le Blog</span>
-            </a>
-          </div>
+          <Logo />
 
           <div className="course-header">
             {currentCourse.title && <h2 className="course-header__title">{currentCourse.title}</h2>}
