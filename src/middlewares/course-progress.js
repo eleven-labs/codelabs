@@ -1,4 +1,4 @@
-const actions = ['SET_CURRENT_COURSE', 'LOAD_STEP_SUCCESS'];
+const actions = ['LOAD_STEP_SUCCESS'];
 const localStorageKey = 'codelabs';
 
 const getPersistedProgress = key => {
