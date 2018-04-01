@@ -9,8 +9,6 @@ import clock from '../assets/images/icons/icon_clock.svg';
 import rocket from '../assets/images/icons/icon_rocket.svg';
 import logo from '../assets/images/logo_eleven_codelabs.png';
 
-// import Search from '../components/Search'; // <-- ?
-
 const mapStateToProps = ({
   currentCourse,
 }) => ({
