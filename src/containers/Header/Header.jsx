@@ -5,10 +5,10 @@ import cx from 'classnames';
 
 import { SearchBox } from 'react-instantsearch/dom';
 
-import clock from '../assets/images/icons/icon_clock.svg';
-import rocket from '../assets/images/icons/icon_rocket.svg';
-import codelabsLogo from '../assets/images/logo_eleven_codelabs.png';
-import blogLogo from '../assets/images/logo_eleven_blog.svg';
+import clock from '../../assets/images/icons/icon_clock.svg';
+import rocket from '../../assets/images/icons/icon_rocket.svg';
+import codelabsLogo from '../../assets/images/logo_eleven_codelabs.png';
+import blogLogo from '../../assets/images/logo_eleven_blog.svg';
 
 const mapStateToProps = ({
   currentCourse,
