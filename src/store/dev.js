@@ -18,7 +18,7 @@ if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && wind
       api,
       algolia,
       createLogger(),
-      localStorageMiddleware(),
+      localStorageMiddleware,
     ),
   );
 } else {
