@@ -31,21 +31,19 @@ export default store => next => action => {
   next(action);
 
   // 2. get current local state
-  const state = store.getState();
+  const {
+    currentCourse: newCourse,
+    currentStepIndex: newStep,
+  } = store.getState();
 
-  const newCourse = state.currentCourse;
-  const newStep = state.currentStepIndex;
   const oldCourse = persistedProgress[newCourse.slug] || {};
-  const oldSteps = oldCourse.steps || [];
+  const oldSteps = new Set(oldCourse.steps || []).add(newStep);
 
   const newState = {
     ...persistedProgress,
     [newCourse.slug]: {
       title: newCourse.title,
-      steps: [
-        ...oldSteps,
-        !oldSteps.includes(newStep) ? newStep : undefined,
-      ].filter(v => typeof v !== 'undefined').sort(),
+      steps: Array.from(oldSteps).sort(),
     },
   };
 
