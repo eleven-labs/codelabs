@@ -1,6 +1,6 @@
 import { CALL_ALGOLIA_API, search } from '../services';
 
-// A Redux middleware that interprets actions with CALL_API info specified.
+// A Redux middleware that interprets actions with CALL_ALGOLIA_API info specified.
 // Performs the call and promises when such actions are dispatched.
 export default () => next => async action => {
   const callAlgoliaAPI = action[CALL_ALGOLIA_API];
