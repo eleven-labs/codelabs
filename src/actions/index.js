@@ -15,6 +15,12 @@ export const loadCourses = () => ({
   },
 });
 
+export const setCourses = courses => ({
+  type: LOAD_COURSES_SUCCESS,
+  response: courses,
+});
+
+
 export const SET_CURRENT_COURSE = 'SET_CURRENT_COURSE';
 
 export const setCurrentCourse = permalink => ({

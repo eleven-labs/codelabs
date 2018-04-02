@@ -1,55 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { connectHits } from 'react-instantsearch/connectors';
-import algoliasearch from 'algoliasearch';
-
-import Summary from '../components/Summary';
+// import { connectcourses } from 'react-instantsearch/connectors';
 
 import arrow from '../assets/images/icons/icon_arrow.svg';
+import Summary from '../components/Summary';
+import * as Algolia from '../services/Algolia';
 
 import {
   // loadCourses,
+  setCourses,
   loadStep,
   setCurrentCourse,
 } from '../actions';
-import { NOOP, ALGOLIA_API_KEY, ALGOLIA_APP_ID } from '../constants';
+import { NOOP } from '../constants';
 
 import componentFactory from '../services/componentFactory';
 
-const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
-const index = client.initIndex('codelabs');
-
-// only query string
-index.search({}, (err, content) => {
-  if (err) throw err;
-
-  console.log(content.hits);
-});
-
 const mapStateToProps = ({
-  // courses,
+  courses,
   currentStepMD,
   currentCourse,
 }) => ({
-  // courses,
+  courses,
   currentStepMD,
   course: currentCourse,
 });
 
 const mapDispatchToProps = {
   // loadCourses,
+  setCourses,
   loadStep,
   setCurrentCourse,
 };
 
 export class Course extends React.Component {
   static propTypes = {
-    hits: PropTypes.arrayOf(PropTypes.shape()),
+    courses: PropTypes.arrayOf(PropTypes.shape()),
     currentStepMD: PropTypes.string,
 
     course: PropTypes.shape(),
     // loadCourses: PropTypes.func,
+    setCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
 
@@ -57,11 +49,12 @@ export class Course extends React.Component {
   };
 
   static defaultProps = {
-    hits: null,
+    courses: null,
     currentStepMD: '',
 
     course: null,
-    loadCourses: NOOP,
+    // loadCourses: NOOP,
+    setCourses: NOOP,
     loadStep: NOOP,
     setCurrentCourse: NOOP,
     match: { params: {} },
@@ -82,24 +75,24 @@ export class Course extends React.Component {
     currentStep: 0,
   };
 
-  // componentDidMount() {
-  //   this.props.loadCourses();
-  // }
+  componentDidMount() {
+    Algolia.getCourses().then(courses => {
+      this.props.setCourses(courses);
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', this.props.hits);
-
     const {
       match: {
         params: { lang, permalink },
       },
     } = this.props;
 
-    const { course, hits: courses, currentStepMD } = nextProps;
+    const { course, courses, currentStepMD } = nextProps;
     const { steps = {}, currentStep } = this.state;
 
     // Set the course in redux's store.
-    if (!this.props.hits && courses) {
+    if (!this.props.courses && courses) {
       this.props.setCurrentCourse(`/${lang}/${permalink}/`);
     }
 
@@ -197,4 +190,4 @@ export class Course extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(connectHits(Course));
+export default connect(mapStateToProps, mapDispatchToProps)(Course);
