@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
 import api from '../middlewares/api';
+import algolia from '../middlewares/algolia';
 import reducer from '../reducers';
 
 let enhancer;
@@ -14,6 +15,7 @@ if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && wind
     applyMiddleware(
       thunk,
       api,
+      algolia,
       createLogger(),
     ),
   );
