@@ -1,43 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { connectHits } from 'react-instantsearch/connectors';
+import algoliasearch from 'algoliasearch';
 
 import Summary from '../components/Summary';
 
 import arrow from '../assets/images/icons/icon_arrow.svg';
 
 import {
-  loadCourses,
+  // loadCourses,
   loadStep,
   setCurrentCourse,
 } from '../actions';
-import { NOOP } from '../constants';
+import { NOOP, ALGOLIA_API_KEY, ALGOLIA_APP_ID } from '../constants';
 
 import componentFactory from '../services/componentFactory';
 
+const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
+const index = client.initIndex('codelabs');
+
+// only query string
+index.search({}, (err, content) => {
+  if (err) throw err;
+
+  console.log(content.hits);
+});
+
 const mapStateToProps = ({
-  courses,
+  // courses,
   currentStepMD,
   currentCourse,
 }) => ({
-  courses,
+  // courses,
   currentStepMD,
   course: currentCourse,
 });
 
 const mapDispatchToProps = {
-  loadCourses,
+  // loadCourses,
   loadStep,
   setCurrentCourse,
 };
 
 export class Course extends React.Component {
   static propTypes = {
-    courses: PropTypes.arrayOf(PropTypes.shape()),
+    hits: PropTypes.arrayOf(PropTypes.shape()),
     currentStepMD: PropTypes.string,
 
     course: PropTypes.shape(),
-    loadCourses: PropTypes.func,
+    // loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
 
@@ -45,7 +57,7 @@ export class Course extends React.Component {
   };
 
   static defaultProps = {
-    courses: null,
+    hits: null,
     currentStepMD: '',
 
     course: null,
@@ -66,26 +78,28 @@ export class Course extends React.Component {
   }
 
   state = {
-    steps: [],
+    steps: {},
     currentStep: 0,
   };
 
-  componentDidMount() {
-    this.props.loadCourses();
-  }
+  // componentDidMount() {
+  //   this.props.loadCourses();
+  // }
 
   componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', this.props.hits);
+
     const {
       match: {
         params: { lang, permalink },
       },
     } = this.props;
 
-    const { course, courses, currentStepMD } = nextProps;
+    const { course, hits: courses, currentStepMD } = nextProps;
     const { steps = {}, currentStep } = this.state;
 
     // Set the course in redux's store.
-    if (!this.props.courses && courses) {
+    if (!this.props.hits && courses) {
       this.props.setCurrentCourse(`/${lang}/${permalink}/`);
     }
 
@@ -183,4 +197,4 @@ export class Course extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Course);
+export default connect(mapStateToProps, mapDispatchToProps)(connectHits(Course));
