@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { connectcourses } from 'react-instantsearch/connectors';
 
 import arrow from '../assets/images/icons/icon_arrow.svg';
 import Summary from '../components/Summary';
-// import * as Algolia from '../services/Algolia';
 
 import {
   loadCourses,
-  // setCourses,
   loadStep,
   setCurrentCourse,
 } from '../actions';
@@ -29,7 +26,6 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = {
   loadCourses,
-  // setCourses,
   loadStep,
   setCurrentCourse,
 };
@@ -41,7 +37,6 @@ export class Course extends React.Component {
 
     course: PropTypes.shape(),
     loadCourses: PropTypes.func,
-    // setCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
 
@@ -54,7 +49,6 @@ export class Course extends React.Component {
 
     course: null,
     loadCourses: NOOP,
-    // setCourses: NOOP,
     loadStep: NOOP,
     setCurrentCourse: NOOP,
     match: { params: {} },
@@ -77,10 +71,6 @@ export class Course extends React.Component {
 
   componentDidMount() {
     this.props.loadCourses();
-
-    // Algolia.getCourses().then(courses => {
-    //   this.props.setCourses(courses);
-    // });
   }
 
   componentWillReceiveProps(nextProps) {

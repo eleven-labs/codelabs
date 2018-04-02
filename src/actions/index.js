@@ -11,17 +11,8 @@ export const loadCourses = () => ({
       LOAD_COURSES_SUCCESS,
       LOAD_COURSES_FAILURE,
     ],
-    params: {
-      query: 'appo',
-    },
   },
 });
-
-// export const setCourses = courses => ({
-//   type: LOAD_COURSES_SUCCESS,
-//   response: courses,
-// });
-
 
 export const SET_CURRENT_COURSE = 'SET_CURRENT_COURSE';
 
