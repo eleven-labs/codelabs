@@ -6,11 +6,6 @@ import rocket from '../../assets/images/icons/icon_rocket.svg';
 
 const LINKS = [
   {
-    title: 'Ajoutez-nous à votre veille',
-    href: 'https://blog.eleven-labs.com/feed.xml',
-    icon: 'rss',
-  },
-  {
     title: 'Suivez-nous sur GitHub',
     href: 'https://github.com/eleven-labs',
     icon: 'github',
