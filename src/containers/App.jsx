@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';
+import { InstantSearch } from 'react-instantsearch/dom';
 
 import ConnectedHeader from './Header';
+import {
+  ALGOLIA_APP_ID,
+  ALGOLIA_API_KEY,
+} from '../constants';
 
 export default class App extends React.Component {
   static propTypes = {
@@ -21,10 +26,14 @@ export default class App extends React.Component {
     const { route } = this.props;
 
     return (
-      <div>
+      <InstantSearch
+        appId={ALGOLIA_APP_ID}
+        apiKey={ALGOLIA_API_KEY}
+        indexName="codelabs"
+      >
         <ConnectedHeader />
         {route && renderRoutes(route.routes)}
-      </div>
+      </InstantSearch>
     );
   }
 }
