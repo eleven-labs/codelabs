@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Summary from '../components/Summary';
-
 import arrow from '../assets/images/icons/icon_arrow.svg';
+import Summary from '../components/Summary';
 
 import {
   loadCourses,
@@ -66,7 +65,7 @@ export class Course extends React.Component {
   }
 
   state = {
-    steps: [],
+    steps: {},
     currentStep: 0,
   };
 
