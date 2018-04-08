@@ -1,32 +1,23 @@
-const actions = ['LOAD_STEP_SUCCESS'];
-const localStorageKey = 'codelabs';
+import {
+  getPersistedProgress,
+  persistProgress,
+} from '../services/course-progress';
+import { LOCAL_STORAGE_KEY } from '../constants';
+import {
+  LOAD_STEP_SUCCESS,
+  updateCourseProgress,
+} from '../actions';
 
-const getPersistedProgress = key => {
-  try {
-    const json = JSON.parse(localStorage.getItem(key));
-    return json || {};
-  } catch (ex) {
-    console.log(ex);
-    return {};
-  }
-};
+const actions = [LOAD_STEP_SUCCESS];
 
-const persistProgress = (key, state) => {
-  try {
-    localStorage.setItem(key, JSON.stringify(state));
-  } catch (ex) {
-    console.log(ex);
-  }
-};
-
-export default store => next => action => {
+export default store => next => async action => {
   if (!actions.includes(action.type)) {
     next(action);
     return;
   }
 
   // 1. get current persisted state
-  const persistedProgress = getPersistedProgress(localStorageKey);
+  const persistedProgress = await getPersistedProgress(LOCAL_STORAGE_KEY);
 
   next(action);
 
@@ -44,8 +35,10 @@ export default store => next => action => {
     [newCourse.slug]: {
       title: newCourse.title,
       steps: Array.from(oldSteps).sort(),
+      permalink: newCourse.permalink,
     },
   };
 
-  persistProgress(localStorageKey, newState);
+  await persistProgress(LOCAL_STORAGE_KEY, newState);
+  store.dispatch(updateCourseProgress(newState));
 };

@@ -2,6 +2,7 @@
   $margin: 1.5%;
 
   border: em(1px) solid $brand-light-grey;
+
   @media (min-width: em(768px)) {
     width: calc(47% - 10px);
     margin: 5px;
@@ -68,11 +69,17 @@
       width: calc(100% + #{em(20px, $context)});
       background-color: $brand-yellow;
       z-index: -1;
-    } 
+    }
   }
 
   &__description {
     font-size: em(20px);
     margin: 0;
+  }
+
+  &.progress .course-item__container .course-item__icon {
+    width: 2em;
+    margin-right: 10px;
+    vertical-align: middle;
   }
 }
