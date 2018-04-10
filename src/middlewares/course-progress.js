@@ -36,6 +36,7 @@ export default store => next => async action => {
       title: newCourse.title,
       steps: Array.from(oldSteps).sort(),
       permalink: newCourse.permalink,
+      currentStep: newStep,
     },
   };
 

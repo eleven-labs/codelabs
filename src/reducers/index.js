@@ -31,7 +31,7 @@ export default handleActions({
       course.permalink === action.permalink
     )),
   }),
-  [UPDATE_COURSE_PROGRESS]: (state, { type, ...courseProgress }) => ({
+  [UPDATE_COURSE_PROGRESS]: (state, { courseProgress }) => ({
     ...state,
     courseProgress,
   }),

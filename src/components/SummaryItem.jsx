@@ -5,9 +5,9 @@ import cx from 'classnames';
 
 import { NOOP } from '../constants';
 
-const SummaryItem = ({ title, onClick, isCurrentStep, index }) => (
+const SummaryItem = ({ title, onClick, isCurrentStep, index, complete }) => (
   <li
-    className={cx('summary__step', { '-current': isCurrentStep })}
+    className={cx('summary__step', { '-current': isCurrentStep, '-complete': complete })}
     onClick={onClick}
   >
     <span className="summary__step-number">{index + 1}</span>
@@ -20,10 +20,12 @@ SummaryItem.propTypes = {
   index: PropTypes.number.isRequired,
   isCurrentStep: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
+  complete: PropTypes.bool,
 };
 
 SummaryItem.defaultProps = {
   onClick: NOOP,
+  complete: false,
 };
 
 export default SummaryItem;

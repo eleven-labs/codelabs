@@ -5,33 +5,21 @@ import { connect } from 'react-redux';
 
 import courseProgressIcon from '../assets/images/icons/icon_courseProgress.svg';
 import playIcon from '../assets/images/icons/icon_play.svg';
-import {
-  loadCourseProgress,
-} from '../actions';
 import { NOOP } from '../constants';
 
 const mapStateToProps = ({ courseProgress }) => ({
   courseProgress,
 });
 
-const mapDispatchToProps = {
-  loadCourseProgress,
-};
-
 export class CourseProgress extends Component {
   static propTypes = {
     courseProgress: PropTypes.shape(),
-    loadCourseProgress: PropTypes.func,
   };
 
   static defaultProps = {
     courseProgress: {},
     loadCourseProgress: NOOP,
   };
-
-  componentDidMount() {
-    this.props.loadCourseProgress();
-  }
 
   render() {
     const { courseProgress } = this.props;
@@ -71,4 +59,4 @@ export class CourseProgress extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseProgress);
+export default connect(mapStateToProps, {})(CourseProgress);
