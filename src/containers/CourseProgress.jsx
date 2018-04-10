@@ -25,11 +25,7 @@ export class CourseProgress extends Component {
     const { courseProgress } = this.props;
     const entries = Object.entries(courseProgress);
 
-    if (entries.length === 0) {
-      return null;
-    }
-
-    return (
+    return (entries.length > 0) ? (
       <article className="course-item progress">
         <div className="course-item__heading">
           <img
@@ -55,7 +51,7 @@ export class CourseProgress extends Component {
           ))}
         </div>
       </article>
-    );
+    ) : null;
   }
 }
 
