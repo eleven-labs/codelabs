@@ -31,9 +31,9 @@ export class CourseProgress extends Component {
           <img
             className="course-item__icon"
             src={courseProgressIcon}
-            alt="Course Progress"
+            alt="Tutotiels récement consultés"
           />
-          Course progress
+          Tutotiels r&eacute;cement consult&eacute;s
         </div>
 
         <div className="course-item__container">
