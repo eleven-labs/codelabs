@@ -11,6 +11,10 @@ const mapStateToProps = ({ courseProgress }) => ({
   courseProgress,
 });
 
+const onCourseMouseDown = event => {
+  event.preventDefault();
+};
+
 export class CourseProgress extends Component {
   static propTypes = {
     courseProgress: PropTypes.shape(),
@@ -21,37 +25,80 @@ export class CourseProgress extends Component {
     loadCourseProgress: NOOP,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+  }
+
+  state = {
+    open: false,
+  };
+
+  open() {
+    this.setState({ open: true });
+  }
+
+  close() {
+    this.setState({ open: false });
+  }
+
   render() {
+    const { open } = this.state;
     const { courseProgress } = this.props;
     const entries = Object.entries(courseProgress);
 
-    return (entries.length > 0) ? (
-      <article className="course-item progress">
-        <div className="course-item__heading">
+    if (entries.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="course-progress">
+        <button
+          className="course-progress__trigger"
+          onFocus={this.open}
+          onBlur={this.close}
+        >
           <img
-            className="course-item__icon"
+            className="course-progress__icon"
             src={courseProgressIcon}
             alt="Tutotiels récement consultés"
           />
-          Tutotiels r&eacute;cement consult&eacute;s
-        </div>
+        </button>
 
-        <div className="course-item__container">
-          {entries.map(([key, value]) => (
-            <h3 key={key}>
+        {open && (
+          <article>
+            <div className="course-progress__heading">
               <img
-                className="course-item__icon"
-                src={playIcon}
-                alt={value.title}
+                className="course-progress__icon"
+                src={courseProgressIcon}
+                alt="Tutotiels récement consultés"
               />
-              <a href={urlJoin('/course/', value.permalink)}>
-                {value.title}
-              </a>
-            </h3>
-          ))}
-        </div>
-      </article>
-    ) : null;
+              Tutotiels r&eacute;cement consult&eacute;s
+            </div>
+
+            <div className="course-progress__container">
+              {entries.map(([key, value]) => (
+                <h3 key={key}>
+                  <img
+                    className="course-progress__icon"
+                    src={playIcon}
+                    alt={value.title}
+                  />
+                  <a
+                    href={urlJoin('/course/', value.permalink)}
+                    onMouseDown={onCourseMouseDown}
+                  >
+                    {value.title}
+                  </a>
+                </h3>
+              ))}
+            </div>
+          </article>
+        )}
+      </div>
+    );
   }
 }
 

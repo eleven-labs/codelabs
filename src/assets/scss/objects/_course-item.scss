@@ -76,23 +76,4 @@
     font-size: em(20px);
     margin: 0;
   }
-
-  &.progress .course-item__container {
-    h3 {
-      margin-bottom: 10px;
-      display: flex;
-
-      a {
-        align-self: center;
-        line-height: normal;
-      }
-    }
-
-    .course-item__icon {
-      width: 2em;
-      height: 2em;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-  }
 }

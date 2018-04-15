@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connectHits } from 'react-instantsearch/connectors';
 import PropTypes from 'prop-types';
 
-import ConnectedCourseProgress from '../containers/CourseProgress';
 import CourseItem from './CourseItem';
 
 const courseRenderer = (course, index) => (
@@ -22,7 +21,6 @@ class CourseList extends Component {
     return (
       <div className="course-list">
         <div className="course-list__container container">
-          <ConnectedCourseProgress />
           {this.props.hits.map(courseRenderer)}
         </div>
       </div>
