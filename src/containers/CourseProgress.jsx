@@ -59,6 +59,7 @@ export class CourseProgress extends Component {
           className="course-progress__trigger"
           onFocus={this.open}
           onBlur={this.close}
+          title="Tutotiels récement consultés"
         >
           <img
             className="course-progress__icon"

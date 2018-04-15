@@ -47,6 +47,10 @@
     border-radius: 3px;
     border: 1px solid $brand-light-grey;
 
+    .course-progress__icon {
+      margin-right: 10px;
+    }
+
     // Arrow
     &:after {
       bottom: 100%;
