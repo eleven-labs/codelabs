@@ -30,11 +30,27 @@ export class CourseProgress extends Component {
 
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
+    this.setButtonRef = this.setButtonRef.bind(this);
+
+    this.position = {
+      left: 0,
+    };
+
+    this.state = {
+      open: false,
+    };
   }
 
-  state = {
-    open: false,
-  };
+  componentDidMount() {
+    if (this.button) {
+      // The width of this component is 300px, so to center it we use the half.
+      this.position.left = (this.button.offsetLeft + (this.button.offsetWidth / 2)) - 150;
+    }
+  }
+
+  setButtonRef(element) {
+    this.button = element;
+  }
 
   open() {
     this.setState({ open: true });
@@ -59,6 +75,7 @@ export class CourseProgress extends Component {
           className="course-progress__trigger"
           onFocus={this.open}
           onBlur={this.close}
+          ref={this.setButtonRef}
           title="Tutotiels récement consultés"
         >
           <img
@@ -69,7 +86,7 @@ export class CourseProgress extends Component {
         </button>
 
         {open && (
-          <article>
+          <article style={this.position}>
             <div className="course-progress__heading">
               <img
                 className="course-progress__icon"
