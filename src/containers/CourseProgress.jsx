@@ -65,11 +65,7 @@ export class CourseProgress extends Component {
     const { courseProgress } = this.props;
     const entries = Object.entries(courseProgress);
 
-    if (entries.length === 0) {
-      return null;
-    }
-
-    return (
+    return (entries.length > 0) ? (
       <div className="course-progress">
         <button
           className="course-progress__trigger"
@@ -116,7 +112,7 @@ export class CourseProgress extends Component {
           </article>
         )}
       </div>
-    );
+    ) : null;
   }
 }
 
