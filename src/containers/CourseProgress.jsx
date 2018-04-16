@@ -10,15 +10,6 @@ import {
   loadCourses,
 } from '../actions';
 
-const mapStateToProps = ({ courses, courseProgress }) => ({
-  courses,
-  courseProgress,
-});
-
-const mapDispatchToProps = {
-  loadCourses,
-};
-
 const onCourseMouseDown = event => {
   event.preventDefault();
 };
@@ -52,6 +43,15 @@ CourseContainer.PropTypes = {
 
 CourseContainer.defaultProps = {
   courses: [],
+};
+
+const mapStateToProps = ({ courses, courseProgress }) => ({
+  courses,
+  courseProgress,
+});
+
+const mapDispatchToProps = {
+  loadCourses,
 };
 
 export class CourseProgress extends Component {
@@ -141,7 +141,11 @@ export class CourseProgress extends Component {
             </div>
 
             <CourseContainer courses={wipCourses} />
-            <div className="course-progress__heading">Tutotiels compl&eacute;t&eacute;s</div>
+
+            <div className="course-progress__heading">
+              Tutotiels compl&eacute;t&eacute;s
+            </div>
+
             <CourseContainer courses={doneCourses} />
           </article>
         )}
