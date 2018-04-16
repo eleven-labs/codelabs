@@ -6,23 +6,65 @@ import { connect } from 'react-redux';
 import courseProgressIcon from '../assets/images/icons/icon_courseProgress.svg';
 import playIcon from '../assets/images/icons/icon_play.svg';
 import { NOOP } from '../constants';
+import {
+  loadCourses,
+} from '../actions';
 
-const mapStateToProps = ({ courseProgress }) => ({
+const mapStateToProps = ({ courses, courseProgress }) => ({
+  courses,
   courseProgress,
 });
+
+const mapDispatchToProps = {
+  loadCourses,
+};
 
 const onCourseMouseDown = event => {
   event.preventDefault();
 };
 
+const CourseRenderer = course => (
+  <h3 key={course.slug}>
+    <img
+      className="course-progress__icon"
+      src={playIcon}
+      alt={course.title}
+    />
+    <a
+      href={urlJoin('/course/', course.permalink)}
+      onMouseDown={onCourseMouseDown}
+    >
+      {course.title}
+    </a>
+  </h3>
+);
+
+// eslint-disable-next-line react/prop-types
+const CourseContainer = ({ courses = [] }) => (
+  <div className="course-progress__container">
+    {courses.map(CourseRenderer)}
+  </div>
+);
+
+CourseContainer.PropTypes = {
+  courses: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+CourseContainer.defaultProps = {
+  courses: [],
+};
+
 export class CourseProgress extends Component {
   static propTypes = {
+    courses: PropTypes.arrayOf(PropTypes.shape()),
     courseProgress: PropTypes.shape(),
+    loadCourses: PropTypes.func,
   };
 
   static defaultProps = {
+    courses: [],
     courseProgress: {},
-    loadCourseProgress: NOOP,
+    loadCourses: NOOP,
   };
 
   constructor(props) {
@@ -32,24 +74,17 @@ export class CourseProgress extends Component {
     this.close = this.close.bind(this);
     this.setButtonRef = this.setButtonRef.bind(this);
 
-    this.position = {
-      left: 0,
-    };
-
     this.state = {
       open: false,
     };
   }
 
   componentDidMount() {
-    if (this.button) {
-      // The width of this component is 300px, so to center it we use the half.
-      this.position.left = (this.button.offsetLeft + (this.button.offsetWidth / 2)) - 150;
-    }
+    this.props.loadCourses();
   }
 
   setButtonRef(element) {
-    this.button = element;
+    this.triggerButton = element;
   }
 
   open() {
@@ -63,9 +98,22 @@ export class CourseProgress extends Component {
   render() {
     const { open } = this.state;
     const { courseProgress } = this.props;
-    const entries = Object.entries(courseProgress);
 
-    return (entries.length > 0) ? (
+    const courses = this.props.courses.filter(({ slug }) => courseProgress[slug]);
+
+    const wipCourses = courses.filter(({ slug, stepTitles }) => (
+      courseProgress[slug].steps.length < stepTitles.length
+    ));
+
+    const doneCourses = courses.filter(({ slug, stepTitles }) => (
+      courseProgress[slug].steps.length === stepTitles.length
+    ));
+
+    const style = this.triggerButton ? {
+      left: (this.triggerButton.offsetLeft + (this.triggerButton.offsetWidth / 2)) - 150,
+    } : {};
+
+    return (courses.length > 0) ? (
       <div className="course-progress">
         <button
           className="course-progress__trigger"
@@ -82,7 +130,7 @@ export class CourseProgress extends Component {
         </button>
 
         {open && (
-          <article style={this.position}>
+          <article style={style}>
             <div className="course-progress__heading">
               <img
                 className="course-progress__icon"
@@ -92,23 +140,9 @@ export class CourseProgress extends Component {
               Tutotiels r&eacute;cement consult&eacute;s
             </div>
 
-            <div className="course-progress__container">
-              {entries.map(([key, value]) => (
-                <h3 key={key}>
-                  <img
-                    className="course-progress__icon"
-                    src={playIcon}
-                    alt={value.title}
-                  />
-                  <a
-                    href={urlJoin('/course/', value.permalink)}
-                    onMouseDown={onCourseMouseDown}
-                  >
-                    {value.title}
-                  </a>
-                </h3>
-              ))}
-            </div>
+            <CourseContainer courses={wipCourses} />
+            <div className="course-progress__heading">Tutotiels compl&eacute;t&eacute;s</div>
+            <CourseContainer courses={doneCourses} />
           </article>
         )}
       </div>
@@ -116,4 +150,4 @@ export class CourseProgress extends Component {
   }
 }
 
-export default connect(mapStateToProps, {})(CourseProgress);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseProgress);
