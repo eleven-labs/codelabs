@@ -1,0 +1,54 @@
+### Mise en place du client gRPC
+
+### gRPC client avec prototool
+
+Nous allons commencer par tester notre service avec prototool.
+Prototool va permettre de transformer un json en protobuf et d'appeler le server gRPC.
+
+Nous allons créer une ficher `payload.json`.
+```json
+{
+    "text": "Salut les astronautes !",
+    "language": "en"
+}
+```
+Nous allons maintenant appeler notre server gRPC.
+```bash
+cat payload.json | prototool grpc proto/translator.proto 0.0.0.0:4000 proto.Translator/Translate - 
+```
+
+### gRPC client avec Go
+
+Nous allons créer un simple fichier `client.go` pour appeler le server gRPC avec le code qui a été généré.
+
+```go
+// client.go
+package main  
+  
+import (  
+  "context"  
+ "log"  
+ "google.golang.org/grpc" "translator-service/proto")  
+  
+func main() {  
+	conn, err := grpc.Dial("localhost:4000", grpc.WithInsecure())  
+	if err != nil {  
+		log.Fatalln(err)  
+	}
+	defer conn.Close()  
+  
+	client := proto.NewTranslatorClient(conn)  
+	res, err := client.Translate(  
+		context.Background(),  
+		&proto.TranslateRequest{Text:"Salut les astronautes !", Language: proto.Language_en},  
+	 )
+	if err != nil {  
+		log.Fatalln(err)  
+	}
+	log.Println(res.Text)
+}
+```
+Nous allons maintenant appeler notre server gRPC avec notre client en Go.
+```bash
+go run client.go
+```
