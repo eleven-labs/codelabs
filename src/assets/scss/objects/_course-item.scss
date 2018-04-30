@@ -26,11 +26,13 @@
   }
 
   &__link {
-    background-color: $brand-light-grey;
+    line-height: initial;
+    background-color: transparent;
   }
 
   &__link:hover {
-    background-color: $brand-light-grey;
+    line-height: initial;
+    background-color: transparent;
   }
 
   &__duration {
