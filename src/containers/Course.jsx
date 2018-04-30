@@ -5,12 +5,21 @@ import { connect } from 'react-redux';
 import arrow from '../assets/images/icons/icon_arrow.svg';
 import Summary from '../components/Summary';
 
-import { loadCourses, loadStep, setCurrentCourse } from '../actions';
+import {
+  loadCourses,
+  loadStep,
+  setCurrentCourse,
+} from '../actions';
+
 import { NOOP } from '../constants';
 
 import componentFactory from '../services/componentFactory';
 
-const mapStateToProps = ({ courses, currentStepMD, currentCourse }) => ({
+const mapStateToProps = ({
+  courses,
+  currentStepMD,
+  currentCourse,
+}) => ({
   courses,
   currentStepMD,
   course: currentCourse,
@@ -55,8 +64,6 @@ export class Course extends React.Component {
     this.go = this.go.bind(this);
     this.gotoStep = this.gotoStep.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
-
-    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   state = {
@@ -66,6 +73,7 @@ export class Course extends React.Component {
 
   componentDidMount() {
     this.props.loadCourses();
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -101,6 +109,10 @@ export class Course extends React.Component {
         },
       });
     }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp, true);
   }
 
   async loadInternalStep(stepIndex) {
@@ -147,7 +159,12 @@ export class Course extends React.Component {
   }
 
   render() {
-    const { course: { stepTitles = [] } = {}, currentStep } = this.state;
+    const {
+      course: {
+        stepTitles = []
+      } = {},
+      currentStep,
+    } = this.state;
 
     const {
       steps: {
