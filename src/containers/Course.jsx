@@ -112,7 +112,7 @@ export class Course extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleKeyUp, true);
+    document.removeEventListener('keyup', this.handleKeyUp);
   }
 
   async loadInternalStep(stepIndex) {
@@ -144,12 +144,14 @@ export class Course extends React.Component {
   }
 
   handleKeyUp(e) {
-    if (this.state.currentStep !== 0 && e.key === 'ArrowLeft') {
+    const { currentStep, course } = this.state;
+
+    if (currentStep !== 0 && e.key === 'ArrowLeft') {
       this.previous();
     }
 
     if (
-      this.state.currentStep < this.state.course.stepTitles.length - 1 &&
+      currentStep < course.stepTitles.length - 1 &&
       e.key === 'ArrowRight'
     ) {
       this.next();
@@ -161,7 +163,7 @@ export class Course extends React.Component {
   render() {
     const {
       course: {
-        stepTitles = []
+        stepTitles = [],
       } = {},
       currentStep,
     } = this.state;
