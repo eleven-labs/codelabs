@@ -25,6 +25,14 @@
     width: em(50px);
   }
 
+  &__link {
+    background-color: $brand-light-grey;
+  }
+
+  &__link:hover {
+    background-color: $brand-light-grey;
+  }
+
   &__duration {
     $context: 26px;
 
@@ -40,7 +48,7 @@
     $context: 24px;
 
     font-size: em($context);
-    font-family: "Din";
+    font-family: 'Din';
     font-weight: 800;
     line-height: 1.1;
     text-transform: uppercase;
@@ -54,7 +62,7 @@
     display: inline-block;
     font-size: em($context);
     margin-bottom: em(15px, $context);
-    font-family: "Din";
+    font-family: 'Din';
     font-weight: lighter;
     letter-spacing: em(0.5px, $context);
     text-transform: uppercase;
@@ -68,7 +76,7 @@
       width: calc(100% + #{em(20px, $context)});
       background-color: $brand-yellow;
       z-index: -1;
-    } 
+    }
   }
 
   &__description {
