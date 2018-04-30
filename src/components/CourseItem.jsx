@@ -24,7 +24,7 @@ const CourseItem = ({ course }) => {
     <article className="course-item">
       <div className="course-item__heading">
         <a
-          className="course-item__link"
+          className="course-item__icon-link"
           href={urlJoin('/course/', course.permalink)}
         >
           <img className="course-item__icon" src={play} alt="" />
