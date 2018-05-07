@@ -24,7 +24,7 @@ message TranslateResponse {
     string text = 1;
 }
 ```
-Petite subtilité ici, les chaînes de caractères ne sont pas compréssé avec protobuf. Pour être optimale, on déclare pour `language` que les valeurs possible sont `en` et `fr`. Pour ce faire on déclare une `enum` `Language`.
+Petite subtilité ici, les chaînes de caractères ne sont pas compressé avec protobuf. Pour être optimale, on déclare pour `language` que les valeurs possibles sont `en` et `fr`. Pour ce faire on déclare une `enum` `Language`.
 ```protobuf
 enum Language {
     en = 0;
@@ -60,17 +60,17 @@ Nous allons commencer par générer le fichier de config de Prototool.
 ```bash
 prototool init
 ```
-Nous allons maintenant éditer la config pour qu'il génére notre service gRPC en Go.
+Nous allons maintenant éditer la config pour qu'il génère notre service gRPC en Go.
 ```yaml
 gen:
-  go_options:
+    go_options:
     import_path: translator-service/
 
-  plugins:
+plugins:
     - name: go
-      type: go
-      flags: plugins=grpc
-      output: .
+        type: go
+        flags: plugins=grpc
+        output: .
 ```
 Nous pouvons maintenant générer les fichiers Go.
 ```bash

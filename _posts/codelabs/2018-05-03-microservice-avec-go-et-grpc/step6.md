@@ -18,6 +18,49 @@ Nous allons commencer par installer les plugins `grpc-gateway` et `swagger` pour
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 ```
+
+Nous allons modifier le fichier `proto/translator.proto`  pour ajouter les directives de génération du proxy http.
+Pour ce faire, il faut ajouter des options à notre endpoint RPC.
+```proto
+option (google.api.http) = {
+      post: "/v1/translate"
+      body: "*"
+};
+```
+Ici, on définit une route `/v1/translate` avec le verbe POST.
+
+Ce qui nous donnes :
+```proto
+syntax = "proto3";
+
+package proto;
+
+import "google/api/annotations.proto";
+
+enum Language {
+    en = 0;
+    fr = 1;
+}
+
+message TranslateRequest {
+    string text = 1;
+    Language language = 2;
+}
+
+message TranslateResponse {
+    string text = 1;
+}
+
+service Translator {
+    rpc Translate(TranslateRequest) returns (TranslateResponse) {
+        option (google.api.http) = {
+          post: "/v1/translate"
+          body: "*"
+        };
+    }
+}
+```
+
 Nous allons maintenant modifer le fichier `prototool.yaml` pour générer le proxy et le json swagger.
 ```yaml
 # prototool.yaml
@@ -44,6 +87,7 @@ Nous pouvons maintenant générer les fichiers Go.
 prototool gen
 ```
 Nous allons maintenant utiliser ce proxy qui a été généré et creer un fichier `proxy.go`.
+Il suffit de lancer le serveur grpc dans un go-routine et d'exposer le proxy http.
 ```go
 // proxy.go
 package main  
@@ -56,8 +100,20 @@ import (
 	"translator-service/proto"
 )  
 
-func main() {  
-	ctx := context.Background()  
+func main() {
+    lis, err := net.Listen("tcp", "localhost:4000")
+    if err != nil {
+        log.Fatalf("failed to listen: %v", err)
+    }
+    translator := translate.NewGoogleTranslator(os.Getenv("TRANSLATION_API_KEY"))
+    srv := server.NewTranslatorServer(server.Endpoints{
+        TranslateEndpoint: server.NewTranslateEndpoint(translator),
+    })
+    s := grpc.NewServer()
+    proto.RegisterTranslatorServer(s, srv)
+    go s.Serve(lis)
+
+	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)  
 	defer cancel()  
 
@@ -68,10 +124,27 @@ func main() {
 	http.ListenAndServe(":8001", mux)  
 }
 ```
-On aurait  aussi pu faire un seul binaire et lancer le serveur gRPC dans une goroutine.
-```go
-// main.go
-// ...
-go s.Serve(lis)
-//...
+Nous pouvons maintenant compiler notre serveur.
+```bash
+TRANSLATION_API_KEY=yourapitoken go run main.go
 ```
+
+Et vérifier que ça marche bien :
+```bash
+curl -X POST http://localhost:8001/v1/translate \                                                                                                                            [±master ✓]
+  -H 'Content-Type: application/json' \
+  -d '{
+    "text": "Salut les astronautes !",
+    "language": "en"
+}'
+```
+
+On peut remarquer qu'un fichier json a été aussi généré dans le dossier `swagger/proto`.
+Il s'agit de la documentation swagger qui a été généré à partir des directives présente dans le fichier protobuf.
+
+Vous pouvez ouvrir la documentation [directement ici](https://editor.swagger.io/) ou directement utilisé [swagger-ui](https://github.com/swagger-api/swagger-ui).
+
+### Conclusion
+
+Nous avons maintenant un service documenté accesible via grpc ou plus classiquement par http.
+Je vous conseille de regarder plus en details [les plugins protoc](https://developers.google.com/protocol-buffers/docs/reference/other) notamment [gogoprotobuf](https://github.com/gogo/protobuf) qui est une autre implémentation de protobuf en Go et [go-proto-validators](https://github.com/mwitkow/go-proto-validators) qui permet de valider les messages protobuf comme des champs obligatoire ou des regex.

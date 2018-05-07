@@ -2,75 +2,75 @@
 
 Nous allons maintenant mettre en place [l'api translate de Google](https://cloud.google.com/translate/?hl=fr).
 
-Commencez par récuperer une clé api pour translate. Il suffit de vous inscrire et de profiter de l'offre gratuite de Google Cloud Platform.
+Commencez par récupérer une clé api pour translate. Il suffit de vous inscrire et de profiter de l'offre gratuite de Google Cloud Platform.
 
 Nous allons créer un package `translate` qui va utiliser l'api de Google.
 ```go
 // translate.go
-package translate  
+package translate
 
-import (  
-	"context"  
-	"log"  
-	"cloud.google.com/go/translate"
-	"golang.org/x/text/language"
-	"google.golang.org/api/option"
-)  
+import (
+    "context"
+    "log"
+    "cloud.google.com/go/translate"
+    "golang.org/x/text/language"
+    "google.golang.org/api/option"
+)
 
-type Translator interface {  
-  Translate(targetLanguage string, text string) (string, error)  
-}  
+type Translator interface {
+    Translate(targetLanguage string, text string) (string, error)
+}
 
-type GoogleTranslator struct {  
-  client *translate.Client  
-}  
+type GoogleTranslator struct {
+    client *translate.Client
+}
 
-func NewGoogleTranslator(apiKey string) *GoogleTranslator {  
-	ctx := context.Background()  
-	client, err := translate.NewClient(ctx, option.WithAPIKey(apiKey))  
-	if err != nil {  
-		log.Fatal(err)  
-	}  
-	return &GoogleTranslator{  
-		client: client,  
-	}
-}  
+func NewGoogleTranslator(apiKey string) *GoogleTranslator {
+    ctx := context.Background()
+    client, err := translate.NewClient(ctx, option.WithAPIKey(apiKey))
+    if err != nil {
+        log.Fatal(err)
+    }
+    return &GoogleTranslator{
+        client: client,
+    }
+}
 
-func (t GoogleTranslator) Translate(targetLanguage string, text string) (string, error) {  
-	ctx := context.Background()  
-	lang, err := language.Parse(targetLanguage)  
-	if err != nil {  
-		return "", err  
-	}  
-	res, err := t.client.Translate(ctx, []string{text}, lang, nil)  
-	if err != nil {  
-		return "", err  
-	}	  
-	return res[0].Text, nil  
+func (t GoogleTranslator) Translate(targetLanguage string, text string) (string, error) {
+    ctx := context.Background()
+    lang, err := language.Parse(targetLanguage)
+    if err != nil {
+        return "", err
+    }
+    res, err := t.client.Translate(ctx, []string{text}, lang, nil)
+    if err != nil {
+        return "", err
+    }
+    return res[0].Text, nil
 }
 ```
->Lancez la commade `dep ensure` pour installer les packages qui vous manques.
+>Lancez la commande `dep ensure` pour installer les packages qui vous manques.
 
 Nous allons modifier la factory de `TranslateEndpoint`.
 ```go
 // endpoint.go
-func NewTranslateEndpoint(t translate.Translator) TranslateEndpoint {  
-	return func(ctx context.Context, req *proto.TranslateRequest) (*proto.TranslateResponse, error) {  
-		text, err := t.Translate(req.Language.String(), req.Text)  
-		if err != nil {  
-			return nil, err  
-		}  
-		return &proto.TranslateResponse{Text: text}, nil  
-	}  
+func NewTranslateEndpoint(t translate.Translator) TranslateEndpoint {
+    return func(ctx context.Context, req *proto.TranslateRequest) (*proto.TranslateResponse, error) {
+        text, err := t.Translate(req.Language.String(), req.Text)
+        if err != nil {
+            return nil, err
+        }
+        return proto.TranslateResponse{Text: text}, nil
+    }
 }
 ```
-Nous pouvons maintnant modifer le `main.go` pour ajouter le service à l'endpoint.
+Nous pouvons maintenant modifier le `main.go` pour ajouter le service à l'endpoint.
 ```go
 // main.go
 // ...
-translator := translate.NewGoogleTranslator(os.Getenv("TRANSLATION_API_KEY"))  
-srv := server.NewTranslatorServer(server.Endpoints{  
-	TranslateEndpoint: server.NewTranslateEndpoint(translator),  
+translator := translate.NewGoogleTranslator(os.Getenv("TRANSLATION_API_KEY"))
+srv := server.NewTranslatorServer(server.Endpoints{
+    TranslateEndpoint: server.NewTranslateEndpoint(translator),
 })
 // ...
 ```

@@ -12,7 +12,7 @@ Nous allons créer une ficher `payload.json`.
     "language": "en"
 }
 ```
-Nous allons maintenant appeler notre server gRPC.
+Nous allons maintenant appeler notre serveur gRPC.
 ```bash
 cat payload.json | prototool grpc proto/translator.proto 0.0.0.0:4000 proto.Translator/Translate - 
 ```
