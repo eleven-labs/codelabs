@@ -1,10 +1,10 @@
-### Mise en place de la translate api de Google
+### Mise en place de la Translate API de Google
 
-Nous allons maintenant mettre en place [l'api translate de Google](https://cloud.google.com/translate/?hl=fr).
+Nous allons maintenant mettre en place [l'API Translate de Google](https://cloud.google.com/translate/?hl=fr).
 
-Commencez par récupérer une clé api pour translate. Il suffit de vous inscrire et de profiter de l'offre gratuite de Google Cloud Platform.
+Commencez par récupérer une clé API pour Translate. Il suffit de vous inscrire et de profiter de l'offre gratuite de Google Cloud Platform.
 
-Nous allons créer un package `translate` qui va utiliser l'api de Google.
+Nous allons créer un package `translate` qui va utiliser l'API de Google.
 ```go
 // translate.go
 package translate
@@ -49,7 +49,7 @@ func (t GoogleTranslator) Translate(targetLanguage string, text string) (string,
     return res[0].Text, nil
 }
 ```
->Lancez la commande `dep ensure` pour installer les packages qui vous manques.
+>Lancez la commande `dep ensure` pour installer les packages qu'il vous manque.
 
 Nous allons modifier la factory de `TranslateEndpoint`.
 ```go

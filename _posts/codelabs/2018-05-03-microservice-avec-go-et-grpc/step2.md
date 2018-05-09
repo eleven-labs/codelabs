@@ -24,7 +24,7 @@ message TranslateResponse {
     string text = 1;
 }
 ```
-Petite subtilité ici, les chaînes de caractères ne sont pas compressé avec protobuf. Pour être optimale, on déclare pour `language` que les valeurs possibles sont `en` et `fr`. Pour ce faire on déclare une `enum` `Language`.
+Petite subtilité ici, les chaînes de caractères ne sont pas compressées avec protobuf. Afin d'optimiser les traitements, on déclare pour `language` que les valeurs possibles sont `en` et `fr`. Pour ce faire on déclare une `enum` `Language`.
 ```protobuf
 enum Language {
     en = 0;

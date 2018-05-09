@@ -3,7 +3,7 @@
 ### gRPC client avec prototool
 
 Nous allons commencer par tester notre service avec prototool.
-Prototool va permettre de transformer un json en protobuf et d'appeler le server gRPC.
+Prototool va permettre de transformer un json en protobuf et d'appeler le serveur gRPC.
 
 Nous allons créer une ficher `payload.json`.
 ```json
@@ -19,16 +19,18 @@ cat payload.json | prototool grpc proto/translator.proto 0.0.0.0:4000 proto.Tran
 
 ### gRPC client avec Go
 
-Nous allons créer un simple fichier `client.go` pour appeler le server gRPC avec le code qui a été généré.
+Nous allons créer un simple fichier `client.go` pour appeler le serveur gRPC avec le code qui a été généré.
 
 ```go
 // client.go
 package main  
   
 import (  
-  "context"  
- "log"  
- "google.golang.org/grpc" "translator-service/proto")  
+    "context"
+    "log"
+    "google.golang.org/grpc"
+    "translator-service/proto"
+)
   
 func main() {  
 	conn, err := grpc.Dial("localhost:4000", grpc.WithInsecure())  
@@ -48,7 +50,7 @@ func main() {
 	log.Println(res.Text)
 }
 ```
-Nous allons maintenant appeler notre server gRPC avec notre client en Go.
+Nous allons maintenant appeler notre serveur gRPC avec notre client en Go.
 ```bash
 go run client.go
 ```

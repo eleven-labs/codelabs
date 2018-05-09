@@ -1,7 +1,7 @@
 ### Ajout d'un proxy REST et d'une doc Swagger
 
-Nous allons maintenant voir comment exposer un service gPRC comme une api REST.
-Puisqu' un serveur gRPC n'est pas disponible pour le web, l'une des solutions est de créer une autre service qui va exposer une route REST et appeller le service gRPC.
+Nous allons maintenant voir comment exposer un service gPRC comme une API REST.
+Puisqu'un serveur gRPC n'est pas disponible pour le web, l'une des solutions est de créer un autre service qui va exposer une route REST et appeler le service gRPC.
 
 [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) est un plugin protoc pour auto-générer un proxy HTTP via de la conf dans le fichier protobuf.
 ```
@@ -19,7 +19,7 @@ go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 ```
 
-Nous allons modifier le fichier `proto/translator.proto`  pour ajouter les directives de génération du proxy http.
+Nous allons modifier le fichier `proto/translator.proto`  pour ajouter les directives de génération du proxy HTTP.
 Pour ce faire, il faut ajouter des options à notre endpoint RPC.
 ```proto
 option (google.api.http) = {
@@ -29,7 +29,7 @@ option (google.api.http) = {
 ```
 Ici, on définit une route `/v1/translate` avec le verbe POST.
 
-Ce qui nous donnes :
+Ce qui nous donne :
 ```proto
 syntax = "proto3";
 
@@ -61,7 +61,7 @@ service Translator {
 }
 ```
 
-Nous allons maintenant modifer le fichier `prototool.yaml` pour générer le proxy et le json swagger.
+Nous allons maintenant modifer le fichier `prototool.yaml` pour générer le proxy et le json de Swagger.
 ```yaml
 # prototool.yaml
 protoc_includes:  
@@ -86,8 +86,8 @@ Nous pouvons maintenant générer les fichiers Go.
 ```bash
 prototool gen
 ```
-Nous allons maintenant utiliser ce proxy qui a été généré et creer un fichier `proxy.go`.
-Il suffit de lancer le serveur grpc dans un go-routine et d'exposer le proxy http.
+Nous allons maintenant utiliser ce proxy qui a été générée et créer un fichier `proxy.go`.
+Il suffit de lancer le serveur gRPC dans un go-routine et d'exposer le proxy HTTP.
 ```go
 // proxy.go
 package main  
@@ -129,7 +129,7 @@ Nous pouvons maintenant compiler notre serveur.
 TRANSLATION_API_KEY=yourapitoken go run main.go
 ```
 
-Et vérifier que ça marche bien :
+Et vérifier que cela fonctionne bien :
 ```bash
 curl -X POST http://localhost:8001/v1/translate \                                                                                                                            [±master ✓]
   -H 'Content-Type: application/json' \
@@ -140,11 +140,11 @@ curl -X POST http://localhost:8001/v1/translate \                               
 ```
 
 On peut remarquer qu'un fichier json a été aussi généré dans le dossier `swagger/proto`.
-Il s'agit de la documentation swagger qui a été généré à partir des directives présente dans le fichier protobuf.
+Il s'agit de la documentation Swagger qui a été générée à partir des directives présentes dans le fichier protobuf.
 
-Vous pouvez ouvrir la documentation [directement ici](https://editor.swagger.io/) ou directement utilisé [swagger-ui](https://github.com/swagger-api/swagger-ui).
+Vous pouvez ouvrir la documentation [directement ici](https://editor.swagger.io/) ou directement utiliser [swagger-ui](https://github.com/swagger-api/swagger-ui).
 
 ### Conclusion
 
-Nous avons maintenant un service documenté accesible via grpc ou plus classiquement par http.
-Je vous conseille de regarder plus en details [les plugins protoc](https://developers.google.com/protocol-buffers/docs/reference/other) notamment [gogoprotobuf](https://github.com/gogo/protobuf) qui est une autre implémentation de protobuf en Go et [go-proto-validators](https://github.com/mwitkow/go-proto-validators) qui permet de valider les messages protobuf comme des champs obligatoire ou des regex.
+Nous avons maintenant un service documenté accessible via gRPC ou plus classiquement par HTTP.
+Je vous conseille de regarder plus en détails [les plugins protoc](https://developers.google.com/protocol-buffers/docs/reference/other) notamment [gogoprotobuf](https://github.com/gogo/protobuf) qui est une autre implémentation de protobuf en Go et [go-proto-validators](https://github.com/mwitkow/go-proto-validators) qui permet de valider les messages protobuf comme des champs obligatoires ou des regex.
