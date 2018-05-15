@@ -12,8 +12,7 @@
     "Mise en place du client gRPC",
     "Ajout d'un proxy REST et d'une doc Swagger"
   ],
-  "date": "2018-05-03",
-  "cover": "/assets/2018-05-03-microservice-avec-go-et-grpc/cover.jpg",
+  "date": "2018-05-15",
   "authors": [
     {
       "name": "Quentin Neyrat",
