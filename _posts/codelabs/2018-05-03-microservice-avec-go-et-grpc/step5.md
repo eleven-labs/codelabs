@@ -5,7 +5,7 @@
 Nous allons commencer par tester notre service avec prototool.
 Prototool va permettre de transformer un json en protobuf et d'appeler le serveur gRPC.
 
-Nous allons créer une ficher `payload.json`.
+Nous allons créer un ficiher `payload.json`.
 ```json
 {
     "text": "Salut les astronautes !",
