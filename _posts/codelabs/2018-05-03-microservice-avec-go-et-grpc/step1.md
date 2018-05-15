@@ -1,6 +1,7 @@
-### Installation des outils
+## Installation des outils
 
-### Installer protoc
+### Installer protoc  
+
 `protoc` est un générateur qui va lire vos fichiers Protobuf et générer du code.
 
 Si vous êtes sur Linux :
@@ -14,7 +15,7 @@ Si vous êtes sur Mac OS X :
 ```bash
 brew install protobuf
 ```
-Si vous êtes sur Windows, vous pouvez [télécharger l'executable ici](https://github.com/google/protobuf/releases/download/v3.5.1/protoc-3.5.1-win32.zip).
+Si vous êtes sur Windows, vous pouvez [télécharger l'exécutable ici](https://github.com/google/protobuf/releases/download/v3.5.1/protoc-3.5.1-win32.zip).
 
 ### Installer prototool
 `prototool` est une commande qui va vous permettre d'utiliser plus facilement `protoc` via un fichier yaml. Il intègre aussi un linter et un client gRPC que nous verrons à l'étape 5.
