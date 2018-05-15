@@ -1,6 +1,5 @@
-### Déclaration du Protobuf
+### Notre fichier Protobuf  
 
-### Notre fichier Protobuf
 Nous allons créer un fichier `translator.proto` dans le dossier `proto`.
 ```protobuf
 syntax = "proto3";
@@ -55,7 +54,8 @@ service Translator {
     rpc Translate(TranslateRequest) returns (TranslateResponse) {}
 }
 ```
-### Génération avec Prototool
+### Génération avec Prototool  
+
 Nous allons commencer par générer le fichier de config de Prototool.
 ```bash
 prototool init
