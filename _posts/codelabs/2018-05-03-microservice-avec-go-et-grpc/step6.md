@@ -86,7 +86,7 @@ Nous pouvons maintenant générer les fichiers Go.
 ```bash
 prototool gen
 ```
-Nous allons maintenant utiliser ce proxy qui a été générée et créer un fichier `proxy.go`.
+Nous allons maintenant utiliser ce proxy qui a été généré et créer un fichier `proxy.go`.
 Il suffit de lancer le serveur gRPC dans un go-routine et d'exposer le proxy HTTP.
 ```go
 // proxy.go
