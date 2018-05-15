@@ -72,32 +72,32 @@ gen:
   
   plugins:  
   - name: go  
-      type: go  
-      flags: plugins=grpc  
-      output: .  
-    - name: grpc-gateway  
-      type: go  
-      output: .  
-    - name: swagger  
-      type: go  
-      output: swagger/.
+    type: go  
+    flags: plugins=grpc  
+    output: .  
+  - name: grpc-gateway  
+    type: go  
+    output: .  
+  - name: swagger  
+    type: go  
+    output: swagger/.
 ```
 Nous pouvons maintenant générer les fichiers Go.
 ```bash
 prototool gen
 ```
 Nous allons maintenant utiliser ce proxy qui a été généré et créer un fichier `proxy.go`.
-Il suffit de lancer le serveur gRPC dans un go-routine et d'exposer le proxy HTTP.
+Il suffit de lancer le serveur gRPC dans une goroutine et d'exposer le proxy HTTP.
 ```go
 // proxy.go
 package main  
   
 import (  
-	"context"  
-	"net/http"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"google.golang.org/grpc"
-	"translator-service/proto"
+    "context"  
+    "net/http"
+    "github.com/grpc-ecosystem/grpc-gateway/runtime"
+    "google.golang.org/grpc"
+    "translator-service/proto"
 )  
 
 func main() {
@@ -112,16 +112,16 @@ func main() {
     s := grpc.NewServer()
     proto.RegisterTranslatorServer(s, srv)
     go s.Serve(lis)
-
-	ctx := context.Background()
-	ctx, cancel := context.WithCancel(ctx)  
-	defer cancel()  
-
-	mux := runtime.NewServeMux()  
-	opts := []grpc.DialOption{grpc.WithInsecure()}  
-	proto.RegisterTranslatorHandlerFromEndpoint(ctx, mux, "localhost:4000", opts)  
-
-	http.ListenAndServe(":8001", mux)  
+    
+    ctx := context.Background()
+    ctx, cancel := context.WithCancel(ctx)
+    defer cancel()
+    
+    mux := runtime.NewServeMux()
+    opts := []grpc.DialOption{grpc.WithInsecure()}
+    proto.RegisterTranslatorHandlerFromEndpoint(ctx, mux, "localhost:4000", opts)
+    
+    http.ListenAndServe(":8001", mux)  
 }
 ```
 Nous pouvons maintenant compiler notre serveur.

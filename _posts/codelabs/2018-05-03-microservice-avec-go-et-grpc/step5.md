@@ -5,7 +5,7 @@
 Nous allons commencer par tester notre service avec prototool.
 Prototool va permettre de transformer un json en protobuf et d'appeler le serveur gRPC.
 
-Nous allons créer un ficiher `payload.json`.
+Nous allons créer un fichier `payload.json`.
 ```json
 {
     "text": "Salut les astronautes !",
@@ -33,21 +33,21 @@ import (
 )
   
 func main() {  
-	conn, err := grpc.Dial("localhost:4000", grpc.WithInsecure())  
-	if err != nil {  
-		log.Fatalln(err)  
-	}
-	defer conn.Close()  
-  
-	client := proto.NewTranslatorClient(conn)  
-	res, err := client.Translate(  
-		context.Background(),  
-		&proto.TranslateRequest{Text:"Salut les astronautes !", Language: proto.Language_en},  
-	 )
-	if err != nil {  
-		log.Fatalln(err)  
-	}
-	log.Println(res.Text)
+    conn, err := grpc.Dial("localhost:4000", grpc.WithInsecure())  
+    if err != nil {  
+        log.Fatalln(err)  
+    }
+    defer conn.Close()  
+    
+    client := proto.NewTranslatorClient(conn)  
+    res, err := client.Translate(  
+        context.Background(),  
+        &proto.TranslateRequest{Text:"Salut les astronautes !", Language: proto.Language_en},  
+    )
+    if err != nil {  
+        log.Fatalln(err) 
+    }
+    log.Println(res.Text)
 }
 ```
 Nous allons maintenant appeler notre serveur gRPC avec notre client en Go.

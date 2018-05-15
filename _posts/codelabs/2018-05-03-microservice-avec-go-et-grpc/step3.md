@@ -52,7 +52,7 @@ func main() {
 
 Pour ajouter des services (comme un client mysql ou une struct d'un autre de nos packages), nous avons deux choix. Soit d'ajouter les structs directement dans `TranslatorServer{}` .
 ```
-type Server struct {s1: s1, s2: s2, s3: s3}
+type Server struct { s1: s1, s2: s2, s3: s3 }
 func (s Server) m1 () { s1.foo }
 func (s Server) m2 () { s2.foo; s3.foo }
 ```
@@ -61,8 +61,8 @@ Soit de créer une factory pour chaque endpoint et ajouter les endpoints à `Tra
 func NewE1(s1 service) { return func(){ s1.foo }}
 func NewE2(s2, s3 service) { return func(){ s2.foo; s3.foo }}
 
-type Server struct {e1: e1, e2: e2}
-func NewServer(ee endpoints) { return &Server{e1: e1, e2: e2}}
+type Server struct { e1: e1, e2: e2 }
+func NewServer(ee endpoints) { return &Server{ e1: e1, e2: e2 }}
 
 func (s Server) m1 () { s.e1() }
 func (s Server) m2 () { s.e2() }

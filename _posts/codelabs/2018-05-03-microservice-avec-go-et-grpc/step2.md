@@ -63,14 +63,14 @@ prototool init
 Nous allons maintenant éditer la config pour qu'il génère notre service gRPC en Go.
 ```yaml
 gen:
-    go_options:
-    import_path: translator-service/
+  go_options:
+  import_path: translator-service/
 
 plugins:
-    - name: go
-        type: go
-        flags: plugins=grpc
-        output: .
+  - name: go
+    type: go
+    flags: plugins=grpc
+    output: .
 ```
 Nous pouvons maintenant générer les fichiers Go.
 ```bash
