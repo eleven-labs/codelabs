@@ -1,4 +1,5 @@
-### Mise en place du serveur gRPC
+### Mise en place du serveur gRPC  
+
 Nous allons maintenant mettre en place le serveur gRPC.
 
 Dans un premier temps, nous devons créer une struct qui respecte l'interface du serveur présent dans `proto/translator.pb.go`.
@@ -47,7 +48,7 @@ func main() {
     s.Serve(lis)
 }
 ```
->Lancez la commande `dep ensure` pour installer les packages qu'il vous manque.
+>Lancez la commande `dep ensure` pour installer les packages qui vous manquent.
 
 Pour ajouter des services (comme un client mysql ou une struct d'un autre de nos packages), nous avons deux choix. Soit d'ajouter les structs directement dans `TranslatorServer{}` .
 ```
