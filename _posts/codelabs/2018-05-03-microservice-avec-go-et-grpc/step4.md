@@ -49,7 +49,7 @@ func (t GoogleTranslator) Translate(targetLanguage string, text string) (string,
     return res[0].Text, nil
 }
 ```
->Lancez la commande `dep ensure` pour installer les packages qu'il vous manque.
+>Lancez la commande `dep ensure` pour installer les packages qui vous manquent.
 
 Nous allons modifier la factory de `TranslateEndpoint`.
 ```go
