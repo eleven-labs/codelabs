@@ -1,5 +1,3 @@
-### Mise en place du serveur gRPC  
-
 Nous allons maintenant mettre en place le serveur gRPC.
 
 Dans un premier temps, nous devons créer une struct qui respecte l'interface du serveur présent dans `proto/translator.pb.go`.
