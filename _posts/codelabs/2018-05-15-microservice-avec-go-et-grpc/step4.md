@@ -1,5 +1,3 @@
-### Mise en place de la Translate API de Google
-
 Nous allons maintenant mettre en place [l'API Translate de Google](https://cloud.google.com/translate/?hl=fr).
 
 Commencez par récupérer une clé API pour Translate. Il suffit de vous inscrire et de profiter de l'offre gratuite de Google Cloud Platform.
