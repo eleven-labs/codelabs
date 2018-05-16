@@ -1,5 +1,3 @@
-### Ajout d'un proxy REST et d'une doc Swagger
-
 Nous allons maintenant voir comment exposer un service gPRC comme une API REST.
 Puisqu'un serveur gRPC n'est pas disponible pour le web, l'une des solutions est de créer un autre service qui va exposer une route REST et appeler le service gRPC.
 
