@@ -1,5 +1,3 @@
-### Mise en place du client gRPC
-
 ### gRPC client avec prototool
 
 Nous allons commencer par tester notre service avec prototool.
