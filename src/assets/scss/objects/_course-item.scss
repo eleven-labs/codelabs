@@ -2,6 +2,7 @@
   $margin: 1.5%;
 
   border: em(1px) solid $brand-light-grey;
+
   @media (min-width: em(768px)) {
     width: calc(47% - 10px);
     margin: 5px;

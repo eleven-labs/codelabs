@@ -75,7 +75,6 @@ class Link extends Component {
   }
 }
 
-
 export default class SocialLinks extends Component {
   shouldComponentUpdate() {
     return false;

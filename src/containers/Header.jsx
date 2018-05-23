@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { SearchBox } from 'react-instantsearch/dom';
 
+import ConnectedCourseProgress from './CourseProgress';
 import CourseTitle from '../components/Header/CourseTitle';
 import SocialLinks from '../components/Header/SocialLinks';
 import Logo from '../components/Header/Logo';
@@ -43,6 +44,8 @@ export class Header extends React.Component {
               }}
             />
           )}
+
+          <ConnectedCourseProgress />
 
           <SocialLinks />
         </div>

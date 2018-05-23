@@ -149,8 +149,9 @@
   flex-direction: row;
   width: 100%;
   max-width: em(165px);
+
   @media (min-width: em(768px)) {
-    margin: 0 0 0 em(30px);
+    margin: 0 0 0 em(20px);
   }
 
   &__list {

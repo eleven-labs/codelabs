@@ -6,6 +6,8 @@ export const NOOP = () => {};
 export const ALGOLIA_APP_ID = '5IGTHBX5JS';
 export const ALGOLIA_API_KEY = '7f7511d659569fcede7653d568b3206c';
 
+export const LOCAL_STORAGE_KEY = 'codelabs';
+
 // for InlineHtml block detection
 // const REGEX_TAG_OPENING = /<(\w+)\b[^<]*>/g;
 // const REGEX_TAG_CLOSING = /<\/(\w+)\b[^<]*>/g;
@@ -35,3 +37,4 @@ export const AST_NODES = {
   Image: 'img',
   Code: 'code',
 };
+

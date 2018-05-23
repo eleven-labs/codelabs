@@ -21,10 +21,12 @@ const mapStateToProps = ({
   courses,
   currentStepMD,
   currentCourse,
+  courseProgress,
 }) => ({
   courses,
   currentStepMD,
   course: currentCourse,
+  courseProgress,
 });
 
 const mapDispatchToProps = {
@@ -42,6 +44,7 @@ export class Course extends React.Component {
     loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
+    courseProgress: PropTypes.shape(),
 
     match: PropTypes.shape(),
   };
@@ -54,6 +57,8 @@ export class Course extends React.Component {
     loadCourses: NOOP,
     loadStep: NOOP,
     setCurrentCourse: NOOP,
+    courseProgress: {},
+
     match: { params: {} },
   };
 
@@ -78,6 +83,7 @@ export class Course extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
+      courseProgress,
       match: {
         params: { lang, permalink },
       },
@@ -93,8 +99,11 @@ export class Course extends React.Component {
 
     // Set the course in the state and load the first step.
     if (!this.props.course && course) {
-      this.setState({ course }, () => {
-        this.loadInternalStep(0);
+      const progressCourse = courseProgress[permalink] || {};
+      const index = progressCourse.currentStep || 0;
+
+      this.setState({ course, currentStep: index }, () => {
+        this.loadInternalStep(this.state.currentStep);
       });
     }
 
@@ -144,13 +153,21 @@ export class Course extends React.Component {
       course = {},
       course: { stepTitles = [] } = {},
       currentStep,
-    } = this.state;
-
-    const {
       steps: {
         [currentStep === 0 ? 'index' : `step${currentStep}`]: step = [],
       } = {},
     } = this.state;
+
+    const {
+      match: {
+        params: { permalink },
+      },
+      courseProgress: {
+        [permalink]: {
+          steps: completeSteps = [],
+        } = {},
+      } = {},
+    } = this.props;
 
     return (
       <div className="course container">
@@ -168,6 +185,7 @@ export class Course extends React.Component {
           stepTitles={stepTitles}
           currentStep={currentStep}
           gotoStep={this.gotoStep}
+          completeSteps={completeSteps}
         />
 
         <article className="course__content">

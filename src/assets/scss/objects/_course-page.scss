@@ -40,7 +40,7 @@
   }
 
   &__step-number {
-    $context: 32px;
+    $context: 24px;
 
     font-size: em($context);
     display: flex;
@@ -55,6 +55,10 @@
     transition: background-color 0.3s ease-out;
     .-current & {
       background-color: $brand-yellow;
+    }
+
+    .-complete & {
+      border: 2px solid yellowgreen;
     }
   }
 
