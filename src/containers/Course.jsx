@@ -12,6 +12,7 @@ import {
   loadStep,
   setCurrentCourse,
 } from '../actions';
+
 import { NOOP, SITE_ROOT } from '../constants';
 
 import componentFactory from '../services/componentFactory';
@@ -70,6 +71,7 @@ export class Course extends React.Component {
     this.next = this.next.bind(this);
     this.go = this.go.bind(this);
     this.gotoStep = this.gotoStep.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   state = {
@@ -79,6 +81,7 @@ export class Course extends React.Component {
 
   componentDidMount() {
     this.props.loadCourses();
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -120,6 +123,10 @@ export class Course extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
   async loadInternalStep(stepIndex) {
     const { course } = this.state;
     await this.props.loadStep(course, stepIndex);
@@ -148,8 +155,26 @@ export class Course extends React.Component {
     });
   }
 
+  handleKeyUp(e) {
+    const { currentStep, course } = this.state;
+
+    if (currentStep !== 0 && e.key === 'ArrowLeft') {
+      this.previous();
+    }
+
+    if (
+      currentStep < course.stepTitles.length - 1 &&
+      e.key === 'ArrowRight'
+    ) {
+      this.next();
+    }
+
+    e.preventDefault();
+  }
+
   render() {
     const {
+
       course = {},
       course: { stepTitles = [] } = {},
       currentStep,
@@ -190,23 +215,31 @@ export class Course extends React.Component {
 
         <article className="course__content">
           {stepTitles.length > 0 && (
-            <h2 className="course__chapter">{currentStep + 1} - {stepTitles[currentStep]}</h2>
+            <h2 className="course__chapter">
+              {currentStep + 1} - {stepTitles[currentStep]}
+            </h2>
           )}
-          <div className="course__text">{step.map((renderer, key) => renderer({ key }))}</div>
+          <div className="course__text">
+            {step.map((renderer, key) => renderer({ key }))}
+          </div>
           <div className="course__navigation">
             <button
               type="button"
               className="course__button -previous"
               onClick={this.previous}
               disabled={currentStep === 0}
-            ><img alt="Précédent" src={arrow}></img></button>
+            >
+              <img alt="Précédent" src={arrow} />
+            </button>
 
             <button
               type="button"
               className="course__button -next"
               onClick={this.next}
               disabled={currentStep === stepTitles.length - 1}
-            ><img alt="Suivant" src={arrow}></img></button>
+            >
+              <img alt="Suivant" src={arrow} />
+            </button>
           </div>
         </article>
       </div>
