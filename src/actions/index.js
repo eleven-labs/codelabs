@@ -41,3 +41,10 @@ export const loadStep = (course, stepIndex) => {
     stepIndex,
   };
 };
+
+export const UPDATE_COURSE_PROGRESS = 'UPDATE_COURSE_PROGRESS';
+
+export const updateCourseProgress = courseProgress => ({
+  type: UPDATE_COURSE_PROGRESS,
+  courseProgress,
+});

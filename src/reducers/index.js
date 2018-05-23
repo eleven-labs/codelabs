@@ -2,6 +2,7 @@ import {
   LOAD_COURSES_SUCCESS,
   LOAD_STEP_SUCCESS,
   SET_CURRENT_COURSE,
+  UPDATE_COURSE_PROGRESS,
 } from '../actions';
 
 /**
@@ -29,5 +30,9 @@ export default handleActions({
     currentCourse: state.courses.find(course => (
       course.permalink === action.permalink
     )),
+  }),
+  [UPDATE_COURSE_PROGRESS]: (state, { courseProgress }) => ({
+    ...state,
+    courseProgress,
   }),
 });
