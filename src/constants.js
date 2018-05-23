@@ -1,5 +1,6 @@
 // TODO: think about dev environment
 export const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/tutos/codelabs/' : `http://${location.hostname}:9000/`;
+export const SITE_ROOT = process.env.NODE_ENV === 'production' ? 'https://codelabs.eleven-labs.com/' : `http://${location.hostname}:9000/`;
 export const NOOP = () => {};
 
 export const ALGOLIA_APP_ID = '5IGTHBX5JS';

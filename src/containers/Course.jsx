@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import urlJoin from 'url-join';
 
 import arrow from '../assets/images/icons/icon_arrow.svg';
 import Summary from '../components/Summary';
@@ -10,9 +12,10 @@ import {
   loadStep,
   setCurrentCourse,
 } from '../actions';
-import { NOOP } from '../constants';
+import { NOOP, SITE_ROOT } from '../constants';
 
 import componentFactory from '../services/componentFactory';
+import { getKeywords, getAuthorsNames } from '../helpers/course';
 
 const mapStateToProps = ({
   courses,
@@ -147,6 +150,7 @@ export class Course extends React.Component {
 
   render() {
     const {
+      course = {},
       course: { stepTitles = [] } = {},
       currentStep,
       steps: {
@@ -167,6 +171,16 @@ export class Course extends React.Component {
 
     return (
       <div className="course container">
+        {stepTitles.length > 0 && (
+          <Helmet>
+            <title>Eleven&apos;s Codelabs: {stepTitles[currentStep]}</title>
+            <link rel="canonical" href={urlJoin(SITE_ROOT, 'course', course.permalink)} />
+            <meta name="description" content={course.exerpt} />
+            <meta name="keywords" content={getKeywords(course).join()} />
+            <meta name="author" content={getAuthorsNames(course).join()} />
+          </Helmet>
+        )}
+
         <Summary
           stepTitles={stepTitles}
           currentStep={currentStep}

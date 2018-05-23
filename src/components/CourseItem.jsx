@@ -23,7 +23,12 @@ const CourseItem = ({ course }) => {
   return (
     <article className="course-item">
       <div className="course-item__heading">
-        <img className="course-item__icon" src={play} alt="" />
+        <a
+          className="course-item__icon-link"
+          href={urlJoin('/course/', course.permalink)}
+        >
+          <img className="course-item__icon" src={play} alt="" />
+        </a>
         <div className="course-item__heading-right">
           <img className="course-item__icon" src={clock} alt="" />
           <p className="course-item__duration">{course.duration.total} mins</p>
@@ -32,13 +37,18 @@ const CourseItem = ({ course }) => {
 
       <div className="course-item__container">
         <h2 className="course-item__title">
-          <a className="no-link-style" href={urlJoin('/course/', course.permalink)}>
+          <a
+            className="no-link-style"
+            href={urlJoin('/course/', course.permalink)}
+          >
             {course.title}
           </a>
         </h2>
 
         <p className="course-item__details">
-          <time dateTime={date.toISOString()}>{date.toLocaleString('fr-FR', dateOptions)}</time>
+          <time dateTime={date.toISOString()}>
+            {date.toLocaleString('fr-FR', dateOptions)}
+          </time>
           {' par '}
           {course.authors.map(authorRenderer)}
         </p>

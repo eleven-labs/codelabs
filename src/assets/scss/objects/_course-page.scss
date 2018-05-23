@@ -52,7 +52,7 @@
     border-radius: 50%;
     width: em(50px, $context);
     height: em(50px, $context);
-
+    transition: background-color 0.3s ease-out;
     .-current & {
       background-color: $brand-yellow;
     }
