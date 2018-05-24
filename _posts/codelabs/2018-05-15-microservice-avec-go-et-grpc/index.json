@@ -1,5 +1,5 @@
 {
-  "title": "microservice avec Go et gRPC",
+  "title": "Microservice avec Go et gRPC",
   "permalink": "/fr/microservice-avec-go-et-grpc/",
   "excerpt": "Dans ce tutoriel nous allons mettre en place un microservice gRPC de traduction avec Google Translate.",
   "slug": "microservice-avec-go-et-grpc",
