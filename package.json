@@ -10,7 +10,8 @@
     "test": "jest --no-cache --coverage",
     "test-update-snapshot": "jest --json --updateSnapshot",
     "lint": "eslint ./src --ext js,jsx",
-    "serve-prod": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"serve ./public\""
+    "serve-prod": "concurrently -k -p \"[{name} - {time}]\" -c \"cyan,magenta\" -n \"Client,Server\" \"serve ./public\"",
+    "postinstall": "npm rebuild node-sass"
   },
   "author": "",
   "jest": {

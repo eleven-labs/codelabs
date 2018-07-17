@@ -12,6 +12,6 @@ services:
         volumes:
             - ./:/var/www/codelabs
         # 'npm rebuild node-sass' adds the missing binding for the container's version of node (6, 7, 8, ...)
-        command: bash -c "yarn && npm rebuild node-sass && yarn start"
+        command: bash -c "yarn && yarn start"
         ports:
             - 9000:9000
