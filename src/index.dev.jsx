@@ -6,15 +6,21 @@ import { Provider } from 'react-redux';
 
 import createStore from './store/dev';
 import routes from './routes';
+import { getPersistedProgress } from './services/course-progress';
+import { LOCAL_STORAGE_KEY } from './constants';
 
-const store = createStore();
+(async () => {
+  const store = createStore({
+    courseProgress: await getPersistedProgress(LOCAL_STORAGE_KEY),
+  });
 
-const CodeLabs = () => (
-  <Provider {...{ store }}>
-    <BrowserRouter>
-      {renderRoutes(routes)}
-    </BrowserRouter>
-  </Provider>
-);
+  const CodeLabs = () => (
+    <Provider {...{ store }}>
+      <BrowserRouter>
+        {renderRoutes(routes)}
+      </BrowserRouter>
+    </Provider>
+  );
 
-ReactDOM.render(<CodeLabs />, document.getElementById('root'));
+  ReactDOM.render(<CodeLabs />, document.getElementById('root'));
+})();

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import urlJoin from 'url-join';
 
 import arrow from '../assets/images/icons/icon_arrow.svg';
 import Summary from '../components/Summary';
@@ -10,18 +12,22 @@ import {
   loadStep,
   setCurrentCourse,
 } from '../actions';
-import { NOOP } from '../constants';
+
+import { NOOP, SITE_ROOT } from '../constants';
 
 import componentFactory from '../services/componentFactory';
+import { getKeywords, getAuthorsNames } from '../helpers/course';
 
 const mapStateToProps = ({
   courses,
   currentStepMD,
   currentCourse,
+  courseProgress,
 }) => ({
   courses,
   currentStepMD,
   course: currentCourse,
+  courseProgress,
 });
 
 const mapDispatchToProps = {
@@ -39,6 +45,7 @@ export class Course extends React.Component {
     loadCourses: PropTypes.func,
     loadStep: PropTypes.func,
     setCurrentCourse: PropTypes.func,
+    courseProgress: PropTypes.shape(),
 
     match: PropTypes.shape(),
   };
@@ -51,6 +58,8 @@ export class Course extends React.Component {
     loadCourses: NOOP,
     loadStep: NOOP,
     setCurrentCourse: NOOP,
+    courseProgress: {},
+
     match: { params: {} },
   };
 
@@ -62,6 +71,7 @@ export class Course extends React.Component {
     this.next = this.next.bind(this);
     this.go = this.go.bind(this);
     this.gotoStep = this.gotoStep.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   state = {
@@ -71,10 +81,12 @@ export class Course extends React.Component {
 
   componentDidMount() {
     this.props.loadCourses();
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   componentWillReceiveProps(nextProps) {
     const {
+      courseProgress,
       match: {
         params: { lang, permalink },
       },
@@ -90,8 +102,11 @@ export class Course extends React.Component {
 
     // Set the course in the state and load the first step.
     if (!this.props.course && course) {
-      this.setState({ course }, () => {
-        this.loadInternalStep(0);
+      const progressCourse = courseProgress[permalink] || {};
+      const index = progressCourse.currentStep || 0;
+
+      this.setState({ course, currentStep: index }, () => {
+        this.loadInternalStep(this.state.currentStep);
       });
     }
 
@@ -106,6 +121,10 @@ export class Course extends React.Component {
         },
       });
     }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp);
   }
 
   async loadInternalStep(stepIndex) {
@@ -136,45 +155,91 @@ export class Course extends React.Component {
     });
   }
 
+  handleKeyUp(e) {
+    const { currentStep, course } = this.state;
+
+    if (currentStep !== 0 && e.key === 'ArrowLeft') {
+      this.previous();
+    }
+
+    if (
+      currentStep < course.stepTitles.length - 1 &&
+      e.key === 'ArrowRight'
+    ) {
+      this.next();
+    }
+
+    e.preventDefault();
+  }
+
   render() {
     const {
+
+      course = {},
       course: { stepTitles = [] } = {},
       currentStep,
-    } = this.state;
-
-    const {
       steps: {
         [currentStep === 0 ? 'index' : `step${currentStep}`]: step = [],
       } = {},
     } = this.state;
 
+    const {
+      match: {
+        params: { permalink },
+      },
+      courseProgress: {
+        [permalink]: {
+          steps: completeSteps = [],
+        } = {},
+      } = {},
+    } = this.props;
+
     return (
       <div className="course container">
+        {stepTitles.length > 0 && (
+          <Helmet>
+            <title>Eleven&apos;s Codelabs: {stepTitles[currentStep]}</title>
+            <link rel="canonical" href={urlJoin(SITE_ROOT, 'course', course.permalink)} />
+            <meta name="description" content={course.exerpt} />
+            <meta name="keywords" content={getKeywords(course).join()} />
+            <meta name="author" content={getAuthorsNames(course).join()} />
+          </Helmet>
+        )}
+
         <Summary
           stepTitles={stepTitles}
           currentStep={currentStep}
           gotoStep={this.gotoStep}
+          completeSteps={completeSteps}
         />
 
         <article className="course__content">
           {stepTitles.length > 0 && (
-            <h2 className="course__chapter">{currentStep + 1} - {stepTitles[currentStep]}</h2>
+            <h2 className="course__chapter">
+              {currentStep + 1} - {stepTitles[currentStep]}
+            </h2>
           )}
-          <div className="course__text">{step.map((renderer, key) => renderer({ key }))}</div>
+          <div className="course__text">
+            {step.map((renderer, key) => renderer({ key }))}
+          </div>
           <div className="course__navigation">
             <button
               type="button"
               className="course__button -previous"
               onClick={this.previous}
               disabled={currentStep === 0}
-            ><img alt="Précédent" src={arrow}></img></button>
+            >
+              <img alt="Précédent" src={arrow} />
+            </button>
 
             <button
               type="button"
               className="course__button -next"
               onClick={this.next}
               disabled={currentStep === stepTitles.length - 1}
-            ><img alt="Suivant" src={arrow}></img></button>
+            >
+              <img alt="Suivant" src={arrow} />
+            </button>
           </div>
         </article>
       </div>

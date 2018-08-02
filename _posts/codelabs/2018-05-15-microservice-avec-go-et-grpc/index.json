@@ -1,0 +1,22 @@
+{
+  "title": "Microservice avec Go et gRPC",
+  "permalink": "/fr/microservice-avec-go-et-grpc/",
+  "excerpt": "Dans ce tutoriel nous allons mettre en place un microservice gRPC de traduction avec Google Translate.",
+  "slug": "microservice-avec-go-et-grpc",
+  "stepTitles": [
+    "Introduction",
+    "Installation des outils",
+    "Déclaration du Protobuf",
+    "Mise en place du serveur gRPC",
+    "Mise en place de la Translate API de Google",
+    "Mise en place du client gRPC",
+    "Ajout d'un proxy REST et d'une doc Swagger"
+  ],
+  "date": "2018-05-15",
+  "authors": [
+    {
+      "name": "Quentin Neyrat",
+      "username": "qneyrat"
+    }
+  ]
+}

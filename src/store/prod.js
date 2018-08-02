@@ -4,10 +4,10 @@ import thunk from 'redux-thunk';
 import api from '../middlewares/api';
 import algolia from '../middlewares/algolia';
 import reducer from '../reducers';
-import { INITIAL_STATE } from '../constants';
+import localStorageMiddleware from '../middlewares/course-progress';
 
-const enhancer = applyMiddleware(thunk, api, algolia);
+const enhancer = applyMiddleware(thunk, api, algolia, localStorageMiddleware);
 
-export default (initialState = INITIAL_STATE) => (
+export default (initialState = {}) => (
   createStore(reducer, initialState, enhancer)
 );
