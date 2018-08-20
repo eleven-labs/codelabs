@@ -1,0 +1,24 @@
+{
+  "title": "Renforcer la confidentialité d'une API avec sapient-bundle",
+  "permalink": "/fr/renforcer-confidentialite-api-sapient-bundle/",
+  "excerpt": "Dans ce tutoriel nous allons mettre en place une API qui va signer et sceller les réponses avec sapient-bundle.",
+  "slug": "renforcer-confidentialite-api-sapient-bundle",
+  "stepTitles": [
+    "Introduction",
+    "Création des projets",
+    "Créer une route API",
+    "Créer une commande pour consulter l'API",
+    "Test de base",
+    "Configuration de l'API",
+    "Configuration du client",
+    "Echange des clefs",
+    "Test avec le bundle actif"
+  ],
+  "date": "2018-09-01",
+  "authors": [
+    {
+      "name": "Thierry Thuon",
+      "username": "tthuon"
+    }
+  ]
+}
