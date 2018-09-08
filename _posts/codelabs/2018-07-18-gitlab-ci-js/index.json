@@ -1,0 +1,30 @@
+{
+  "title": "GitLab-ci avec une application JS",
+  "slug": "gitlab-ci-avec-une-application-js",
+  "permalink": "/fr/gitlab-ci-js/",
+  "excerpt": "Ce tuto vas vous montrez comment mettre en place un CI/CD avec GitLab-ci",
+  "stepTitles": [
+    "Introduction",
+    "Mise en place des 'stages'"
+  ],
+  "time": 30,
+  "date": "2018-07-18",
+  "cover": "",
+  "authors": [
+    {
+      "name": "Nicolas Grévin",
+      "username": "nicolas"
+    }
+  ],
+  "category": [
+    "DevOps",
+    "JavaScript"
+  ],
+  "tags": [
+    "CI",
+    "CD",
+    "DevOps",
+    "JavaScrip",
+    "Vuejs"
+  ]
+}
