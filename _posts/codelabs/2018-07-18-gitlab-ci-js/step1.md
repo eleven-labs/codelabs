@@ -29,7 +29,7 @@ Une étape de build pour les dépense node sera fait à chaque CI.
 Une étape de build de l’application sera fait à chaque CD.
 Les code style et tests seront effectués à chaque CI
 
- ## Initialisation de l’application VueJS
+## Initialisation de l’application VueJS
 
 Pour faire simple et pour aller vite nous allons utiliser vue-cli. Donc pour ça nous allons installer vue-cli et initialiser une projet vueJS.
 
@@ -169,7 +169,7 @@ yarn serve
 ```
 ![Screenshot app vueJS init](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/screenshot-app-vue-js-init.png)
 
-### Make 
+## Make 
 
 Pour simplifier les commande docker et pour que l’application soit sous docker fait fait un makefile, je l’utilise dans la majorité de mes applications et ça fonctionne bien.
 

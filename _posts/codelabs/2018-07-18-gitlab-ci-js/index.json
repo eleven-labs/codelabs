@@ -5,7 +5,11 @@
   "excerpt": "Ce tuto vas vous montrez comment mettre en place un CI/CD avec GitLab-ci",
   "stepTitles": [
     "Introduction",
-    "Mise en place des 'stages'"
+    "Définition des besoin et préparation de notre application",
+    "Initialisation de la CI/CD et préparation du notre application pour notre CI/CD",
+    "Mise en place des phase de code style et de test",
+    "Déploiement de notre application sur Google Cloud PLatform",
+    "Test et conclusion"
   ],
   "time": 30,
   "date": "2018-07-18",
