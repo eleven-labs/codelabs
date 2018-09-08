@@ -29,6 +29,8 @@ Une étape de build pour les dépense node sera fait à chaque CI.
 Une étape de build de l’application sera fait à chaque CD.
 Les code style et tests seront effectués à chaque CI
 
+<!-- TODO: schema ou autre -->
+
 ## Initialisation de l’application VueJS
 
 Pour faire simple et pour aller vite nous allons utiliser vue-cli. Donc pour ça nous allons installer vue-cli et initialiser une projet vueJS.
