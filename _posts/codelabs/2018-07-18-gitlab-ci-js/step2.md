@@ -55,7 +55,7 @@ stages:
 
 .template_build: &template_build # Template commun au deux jobs de la stage build
   stage: build # On lie les jobs au stage de build 
-  image: node:8-alpine On utilise l’image de node 8
+  image: node:8-alpine # On utilise l’image de node 8
 
 build:node_modules:
   <<: *template_build # on appel notre template
