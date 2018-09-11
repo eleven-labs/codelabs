@@ -2,12 +2,12 @@
   "title": "GitLab-ci avec une application JS",
   "slug": "gitlab-ci-avec-une-application-js",
   "permalink": "/fr/gitlab-ci-js/",
-  "excerpt": "Ce tuto vas vous montrez comment mettre en place un CI/CD avec GitLab-ci",
+  "excerpt": "Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci",
   "stepTitles": [
     "Introduction",
-    "Définition des besoin et préparation de notre application",
-    "Initialisation de la CI/CD et préparation du notre application pour notre CI/CD",
-    "Mise en place des phase de code style et de test",
+    "Définition des besoins et préparation de notre application",
+    "Initialisation de la CI/CD et préparation de notre application pour notre CI/CD",
+    "Mise en place des phases de code style et de tests",
     "Déploiement de notre application sur Google Cloud PLatform",
     "Test et conclusion"
   ],
