@@ -1,6 +1,6 @@
-# Mise en place des phase de code style et de test
+# Mise en place des phases de code style et de test
 
-Pour cette troisième étape nous allons mettre en place le code style et les tests sur notre CI. Pour ce faire nous allons devoir ajouter des dépendances à notre projet pour le code style du scss.
+Pour cette troisième étape, nous allons mettre en place le code style et les tests sur notre CI. Pour ce faire nous allons devoir ajouter des dépendances à notre projet pour le code style du scss.
 
 ## Installation des dépendances
 
@@ -14,7 +14,7 @@ make yarn "add -D stylelint stylelint-processor-html stylelint-config-standard"
 
 ## Configuration de stylelint
 
-Nous allons mettre en place une configuration standard dans le fichier `.stylelintrc` qui doit être placer à la racine de votre projet.
+Nous allons mettre en place une configuration standard dans le fichier `.stylelintrc` qui doit être placé à la racine de votre projet.
 
 ```json
 {
@@ -43,7 +43,7 @@ Pour faire fonctionner notre code style scss nous allons ajouter une commande au
 
 ## Application à la CI/CD
 
-Nous n'avons plus cas ajouter deux étapes comprenant chacun deux `jobs`.
+Nous n'avons plus qu'à ajouter deux étapes comprenant chacune deux `jobs`.
 
 ```yaml
 stages:
@@ -53,13 +53,13 @@ stages:
 
 # ...
 
-.template_lint_and_test: &template_lint_and_test # Définition du template pour les code style et les tests
+.template_lint_and_test: &template_lint_and_test # Définition du template pour les codes style et les tests
   image: node:8-alpine # On utilise l’image de node 8
-  cache: # Définition des règles de cache pour recupere les caches de l'étape de build
+  cache: # Définition des règles de cache pour récuperer les caches de l'étape de build
     paths:
       - node_modules
     policy: pull
-  when: on_success # Condition d'exécution : Sera exécuté uniquement si les jobs de l'étapes précédant réussisse
+  when: on_success # Condition d'exécution : sera exécuté uniquement si les jobs de l'étape précédente réussissent
 
 lint:js:
   <<: *template_lint_and_test # on appel notre template
@@ -68,7 +68,7 @@ lint:js:
     - yarn lint:js
 
 lint:scss:
-  <<: *template_lint_and_test # on appel notre template
+  <<: *template_lint_and_test # on appelle notre template
   stage: lint # On lie le job au stage de lint
   script: # Les scripts exécutés pendant ce job
     - yarn lint:scss
