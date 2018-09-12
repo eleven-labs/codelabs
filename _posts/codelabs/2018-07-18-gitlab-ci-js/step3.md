@@ -90,4 +90,6 @@ test:e2e:
 
 # ...
 ```
-<!-- TODO: screenshot -->
+Et voilà notre CI/CD :
+
+![résultat CI/CD stage lint et test](https://storage.googleapis.com/tutos/assets/screenshot-pipeline-lint-and-test.png)
