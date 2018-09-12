@@ -31,9 +31,9 @@ Les code styles et tests seront effectués à chaque CI.
 
 <!-- TODO: schema ou autre -->
 
-## Initialisation de l’application VueJS
+## Initialisation de l’application Vue.js
 
-Pour faire simple et pour aller vite nous allons utiliser vue-cli. Nous allons donc installer vue-cli et initialiser un projet vueJS.
+Pour faire simple et pour aller vite nous allons utiliser vue-cli. Nous allons donc installer vue-cli et initialiser un projet Vue.js.
 
 ```
 $ yarn global add @vue/cli-service-global
@@ -169,9 +169,9 @@ Voilà pour l’installation, on vérifie que l’application fonctionne avec ce
 ```
 yarn serve
 ```
-![Screenshot app vueJS init](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/screenshot-app-vue-js-init.png)
+![Screenshot app Vue.js init](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/screenshot-app-vue-js-init.png)
 
-## Make 
+## Make
 
 Pour simplifier les commandes docker et pour que l’application soit sous docker, j'ai fait un makefile, je l’utilise dans la majorité de mes applications et ça fonctionne bien.
 

@@ -4,7 +4,7 @@ Pour cette troisième étape, nous allons mettre en place le code style et les t
 
 ## Installation des dépendances
 
-Pour le code style du scss nous allons avoir besoin de `stylelint` avec `stylelint-processor-html` pour fonctionner avec VueJS.
+Pour le code style du scss nous allons avoir besoin de `stylelint` avec `stylelint-processor-html` pour fonctionner avec Vue.js.
 Nous utiliserons les règles de base avec `stylelint-config-standard`
 
 ```bash
@@ -23,7 +23,7 @@ Nous allons mettre en place une configuration standard dans le fichier `.styleli
 }
 ```
 
-## Création des commandes 
+## Création des commandes
 
 Pour faire fonctionner notre code style scss nous allons ajouter une commande au fichier `package.json` et en modifier une autre
 

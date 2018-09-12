@@ -2,7 +2,7 @@
   "title": "GitLab-ci avec une application JS",
   "slug": "gitlab-ci-avec-une-application-js",
   "permalink": "/fr/gitlab-ci-js/",
-  "excerpt": "Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci",
+  "excerpt": "Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci pour une application Vue.js",
   "stepTitles": [
     "Introduction",
     "Définition des besoins et préparation de notre application",
@@ -29,6 +29,6 @@
     "CD",
     "DevOps",
     "JavaScrip",
-    "Vuejs"
+    "Vue.js"
   ]
 }

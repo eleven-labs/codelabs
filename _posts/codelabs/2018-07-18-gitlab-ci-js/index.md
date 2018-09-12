@@ -9,7 +9,7 @@ runner
 
 ### Le programme du tutoriel
 
-Alors dans ce tuto nous allons mettre en place une CI/CD pour une application VueJS avec GitLab-ci.
+Alors dans ce tuto nous allons mettre en place une CI/CD pour une application Vue.js avec GitLab-ci.
 
 Voici les étapes du tuto :
  1. Définition des besoins et préparation de notre application
