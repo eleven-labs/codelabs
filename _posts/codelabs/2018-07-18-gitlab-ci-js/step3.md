@@ -57,7 +57,7 @@ stages:
   image: node:8-alpine # On utilise l’image de node 8
   cache: # Définition des règles de cache pour récuperer les caches de l'étape de build
     paths:
-      - node_modules
+      - ./node_modules
     policy: pull
   when: on_success # Condition d'exécution : sera exécuté uniquement si les jobs de l'étape précédente réussissent
 

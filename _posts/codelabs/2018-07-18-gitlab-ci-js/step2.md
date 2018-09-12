@@ -9,15 +9,15 @@ Bon, sur cette partie je pense que je ne vais rien vous apprendre. Rendez -ous s
 
 Ensuite depuis votre console :
 ```bash
-# Si vous avez plusieurs comptes Github / GitLab / … pensez à changer votre config
-git config user.name "Nicolas Grévin"
-git config user.email "ngrevin@eleven-labs.com"
-
 git init
 git remote add origin git@gitlab.com:ngrevin/gitlab-ci-js.git
 git add .
 git commit -m "Initial commit"
 git push -u origin master
+
+# Si vous avez plusieurs comptes Github / GitLab / … pensez à changer votre config
+git config user.name "Nicolas Grévin"
+git config user.email "ngrevin@eleven-labs.com"
 ```
 
 ## Initialisation de la CI/CD de gitlab-ci
@@ -48,13 +48,13 @@ Lors de l'exécution de la CI/CD nous aurons besoin de notre application déjà 
 
 On va avoir besoin de notre application dans deux états :
 La version construite avec les dépendances de développement pour les codes styling et les tests
-La version construite sans les dépendances de développement et les fichiers compilés pour le futur déploiement 
+La version construite sans les dépendances de développement et les fichiers compilés pour le futur déploiement
 ```yaml
 stages:
   - build
 
 .template_build: &template_build # Template commun aux deux jobs de la stage build
-  stage: build # On lie les jobs au stage de build 
+  stage: build # On lie les jobs au stage de build
   image: node:8-alpine # On utilise l’image de node 8
 
 build:node_modules:
@@ -75,10 +75,10 @@ build:app:
     - yarn build
   cache: # on définit notre cache
     policy: push
-    paths: 
+    paths:
       - ./dist
   only: # On définit une règle d'exécution : ce job sera fait uniquement sur master ou en cas de tag
     - master
-    - demo
+    - tags
 ```
 <!-- TODO: screenshot -->
