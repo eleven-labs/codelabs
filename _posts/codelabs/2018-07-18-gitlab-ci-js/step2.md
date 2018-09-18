@@ -16,7 +16,7 @@ git commit -m "Initial commit"
 git push -u origin master
 
 # Si vous avez plusieurs comptes Github / GitLab / … pensez à changer votre config
-git config user.name "Nicolas Grévin"
+git config user.name "ngrevin"
 git config user.email "ngrevin@eleven-labs.com"
 ```
 
@@ -71,15 +71,20 @@ build:node_modules:
     policy: push
     paths:
       - ./node_modules
-  except: # On définit une règle d'exécution : ce job sera fait tout le temps sauf sur master et en cas de tag
+  except: # On définit une règle d'exécution : ce job sera fait tout le temps sauf sur master et demo,mais aussi en cas de tag
     - master
+    - demo
     - tags
 
 build:app:
   <<: *template_build # on appelle notre template
+  before_script: # On met a jour la version de package.json si nous somme sur un tag
+    - if [ ! -z "${CI_COMMIT_TAG}" ]; then npm version ${CI_COMMIT_TAG:1}; fi
   script: # Les scripts exécutés pendant ce job
     - yarn install
     - yarn build
+  after_script: # On sauvegarde le fichier package.json dans le repertoir "dist" pour le mettre en cache
+    - cp package.json dist/package.json
   cache: # on définit notre cache
     policy: push
     paths:

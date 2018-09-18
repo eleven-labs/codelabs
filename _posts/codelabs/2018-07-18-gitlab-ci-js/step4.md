@@ -45,4 +45,15 @@ Ici nous créons une nouvelle variables que l’on vas nommer `GCP_CREDENTIALS` 
 ![Gitlab - CI/CD Settings - Variables](screenshot-gitlab-ci-cd-settings-variables.png)
 
 Voilà pour le credential.
-  
+
+## fichier app.yaml pour le deploiement sur App Engine
+
+- fichier template
+- envsubst
+
+## Le stage `deploy`
+
+```yaml
+```
+
+resulat

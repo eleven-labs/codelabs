@@ -60,6 +60,9 @@ stages:
       - ./node_modules
     policy: pull
   when: on_success # Condition d'exécution : sera exécuté uniquement si les jobs de l'étape précédente réussissent
+  except:
+    - tags
+    - master
 
 lint:js:
   <<: *template_lint_and_test # on appel notre template
