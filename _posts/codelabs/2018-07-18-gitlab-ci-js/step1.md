@@ -12,11 +12,15 @@ Make pour simplifier nos commandes dans la phase de développement.
 ### Les workflows
 Pour git :
 Nous allons protéger la branche master.
+Nous allons créer une branche demo.
 Toute modification passera par des PRs.
-Les PRs validées par la CI et par les contributeurs seront mergées dans master.
+Les PRs validées par la CI et par les contributeurs seront mergées dans demo.
+Toute nouvelle version sera merge dans master.
 La convention de nommages des branches se fera suivant ce modèle : [NOM_DU_PROJET]/[NOM_DE_LA_FEATURE].
 La convention de nommage des commits se fera suivant ce modèle : [NOM_DE_LA_BRANCHE] - [BREF_EXPLICATION_DE_LA_MODIFICATION].
+La convention de nommage des version se fera suivant ce modèle : v[MAJOR_VERSION].[MINOR_VERSION].[SECURITY_VERSION].
 
+<!-- TODO: refaire le schémas des workflow -->
 ![Workfolw git ](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/workflow-git.png)
 ![Workflow git](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/workflow-git.svg)
 

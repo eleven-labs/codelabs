@@ -20,6 +20,12 @@ git config user.name "Nicolas Grévin"
 git config user.email "ngrevin@eleven-labs.com"
 ```
 
+On vas en profiter pour créer notre branche demo et protéger les branches demo et master, ainsi que tous les tags.
+Pour ce faire rendez-vous sur l'interface web de Gitlab et allez dans `Settings  > General > Repository`
+
+![Screenshot protected branch](https://storage.googleapis.com/tutos/assets/screenshot-protected-branch.png)
+![Screenshot protected tag](https://storage.googleapis.com/tutos/assets/screenshot-protected-tag.png)
+
 ## Initialisation de la CI/CD de gitlab-ci
 
 Pour cette partie, rien de compliqué. Il faut juste ajouter un fichier `.gitlab-ci.yml` à la racine de votre projet et pour que la CI puisse fonctionner nous allons juste mettre une déclaration `script` dans un `jobs`.
@@ -65,7 +71,8 @@ build:node_modules:
     policy: push
     paths:
       - ./node_modules
-  except: # On définit une règle d'exécution : ce job sera fait tout le temps sauf en cas de tag
+  except: # On définit une règle d'exécution : ce job sera fait tout le temps sauf sur master et en cas de tag
+    - master
     - tags
 
 build:app:
@@ -77,8 +84,10 @@ build:app:
     policy: push
     paths:
       - ./dist
-  only: # On définit une règle d'exécution : ce job sera fait uniquement sur master ou en cas de tag
-    - master
+  only: # On définit une règle d'exécution : ce job sera fait uniquement sur demo ou en cas de tag
+    - demo
     - tags
+  except: # On définit une règle d'exécution : ce job ne ce fera pas sur master
+    - master
 ```
 ![Resultat CI/CD stage build](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/screenshot-pipeline-build.png)

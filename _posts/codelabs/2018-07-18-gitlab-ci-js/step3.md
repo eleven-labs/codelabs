@@ -83,9 +83,10 @@ test:e2e:
   <<: *template_lint_and_test # on appel notre template
   image: cypress/base:8 # On utilise un image différente pour les test e2e. overwrite de l'image de base du template
   stage: test # On lie le job au stage de test
+  cache: {} # On désactive le cache pour cette étape
   script: # Les scripts exécutés pendant ce job
     - yarn install
-    - $(yarn bin)/cypress install
+    - yarn cypress install
     - yarn run test:e2e --headless
 
 # ...
