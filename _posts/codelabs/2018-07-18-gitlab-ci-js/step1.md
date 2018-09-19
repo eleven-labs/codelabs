@@ -40,7 +40,7 @@ Les code styles et tests seront effectués à chaque CI.
 Pour faire simple et pour aller vite nous allons utiliser vue-cli. Nous allons donc installer vue-cli et initialiser un projet Vue.js.
 
 ```
-$ yarn global add @vue/cli-service-global
+$ yarn global add @vue/cli@3.0.1
 # ...
 $ vue --version
 3.0.1
@@ -48,6 +48,8 @@ $ vue --version
 
 > Si vous avez des soucis avec la commande `vue` pensez à regarder votre configuration npm/yarn, et si le chemin des exécutables npm/yarn est bien déclaré dans la variable $PATH.
 
+
+> Pour la prochaine étape : espace vous permet de séléctionner les choix, le fleche bas et haut a vous déplacer et entrer pour valider
 ```
 vue create .
 
