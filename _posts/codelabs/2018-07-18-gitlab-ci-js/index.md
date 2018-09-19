@@ -42,3 +42,7 @@ sudo apt-get update && sudo apt-get install yarn
 
 yarn --version
 ```
+
+Il faut aussi :
+ - un compte google avec Google Clould Plateform
+ - un compte gitlab.com minimun

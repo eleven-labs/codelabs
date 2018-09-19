@@ -48,12 +48,40 @@ Voilà pour le credential.
 
 ## fichier app.yaml pour le deploiement sur App Engine
 
-- fichier template
-- envsubst
+Nous allons faire un template pour le fichier app.yaml pour qu’il soit générer selon son environnement grâce l’outil `envsubst` du paquet `gettext`.
+
+Voici le template du fichier app.yaml :
+```yaml
+service: ${CI_ENVIRONMENT_NAME}
+runtime: python27
+api_version: '1'
+env: standard
+threadsafe: true
+instance_class: F1
+
+handlers:
+  - url: /
+    application_readable: false
+    static_files: dist/index.html
+    require_matching_file: false
+    upload: dist/index.html
+
+  - url: '/(.*)'
+    application_readable: false
+    static_files: "dist/\\1"
+    require_matching_file: false
+    upload: 'dist/.*'
+
+```
+
+J'ai nommé ce fichier `app.template.yaml`.
 
 ## Le stage `deploy`
 
+Pour le deploiement
+
 ```yaml
+
 ```
 
 resulat
