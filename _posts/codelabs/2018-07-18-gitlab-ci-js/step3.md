@@ -14,7 +14,7 @@ make yarn "add -D stylelint stylelint-processor-html stylelint-config-standard"
 
 ## Configuration de stylelint
 
-Nous allons mettre en place une configuration standard dans le fichier `.stylelintrc` qui doit être placé à la racine de votre projet.
+Nous allons mettre en place une configuration standard dans le fichier que vous devez créer sous nom de `.stylelintrc` et qui doit être placé à la racine de votre projet.
 
 ```json
 {
