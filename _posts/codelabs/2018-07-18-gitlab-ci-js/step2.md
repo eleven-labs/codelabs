@@ -9,6 +9,8 @@ Bon, sur cette partie je pense que je ne vais rien vous apprendre. Rendez -ous s
 
 Ensuite depuis votre console :
 ```bash
+mkdir gitlas-ci-js && cd gitlas-ci-js
+
 git init
 git remote add origin git@gitlab.com:ngrevin/gitlab-ci-js.git
 git add .
