@@ -79,7 +79,42 @@ J'ai nommé ce fichier `app.template.yaml`.
 
 ## Création d'une image docker personnaliser pour notre déploiement
 
-Nous allons avoir besoin d'une image personnaliser car
+Nous allons avoir besoin d'une image personnaliser car nous allons avoir besoin de node, de git et du sdk de Google Cloud Plateform.
+
+Pour ce faire créé un fichier Dockerfile-ci dans un nouveau répertoire nommer docker.
+Voici le Dockerfile :
+
+```dockerfile
+FROM node:8-alpine
+
+ARG CLOUD_SDK_VERSION=216.0.0
+ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
+
+ENV PATH /google-cloud-sdk/bin:$PATH
+RUN apk --no-cache add \
+        curl \
+        python \
+        py-crcmod \
+        bash \
+        libc6-compat \
+        openssh-client \
+        git \
+        gnupg \
+        gettext \
+    && curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    rm google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    ln -s /lib /lib64 && \
+    gcloud config set core/disable_usage_reporting true && \
+    gcloud config set component_manager/disable_update_check true && \
+    gcloud config set metrics/environment github_docker_image && \
+    gcloud --version
+
+
+RUN apk add --update --no-cache git
+
+RUN rm -rf /var/cache/apk/*
+```
 
 ## Le stage `deploy`
 
