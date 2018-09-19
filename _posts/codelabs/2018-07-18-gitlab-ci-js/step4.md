@@ -7,6 +7,7 @@ Pour ce faire nous allons devoir :
  - Configurer le projet Google Cloud Platform.
  - Créer un credential pour pouvoir se connecter depuis notre CI/CD.
  - Créer du fichier app.yml pour App Engine.
+ - Créer une image docker personnaliser pour notre déploiement
  - Ajouter un `stage` de déploiement.
 
 ## Création du projet Google Cloud Platform
@@ -76,12 +77,16 @@ handlers:
 
 J'ai nommé ce fichier `app.template.yaml`.
 
+## Création d'une image docker personnaliser pour notre déploiement
+
+Nous allons avoir besoin d'une image personnaliser car
+
 ## Le stage `deploy`
 
 Pour le deploiement
 
 ```yaml
-.deploy_template: &deploy_template
+.deploy_template: &deploy_template # On defini notre template pour le deploiement de notre application
   stage: deploy
   image: registry.gitlab.com/ngrevin/gitlab-ci-js/deploy-image
   before_script:
@@ -136,3 +141,5 @@ deploy:production:
 ```
 
 resulat
+
+<!-- TODO: result demo and prod -->
