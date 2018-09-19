@@ -81,7 +81,58 @@ J'ai nommé ce fichier `app.template.yaml`.
 Pour le deploiement
 
 ```yaml
+.deploy_template: &deploy_template
+  stage: deploy
+  image: registry.gitlab.com/ngrevin/gitlab-ci-js/deploy-image
+  before_script:
+    - echo ${GCP_CREDENTIALS} > /tmp/${CI_PIPELINE_ID}.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - envsubst < app.template.yaml > app.yaml
+  after_script:
+    - rm /tmp/$CI_PIPELINE_ID.json
+  cache:
+    paths:
+      - ./dist
+    policy: pull
 
+deploy:demo:
+  <<: *deploy_template
+  environment:
+    name: demo
+    url: https://gitlab-ci-js.appspot.com
+  script:
+    - gcloud --quiet --verbosity=error app deploy ./app.yaml --project=gitlab-ci-js --version=${CI_PIPELINE_ID} --promote --stop-previous-version
+  only:
+    - demo
+
+deploy:production:
+  <<: *deploy_template
+  environment:
+    name: production
+    url: https://gitlab-ci-js.appspot.com
+  script:
+    - gcloud --quiet --verbosity=error app deploy ./app.yaml --project=gitlab-ci-js --version=${CI_PIPELINE_ID} --promote --stop-previous-version
+    - NEW_VERSION=$(yarn versions | grep gitlab-ci-js | sed "s/\('\| \|,\)//g" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" | cut -d":" -f2)
+    - git config --global user.name "ngrevin"
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - git checkout master
+    - cp dist/package.json .
+    - git add --all
+    - git merge demo
+    - git commit -m "NEW VERSION - v${NEW_VERSION}"
+    - git push https://ngrevin:${PERSONAL_ACCESS_TOKEN}@gitlab.com/ngrevin/gitlab-ci-js.git HEAD:master
+    - git checkout demo
+    - cp dist/package.json .
+    - git add -all
+    - git commit -m "NEW VERSION - v${NEW_VERSION}"
+    - git push https://ngrevin:${PERSONAL_ACCESS_TOKEN}@gitlab.com/ngrevin/gitlab-ci-js.git HEAD:master
+  artifacts:
+    name: v$(yarn versions | grep gitlab-ci-js | sed "s/\('\| \|,\)//g" | cut -d":" -f2)
+    untracked: false
+    paths:
+      - .
+  only:
+    - tags
 ```
 
 resulat
