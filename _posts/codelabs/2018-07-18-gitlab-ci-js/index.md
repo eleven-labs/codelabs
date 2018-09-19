@@ -20,7 +20,7 @@ Voici les étapes du tuto :
 
 ## Pré-requis
 
-Pour pouvoir faire ce tuto je vous conseil d'être sur une distribution linux et d'avoir d'insaller node avec yarn.
+Pour pouvoir faire ce tuto je vous conseil d'être sur une distribution linux et d'avoir d'insaller node version 8 avec yarn.
 
 - Installation de node 8 :
 ```bash
