@@ -100,4 +100,6 @@ build:app:
 
 > /!\ Si vous voulez voir ce résultat il faudra commenter la régle `except` pour master autrement il ne se passera rien
 
+Et voilà notre CI/CD :
+
 ![Resultat CI/CD stage build](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/screenshot-pipeline-build.png)

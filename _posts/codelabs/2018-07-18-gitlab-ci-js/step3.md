@@ -94,6 +94,9 @@ test:e2e:
 
 # ...
 ```
+
+> /!\ Si vous voulez voir ce résultat il faudra commenter la régle `except` pour master autrement il ne se passera rien
+
 Et voilà notre CI/CD :
 
 ![résultat CI/CD stage lint et test](https://storage.googleapis.com/tutos/assets/screenshot-pipeline-lint-and-test.png)
