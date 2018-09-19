@@ -169,6 +169,10 @@ Vue CLI v3.0.1
 ? Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In package.json
 ? Save this as a preset for future projects? Yes
 ? Save preset as: .vuerc
+
+? Pick the package manager to use when installing dependencies: (Use arrow keys)
+❯ Use Yarn
+ Use NPM
 ```
 Voilà pour l’installation, on vérifie que l’application fonctionne avec cette commande :
 
