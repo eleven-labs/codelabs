@@ -1,6 +1,6 @@
 {
   "title": "GitLab-ci avec une application JS",
-  "slug": "gitlab-ci-avec-une-application-js",
+  "slug": "gitlab-ci-js",
   "permalink": "/fr/gitlab-ci-js/",
   "excerpt": "Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci pour une application Vue.js",
   "stepTitles": [
@@ -11,8 +11,7 @@
     "Déploiement de notre application sur Google Cloud PLatform",
     "Test et conclusion"
   ],
-  "time": 30,
-  "date": "2018-07-18",
+  "date": "2018-09-19",
   "cover": "",
   "authors": [
     {
