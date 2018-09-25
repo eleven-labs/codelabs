@@ -108,4 +108,4 @@ Et voilà notre CI/CD :
 
 ![résultat CI/CD stage lint et test](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-pipeline-lint-and-test.png)
 
-Vous créez un PR et vous la mergé dans master
+Vous créez un PR et vous la mergé dans master. Et voilà pour la deuxième étape, passons à la suivante.

@@ -3,9 +3,10 @@ Dans ce tutoriel nous allons voir comment mettre en place un CI/CD avec Gitlab.
 Si vous voulez en savoir plus sur gitlab CI/CD j'ai aussi écrit un article sur le blog Eleven Labs [CI/CD avec Gitlab-ci](https://blog.eleven-labs.com/fr/ci-cd-avec-gitlab-ci)
 
 Vous pouvez retrouver tout la documentation sur le site officiel de gitlab :
-gitlab-ci
-get started
-runner
+- [GitLab Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html)
+- [Getting started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/README.html)
+- [Configuration of your jobs with .gitlab-ci.yml](https://docs.gitlab.com/ee/ci/yaml/README.html)
+- [GitLab Runner](https://docs.gitlab.com/runner/)
 
 ## Le programme du tutoriel
 
@@ -46,9 +47,3 @@ yarn --version
 Il faut aussi :
  - un compte google avec Google Clould Plateform
  - un compte gitlab.com minimun
-
-
-# Conseil
-
-Je vous conseil de créer une nouvelle branche pour chaque étapes car nous allons mettre en place de régle pour que nous `jobs` ne soit jamais éxécuter sur `master`.
-Je vous conseil 

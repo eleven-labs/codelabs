@@ -9,31 +9,11 @@ Docker pour notre environnement de développement.
 Node avec npm et yarn pour exécuter notre application sur notre environnement de dev.
 Make pour simplifier nos commandes dans la phase de développement.
 
-### Les workflows
-Pour git :
-Nous allons protéger la branche master.
-Nous allons créer une branche demo.
-Toute modification passera par des PRs.
-Les PRs validées par la CI et par les contributeurs seront mergées dans demo.
-Toute nouvelle version sera merge dans master.
-La convention de nommages des branches se fera suivant ce modèle : [NOM_DU_PROJET]/[NOM_DE_LA_FEATURE].
-La convention de nommage des commits se fera suivant ce modèle : [NOM_DE_LA_BRANCHE] - [BREF_EXPLICATION_DE_LA_MODIFICATION].
-La convention de nommage des version se fera suivant ce modèle : v[MAJOR_VERSION].[MINOR_VERSION].[SECURITY_VERSION].
+### Le workflow de le CI/CD
 
-<!-- TODO: refaire le schémas des workflow -->
-![Workfolw git ](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/workflow-git.png)
-![Workflow git](https://storage.googleapis.com/tutos/assets/2018-07-18-gitlab-ci-js/workflow-git.svg)
+Voici les trois workflow de notre CI/CD que nous aurons a la fin de ce tutoriel :
 
-Pour la CI/CD :
-La CI sera lancée à chaque fois que du code sera poussé sur une branche y compris master.
-La CD sera lancé à chaque fois qu’une branche sera mergée dans master et à chaque tag fait par le mainteneur du projet.
-La CD effectuée à chaque merge sur master aboutira au déploiement sur l'environnement de démonstration.
-La CD effectuée à chaque tag aboutira au déploiement sur l'environnement de production.
-Une étape de build pour les dépenses node sera faite à chaque CI.
-Une étape de build de l’application sera faite à chaque CD.
-Les code styles et tests seront effectués à chaque CI.
-
-<!-- TODO: schema ou autre -->
+![Workflow gitlab-ci app js](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/workflow-gitlab-ci-app-js.svg)
 
 ## Initialisation de l’application Vue.js
 

@@ -112,4 +112,4 @@ Et voilà notre CI/CD :
 
 ![Resultat CI/CD stage build](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-pipeline-build.png)
 
-Vous créez un PR et vous la mergé dans master
+Vous créez un PR et vous la mergé dans master. Et voilà pour la première étape, passons à la suivante.

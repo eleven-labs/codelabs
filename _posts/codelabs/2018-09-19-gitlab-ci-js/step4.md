@@ -231,4 +231,4 @@ Vous créez un PR et vous la mergé dans demo
 
 Et voila le résultat de notre CI/CD pour le déploiement en démo :
 
-![résultat CI/CD stage lint et test](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-deploy-demo.png)
+![résultat CI/CD déploiement production](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-deploy-demo.png)
