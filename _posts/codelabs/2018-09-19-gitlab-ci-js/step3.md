@@ -95,8 +95,17 @@ test:e2e:
 # ...
 ```
 
-> /!\ Si vous voulez voir ce résultat il faudra commenter la régle `except` pour master autrement il ne se passera rien
+On push nos modifications :
+
+```bash
+git checkout -b gitlab-ci-js/step2
+git add .
+git commit -m “gitlab-ci-js/step2 - update .gitlab-ci.yml”
+git origin gitlab-ci-js/step2
+```
 
 Et voilà notre CI/CD :
 
-![résultat CI/CD stage lint et test](https://storage.googleapis.com/tutos/assets/screenshot-pipeline-lint-and-test.png)
+![résultat CI/CD stage lint et test](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-pipeline-lint-and-test.png)
+
+Vous créez un PR et vous la mergé dans master

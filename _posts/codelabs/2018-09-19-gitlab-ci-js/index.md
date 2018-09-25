@@ -46,3 +46,9 @@ yarn --version
 Il faut aussi :
  - un compte google avec Google Clould Plateform
  - un compte gitlab.com minimun
+
+
+# Conseil
+
+Je vous conseil de créer une nouvelle branche pour chaque étapes car nous allons mettre en place de régle pour que nous `jobs` ne soit jamais éxécuter sur `master`.
+Je vous conseil 
