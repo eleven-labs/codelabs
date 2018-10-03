@@ -30,7 +30,7 @@ Pour ce faire rendez-vous sur l'interface web de Gitlab et allez dans `Settings 
 
 ## Initialisation de la CI/CD de gitlab-ci
 
-Pour cette partie, rien de compliqué. Il faut juste ajouter un fichier `.gitlab-ci.yml` à la racine de votre projet et pour que la CI puisse fonctionner nous allons juste mettre une déclaration `script` dans un `jobs`.
+Pour cette partie, rien de compliqué. Il faut juste ajouter un fichier `.gitlab-ci.yml` à la racine de votre projet et pour que la CI puisse fonctionner nous allons juste mettre une déclaration `script` dans un `job`.
 
 ```yaml
 init:gitlab-ci:
