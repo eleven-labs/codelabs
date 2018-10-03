@@ -35,19 +35,19 @@ $ vue --version
 ```bash
 vue create .
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Generate project in current directory? (Y/n) y
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset:
   default (babel, eslint)
 ❯ Manually select features
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -62,14 +62,14 @@ Vue CLI v3.0.1
  ◉ Unit Testing
  ◉ E2E Testing
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
 ? Check the features needed for your project: Babel, Router, Vuex, CSS Pre-processors, Linter, Unit, E2E
 ? Use history mode for router? (Requires proper server setup for index fallback in production) (Y/n) Y
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -80,7 +80,7 @@ Vue CLI v3.0.1
   LESS
   Stylus
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -93,7 +93,7 @@ Vue CLI v3.0.1
 ❯ ESLint + Standard config
   ESLint + Prettier
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -105,7 +105,7 @@ Vue CLI v3.0.1
 ❯◉ Lint on save
  ◯ Lint and fix on commit
 
-#############################
+# ---------------------------
 
  Vue CLI v3.0.1
  ? Please pick a preset: Manually select features
@@ -118,7 +118,7 @@ Vue CLI v3.0.1
  ❯ Mocha + Chai
    Jest
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -132,7 +132,7 @@ Vue CLI v3.0.1
 ❯ Cypress (Chrome only)
  Nightwatch (Selenium-based)
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -147,7 +147,7 @@ Vue CLI v3.0.1
  In dedicated config files
 ❯ In package.json
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -161,7 +161,7 @@ Vue CLI v3.0.1
 ? Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In package.json
 ? Save this as a preset for future projects? (y/N) y
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -176,7 +176,7 @@ Vue CLI v3.0.1
 ? Save this as a preset for future projects? Yes
 ? Save preset as: .vuerc
 
-#############################
+# ---------------------------
 
 ? Pick the package manager to use when installing dependencies: (Use arrow keys)
 ❯ Use Yarn
