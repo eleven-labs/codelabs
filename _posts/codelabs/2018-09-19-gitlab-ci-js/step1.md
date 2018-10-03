@@ -20,7 +20,7 @@ Voici les trois workflows de notre CI/CD que nous aurons a la fin de ce tutoriel
 
 Pour faire simple et pour aller vite nous allons utiliser vue-cli. Nous allons donc installer vue-cli et initialiser un projet Vue.js.
 
-```
+```bash
 $ yarn global add @vue/cli@3.0.1
 # ...
 $ vue --version
@@ -31,7 +31,8 @@ $ vue --version
 
 
 > Pour la prochaine étape : espace vous permet de sélectionner les choix, les flêches bas et haut de vous déplacer et entrée de valider
-```
+
+```bash
 vue create .
 
 #############################
@@ -183,7 +184,7 @@ Vue CLI v3.0.1
 ```
 Voilà pour l’installation, on vérifie que l’application fonctionne avec cette commande :
 
-```
+```bash
 yarn serve
 ```
 ![Screenshot app Vue.js init](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-app-vue-js-init.png)
