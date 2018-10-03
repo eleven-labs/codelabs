@@ -13,7 +13,7 @@ Vous pouvez retrouver toute la documentation sur le site officiel de gitlab :
 Alors dans ce tuto nous allons mettre en place une CI/CD pour une application Vue.js avec GitLab-ci.
 
 Voici les étapes du tuto :
- 1. Définition des besoins et préparation de notre application
+ 1. Conception et préparation de l'environnement applicatif 
  * Initialisation de la CI/CD et préparation de notre application pour notre CI/CD
  * Mise en place des phases de code style et de test
  * Déploiement de notre application sur Google Cloud PLatform

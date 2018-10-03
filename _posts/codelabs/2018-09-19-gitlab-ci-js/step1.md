@@ -1,8 +1,8 @@
-# Définition des besoins et préparation de notre application
+# Conception et préparation de l'environnement applicatif
 
 Pour cette première étape nous allons commencer par définir nos besoins en termes de technologies à mettre en place mais aussi en termes de workflows git et de CI/CD. Puis nous allons initialiser notre application.
 
-## Définition des besoins
+## Conception
 
 ### Les technologies
 
