@@ -5,6 +5,7 @@ Pour cette première étape nous allons commencer par définir nos besoins en te
 ## Définition des besoins
 
 ### Les technologies
+
 Docker pour notre environnement de développement.
 Node avec npm et yarn pour exécuter notre application sur notre environnement de dév.
 Make pour simplifier nos commandes dans la phase de développement.
@@ -115,7 +116,7 @@ Vue CLI v3.0.1
  ? Pick a unit testing solution: (Use arrow keys)
  ❯ Mocha + Chai
    Jest
-   
+
 #############################
 
 Vue CLI v3.0.1
@@ -129,7 +130,7 @@ Vue CLI v3.0.1
 ? Pick a E2E testing solution: (Use arrow keys)
 ❯ Cypress (Chrome only)
  Nightwatch (Selenium-based)
- 
+
 #############################
 
 Vue CLI v3.0.1

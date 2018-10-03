@@ -21,7 +21,7 @@ Voici les étapes du tuto :
 
 ## Pré-requis
 
-Pour pouvoir faire ce tuto je vous conseille d'être sur une distribution linux et d'avoir d'installé node version 8 avec yarn.
+Pour pouvoir faire ce tuto je vous conseille d'avoir d'installé node version 8 avec yarn.
 
 - Installation de node 8 :
 ```bash
@@ -45,5 +45,5 @@ yarn --version
 ```
 
 Il faut aussi :
- - un compte google avec Google Clould Plateform
- - un compte gitlab.com minimun
+ - un compte [google avec Google Clould Plateform](https://accounts.google.com/signup/v2/webcreateaccount?service=cloudconsole&continue=https%3A%2F%2Fconsole.cloud.google.com%2F&flowName=GlifWebSignIn&flowEntry=SignUp&nogm=true)
+ - un compte [gitlab.com](https://gitlab.com/users/sign_in#register-pane) minimun
