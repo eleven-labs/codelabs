@@ -2,7 +2,7 @@ Dans ce tutoriel nous allons voir comment mettre en place un CI/CD avec Gitlab.
 
 Si vous voulez en savoir plus sur gitlab CI/CD j'ai aussi écrit un article sur le blog Eleven Labs [CI/CD avec Gitlab-ci](https://blog.eleven-labs.com/fr/ci-cd-avec-gitlab-ci)
 
-Vous pouvez retrouver tout la documentation sur le site officiel de gitlab :
+Vous pouvez retrouver toute la documentation sur le site officiel de gitlab :
 - [GitLab Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html)
 - [Getting started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/README.html)
 - [Configuration of your jobs with .gitlab-ci.yml](https://docs.gitlab.com/ee/ci/yaml/README.html)
@@ -14,14 +14,14 @@ Alors dans ce tuto nous allons mettre en place une CI/CD pour une application Vu
 
 Voici les étapes du tuto :
  1. Définition des besoins et préparation de notre application
- * Initialisation de la CI/CD et préparation du notre application pour notre CI/CD
+ * Initialisation de la CI/CD et préparation de notre application pour notre CI/CD
  * Mise en place des phases de code style et de test
  * Déploiement de notre application sur Google Cloud PLatform
  * Test et conclusion
 
 ## Pré-requis
 
-Pour pouvoir faire ce tuto je vous conseil d'être sur une distribution linux et d'avoir d'insaller node version 8 avec yarn.
+Pour pouvoir faire ce tuto je vous conseille d'être sur une distribution linux et d'avoir d'installé node version 8 avec yarn.
 
 - Installation de node 8 :
 ```bash
