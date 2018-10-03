@@ -34,4 +34,4 @@ Je vous ai montré un exemple mais il existe des milliers de possibilités de co
 
 Peut-être l'aurez-vous remarqué, mais gitlab peut être quelque fois lent ou présenter des bugs. Pour des petits projets ce n'est pas forcément dérangeant.
 
-J'éspère que ce tutoriel vous a été utile et vous a donné envie de mettre une CI/CD dans vos projet pour les rendre plus Agile avec le mouvement DevOps.
+J'éspère que ce tutoriel vous a été utile et vous a donné envie de mettre une CI/CD dans vos projet pour les rendre plus Agiles avec le mouvement DevOps.
