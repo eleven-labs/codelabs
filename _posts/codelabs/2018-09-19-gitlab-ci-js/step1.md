@@ -6,12 +6,12 @@ Pour cette première étape nous allons commencer par définir nos besoins en te
 
 ### Les technologies
 Docker pour notre environnement de développement.
-Node avec npm et yarn pour exécuter notre application sur notre environnement de dev.
+Node avec npm et yarn pour exécuter notre application sur notre environnement de dév.
 Make pour simplifier nos commandes dans la phase de développement.
 
 ### Le workflow de le CI/CD
 
-Voici les trois workflow de notre CI/CD que nous aurons a la fin de ce tutoriel :
+Voici les trois workflows de notre CI/CD que nous aurons a la fin de ce tutoriel :
 
 ![Workflow gitlab-ci app js](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/workflow-gitlab-ci-app-js.svg)
 
@@ -29,7 +29,7 @@ $ vue --version
 > Si vous avez des soucis avec la commande `vue` pensez à regarder votre configuration npm/yarn, et si le chemin des exécutables npm/yarn est bien déclaré dans la variable $PATH.
 
 
-> Pour la prochaine étape : espace vous permet de séléctionner les choix, le fleche bas et haut a vous déplacer et entrer pour valider
+> Pour la prochaine étape : espace vous permet de sélectionner les choix, les flêches bas et haut de vous déplacer et entrée de valider
 ```
 vue create .
 
@@ -189,7 +189,7 @@ yarn serve
 
 ## Make
 
-Pour simplifier les commandes docker et pour que l’application soit sous docker, j'ai fait un makefile, je l’utilise dans la majorité de mes applications et ça fonctionne bien.
+Pour simplifier les commandes docker et pour que l’application soit sous docker, j'ai fait un makefile. Je l’utilise dans la majorité de mes applications et ça fonctionne bien.
 
 Comme le tuto ne porte pas sur ce sujet je vous le donne sans vous donner l'explication mais ça sera peut-être un sujet que j’aborderai dans l’avenir :).
 
