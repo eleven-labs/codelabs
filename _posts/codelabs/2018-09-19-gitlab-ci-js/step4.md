@@ -6,14 +6,14 @@ Pour ce faire nous allons devoir :
  - Créer un projet sur Google Cloud Platform.
  - Configurer le projet Google Cloud Platform.
  - Créer un credential pour pouvoir se connecter depuis notre CI/CD.
- - Créer du fichier app.yml pour App Engine.
- - Créer une image docker personnaliser pour notre déploiement
- - Créer un token pour pouvoir faire des push depuis notre CI/CD
+ - Créer le fichier app.yml pour App Engine.
+ - Créer une image docker personnalisée pour notre déploiement
+ - Créer un token pour pouvoir faire des pushs depuis notre CI/CD
  - Ajouter un `stage` de déploiement.
 
 ## Création du projet Google Cloud Platform
 
-La première chose à faire c’est de se connecter ou s'inscrire sur la [console de Google Cloud Platform](https://console.cloud.google.com). Si tout vas bien vous arriverez sur cette page là :
+La première chose à faire c’est de se connecter ou s'inscrire sur la [console de Google Cloud Platform](https://console.cloud.google.com). Si tout va bien vous arriverez sur cette page :
 
 ![Home page de la console Google Cloud Platform ](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-home-page-gcp-console.png)
 
@@ -21,38 +21,38 @@ Puis vous cliquez sur créer et vous entrez le nom de votre projet. Vous pouvez 
 
 ![Page de création de projet GCP](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-create-project-gcp.png)
 
-> /!\ Dans mon cas l’ID du projet est déjà utilisée car je l’avai déjà créer.
+> /!\ Dans mon cas, l’ID du projet est déjà utilisée car je l’avais déjà créée.
 
 ## Configuration du projet Google Cloud Platform
 
-Pour que le déploiement sur GCP App Engine il faut activer deux APIs :
+Pour le déploiement sur GCP App Engine il faut activer deux APIs :
 
- - App Engine Admin API : Cette API permet de provisionner et de manager des application App Engine.
- - Compute Engine API : Cette API permet de créer et de démarrer des machines dans GCP.
+ - App Engine Admin API : cette API permet de provisionner et de manager des applications App Engine.
+ - Compute Engine API : cette API permet de créer et de démarrer des machines dans GCP.
 
-Pour activer une API il faut, depuis la console GCP, aller dans le menu droite dans `API et services`. Ensuite aller dans la bibliothèque et avec la barre de recherche trouver les API que vous intéresse. Accéder à la page de l’API et activait la.
+Pour activer une API il faut, depuis la console GCP, aller dans le menu droite dans `API et services`. Ensuite, allez dans la bibliothèque, et avec la barre de recherche trouvez les APIs que vous intéressent. Accédez à la page de l’API et activez-la.
 
 ## Création de credential
 
-Il nous faudra aussi des des identifiant pour nous connecter depuis la CI/CD. Pour ce faire, toujours dans `API et services` aller dans le sous-section `identifiant` et cliquez sur `créer des identifiants` puis `créer une clé de compte de service`.
+Il nous faudra aussi des identifiants pour nous connecter depuis la CI/CD. Pour ce faire, toujours dans `API et services`, allez dans la sous-section `identifiant` et cliquez sur `créer des identifiants` puis `créer une clé de compte de service`.
 
 Vous arrivez sur l'écran ci-dessous. Sélectionnez `App Engine default service account` et `json`.
 
 ![Création de clé de compte de service](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-create-service-key.png)
 
-Un fichier au format `json` est automatiquement télécharger sur votre ordinateur. Copier l'intégralité du contenu de ce fichier et aller dans l’interface web de Gitlab dans `Settings > CI/CD > Variables`.
+Un fichier au format `json` est automatiquement téléchargé sur votre ordinateur. Copiez l'intégralité du contenu de ce fichier et allez dans l’interface web de Gitlab dans `Settings > CI/CD > Variables`.
 
-Ici nous créons une nouvelle variables que l’on vas nommer `GCP_CREDENTIALS` et contenant le contenu du fichier précédemment téléchargé.
+Ici, nous créons une nouvelle variable que l’on va nommer `GCP_CREDENTIALS` et contenant le contenu du fichier précédemment téléchargé.
 
 ![Gitlab - CI/CD Settings - Variables](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-gitlab-ci-cd-settings-variables.png)
 
 Voilà pour le credential.
 
-> /!\ n'activer pas la protection autrement la variable ne pourra pas être utiliser dans les prochaines étapes
+> /!\ N'activez pas la protection, autrement la variable ne pourra pas être utilisée dans les prochaines étapes
 
-## fichier app.yaml pour le deploiement sur App Engine
+## fichier app.yaml pour le déploiement sur App Engine
 
-Nous allons faire un template pour le fichier app.yaml pour qu’il soit générer selon son environnement grâce l’outil `envsubst` du paquet `gettext`.
+Nous allons faire un template pour le fichier app.yaml afin qu’il soit généré selon son environnement grâce l’outil `envsubst` du paquet `gettext`.
 
 Voici le template du fichier app.yaml :
 ```yaml
@@ -78,16 +78,16 @@ handlers:
 
 ```
 
-Nous allons nommé ce fichier `app.template.yaml`. Dans notre CI/CD nous éxécuterons la commande suivant `envsubst < app.template.yaml > app.yaml`, elle nous permettera modifier les variables d'environnement de notre fichier et créer le fichier `app.yml`.
+Nous allons nommer ce fichier `app.template.yaml`. Dans notre CI/CD nous éxécuterons la commande suivante `envsubst < app.template.yaml > app.yaml`, elle nous permettera de modifier les variables d'environnement de notre fichier et de créer le fichier `app.yml`.
 
 
-## Création d'une image docker personnaliser pour notre déploiement
+## Création d'une image docker personnalisée pour notre déploiement
 
-Nous allons avoir besoin d'une image personnaliser car nous allons avoir besoin de node, de git et du sdk de Google Cloud Plateform.
+Nous allons avoir besoin d'une image personnalisée car nous allons avoir besoin de node, de git et du sdk de Google Cloud Plateform.
 
-> Dans le cas où vous n'avais pas besoin de git et de node sachez qui éxiste une image docker avec le sdk de GCP déjà installé. [google/cloud-sdk](https://hub.docker.com/r/google/cloud-sdk/)
+> Dans le cas où vous n'auriez pas besoin de git et de node sachez qu'il existe une image docker avec le sdk de GCP déjà installé. [google/cloud-sdk](https://hub.docker.com/r/google/cloud-sdk/)
 
-Pour ce faire créé un fichier Dockerfile-ci dans un nouveau répertoire nommer docker.
+Pour ce faire, créez un fichier Dockerfile-ci dans un nouveau répertoire nommé docker.
 Voici le Dockerfile :
 
 ```dockerfile
@@ -122,7 +122,7 @@ RUN apk add --update --no-cache git
 RUN rm -rf /var/cache/apk/*
 ```
 
-Nous allons mettre notre image sur le registry de notre dêpot. Pour ce faire nous éxécutons les commande suivante:
+Nous allons mettre notre image sur le registry de notre dépôt. Pour ce faire nous éxécutons les commandes suivantes :
 
 ```bash
 # On se connecte au registry de gitlab.com
@@ -137,18 +137,18 @@ docker push registry.gitlab.com/ngrevin/gitlab-ci-js/deploy-image
 
 ## Token gitlab
 
-Pour créer un `token` sur gitlab rendez vous sur la page [Personal Access Token](https://gitlab.com/profile/personal_access_tokens) `Profile > Personal Access Token`.
-Donner lui un nom, ici j'ai choisi `PERSONAL_ACCESS_TOKEN` et donner lui les droits suiffisants.
+Pour créer un `token` sur gitlab rendez-vous sur la page [Personal Access Token](https://gitlab.com/profile/personal_access_tokens) `Profile > Personal Access Token`.
+Donnez-lui un nom, ici j'ai choisi `PERSONAL_ACCESS_TOKEN`, et donnez-lui les droits suiffisants.
 
-En suite, comme pour les credentials de GCP créer une variable d'environnement dans votre projet avec l'access token précédement créé.
+En suite, comme pour les credentials de GCP, créez une variable d'environnement dans votre projet avec l'access token précédement créé.
 
-> /!\ n'activer pas la protection autrement la variable ne pourra pas être utiliser dans les prochaines étapes
+> /!\ N'activez pas la protection, autrement la variable ne pourra pas être utilisée dans les prochaines étapes
 
 ## Le stage deploy
 
-Maintenant que tout est prêt il nous reste juste à déploier notre application avec Gitlab-ci.
+Maintenant que tout est prêt il nous reste juste à déployer notre application avec Gitlab-ci.
 
-Nous allons donc ajouter ajouter deux nouveaux `jobs` dans notre dernière `stage`.
+Nous allons donc ajouter deux nouveaux `jobs` dans notre dernière `stage`.
 
 ```yaml
 .deploy_template: &deploy_template # On defini notre template pour le deploiement de notre application
@@ -171,39 +171,39 @@ deploy:demo:
     name: demo
     url: https://demo-dot-gitlab-ci-js.appspot.com # on indique l'url de notre application de demo
   script:
-    # Nous déployons notre applictaion avec la commande 'gcloud app deploy ./app.yml --project=gitlab-ci-js'
-    # Comme nous ne voulons pas d'intéraction nous ajoutons l'option 'quiet'
-    # Comme nous voulons voir le log lors du déployement nous ajoutons l'option 'verbosity' avec la valeur à 'error'
-    # Le numéro de version seron l'id de la pipeline
-    # Avec '--promote --stop-previous-version' nous arretons la version précédante en promovant la nouvelle version
+    # Nous déployons notre application avec la commande 'gcloud app deploy ./app.yml --project=gitlab-ci-js'
+    # Comme nous ne voulons pas d'interaction nous ajoutons l'option 'quiet'
+    # Comme nous voulons voir le log lors du déploiement nous ajoutons l'option 'verbosity' avec la valeur à 'error'
+    # Le numéro de version sera l'id de la pipeline
+    # Avec '--promote --stop-previous-version' nous arrêtons la version précédente en promouvant la nouvelle version
     - gcloud --quiet --verbosity=error app deploy ./app.yaml --project=gitlab-ci-js --version=${CI_PIPELINE_ID} --promote --stop-previous-version
   only:
     - demo
 
 deploy:production:
-  <<: *deploy_template # on appel notre template
+  <<: *deploy_template # on appelle notre template
   environment: # On définit notre environnment
     name: production
     url: https://production-dot-gitlab-ci-js.appspot.com # on indique l'url de notre application de production
   script:
     # Idem que pour l'environnment de demo
     - gcloud --quiet --verbosity=error app deploy ./app.yaml --project=gitlab-ci-js --version=${CI_PIPELINE_ID} --promote --stop-previous-version
-    # Nous configurons git et nous mettons a jour l'orignie avec notre token
+    # Nous configurons git et nous mettons à jour l'origine avec notre token
     - git config --global user.name "ngrevin"
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git remote rm origin
     - git remote add origin https://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/ngrevin/gitlab-ci-js.git
     - git fetch --all
-    # Nous passons sur demo et nous copions 'dist/package.json' à la racine de notre projet pour remplacer l'ancien fichier 'package.json' car la version a était mise a jour lors de job build:app
+    # Nous passons sur demo et nous copions 'dist/package.json' à la racine de notre projet pour remplacer l'ancien fichier 'package.json' car la version a été mise à jour lors de job build:app
     - git checkout demo
     - cp dist/package.json .
-    # On récupére le numero de version grâce a la commande 'yarn versions' et nous la formattons sans tout les informations, juste le numéron et sans couleur
+    # On récupère le numéro de version grâce a la commande 'yarn versions' et nous la formattons sans d'autre information que le numéro, et sans couleur
     - NEW_VERSION=$(yarn versions | grep gitlab-ci-js | sed "s/\('\| \|,\)//g" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" | cut -d":" -f2)
-    # ON ajoute nos modifications, on commit et on pousse les modifications
+    # On ajoute nos modifications, on commit et on pousse les modifications
     - git add --all
     - git commit -m "NEW VERSION - v${NEW_VERSION}"
     - git push https://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/ngrevin/gitlab-ci-js.git demo
-    # Ici nous allons merge demo dans master en écrassant master par rapport a demo, puis nous poussons les modifications sur master
+    # Ici nous allons merge demo dans master en écrasant master par rapport à demo, puis nous poussons les modifications sur master
     - git merge -s ours origin/master -m "Merge for new version"
     - git checkout master
     - git merge --no-ff --commit -m "NEW VERSION - v${NEW_VERSION}" demo
@@ -227,8 +227,8 @@ git commit -m “gitlab-ci-js/step3 - add .gitlab-ci.yml”
 git origin gitlab-ci-js/step3
 ```
 
-Vous créez un PR et vous la mergé dans demo
+Vous créez une PR et vous la mergez dans demo
 
-Et voila le résultat de notre CI/CD pour le déploiement en démo :
+Et voilà le résultat de notre CI/CD pour le déploiement en démo :
 
 ![résultat CI/CD déploiement production](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-deploy-demo.png)
