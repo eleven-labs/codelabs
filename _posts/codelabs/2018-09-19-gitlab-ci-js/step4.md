@@ -55,6 +55,7 @@ Voilà pour le credential.
 Nous allons faire un template pour le fichier app.yaml afin qu’il soit généré selon son environnement grâce l’outil `envsubst` du paquet `gettext`.
 
 Voici le template du fichier app.yaml :
+
 ```yaml
 service: ${CI_ENVIRONMENT_NAME}
 runtime: python27

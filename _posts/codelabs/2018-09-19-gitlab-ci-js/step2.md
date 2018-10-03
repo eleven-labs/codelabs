@@ -8,6 +8,7 @@ Bon, sur cette partie je pense que je ne vais rien vous apprendre. Rendez-vous s
 ![Screenshot create project gitlab](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-create-project-gitlab.png)
 
 Ensuite depuis votre console :
+
 ```bash
 mkdir gitlas-ci-js && cd gitlas-ci-js
 
@@ -46,8 +47,7 @@ git commit -m “gitlab-ci-js/hello-gitlab-ci - add .gitlab-ci.yml”
 git push origin gitlab-ci-js/hello-gitlab-ci
 ```
 Et voilà le résultat :
-```bash
-```
+
 ![Resultat initialisation gitlab-ci](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/result-init-gitlab-ci.png)
 
 ## Préparation de notre application pour notre CI/CD

@@ -20,7 +20,7 @@ Voici les trois workflows de notre CI/CD que nous aurons a la fin de ce tutoriel
 
 Pour faire simple et pour aller vite nous allons utiliser vue-cli. Nous allons donc installer vue-cli et initialiser un projet Vue.js.
 
-```
+```bash
 $ yarn global add @vue/cli@3.0.1
 # ...
 $ vue --version
@@ -31,22 +31,23 @@ $ vue --version
 
 
 > Pour la prochaine étape : espace vous permet de sélectionner les choix, les flêches bas et haut de vous déplacer et entrée de valider
-```
+
+```bash
 vue create .
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Generate project in current directory? (Y/n) y
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset:
   default (babel, eslint)
 ❯ Manually select features
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -61,14 +62,14 @@ Vue CLI v3.0.1
  ◉ Unit Testing
  ◉ E2E Testing
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
 ? Check the features needed for your project: Babel, Router, Vuex, CSS Pre-processors, Linter, Unit, E2E
 ? Use history mode for router? (Requires proper server setup for index fallback in production) (Y/n) Y
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -79,7 +80,7 @@ Vue CLI v3.0.1
   LESS
   Stylus
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -92,7 +93,7 @@ Vue CLI v3.0.1
 ❯ ESLint + Standard config
   ESLint + Prettier
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -104,7 +105,7 @@ Vue CLI v3.0.1
 ❯◉ Lint on save
  ◯ Lint and fix on commit
 
-#############################
+# ---------------------------
 
  Vue CLI v3.0.1
  ? Please pick a preset: Manually select features
@@ -117,7 +118,7 @@ Vue CLI v3.0.1
  ❯ Mocha + Chai
    Jest
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -131,7 +132,7 @@ Vue CLI v3.0.1
 ❯ Cypress (Chrome only)
  Nightwatch (Selenium-based)
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -146,7 +147,7 @@ Vue CLI v3.0.1
  In dedicated config files
 ❯ In package.json
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -160,7 +161,7 @@ Vue CLI v3.0.1
 ? Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In package.json
 ? Save this as a preset for future projects? (y/N) y
 
-#############################
+# ---------------------------
 
 Vue CLI v3.0.1
 ? Please pick a preset: Manually select features
@@ -175,7 +176,7 @@ Vue CLI v3.0.1
 ? Save this as a preset for future projects? Yes
 ? Save preset as: .vuerc
 
-#############################
+# ---------------------------
 
 ? Pick the package manager to use when installing dependencies: (Use arrow keys)
 ❯ Use Yarn
@@ -183,7 +184,7 @@ Vue CLI v3.0.1
 ```
 Voilà pour l’installation, on vérifie que l’application fonctionne avec cette commande :
 
-```
+```bash
 yarn serve
 ```
 ![Screenshot app Vue.js init](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-app-vue-js-init.png)
