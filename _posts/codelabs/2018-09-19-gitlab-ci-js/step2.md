@@ -1,9 +1,9 @@
-# Initialisation de la CI/CD et préparation du notre application pour notre CI/CD
+# Initialisation de la CI/CD et préparation de l'application pour notre CI/CD
 
-Pour cette deuxième étape nous allons initialiser notre CI/CD et préparer notre application pour le temps d'exécution de notre CI/CD.
+Pour cette deuxième étape nous allons initialiser la CI/CD et préparer notre application pour le temps d'exécution de notre CI/CD.
 
 ## Initialisation du repository gitlab
-Bon, sur cette partie je pense que je ne vais rien vous apprendre. Rendez -ous sur l’interface de gitlab, puis dans projet, et enfin cliquez sur `New project`.
+Bon, sur cette partie je pense que je ne vais rien vous apprendre. Rendez-vous sur l’interface de gitlab, puis dans projet, et enfin cliquez sur `New project`.
 
 ![Screenshot create project gitlab](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-create-project-gitlab.png)
 
@@ -22,7 +22,7 @@ git config user.name "ngrevin"
 git config user.email "ngrevin@eleven-labs.com"
 ```
 
-On vas en profiter pour créer notre branche demo et protéger les branches demo et master, ainsi que tous les tags.
+On va en profiter pour créer notre branche demo et protéger les branches demo et master, ainsi que tous les tags.
 Pour ce faire rendez-vous sur l'interface web de Gitlab et allez dans `Settings  > General > Repository`
 
 ![Screenshot protected branch](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-protected-branch.png)
@@ -73,19 +73,19 @@ build:node_modules:
     policy: push
     paths:
       - ./node_modules
-  except: # On définit une règle d'exécution : ce job sera fait tout le temps sauf sur master et demo,mais aussi en cas de tag
+  except: # On définit une règle d'exécution : ce job sera fait tout le temps sauf sur master et demo, mais aussi en cas de tag
     - master
     - demo
     - tags
 
 build:app:
   <<: *template_build # on appelle notre template
-  before_script: # On met a jour la version de package.json si nous somme sur un tag
+  before_script: # On met à jour la version de package.json si nous sommes sur un tag
     - if [ ! -z "${CI_COMMIT_TAG}" ]; then npm version ${CI_COMMIT_TAG:1}; fi
   script: # Les scripts exécutés pendant ce job
     - yarn install
     - yarn build
-  after_script: # On sauvegarde le fichier package.json dans le repertoir "dist" pour le mettre en cache
+  after_script: # On sauvegarde le fichier package.json dans le répertoire "dist" pour le mettre en cache
     - cp package.json dist/package.json
   cache: # on définit notre cache
     policy: push
@@ -95,7 +95,7 @@ build:app:
   only: # On définit une règle d'exécution : ce job sera fait uniquement sur demo ou en cas de tag
     - demo
     - tags
-  except: # On définit une règle d'exécution : ce job ne ce fera pas sur master
+  except: # On définit une règle d'exécution : ce job ne se fera pas sur master
     - master
 ```
 
@@ -110,6 +110,6 @@ git origin gitlab-ci-js/step1
 
 Et voilà notre CI/CD :
 
-![Resultat CI/CD stage build](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-pipeline-build.png)
+![Résultat CI/CD stage build](https://storage.googleapis.com/tutos/assets/2018-09-19-gitlab-ci-js/screenshot-pipeline-build.png)
 
-Vous créez un PR et vous la mergé dans master. Et voilà pour la première étape, passons à la suivante.
+Vous créez une PR et vous la mergez dans master. Et voilà pour la première étape ! Passons à la suivante.
