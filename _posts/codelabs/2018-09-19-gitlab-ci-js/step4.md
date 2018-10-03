@@ -153,10 +153,10 @@ Nous allons donc ajouter deux nouveaux `jobs` dans notre dernière `stage`.
 ```yaml
 .deploy_template: &deploy_template # On defini notre template pour le deploiement de notre application
   stage: deploy # On lie nous prochain job avec le stage 'deploy'
-  image: registry.gitlab.com/ngrevin/gitlab-ci-js/deploy-image # 
+  image: registry.gitlab.com/ngrevin/gitlab-ci-js/deploy-image #
   before_script: # Avant le script principale nous faisons :
     - echo ${GCP_CREDENTIALS} > /tmp/${CI_PIPELINE_ID}.json # Nous récuperons notre variables 'GCP_CREDENTIALS' et on la sauvegarde dans un fichier
-    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json # Grâce au fichier précédement créer nous nous connectons à GCP 
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json # Grâce au fichier précédement créer nous nous connectons à GCP
     - envsubst < app.template.yaml > app.yaml # Nous créons notre fichier 'app.yml'
   after_script: # Après le script principale nous faisons :
     - rm /tmp/$CI_PIPELINE_ID.json  # On supprime toute trace de nos credentials GCP
@@ -217,6 +217,10 @@ deploy:production:
     - tags
 ```
 
+
+Voici quelques liens pour avoir des explications sur les nouvelle définitions utilisés :
+ - [environment](https://blog.eleven-labs.com/fr/introduction-gitlab-ci/#environment)
+ - [artifacts](https://blog.eleven-labs.com/fr/introduction-gitlab-ci/#artifacts)
 
 On push nos modifications :
 

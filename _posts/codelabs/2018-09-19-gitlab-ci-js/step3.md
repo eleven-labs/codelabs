@@ -95,6 +95,9 @@ test:e2e:
 # ...
 ```
 
+Voici quelques liens pour avoir des explications sur les nouvelle définitions utilisés :
+ - [when](https://blog.eleven-labs.com/fr/introduction-gitlab-ci/#when)
+
 On push nos modifications :
 
 ```bash
