@@ -29,6 +29,25 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    region: $AWS_DEFAULT_REGION
+    bucket: codelabs.eleven-labs.com
+    local_dir: _posts
+    upload-dir: tutos
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    region: $AWS_DEFAULT_REGION
+    bucket: codelabs.eleven-labs.com
+    local_dir: www
+    skip_cleanup: true
+    on:
+      branch: master
 before_install:
   - openssl aes-256-cbc -K $encrypted_1d9c94ec092f_key -iv $encrypted_1d9c94ec092f_iv -in codelabs-1ddb09746a38.json.enc -out codelabs-1ddb09746a38.json -d
 notifications:
