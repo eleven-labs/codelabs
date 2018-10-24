@@ -22,7 +22,7 @@ if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && wind
     ),
   );
 } else {
-  enhancer = applyMiddleware(thunk, api, createLogger());
+  enhancer = applyMiddleware(thunk, api, algolia, createLogger());
 }
 
 export default (initialState = {}) => (

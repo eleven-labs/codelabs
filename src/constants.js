@@ -1,12 +1,12 @@
 // TODO: think about dev environment
-export const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/tutos/codelabs/' : `http://${location.hostname}:9000/`;
+export const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/tutos/codelabs/' : `http://${location.hostname}/`;
 export const SITE_ROOT = process.env.NODE_ENV === 'production' ? 'https://codelabs.eleven-labs.com/' : `http://${location.hostname}:9000/`;
-export const NOOP = () => {};
+export const NOOP = () => { };
 
 export const ALGOLIA_APP_ID = '5IGTHBX5JS';
 export const ALGOLIA_API_KEY = '7f7511d659569fcede7653d568b3206c';
 
-export const LOCAL_STORAGE_KEY = 'codelabs';
+export const LOCAL_STORAGE_KEY = process.env.NODE_ENV === 'production' ? 'codelabs' : 'codelabs_dev';
 
 // for InlineHtml block detection
 // const REGEX_TAG_OPENING = /<(\w+)\b[^<]*>/g;

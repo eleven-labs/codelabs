@@ -7,6 +7,7 @@ import ConnectedHeader from './Header';
 import {
   ALGOLIA_APP_ID,
   ALGOLIA_API_KEY,
+  LOCAL_STORAGE_KEY,
 } from '../constants';
 
 export default class App extends React.Component {
@@ -29,7 +30,7 @@ export default class App extends React.Component {
       <InstantSearch
         appId={ALGOLIA_APP_ID}
         apiKey={ALGOLIA_API_KEY}
-        indexName="codelabs"
+        indexName={LOCAL_STORAGE_KEY}
       >
         <ConnectedHeader />
         {route && renderRoutes(route.routes)}
