@@ -1,0 +1,34 @@
+{
+    "title": "GraphQL",
+    "slug": "graphql-nodejs",
+    "permalink": "/fr/graphql-nodejs/",
+    "excerpt": "",
+    "stepTitles": [
+        "Introduction",
+        "Query",
+        "Mutation",
+        "Dataloaders",
+        "Datasources",
+        "Security",
+        "Subscripiton"
+    ],
+    "date": "2018-09-19",
+    "cover": "",
+    "authors": [
+        {
+            "name": "Jonathan Jalouzot",
+            "username": "captainjojo"
+        }
+    ],
+    "category": [
+        "DevOps",
+        "JavaScript"
+    ],
+    "tags": [
+        "CI",
+        "CD",
+        "DevOps",
+        "JavaScrip",
+        "Vue.js"
+    ]
+}
