@@ -1,0 +1,33 @@
+{
+    "title": "Dialogflow",
+    "slug": "Dialogflow",
+    "permalink": "/fr/ci-app-engine/",
+    "excerpt": "",
+    "stepTitles": [
+        "Introduction",
+        "Intents",
+        "Entity",
+        "Follow-up",
+        "Action",
+        "Deploy"
+    ],
+    "date": "2018-09-19",
+    "cover": "",
+    "authors": [
+        {
+            "name": "Jonathan Jalouzot",
+            "username": "captainjojo"
+        }
+    ],
+    "category": [
+        "DevOps",
+        "JavaScript"
+    ],
+    "tags": [
+        "CI",
+        "CD",
+        "DevOps",
+        "JavaScrip",
+        "Vue.js"
+    ]
+}
