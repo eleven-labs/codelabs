@@ -1,0 +1,22 @@
+{
+  "title": "Apollo GraphQL",
+  "permalink": "/fr/apollo-graphql/",
+  "excerpt": "Apollo, mise en place d'une API GraphQL",
+  "slug": "apollo-grapql",
+  "stepTitles": [
+    "Comment structurer son projet",
+    "Implémenter notre schéma GraphQL",
+    "Créer un dataLayer SQL",
+    "Créer un dataSource SQL",
+    "Ajouter les resolvers",
+    "Analyser les resolvers GraphQL",
+    "Optimiser les dataSources GraphQL"
+  ],
+  "date": "2019-02-20",
+  "authors": [
+    {
+      "name": "Fabien PASQUET",
+      "username": "fpasquet"
+    }
+  ]
+}
