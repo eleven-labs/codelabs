@@ -1,0 +1,19 @@
+{
+  "title": "GraphQL avec REST & gestion de cache",
+  "permalink": "/fr/apollo-rest-et-cache",
+  "excerpt": "Dans ce tutoriel nous allons voir comment mettre en place un serveur graphql en récupérant les données via des APIs REST, et comment optimiser notre appilcation",
+  "stepTitles": [
+    "Introduction",
+    "Apollo serveur",
+    "Apollo client",
+    "Options de cache"
+  ],
+  "date": "10-05-19",
+  "time": 10,
+  "authors": [
+    {
+      "name": "Marie Minasyan",
+      "username": "marishka"
+    }
+  ]
+}
