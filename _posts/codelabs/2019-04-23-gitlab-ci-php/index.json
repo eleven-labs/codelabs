@@ -1,0 +1,40 @@
+{
+  "title": "GitLab-ci avec une API PHP/Symfony",
+  "slug": "gitlab-ci-php",
+  "permalink": "/fr/gitlab-ci-php/",
+  "excerpt": "Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci pour une API en PHP/Symfony",
+  "stepTitles": [
+    "Introduction",
+    "Mise en place de l'environnement",
+    "Initialisation de la CI/CD",
+    "Mise en place d'un système de versionning d'image Docker",
+    "Mise en place des tests et du code style",
+    "Déploiement de l'API sur GCP",
+    "Developpement de notre API",
+    "Conclusion"
+  ],
+  "date": "2019-04-23",
+  "cover": "",
+  "authors": [
+    {
+      "name": "Nicolas Grévin",
+      "username": "nicolas"
+    }
+  ],
+  "category": [
+    "DevOps",
+    "PHP",
+    "Symfony",
+    "Google Cloud Platform",
+    "Continus Integration",
+    "Continus delivery"
+  ],
+  "tags": [
+    "DevOps",
+    "PHP",
+    "Symfony",
+    "Google Cloud Platform",
+    "Continus Integration",
+    "Continus delivery"
+  ]
+}
