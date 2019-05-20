@@ -1,5 +1,12 @@
 ## Mise en place du cache
 
+Nous back & front étant prêts, nous allons enfin passer à la mise en place du cache.
+Le but de l'exercice est d'arriver à mettre en place le schéma suivant :
+
+![cache-schema](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/cache-schema.png)
+
+Nous allons couvrir ces points un par un.
+
 ### In-memory
 
 Il est temps de voir comment fonctionne le cache [`InMemory`](https://www.apollographql.com/docs/react/advanced/caching) d'Apollo.
@@ -134,6 +141,8 @@ const createGraphQLClient = () => {
 Désormais dans notre navigateur les appels se font en GET quand cela est possible :
 
 ![graphql-persisted-queries-result](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/persisted_queries_result.png)
+
+Maintenant que nous avons des appels en GET, nous pouvons même mettre en place un Varnish pour encore plus améliorer les performances.
 
 ### Suivre les performances
 
