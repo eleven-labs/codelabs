@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build-node8:
+  build:
     working_directory: ~/codelabs
     docker:
       - image: circleci/node:8
