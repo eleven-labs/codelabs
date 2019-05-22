@@ -1,6 +1,12 @@
 version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - node8
+      - node9
 jobs:
-  build:
+  node8: &build-template
     working_directory: ~/codelabs
     docker:
       - image: circleci/node:8
@@ -16,18 +22,7 @@ jobs:
           name: test
           command: yarn test
 
-  build-node9:
-    working_directory: ~/codelabs
+  node9:
+    <<: *build-template
     docker:
       - image: circleci/node:9
-    steps:
-      - checkout
-      - run:
-          name: install yarn
-          command: 'yarn install'
-      - run:
-          name: lint
-          command: yarn lint
-      - run:
-          name: test
-          command: yarn test
