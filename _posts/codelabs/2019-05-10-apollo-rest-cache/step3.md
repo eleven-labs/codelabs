@@ -39,7 +39,7 @@ Si je souhaite avoir toujours une photo aléatoire, je dois changer tous les end
 Nous avons donc mis en place du cache côté client pour limiter le nombre d'appels inutiles au serveur.
 Nous pouvons maintenant nous concetrer sur le serveur.
 
-Jusque là, nous n'avons fait aucune gestion de cache côté serveur. Pourtant, la plupart du temps les réponses des APIs (surtout publiques comme lanotre) peuvent être cachées pour une durée définie dans les headers. Et la bonne nouvelle est que les datasources Apollo sont compatibles avec Redis et Memcached.
+Jusque là, nous n'avons fait aucune gestion de cache côté serveur. Pourtant, la plupart du temps les réponses des APIs (surtout publiques comme la notre) peuvent être cachées pour une durée définie dans les headers. Et la bonne nouvelle est que les datasources Apollo sont compatibles avec Redis et Memcached.
 
 Pour cet exemple, nous allons utiliser Redis pour mettre les réponses en cache.
 J'ai donc modifié le fichier `docker-compose.yml` pour ajouter un container `redis` :
