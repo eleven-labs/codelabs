@@ -7,32 +7,20 @@ workflows:
       - node9
 jobs:
   node8: &build-template
-    environment:
-      NODE_VERSION: 8
     docker:
       - image: circleci/node:8
-        environment:
-          NODE_VERSION: 8
     working_directory: ~/codelabs
     steps:
       - checkout
-      - restore_cache:
-          name: restore yarn package cache
-          key: yarn-packages-{{ .Environment.NODE_VERSION }}
       - run:
           name: install yarn
-          command: 'yarn install'
+          command: yarn install
       - run:
           name: lint
           command: yarn lint
       - run:
           name: test
           command: yarn test
-      - save_cache:
-          name: save yarn package cache
-          key: yarn-packages-{{ .Environment.NODE_VERSION }}
-          paths:
-            - ~/.cache/yarn
 
   node9:
     <<: *build-template
