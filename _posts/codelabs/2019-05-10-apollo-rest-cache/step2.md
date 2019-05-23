@@ -2,7 +2,7 @@
 
 ### Initialisation du projet front
 
-Pour commencer, clonez la branche "step-2" de [ce projet](https://github.com/MarieMinasyan/apollo-tutorial), mettez vous sur [le commit suivant](https://github.com/MarieMinasyan/apollo-tutorial/commit/b4b6ac037e1b7a63c748dba93839baa94b4915a2).
+Pour commencer, clonez la branche "step-2" de [ce projet](https://github.com/MarieMinasyan/apollo-tutorial), mettez-vous sur [le commit suivant](https://github.com/MarieMinasyan/apollo-tutorial/commit/b4b6ac037e1b7a63c748dba93839baa94b4915a2).
 Nous avons besoin d'éxécuter la commande suivante pour prendre en compte les modifications du fichier `docker-compose.yml` :
 
 ```bash
