@@ -52,9 +52,9 @@ app.listen({ port: PORT }, () =>
 );
 ```
 
-Ca y est, nous avons un serveur GraphQL qui tourne ! 🚀 
+Ça y est, nous avons un serveur GraphQL qui tourne ! 🚀 
 
-A cette étape, nous devons pouvoir faire une query et avoir un résultat, comme ceci :
+À cette étape, nous devons pouvoir faire une query et avoir un résultat, comme ceci :
 
 ![graphql-init](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/graphql.png)
 
@@ -64,10 +64,10 @@ Comme vous pouvez constater ici, lors de la création d'ApolloServer nous devons
 Au fur et à mesure que notre application grandit, leur nombre augmente aussi.
 Par conséquence, nous ne pouvons pas les laisser dans le fichier `src/index.js` comme ci-dessus, mais nous allons plutôt séparer tout cela dans des fichiers et dossiers afin de structurer notre application. Je vais créer les dossiers suivants à l'intérieur de  `src` :
 
-- le dossier `definitions` contiendra les Query, Mutation et les types que nous allons définir dans l'application
+- le dossier `definitions` contiendra les Queries, Mutations et les types que nous allons définir dans l'application
 - le dossier `dataSources` contiendra les différentes APIs REST que nous allons appeler
 - le dossier `resolvers` quant à lui nous permettra d'implémenter les resolvers de nos différents types
-- enfin, je vais créer un dossier `helpers` dans lequel je mettrai notamment un `GraphqlHelper` qui me permettra de charger les fichiers qui sont dans les dossiers ci-dessus. Le `GraphqlHelper` parcourt les dossiers des façon reccursive et charge tous les fichiers dans le schéma.
+- enfin, je vais créer un dossier `helpers` dans lequel je mettrai notamment un `GraphqlHelper` qui me permettra de charger les fichiers qui sont dans les dossiers ci-dessus. Le `GraphqlHelper` parcourt les dossiers de façon reccursive et charge tous les fichiers dans le schéma.
 
 Pour implémenter cette structure de dossier, nous allons avoir besoin de modifier notre code.
 Pour gagner du temps, je vous mets à disposition [ici](https://github.com/MarieMinasyan/apollo-tutorial/commit/d8a44ac89f98abb1eda8ceda2b3c6bf08a273c91) le helper et tous les fichiers modifiés.
@@ -127,7 +127,7 @@ Dans cet exercice nous allons créer 2 DataSource différents pour ces 2 besoins
 
 Rappelez-vous, certaines APIs de la NASA demandent une authentification via un paramètre dans l'URL.
 Pour faire cela pour toutes les URLs que nous allons appeler, nous pouvons surcharger la méthode `willSendRequest` de la classe `RESTDataSource`.
-Dans le cas où on aurait plusieurs classes avec le même comportement, pour éviter de dupliquer du code, je peux créer la classe suviante :
+Dans le cas où on aurait plusieurs classes avec le même comportement, pour éviter de dupliquer du code, je peux créer la classe suivante :
 
 ```js
 // src/dataSources/NASARESTDataSource.js
@@ -164,7 +164,7 @@ module.exports = APODRESTDataSource;
 
 ```
 
-Sachez que les méthodes `get`, `put`, `post`, etc. sont toutes disponibles dans la classe RESTDataSource et retournent des *Promise*.
+Sachez que les méthodes `get`, `put`, `post`, etc. sont toutes disponibles dans la classe RESTDataSource et retournent des *Promises*.
 
 Je vous invite désormais à mettre en place le data source pour envoyer des requêtes à la bibliothèque d'images.
 Pour information, cette API ne demande pas d'authentification.
@@ -218,7 +218,7 @@ type NASAImage {
 
 Notez que les champs suivis d'un `!` après leur type sont des champs que l'on définit comme obligatoires (non nulls) dans notre schéma, nous devons donc nous assurer que les APIs retournent toujours ces champs pour éviter des exceptions.
 
-Pour voir tous les types possibles, référez vous à la [documentation Apollo](https://www.apollographql.com/docs/apollo-server/essentials/schema#scalar).
+Pour voir tous les types possibles, référez-vous à la [documentation Apollo](https://www.apollographql.com/docs/apollo-server/essentials/schema#scalar).
 
 Maintenant, nous pouvons déclarer nos nouvelles requêtes disponibles. Avec GraphQL, cela se fait dans le fichier suivant :
 
@@ -232,7 +232,7 @@ type Query {
 
 Ici, nous déclarons toutes les requêtes qui seront disponibles dans l'application, avec les paramètres qu'elles recoivent et ce qu'elles retournent.
 
-Aussi, dans ce tutoriel nous allons parler des *Query* uniquement, car il a pour but de vous présenter comment améliorer les performances de votre application. Néanmoins, je vous invite à lire [la documentation suivante](https://graphql.github.io/graphql-js/mutations-and-input-types/) pour voir comment fonctionnent les *Mutation*.
+Aussi, dans ce tutoriel nous allons parler des *Queries* uniquement, car il a pour but de vous présenter comment améliorer les performances de votre application. Néanmoins, je vous invite à lire [la documentation suivante](https://graphql.github.io/graphql-js/mutations-and-input-types/) pour voir comment fonctionnent les *Mutations*.
 
 Si vous testez les APIs de la NASA, vous allez remarquer que nous avons nommé nos champs de la façon dont nous allons les utiliser sur le front, ce qui ne correspond pas forcément à ce que retourne l'API. C'est donc dans nos resolvers que nous allons mapper les champs.
 
@@ -277,7 +277,7 @@ query apod {
 }
 ```
 
-A ce stade vous devriez avoir un résultat :
+À ce stade vous devriez avoir un résultat :
 
 ![graphql-response1](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/result1.png)
 
