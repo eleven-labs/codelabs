@@ -1,13 +1,13 @@
 ## Qu'allons-nous faire ?
 
-[Dans un tutoriel précédent](https://codelabs.eleven-labs.com/course/fr/graphql-avec-apollo/) Jonathan vous a présenté comment mettre en place un serveur GraphQL avec une base de données. Ici, nous allons voir comment utiliser Apollo en passant par des APIs REST et surtout les points d'attention pour préserver les performances de votre application.
+[Dans un tutoriel précédent](https://codelabs.eleven-labs.com/course/fr/graphql-avec-apollo/) l'astronaute Jonathan vous a présenté comment mettre en place un serveur GraphQL avec une base de données. Ici, nous allons voir comment utiliser Apollo en passant par des APIs REST et surtout les points d'attention pour préserver les performances de votre application.
 
 Nous allons mettre en place un serveur GraphQL et une application front via le framework [Apollo](https://www.apollographql.com).
 
 ## Pré-requis
 
-Nous allons utiliser [https://api.nasa.gov](https://api.nasa.gov), une API ouverte à tout le monde mise à disposition par la NASA.
-Vous pouvez utiliser la clé d'authentification de démo (qui est limitée à 30 appels par heure), mais si vous souhaitez, vous pouvez aller sur [cette page](https://api.nasa.gov/index.html#apply-for-an-api-key) pour demander une clé d'authentification personnelle.
+Nous allons utiliser [https://api.nasa.gov](https://api.nasa.gov), une API ouverte à tout le monde, mise à disposition par la NASA.
+Vous pouvez utiliser la clé d'authentification de démo (qui est limitée à 30 appels par heure), mais si vous souhaitez vous pouvez aller sur [cette page](https://api.nasa.gov/index.html#apply-for-an-api-key) pour demander une clé d'authentification personnelle.
 
 ![authentication_key](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/authentication_key.png)
 
