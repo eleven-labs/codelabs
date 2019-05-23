@@ -1,7 +1,7 @@
 # Codelabs
 
 [![CircleCI](https://circleci.com/gh/eleven-labs/codelabs/tree/master.svg?style=svg)](https://circleci.com/gh/eleven-labs/codelabs/tree/master)
-  
+
 # Comment rédiger son tutoriel Codelabs
 
 ## 1/ “Au programme…”
@@ -108,12 +108,13 @@ C'est le fichier qui permet de configurer votre codelabs. Il doit absolument com
   "title": "TITRE",
   "permalink": "URL",
   "excerpt": "DESCRIPTION",
+  "slug": "DIRECTORY_NAME_WITHOUT_DATE",
   "stepTitles": [
     "TITRE STEP 1",
     "TITRE STEP 2",
     "TITRE STEP 3"
   ],
-  "date": "DATE",
+  "date": "YYYY-MM-DD",
   "authors": [
     {
       "name": "NOM DE L'AUTHOR",
