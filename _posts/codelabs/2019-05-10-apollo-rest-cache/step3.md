@@ -1,6 +1,6 @@
 ## Mise en place du cache
 
-Nous back & front étant prêts, nous allons enfin passer à la mise en place du cache.
+Nos back & front étant prêts, nous allons enfin passer à la mise en place du cache.
 Le but de l'exercice est d'arriver à mettre en place le schéma suivant :
 
 ![cache-schema](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/cache-schema.png)
@@ -23,7 +23,7 @@ Je vous invite à tester l'application.
 Vous allez constater que lorsqu'on change de page pour aller sur random page ou revenir sur la Home, les résultats ne changent pas.
 
 Maintenant, imaginons que nous avons un site e-commerce et que nous sommes dans le tunnel d'achat.
-Evidemment, dans un cas pareil nous souhaitons toujours récupérer les données à jour depuis nos APIs, et non les résultats cachés côté client.
+Évidemment, dans un cas pareil nous souhaitons toujours récupérer les données à jour depuis nos APIs, et non les résultats cachés côté client.
 Pour faire cela, nous pouvons configurer une Query pour avoir toujours la response depuis le réseau (plutôt que le cache client) via la props `fetchPolicy` :
 
 ```js
@@ -37,9 +37,9 @@ Si je souhaite avoir toujours une photo aléatoire, je dois changer tous les end
 ### Redis
 
 Nous avons donc mis en place du cache côté client pour limiter le nombre d'appels inutiles au serveur.
-Nous pouvons maintenant nous concetrer sur le serveur.
+Nous pouvons maintenant nous concentrer sur le serveur.
 
-Jusque là, nous n'avons fait aucune gestion de cache côté serveur. Pourtant, la plupart du temps les réponses des APIs (surtout publiques comme la notre) peuvent être cachées pour une durée définie dans les headers. Et la bonne nouvelle est que les datasources Apollo sont compatibles avec Redis et Memcached.
+Jusque là, nous n'avons fait aucune gestion de cache côté serveur. Pourtant, la plupart du temps les réponses des APIs (surtout publiques comme la nôtre) peuvent être cachées pour une durée définie dans les headers. Et la bonne nouvelle est que les datasources Apollo sont compatibles avec Redis et Memcached.
 
 Pour cet exemple, nous allons utiliser Redis pour mettre les réponses en cache.
 J'ai donc modifié le fichier `docker-compose.yml` pour ajouter un container `redis` :
