@@ -1,16 +1,26 @@
 ## Qu'allons-nous faire ?
 
-[Dans un tutoriel précédent](https://codelabs.eleven-labs.com/course/fr/graphql-avec-apollo/) l'astronaute Jonathan vous a présenté comment mettre en place un serveur GraphQL avec une base de données. Ici, nous allons voir comment utiliser Apollo en passant par des APIs REST et surtout les points d'attention pour préserver les performances de votre application.
+Lors du developpement d'une application, il est toujours nécessaire d'avoir un environnement de recette et de production indépendant l'un de l'autre, pour tester de nouvelles features en recette et ensuite être capable de les déployer en production en toute sérénité.
 
-Nous allons mettre en place un serveur GraphQL et une application front via le framework [Apollo](https://www.apollographql.com).
+Problématique :
+Ces applications nécessite parfois de faire appel à des services externes, comme des API ( Rest // Graphql ).
+Si nous prenons l'exemple d'un appel vers une API Rest ou GraphQL, l'URL appellée par notre application de recette devra être différente de l'URL appellée par l'application de production.
+
+Solution :
+Afin de gérer cette problématique, il est nécessaire d'utiliser ce que l'on appelle des variables d'environnements pour dissocier la configuration de nos deux applications.
+
+Il est assez facile de gérer ces variables d'environnement dans un projet perso mais qu'en est il dans un environnement tel que Google Cloud Platform pour des projets professionnels.
+
+Dans ce codelabs, nous allons donc voir comment créer et déployer ( Via Gitlab CI ) une application React sur différents environnements d'execution ( Recette // Production ) dans l'ecosysteme Google Cloud Platform ( App Engine ) et comment gérer ses variables d'environnements.
+
+## Liens utiles
+
+Nous allons créer une application [React](https://facebook.github.io/create-react-app/docs/documentation-intro)
+Nous aurons besoin d'avoir un compte [Google Cloud Platform](https://console.cloud.google.com)
+Nous aurons également besoin d'un compte [Gitlab](https://about.gitlab.com/)
 
 ## Pré-requis
 
-Nous allons utiliser [https://api.nasa.gov](https://api.nasa.gov), une API ouverte à tout le monde, mise à disposition par la NASA.
-Vous pouvez utiliser la clé d'authentification de démo (qui est limitée à 30 appels par heure), mais si vous souhaitez vous pouvez aller sur [cette page](https://api.nasa.gov/index.html#apply-for-an-api-key) pour demander une clé d'authentification personnelle.
+Nous aurons besoin d'une installation de [Npm & Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+Le code fourni pour le tutoriel est disponible [ici](https://github.com/RedPi/codelabs-env-var)
 
-![authentication_key](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/authentication_key.png)
-
-Le serveur [Apollo](https://www.apollographql.com) sera en NodeJS en version 10.
-L'application front sera faite en React.
-Je vais utiliser [Docker](https://www.docker.com/) pour ce projet. Le code fourni pour le tutoriel est disponible [ici](https://github.com/MarieMinasyan/apollo-tutorial) et contient un fichier `docker-compose.yml` vous permettant d'installer le projet.
