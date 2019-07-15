@@ -22,5 +22,4 @@ Nous aurons également besoin d'un compte [Gitlab](https://about.gitlab.com/)
 ## Pré-requis
 
 Nous aurons besoin d'une installation de [Npm & Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-Le code fourni pour le tutoriel est disponible [ici](https://github.com/RedPi/codelabs-env-var)
-
+Le code completdu projet est disponible [ici](https://github.com/RedPi/codelabs-env-var) mais je vous conseille de le récupérer seulement si besoin ^^ 
