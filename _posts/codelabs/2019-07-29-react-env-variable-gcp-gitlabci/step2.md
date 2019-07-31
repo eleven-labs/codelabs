@@ -1,6 +1,6 @@
 ## Déploiement du projet sur App Engine
 
-Nous allons survoler cette étape assez rapidement, car ceci n'est pas le sujet du CodeLabs mais elle reste essentielle pour la suite.
+Nous allons survoler cette étape assez rapidement, car ce point n'est pas le sujet du CodeLabs mais reste essentiel pour la suite.
 
 Nous utiliserons le service **App Engine** qui permet de déployer des applications web très facilement.
 Si vous voulez en savoir sur AppEngine rendez-vous ici : https://cloud.google.com/appengine/
@@ -36,7 +36,7 @@ Description du compte de service : react-app
 Ensuite il vous demandera de définir les autorisations du compte :
 
 Nous choisirons dans notre cas : Projet >> propriétaire (pour plus de simplicité).
-Enfin, créez un clé de sécurité au format **JSON** et enregistrez cette clé sur votre machine à l'extérieur de votre projet.
+Enfin, créez une clé de sécurité au format **JSON** et enregistrez cette clé sur votre machine à l'extérieur de votre projet.
 Si vous désirez plus d'informations sur les comptes de services, rendez-vous [ici](https://cloud.google.com/compute/docs/access/service-accounts?hl=fr).
 
 #### Installation du SDK GCP
@@ -55,7 +55,7 @@ gcloud init
 
 
 Suivez les instructions du prompteur en choisissant le compte de service que vous avez créé et le projet que nous avons créé précédemment.
-Nous sommes fin prêt à déployer notre application sur AppEngine.
+Nous sommes fin prêts à déployer notre application sur AppEngine.
 
   
 
@@ -90,9 +90,9 @@ handlers:
 
 
 Le premier service aura toujours pour nom : **default**.
-Le paramètre **runtime** permet de définir l'environnement d'execution.
+Le paramètre **runtime** permet de définir l'environnement d'exécution.
 **instance_class** définit le type d'instance que l'on va utiliser.
-Et le paramètre **handlers** permet de lister les formats d'un URL de notre application React.
+Et le paramètre **handlers** permet de lister les formats d'une URL de notre application React.
 
 
 #### Déploiement de l'application de production
@@ -112,7 +112,7 @@ Rendez-vous dans la console Cloud dans l’onglet App Engine, puis dans *SERVICE
 Quand le déploiement sera terminé, nous pourrons accéder à notre front React en cliquant sur le nom de la version.
   
 
-#### Deploiement de l'application de production
+#### Déploiement de l'application de production
 
 Pour obtenir une version de recette de notre application, nous allons déployer un second service de la même manière que précédemment. Il nous suffit de créer un second fichier **app.recette.yml** et d'y ajouter la configuration suivante :
 
