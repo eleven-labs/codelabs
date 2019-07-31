@@ -110,7 +110,12 @@ Avec ces modifications, nous avons supprimé le logo et le texte par défaut de 
 Nous avons défini une variable qui récupère la valeur de notre variable d'environnement.
 Nous demandons ensuite à notre component App d'afficher cette variable sur la home page de notre application.
 
-Après sauvegarde du fichier, l'application va se recharger automatiquement et nous pourrons voir apparaitre la valeur de notre variable.
+Après sauvegarde du fichier, relancer ensuite votre application :
+```bash
+	Ctrl + C
+	npm start
+```
+nous pouvons voir apparaitre la valeur de notre variable.
 
 Nous verrons plus tard comment faire pour que cette variable change de valeur selon l'environnement d'execution.
 
