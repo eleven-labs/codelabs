@@ -13,7 +13,7 @@ Si vous désirez plus d'informations sur ce framework, rendez-vous [ici](https:/
 Pour créer votre application, suivez les instructions suivantes.
 Dans un dossier *react-app*, lancer la commande suivante :
 ```bash
-	npx create-react-app reat-app
+	npx create-react-app react-app
 	cd react-app
 	npm start
 ```
