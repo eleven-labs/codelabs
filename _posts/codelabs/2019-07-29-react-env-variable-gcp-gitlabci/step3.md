@@ -1,28 +1,24 @@
 ## Déploiement du projet sur App Engine
 
-  
-Nous allons survoler cette étape assez rapidement, car ceci n'est le sujet du CodeLabs mais elle reste essentielle pour la suite.
+Nous allons survoler cette étape assez rapidement, car ceci n'est pas le sujet du CodeLabs mais elle reste essentielle pour la suite.
 
 Nous utiliserons le service **App Engine** qui permet de déployer des applications web très facilement.
-Si vous voulez en savoir sur AppEngine rendez vous ici : https://cloud.google.com/appengine/
-Vous devriez également lire l'article [suivant](https://blog.eleven-labs.com/fr/google-cloud-platform-appengine-pour-vos-projets/) si vous n'avez aucun connaissance sur le service App Engine.
+Si vous voulez en savoir sur AppEngine rendez-vous ici : https://cloud.google.com/appengine/
+Vous devriez également lire l'article [suivant](https://blog.eleven-labs.com/fr/google-cloud-platform-appengine-pour-vos-projets/) si vous n'avez aucune connaissance sur le service App Engine.
 
-Dans l'ordre, nous allons créer un projet sur GCP,  installer le **SDK** et enfin déployer une application de recette et de production.
+Dans l'ordre, nous allons créer un projet sur GCP, installer le **SDK** et enfin déployer une application de recette et de production.
 
 
 ### Création du projet GCP
 
-Je vous invite tout simplement à lire l'article suivant :
+Je vous invite tout simplement à lire l'article suivant, il vous permettra de créer un projet GCP :
 https://blog.eleven-labs.com/fr/google-cloud-platform-pour-les-nuls/
-il vous permettra de créer un projet GCP.
 
-le seul pré-requis dans cette étape est de créer un projet avec le nom suivant : **react-app**
+Le seul pré-requis dans cette étape est de créer un projet avec le nom suivant : **react-app**.
 
-  
 
 ### Installation du SDK GCP en vue du déploiement
-
-  
+ 
 
 ## Création d'un compte de service
 
@@ -37,29 +33,28 @@ Nom du compte de service : react-app
 Description du compte de service : react-app
 
 ```
-Ensuite il vous demandera de définir les autorisations du compte:
-Nous choisirons dans notre cas : Projet >> propriétaire ( pour plus de simplicité )
-Enfin créez un clé de sécurité au format **JSON** et enregistrer cette clé sur votre machine à l'extérieur de votre projet.
-Si vous désirez plus d'informations sur les comptes de services, rendez-vous [ici](https://cloud.google.com/compute/docs/access/service-accounts?hl=fr)
+Ensuite il vous demandera de définir les autorisations du compte :
 
-  
+Nous choisirons dans notre cas : Projet >> propriétaire (pour plus de simplicité).
+Enfin, créez un clé de sécurité au format **JSON** et enregistrez cette clé sur votre machine à l'extérieur de votre projet.
+Si vous désirez plus d'informations sur les comptes de services, rendez-vous [ici](https://cloud.google.com/compute/docs/access/service-accounts?hl=fr).
 
 ## Installation du SDK GCP
 
-Je vous invite à suivre les instructions disponibles [ici](https://cloud.google.com/sdk/install)
+Je vous invite à suivre les instructions disponibles [ici](https://cloud.google.com/sdk/install).
 Une fois l’installation terminée vous devriez pouvoir lancer la commande suivante dans votre terminal :
 ```bash
 gcloud auth activate-service-account --key-file chemin/vers/key.json
 ```
   
-Ensuite il nous faut configurer votre SDK avec la commande suivante:
+Ensuite il nous faut configurer votre SDK avec la commande suivante :
 
 ```bash
 gcloud init
 ```
 
 
-Suivre les instructions du prompteur en choisissant le compte de service que vous avez créer et le projet que nous avons créer précédemment.
+Suivez les instructions du prompteur en choisissant le compte de service que vous avez créé et le projet que nous avons créé précédemment.
 Nous sommes fin prêt à déployer notre application sur AppEngine.
 
   
@@ -69,8 +64,6 @@ Nous sommes fin prêt à déployer notre application sur AppEngine.
   
 Afin de déployer notre application via le SDK, nous allons utiliser un fichier au format YAML reconnu par App Engine.
 Nous allons donc ajouter un fichier **app.yaml** qui permet de configurer votre service App Engine. Vous trouverez la documentation complète [ici](https://cloud.google.com/appengine/docs/standard/python/config/appref?hl=fr).
-
-  
 
 Dans le fichier, nous allons mettre en place la configuration de base pour un environnement node.
 
@@ -96,37 +89,32 @@ handlers:
 ```
 
 
-Le premier service aura toujours pour nom : **default**
+Le premier service aura toujours pour nom : **default**.
 Le paramètre **runtime** permet de définir l'environnement d'execution.
 **instance_class** définit le type d'instance que l'on va utiliser.
-et le paramètre **handlers** permet de lister les formats d'un URL de notre application React.
+Et le paramètre **handlers** permet de lister les formats d'un URL de notre application React.
 
-  
 
 ## Déploiement de l'application de production
 
-La mise en prod est maintenant simple, il nous suffit de lancer la commande suivante à la racine du projet:
+La mise en production est maintenant simple, il nous suffit de lancer la commande suivante à la racine du projet :
 
 ```bash
 gcloud app deploy ./app.yml --version version1
 ```
-L’option *–version* vous permet de donner un nom à votre version. App Engine permet de gérer différentes versions pour un même service.
 
+L’option *–version* vous permet de donner un nom à votre version. App Engine permet de gérer différentes versions pour un même service.
 Ceci peut être utile en cas de rollback ou de tests.
-Allons vérifier que notre application est bien déployée :
-Rendez-vous dans la console Cloud dans l’onglet App Engine.
-Puis dans *SERVICES >> VERSIONS*, vous devriez voir la version de votre application *default* apparaître.
+
+Allons vérifier que notre application est bien déployée.
+Rendez-vous dans la console Cloud dans l’onglet App Engine, puis dans *SERVICES >> VERSIONS*. Vous devriez voir la version de votre application *default* apparaître.
 
 Quand le déploiement sera terminé, nous pourrons accéder à notre front React en cliquant sur le nom de la version.
-
   
 
 ## Deploiement de l'application de production
 
-
-Pour obtenir une version de recette de notre application, nous allons déployer un second service de la manière que précédemment
-
-il nous suffit de créer un second fichier **app.recette.yml** et d'y ajouter la configuration suivante:
+Pour obtenir une version de recette de notre application, nous allons déployer un second service de la même manière que précédemment. Il nous suffit de créer un second fichier **app.recette.yml** et d'y ajouter la configuration suivante :
 
   
 
@@ -151,9 +139,7 @@ handlers:
 ```
 
   
-Le seul changement est au niveau du nom de notre service.
+Le seul changement ici se fait au niveau du nom de notre service.
 Nous aurons ainsi deux services distincts que nous pourrons déployer indépendamment l'un de l'autre.
 
-  
-Dans la prochaine étape, nous allons maintenant industrialiser ce process en utilisant les fonctionnalités offertes par GitlabCI.
-Ceci nous évitera déployer *à la main* nos versions.
+Dans la prochaine étape, nous allons maintenant industrialiser ce process en utilisant les fonctionnalités offertes par GitlabCI. Ce qui nous évitera de déployer *à la main* nos versions.
