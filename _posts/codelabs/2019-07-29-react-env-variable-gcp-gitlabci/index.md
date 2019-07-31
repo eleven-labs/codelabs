@@ -10,11 +10,11 @@ Si nous prenons l'exemple d'un appel vers une API Rest ou GraphQL, l'URL appelé
 
 **Solution :**
 
-Afin de gérer cette problématique, il est nécessaire d'utiliser ce que l'on appelle des variables d'environnements pour dissocier la configuration de nos deux applications.
+Afin de gérer cette problématique, il est nécessaire d'utiliser ce que l'on appelle des variables d'environnement pour dissocier la configuration de nos deux applications.
 
-Il est assez facile de gérer ces variables d'environnement dans un projet perso mais qu'en est-il dans un environnement tel que Google Cloud Platform pour des projets professionnels.
+Il est assez facile de gérer ces variables d'environnement dans un projet perso, mais qu'en est-il dans un environnement tel que Google Cloud Platform pour des projets professionnels ?
 
-Dans ce CodeLabs, nous allons donc voir comment créer et déployer (via Gitlab CI) une application React sur différents environnements d'execution (recette // production) dans l'écosystème Google Cloud Platform (App Engine) et comment gérer ses variables d'environnements.
+Dans ce CodeLabs, nous allons donc voir comment créer et déployer, via Gitlab CI, une application React sur différents environnements d'exécution (recette // production) dans l'écosystème Google Cloud Platform (App Engine) et comment gérer ses variables d'environnement.
 
 ## Liens utiles
 
