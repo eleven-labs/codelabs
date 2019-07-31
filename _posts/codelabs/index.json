@@ -1,1 +1,226 @@
-[{"title":"API versioning et rétrocompatibilité avec Symfony","slug":"api-versioning-et-retrocompatibilite-avec-symfony","permalink":"/fr/api-versioning-et-retrocompatibilite-avec-symfony/","excerpt":"Lorsque vous avez besoin de faire évoluer votre API rapidement, vous êtes souvent bloqués par vos clients pour qui vous ne pouvez pas casser la compatibilité. Ce tutoriel vous explique comment mettre en place du versioning dans Symfony et comment gérer la rétro-compatibilité des sorties d'API.","stepTitles":["Introduction","Configuration des fichiers de changement par version","Ajout du listener sur la réponse Symfony","Ajout de la factory pour instancier les changements","Ajout de fichiers de changements","Conclusion"],"time":15,"date":"2018-03-28","cover":"/assets/2018-03-28-api-versioning-et-retrocompatibilite-avec-symfony/cover.jpg","authors":[{"name":"Vincent Composieux","username":"vcomposieux"}],"categories":["Symfony","API"],"tags":["php","Symfony","api","versioning","compatibility"],"duration":{"1":8,"2":5,"3":9,"4":11,"5":8,"6":4,"total":45}},{"title":"GraphQL avec Apollo","permalink":"/fr/graphql-avec-apollo/","excerpt":"Dans ce tutoriel nous allons mettre en place un serveur GraphQL via le framework Apollo","slug":"graphql-avec-apollo","stepTitles":["Introduction","Installation du serveur GraphQL","Configuration de la BDD","Création des types GraphQL","Resolver des queries","Resolver des mutations"],"date":"2018-03-28","cover":"/assets/2018-03-28-graphql-avec-apollo/cover.jpg","authors":[{"name":"Jonathan Jalouzot","username":"captainjojo"}],"duration":{"1":5,"2":5,"3":10,"4":4,"5":16,"6":7,"total":47}},{"title":"GraphQL avec Symfony","permalink":"/fr/graphql-avec-symfony/","excerpt":"Dans ce tutoriel nous allons mettre en place un serveur GraphQL avec le framework Symfony","slug":"graphql-avec-symfony","stepTitles":["Introduction","Installation du serveur GraphQL","Configuration de la BDD","Création des types GraphQL","Resolver des queries","Resolver des mutations"],"date":"2018-03-28","cover":"/assets/2018-03-28-graphql-avec-symfony/cover.jpg","authors":[{"name":"Jonathan Jalouzot","username":"captainjojo"}],"duration":{"1":4,"2":3,"3":11,"4":5,"5":14,"6":7,"total":44}},{"title":"Microservice avec Go et gRPC","permalink":"/fr/microservice-avec-go-et-grpc/","excerpt":"Dans ce tutoriel nous allons mettre en place un microservice gRPC de traduction avec Google Translate.","slug":"microservice-avec-go-et-grpc","stepTitles":["Introduction","Installation des outils","Déclaration du Protobuf","Mise en place du serveur gRPC","Mise en place de la Translate API de Google","Mise en place du client gRPC","Ajout d'un proxy REST et d'une doc Swagger"],"date":"2018-05-15","authors":[{"name":"Quentin Neyrat","username":"qneyrat"}],"duration":{"1":3,"2":1,"3":5,"4":7,"5":4,"6":3,"7":9,"total":32}},{"title":"GitLab-ci avec une application JS","slug":"gitlab-ci-js","permalink":"/fr/gitlab-ci-js/","excerpt":"Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci pour une application Vue.js","stepTitles":["Introduction","Définition des besoins et préparation de notre application","Initialisation de la CI/CD et préparation de notre application pour notre CI/CD","Mise en place des phases de code style et de tests","Déploiement de notre application sur Google Cloud PLatform","Test et conclusion"],"date":"2018-09-19","cover":"","authors":[{"name":"Nicolas Grévin","username":"nicolas"}],"category":["DevOps","JavaScript"],"tags":["CI","CD","DevOps","JavaScrip","Vue.js"],"duration":{"1":5,"2":25,"3":11,"4":9,"5":15,"6":1,"total":66}}]
+[
+  {
+    "title": "API versioning et rétrocompatibilité avec Symfony",
+    "slug": "api-versioning-et-retrocompatibilite-avec-symfony",
+    "permalink": "/fr/api-versioning-et-retrocompatibilite-avec-symfony/",
+    "excerpt": "Lorsque vous avez besoin de faire évoluer votre API rapidement, vous êtes souvent bloqués par vos clients pour qui vous ne pouvez pas casser la compatibilité. Ce tutoriel vous explique comment mettre en place du versioning dans Symfony et comment gérer la rétro-compatibilité des sorties d'API.",
+    "stepTitles": [
+      "Introduction",
+      "Configuration des fichiers de changement par version",
+      "Ajout du listener sur la réponse Symfony",
+      "Ajout de la factory pour instancier les changements",
+      "Ajout de fichiers de changements",
+      "Conclusion"
+    ],
+    "time": 15,
+    "date": "2018-03-28",
+    "cover": "/assets/2018-03-28-api-versioning-et-retrocompatibilite-avec-symfony/cover.jpg",
+    "authors": [
+      {
+        "name": "Vincent Composieux",
+        "username": "vcomposieux"
+      }
+    ],
+    "categories": [
+      "Symfony",
+      "API"
+    ],
+    "tags": [
+      "php",
+      "Symfony",
+      "api",
+      "versioning",
+      "compatibility"
+    ],
+    "duration": {
+      "1": 8,
+      "2": 5,
+      "3": 9,
+      "4": 11,
+      "5": 8,
+      "6": 4,
+      "total": 45
+    }
+  },
+  {
+    "title": "GraphQL avec Apollo",
+    "permalink": "/fr/graphql-avec-apollo/",
+    "excerpt": "Dans ce tutoriel nous allons mettre en place un serveur GraphQL via le framework Apollo",
+    "slug": "graphql-avec-apollo",
+    "stepTitles": [
+      "Introduction",
+      "Installation du serveur GraphQL",
+      "Configuration de la BDD",
+      "Création des types GraphQL",
+      "Resolver des queries",
+      "Resolver des mutations"
+    ],
+    "date": "2018-03-28",
+    "cover": "/assets/2018-03-28-graphql-avec-apollo/cover.jpg",
+    "authors": [
+      {
+        "name": "Jonathan Jalouzot",
+        "username": "captainjojo"
+      }
+    ],
+    "duration": {
+      "1": 5,
+      "2": 5,
+      "3": 10,
+      "4": 4,
+      "5": 16,
+      "6": 7,
+      "total": 47
+    }
+  },
+  {
+    "title": "GraphQL avec Symfony",
+    "permalink": "/fr/graphql-avec-symfony/",
+    "excerpt": "Dans ce tutoriel nous allons mettre en place un serveur GraphQL avec le framework Symfony",
+    "slug": "graphql-avec-symfony",
+    "stepTitles": [
+      "Introduction",
+      "Installation du serveur GraphQL",
+      "Configuration de la BDD",
+      "Création des types GraphQL",
+      "Resolver des queries",
+      "Resolver des mutations"
+    ],
+    "date": "2018-03-28",
+    "cover": "/assets/2018-03-28-graphql-avec-symfony/cover.jpg",
+    "authors": [
+      {
+        "name": "Jonathan Jalouzot",
+        "username": "captainjojo"
+      }
+    ],
+    "duration": {
+      "1": 4,
+      "2": 3,
+      "3": 11,
+      "4": 5,
+      "5": 14,
+      "6": 7,
+      "total": 44
+    }
+  },
+  {
+    "title": "Microservice avec Go et gRPC",
+    "permalink": "/fr/microservice-avec-go-et-grpc/",
+    "excerpt": "Dans ce tutoriel nous allons mettre en place un microservice gRPC de traduction avec Google Translate.",
+    "slug": "microservice-avec-go-et-grpc",
+    "stepTitles": [
+      "Introduction",
+      "Installation des outils",
+      "Déclaration du Protobuf",
+      "Mise en place du serveur gRPC",
+      "Mise en place de la Translate API de Google",
+      "Mise en place du client gRPC",
+      "Ajout d'un proxy REST et d'une doc Swagger"
+    ],
+    "date": "2018-05-15",
+    "authors": [
+      {
+        "name": "Quentin Neyrat",
+        "username": "qneyrat"
+      }
+    ],
+    "duration": {
+      "1": 3,
+      "2": 1,
+      "3": 5,
+      "4": 7,
+      "5": 4,
+      "6": 3,
+      "7": 9,
+      "total": 32
+    }
+  },
+  {
+    "title": "GitLab-ci avec une application JS",
+    "slug": "gitlab-ci-js",
+    "permalink": "/fr/gitlab-ci-js/",
+    "excerpt": "Ce tutoriel a pour objectif de vous montrer comment mettre en place un CI/CD avec GitLab-ci pour une application Vue.js",
+    "stepTitles": [
+      "Introduction",
+      "Définition des besoins et préparation de notre application",
+      "Initialisation de la CI/CD et préparation de notre application pour notre CI/CD",
+      "Mise en place des phases de code style et de tests",
+      "Déploiement de notre application sur Google Cloud PLatform",
+      "Test et conclusion"
+    ],
+    "date": "2018-09-19",
+    "cover": "",
+    "authors": [
+      {
+        "name": "Nicolas Grévin",
+        "username": "nicolas"
+      }
+    ],
+    "category": [
+      "DevOps",
+      "JavaScript"
+    ],
+    "tags": [
+      "CI",
+      "CD",
+      "DevOps",
+      "JavaScrip",
+      "Vue.js"
+    ],
+    "duration": {
+      "1": 5,
+      "2": 25,
+      "3": 11,
+      "4": 9,
+      "5": 15,
+      "6": 1,
+      "total": 66
+    }
+  },
+  {
+    "title": " Gestion d'environnement Recette-Production d'une App React avec Google Cloud Storage et GitlabCI",
+    "slug": "react-env-variable-gcp-gitlabci",
+    "permalink": "/fr/react-env-variable-gcp-gitlabci/",
+    "excerpt": "Le but de ce tutoriel est de créer des environnements distincts (recette & production) pour une application React avec Google Cloud Plateform et Gitlab CI.",
+    "stepTitles": [
+      "Introduction",
+      "Création de l'application React",
+      "Déploiement du projet sur App Engine",
+      "Déploiement de l'application React (recette et production ) via Gitlab CI",
+      "Script de récupération des fichiers de configuration sur Google Cloud Storage"
+    ],
+    "date": "2019-07-29",
+    "cover": "",
+    "authors": [
+      {
+        "name": "Pierre Lerouge",
+        "username": "plerouge"
+      }
+    ],
+    "category": [
+      "React",
+      "Google Cloud Platform",
+      "AppEngine",
+      "Gitlab CI"
+    ],
+    "tags": [
+      "React",
+      "Google Cloud Platform",
+      "AppEngine",
+      "Gitlab CI",
+      "Environnement"
+    ],
+    "duration": {
+      "1": 5,
+      "2": 25,
+      "3": 11,
+      "4": 9,
+      "5": 15,
+      "6": 1,
+      "7": 1,
+      "8": 5,
+      "total": 73
+    }
+  }
+]
