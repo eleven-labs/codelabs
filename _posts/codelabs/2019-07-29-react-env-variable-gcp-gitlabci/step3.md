@@ -1,155 +1,220 @@
-## Mise en place du cache
+## Déploiement du projet sur App Engine
 
-Nos back & front étant prêts, nous allons enfin passer à la mise en place du cache.
-Le but de l'exercice est d'arriver à mettre en place le schéma suivant :
+  
+Nous allons survoler cette étape assez rapidement, car ceci n'est le sujet du CodeLabs mais elle reste essentielle pour la suite.
 
-![cache-schema](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/cache-schema.png)
+Nous utiliserons le service **App Engine** qui permet de déployer des applications web très facilement.
+Si vous voulez en savoir sur AppEngine rendez vous ici : https://cloud.google.com/appengine/
 
-Nous allons couvrir ces points un par un.
+Vous devriez également lire l'article [suivant](https://blog.eleven-labs.com/fr/google-cloud-platform-appengine-pour-vos-projets/) si vous n'avez aucun connaissance sur le service App Engine.
 
-### In-memory
+ 
+Dans l'ordre, nous allons créer un projet sur GCP,  installer le **SDK** et enfin déployer une application de recette et de production.
 
-Il est temps de voir comment fonctionne le cache [`InMemory`](https://www.apollographql.com/docs/react/advanced/caching) d'Apollo.
-En effet, par défaut il va cacher les données avec leur champ `id` ou `_id` et `__typename` (qui correspond à leur type défini dans le schéma du serveur).
 
-Ainsi, si je re-demande une même query, il n'y aura pas de deuxième appel au serveur, mais j'obtiendrai le résultat du premier appel.
+### Création du projet GCP
 
-Pour illustrer ce cas, je vais apporter des modifications à notre application.
-Pour gagner du temps, vous pouvez cloner la branche "step-3" de notre projet, [ce commit en particulier](https://github.com/MarieMinasyan/apollo-tutorial/commit/f41319551da1ccfa42e20e70c901f5bbfe0c7c46).
-Pour information, j'ai ajouté un Router et 2 pages - Home page et Random page.
-La home page a le même comportement que précédemment, et la Random page affiche uniquement le résultat de la query `randomImage`.
+Je vous invite tout simplement à lire l'article suivant :
 
-Je vous invite à tester l'application.
-Vous allez constater que lorsqu'on change de page pour aller sur random page ou revenir sur la Home, les résultats ne changent pas.
+https://blog.eleven-labs.com/fr/google-cloud-platform-pour-les-nuls/
 
-Maintenant, imaginons que nous avons un site e-commerce et que nous sommes dans le tunnel d'achat.
-Évidemment, dans un cas pareil nous souhaitons toujours récupérer les données à jour depuis nos APIs, et non les résultats cachés côté client.
-Pour faire cela, nous pouvons configurer une Query pour avoir toujours la response depuis le réseau (plutôt que le cache client) via la props `fetchPolicy` :
+il vous permettra de créer un projet GCP.
 
-```js
-// front-app/src/pages/Random.js
-<Query query={RANDOM_NASA_IMAGE} variables={{ search: 'raccoon' }} fetchPolicy={"network-only"}>
-```
+ 
+le seul pré-requis dans cette étape est de créer un projet avec le nom suivant : **react-app**
 
-Notez que ceci va également mettre à jour le cache. Ainsi, si je reviens sur la Home, je verrai la photo récupérée sur la page Random.
-Si je souhaite avoir toujours une photo aléatoire, je dois changer tous les endoits où j'appelle les requêtes concernées.
+  
 
-### Redis
+### Installation du SDK GCP en vue du déploiement
 
-Nous avons donc mis en place du cache côté client pour limiter le nombre d'appels inutiles au serveur.
-Nous pouvons maintenant nous concentrer sur le serveur.
+  
 
-Jusque là, nous n'avons fait aucune gestion de cache côté serveur. Pourtant, la plupart du temps les réponses des APIs (surtout publiques comme la nôtre) peuvent être cachées pour une durée définie dans les headers. Et la bonne nouvelle est que les datasources Apollo sont compatibles avec Redis et Memcached.
+## Création d'un compte de service
 
-Pour cet exemple, nous allons utiliser Redis pour mettre les réponses en cache.
-J'ai donc modifié le fichier `docker-compose.yml` pour ajouter un container `redis` :
+Avant toute chose, il est nécessaire de créer un compte de service pour utiliser le SDK.
 
-```yml
-redis:
-    image: bitnami/redis
-    ports:
-        - 6379:6379
-    environment:
-        ALLOW_EMPTY_PASSWORD: 'yes'
-```
-
-Et maintenant je vais ajouter une nouvelle dépendance à mon Apollo serveur :
+Je vous invite à aller dans l'onglet **IAM et administration** de la console GCP et de créer un compte de service :
 
 ```bash
-docker-compose exec gateway yarn add apollo-server-cache-redis --save
+
+Nom du compte de service : react-app
+
+Description du compte de service : react-app
+
 ```
+Ensuite il vous demandera de définir les autorisations du compte:
 
-Ensuite, je vais dire à mon serveur de stocker les réponses des data sources dans le cache Redis :
+Nous choisirons dans notre cas : Projet >> propriétaire ( pour plus de simplicité )
 
-```js
-const { RedisCache } = require('apollo-server-cache-redis');
+Enfin créez un clé de sécurité au format **JSON** et enregistrer cette clé sur votre machine à l'extérieur de votre projet.
 
-const redisCache = new RedisCache({
-  host: 'redis',
-  password: 'password',
-});
+  
+Si vous désirez plus d'informations sur les comptes de services, rendez-vous [ici](https://cloud.google.com/compute/docs/access/service-accounts?hl=fr)
 
-const server = new ApolloServer({
-  schema: makeExecutableSchema({
-    typeDefs: GraphQLHelper.typeDefs,
-    resolvers: GraphQLHelper.resolvers,
-  }),
-  dataSources: () => GraphQLHelper.dataSources,
-  cache: redisCache,
-});
-```
+  
 
-Et c'est tout. Désormais les réponses de nos APIs sont bien cachées.
-Si vous avez Redis Desktop Manager par exemple, vous pouvez facilement vérifier le bon fonctionnement de cette étape.
+## Installation du SDK GCP
 
-![graphql-redis-cache](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/redis_cache.png)
+Je vous invite à suivre les instructions disponibles [ici](https://cloud.google.com/sdk/install)
 
-### Automatic Persisted Queries
+  
 
-Un autre moyen d'améliorer les performances est d'utiliser les [*persisted queries*](https://www.apollographql.com/docs/apollo-server/features/apq).
-Cela permet de faire des appels en GET au serveur au lieu de POST, cela réduit la taille de la requête envoyée et bypass l'étape de validation du schéma.
+Une fois l’installation terminée vous devriez pouvoir lancer la commande suivante dans votre terminal :
 
-Voici un schéma qui explique le fonctionnement :
+gcloud auth activate-service-account --key-file **chemin/vers/key.json**
 
-![graphql-persisted-queries](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/persisted_queries.png)
+  
 
-Pour activer les *persisted queries* côté serveur :
-
-```js
-const server = new ApolloServer({
-  schema: makeExecutableSchema({
-    typeDefs: GraphQLHelper.typeDefs,
-    resolvers: GraphQLHelper.resolvers,
-  }),
-  dataSources: () => GraphQLHelper.dataSources,
-  cache: redisCache,
-  persistedQueries: {
-    cache: redisCache,
-  },
-});
-```
-
-Et côté client je vais créer un nouveau link :
+Ensuite il nous faut configurer votre SDK avec la commande suivante:
 
 ```bash
-docker-compose exec front-app yarn add apollo-link-persisted-queries --save
+
+gcloud init
+
 ```
 
-```js
-// src/graphql/helpers/persistedQueryLink.js
-import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
+  
 
-const persistedQueryLink = createPersistedQueryLink({
-  useGETForHashedQueries: true,
-});
+Suivre les instructions du prompteur en choisissant le compte de service que vous avez créer et le projet que nous avons créer précédemment.
 
-export default persistedQueryLink;
+Nous sommes fin prêt à déployer notre application sur AppEngine.
+
+  
+
+### Déploiement sur App Engine
+
+  
+
+Afin de déployer notre application via le SDK, nous allons utiliser un fichier au format YAML reconnu par App Engine.
+
+Nous allons donc ajouter un fichier **app.yaml** qui permet de configurer votre service App Engine. Vous trouverez la documentation complète [ici](https://cloud.google.com/appengine/docs/standard/python/config/appref?hl=fr).
+
+  
+
+Dans le fichier, nous allons mettre en place la configuration de base pour un environnement node.
+
+  
+
+```bash
+
+service: default
+
+runtime: nodejs10
+
+instance_class: F1
+
+  
+
+handlers:
+
+- url: /
+
+static_files: build/index.html
+
+upload: build/index.html
+
+- url: /(.*)/
+
+static_files: build/\1/index.html
+
+upload: build/(.*)/index.html
+
+- url: /static
+
+static_dir: build/static
+
+- url: /(.*)
+
+static_files: build/index.html
+
+upload: build/index.html
+
 ```
 
-```js
-// src/graphql/helpers/client.js
-import persistedQueryLink from './persistedQueryLink';
+  
 
-const createGraphQLClient = () => {
-  return new ApolloClient({
-    link: ApolloLink.from([persistedQueryLink, errorLink, httpLink]),
-    cache: new InMemoryCache(),
-  });
-};
+Le premier service aura toujours pour nom : **default**
+
+Le paramètre **runtime** permet de définir l'environnement d'execution.
+
+**instance_class** définit le type d'instance que l'on va utiliser.
+
+et le paramètre **handlers** permet de lister les formats d'un URL de notre application React.
+
+  
+
+## Déploiement de l'application de production
+
+La mise en prod est maintenant simple, il nous suffit de lancer la commande suivante à la racine du projet:
+
+```bash
+
+gcloud app deploy ./app.yml --version version1
+
+```
+L’option *–version* vous permet de donner un nom à votre version. App Engine permet de gérer différentes versions pour un même service.
+
+Ceci peut être utile en cas de rollback ou de tests.
+Allons vérifier que notre application est bien déployée :
+Rendez-vous dans la console Cloud dans l’onglet App Engine.
+
+Puis dans *SERVICES >> VERSIONS*, vous devriez voir la version de votre application *default* apparaître.
+
+Quand le déploiement sera terminé, nous pourrons accéder à notre front React en cliquant sur le nom de la version.
+
+  
+
+## Deploiement de l'application de production
+
+
+Pour obtenir une version de recette de notre application, nous allons déployer un second service de la manière que précédemment
+
+il nous suffit de créer un second fichier **app.recette.yml** et d'y ajouter la configuration suivante:
+
+  
+
+```bash
+
+service: react-app-recette
+
+runtime: nodejs10
+
+instance_class: F1
+
+  
+
+handlers:
+
+- url: /
+
+static_files: build/index.html
+
+upload: build/index.html
+
+- url: /(.*)/
+
+static_files: build/\1/index.html
+
+upload: build/(.*)/index.html
+
+- url: /static
+
+static_dir: build/static
+
+- url: /(.*)
+
+static_files: build/index.html
+
+upload: build/index.html
+
 ```
 
-Désormais dans notre navigateur les appels se font en GET quand cela est possible :
+  
+Le seul changement est au niveau du nom de notre service.
+Nous aurons ainsi deux services distincts que nous pourrons déployer indépendamment l'un de l'autre.
 
-![graphql-persisted-queries-result](https://storage.googleapis.com/tutos/assets/2019-05-10-apollo-rest-cache/persisted_queries_result.png)
+  
 
-Maintenant que nous avons des appels en GET, nous pouvons même mettre en place un Varnish pour encore plus améliorer les performances.
+Dans la prochaine étape, nous allons maintenant industrialiser ce process en utilisant les fonctionnalités offertes par GitlabCI.
 
-### Suivre les performances
-
-Pour aller encore plus loin, vous pouvez analyser chacun de vos appels réseau entre le Gateway et les APIs en passant pas les extensions.
-Je vous invite à lire [cet article sur notre blog](https://blog.eleven-labs.com/fr/commencer-avec-apollojs/#analyser-les-resolvers-graphql) pour en savoir plus.
-
-### Mot de la fin
-
-Merci à tous ceux qui ont suivi ce tutoriel jusqu'à la fin.
-J'espère qu'il vous a été utile.
+Ceci nous évitera déployer *à la main* nos versions.

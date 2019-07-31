@@ -1,237 +1,120 @@
-## Mise en place d'Apollo client
+## Creation de l'application React
 
-### Initialisation du projet front
+### Pré-requis
+Pour commencer, vous devez installer [Npm & Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-Pour commencer, clonez la branche "step-2" de [ce projet](https://github.com/MarieMinasyan/apollo-tutorial), mettez-vous sur [le commit suivant](https://github.com/MarieMinasyan/apollo-tutorial/commit/b4b6ac037e1b7a63c748dba93839baa94b4915a2).
-Nous avons besoin d'éxécuter la commande suivante pour prendre en compte les modifications du fichier `docker-compose.yml` :
+### Création de l'application REACT
 
+A l'heure où je rédige ce CodeLabs, le framework **React** permet facilement de créer des interfaces utilisateurs interactives.
+
+Nous allons donc créer une application très simple avec React.
+Si vous désirez plus d'informations sur ce framework, rendez-vous [ici](https://fr.reactjs.org/).
+
+Pour créer votre application, suivez les instructions suivantes :
+Dans un dossier *react-app*, lancer la commande suivante :
 ```bash
-docker-compose up -d
+	npx create-react-app reat-app
+	cd react-app
+	npm start
 ```
+Nous avons utilisé **create-react-app** qui génere automatiquement les fichiers nécessaires au bon fonctionnement d'une application React et ces dépendances. Nous pouvons consulter maintenant tous ces fichiers à la racine de notre projet.
 
-L'application front en React est disponible sur [http://localhost:3001/](http://localhost:3001/).
+Ensuite en nous plaçant dans le dossier du projet, nous avons lancer l'application avec la dernière ligne de commande.
 
-### Initialisation d'Apollo client
+En quelques instants, nous avons une application fonctionnelle dans notre environnement local.
 
-Afin de démarrer, nous allons ajouter de nouvelles dépendances dans l'application :
+Rendez-vous à cette adresse : http://localhost:3000 pour visualiser notre résultat.
 
+### Modification en vue du déploiement sur Google Cloud Platform
+
+Notre objectif est de déployer notre application dans l'écosystème Google Cloud Platform, et plus précisément via le service **App Engine** dont on parlera un peu plus loin dans ce CodeLabs
+
+Il est important de savoir que toutes les applications déployées sur App Engine sont servies via le port **8080**.
+
+Vous avez surement compris, notre application est disponible via le port 3000 par défaut, nous devons donc préventivement faire en sorte que notre application utilise le port 8080 afin d'éviter des surprises dans un futur proche.
+
+Pour se faire, nous allons éditer le fichier **package.json**, qui gère une grande partie de la configuration de notre application.
+
+Nous allons remplacer la ligne suivante :
+```js
+	"start": "react-scripts start"
+```
+par :
+```js
+	"start": "PORT=8080 react-scripts start"
+```
+Relancer ensuite votre application :
 ```bash
-docker-compose exec front-app yarn add apollo-client apollo-cache-inmemory apollo-link apollo-link-http apollo-link-error react-apollo graphql graphql-tag --save
+	Ctrl + C
+	npm start
+```
+Rendez vous ensuite [ici](http://localhost:8080) pour vérifier que votre application est disponible sur ce port.
+
+Ce simple changement permettra de forcer l'application React à utiliser le port 8080 et sera utilisé pour servir notre application par le service App Engine.
+
+### Utiliser des variables d'environnement
+
+Un des moyens simple de gérer les variables d'environnement pour une application React est d'utiliser un fichier **.env** dans lequel on stockera toutes les variables relatives à l'environnement.
+
+Pour éviter que personne ne puisse accéder à ce fichier sensible, nous allons ajouter ce dernier dans un fichier **.gitignore**, qui se trouve à la racine du projet.
+
+Exemple de .gitignore :
+```
+	
+	# Exemple de .gitignore
+	# ignoring files.
+
+	# dependencies
+	/node_modules
+	/.pnp
+	.pnp.js
+
+	# testing
+	/coverage
+
+	# production
+	/build
+
+	# misc
+	.DS_Store
+	.env.local
+	.env.development.local
+	.env.test.local
+	.env.production.local
+	npm-debug.log*
+	yarn-debug.log*
+	yarn-error.log*
+
+```
+Notre application pourra faire référence à la même variable d'environnement ( **process.env.REACT_APP_API_URL** par exemple) pour nos deux environnements d'execution ( Recette et Production ) mais lors de la compilation, cette variable aura une valeur différente selon l'environnement.
+
+Créons maintenant ce fichier *.env* à la racine du projet.
+Ajoutons maintenant une variable :
+
+```
+	REACT_APP_API_URL=http://api-url.com
 ```
 
-`apollo-client`, `react-apollo`, `graphql` et `graphql-tag` sont le minimum dont nous allons avoir besoin.
-Nous avons également ajouté d'autres librairies qui vont nous permettre de mettre en place la gestion des erreurs et la connexion à notre serveur Apollo.
-
-Je vous invite à lire en détail la documentation d'Apollo sur la [configuration de plusieurs links](https://www.apollographql.com/docs/link/composition) et la page sur le [fonctionnement de `link`](https://www.apollographql.com/docs/react/advanced/network-layer).
-
-Ainsi, je vais commencer la configuration de mon client. Dans le dossier `src/` je vais créer un nouveau dossier `graphql/helpers` qui contiendra la configuration.
-
-Voici le code pour créer un `httpLink` :
+Affichons cette variable dans notre application :
+Nous allons éditer le fichier **App.js** de notre application et remplacer le code par ce qui va suivre :
 
 ```js
-// src/graphql/helpers/httpLink.js
-import { createHttpLink } from 'apollo-link-http';
+import  React  from  'react';
+import  './App.css';
 
-const httpLink = createHttpLink({
-  uri: 'http://localhost:3000/graphql',
-});
+const  apiUrl  = process.env.REACT_APP_API_URL;
+const App = () => apiUrl;
 
-export default httpLink;
+export  default  App;
 ```
 
-Ensuite, je vais créer le fichier `errorLink` :
+Avec ces modifications, nous avons supprimé le logo et le texte par défaut de React.
+Nous avons défini une variable qui récupère la valeur de notre variable d'environnement.
+Nous demandons ensuite à notre component App d'afficher cette variable sur la home page de notre application.
 
-```js
-// src/graphql/helpers/errorLink.js
-import { onError } from 'apollo-link-error';
+Après sauvegarde du fichier, l'application va se recharger automatiquement et nous pourrons voir apparaitre la valeur de notre variable.
 
-const errorLink = onError(({ networkError, graphQLErrors }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) => {
-      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`);
-    });
-  }
+Nous verrons plus tard comment faire pour que cette variable changer de valeur selon l'environnement d'execution.
 
-  if (networkError) {
-    console.log(`[Network error]: ${networkError}`);
-  }
-});
-
-export default errorLink;
-```
-
-Vous remarquerez que nous avons également installé `apollo-cache-inmemory`.
-En effet, ApolloClient demande d'avoir un système de cache obligatoirement lors de l'initialisation.
-`InMemoryCache` est la solution recommandée par Apollo.
-
-Maintenant, j'ai besoin d'initialiser un client Apollo avec les *links* et le cache ci-dessus.
-Je vais faire ceci dans un fichier à part pour bien séparer mes différents besoins :
-
-```js
-// src/graphql/helpers/client.js
-import { ApolloLink } from 'apollo-link';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-
-import errorLink from './errorLink';
-import httpLink from './httpLink';
-
-const createGraphQLClient = () => {
-  return new ApolloClient({
-    link: ApolloLink.from([errorLink, httpLink]),
-    cache: new InMemoryCache(),
-  });
-};
-
-export default createGraphQLClient;
-```
-
-Enfin, passons le client Apollo à l'application :
-
-```js
-// index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { ApolloProvider } from 'react-apollo';
-
-import './index.css';
-import App from './App';
-import createClientGraphQL from './graphql/helpers/client';
-
-ReactDOM.render((
-  <ApolloProvider client={createClientGraphQL()}>
-    <App />
-  </ApolloProvider>
-), document.getElementById('root'));
-```
-
-### Récupération des données depuis le serveur
-
-Nous sommes enfin prêts pour faire notre première query !
-Je vais placer toutes les requêtes dans le dossier `graphql/queries`.
-
-```js
-// graphql/queries/apod.js
-import gql from 'graphql-tag';
-
-export const APOD = gql`
-  query APOD {
-    apod {
-      title
-      url
-      date
-      explanation
-      type
-    }
-  }
-`;
-```
-
-Nous écrivons la même requête que dans le playground du serveur.
-
-Apollo client fournit un composant [`Query`](https://www.apollographql.com/docs/react/essentials/queries) : 
-
-```js
-import React from 'react';
-import { Query } from 'react-apollo';
-
-import { APOD } from './graphql/queries/apod';
-
-const App = () => {
-  return (
-    <div>
-      <Query query={APOD}>
-        {({ loading, error, data }) => {
-          if (loading) return "Loading...";
-          if (error) return `Error! ${error.message}`;
-
-          return (
-            <div>
-              <p>{data.apod.title}</p>
-              <p>{data.apod.explanation}</p>
-              <p>{data.apod.date}</p>
-              <p><img src={data.apod.url} alt={data.apod.title}/></p>
-            </div>
-          );
-        }}
-      </Query>
-    </div>
-  );
-};
-
-export default App;
-```
-
-Le composant `Query` est un `observer`, il se met donc à jour lorsqu'il obtient une réponse du serveur.
-
-Maintenant que nous avons l'image du jour, nous souhaitons ajouter une image aléatoire qui vient de la bibliothèque d'images de la NASA.
-Je vais donc ajouter la query `randonImage` :
-
-```js
-// graphql/queries/randomImage.js
-import gql from 'graphql-tag';
-
-export const RANDOM_NASA_IMAGE = gql`
-  query RANDOM_NASA_IMAGE($search: String!) {
-    randomImage(search: $search) {
-      title
-      url
-      description
-    }
-  }
-`;
-```
-
-Et voici notre composant App :
-
-```js
-import React from 'react';
-import { Query } from 'react-apollo';
-
-import { APOD } from './graphql/queries/apod';
-import { RANDOM_NASA_IMAGE } from './graphql/queries/randomImage';
-
-const App = () => {
-  return (
-    <div>
-      <Query query={APOD}>
-        {({ loading, error, data }) => {
-          if (loading) return "Loading...";
-          if (error) return `Error! ${error.message}`;
-
-          return (
-            <div className={'apod'}>
-              <p>{data.apod.title}</p>
-              <p>{data.apod.explanation}</p>
-              <p>{data.apod.date}</p>
-              <p><img src={data.apod.url} alt={data.apod.title}/></p>
-            </div>
-          );
-        }}
-      </Query>
-      <Query query={RANDOM_NASA_IMAGE} variables={{ search: 'raccoon' }}>
-        {({ loading, error, data }) => {
-          if (loading) return "Loading...";
-          if (error) return `Error! ${error.message}`;
-
-          return (
-            <div className={'random'}>
-              <p>{data.randomImage.title}</p>
-              <p>{data.randomImage.description}</p>
-              <p><img src={data.randomImage.url} alt={data.randomImage.title}/></p>
-            </div>
-        );
-        }}
-      </Query>
-    </div>
-  );
-};
-
-export default App;
-```
-
-Pour information, avec GraphQL, nous pouvons faire plusieurs requêtes en un appel réseau au serveur, et c'est le serveur qui se chargera d'aggréger les données pour nous renvoyer une réponse.
-
-Et voilà ! Bravo à vous :)
-Nous avons un client / serveur Apollo avec les résultats attendus.
-Dans le chapitre suivant nous allons voir comment améliorer les performances de notre application.
+Notre application est fin prête, nous allons pouvoir la déployer sur Google Cloud Platform via le service App Engine.
+Pour se faire nous verrons dans la prochaine étape comment un projet sur Google Cloud Platform.

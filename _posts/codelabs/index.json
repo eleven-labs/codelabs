@@ -187,11 +187,9 @@
       "Introduction",
       "Creation de l'application React",
       "Utilisation des variables d'environnement",
-      "Creation d'un projet GCP",
-      "Initialisation d'App Engine",
-      "Déploiement de l'application React via Gitlab CI",
-      "Récupération des fichiers de configuration via Google Cloud Storage",
-      "Mise en place du script via Gitlab CI"
+      "Déploiement du projet sur App Engine",
+      "Déploiement de l'application React ( recette et production ) via Gitlab CI",
+      "Script de récupération des fichiers de configuration sur Google Cloud Storage"
     ],
     "date": "2019-07-29",
     "cover": "",
