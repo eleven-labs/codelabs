@@ -13,9 +13,9 @@ Si vous désirez plus d'informations sur ce framework, rendez-vous [ici](https:/
 Pour créer votre application, suivez les instructions suivantes.
 Dans un dossier *react-app*, lancez la commande suivante :
 ```bash
-	npx create-react-app react-app
-	cd react-app
-	npm start
+npx create-react-app react-app
+cd react-app
+npm start
 ```
 Nous avons utilisé **create-react-app** qui génère automatiquement les fichiers nécessaires au bon fonctionnement d'une application React et ses dépendances. Nous pouvons consulter maintenant tous ces fichiers à la racine de notre projet.
 
@@ -37,16 +37,16 @@ Pour ce faire, nous allons éditer le fichier **package.json**, qui gère une gr
 
 Nous allons remplacer la ligne suivante :
 ```js
-	"start": "react-scripts start"
+"start": "react-scripts start"
 ```
 par :
 ```js
-	"start": "PORT=8080 react-scripts start"
+"start": "PORT=8080 react-scripts start"
 ```
 Relancez ensuite votre application :
 ```bash
-	Ctrl + C
-	npm start
+Ctrl + C
+npm start
 ```
 Rendez-vous ensuite [ici](http://localhost:8080) pour vérifier que votre application est disponible sur ce port.
 
@@ -60,29 +60,28 @@ Pour éviter que personne ne puisse accéder à ce fichier sensible, nous allons
 
 Exemple de .gitignore :
 ```
-	
-	# Exemple de .gitignore
-	# ignoring files.
+# Exemple de .gitignore
+# ignoring files.
 
-	# dependencies
-	/node_modules
-	/.pnp
-	.pnp.js
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-	# testing
-	/coverage
+# testing
+/coverage
 
-	# production
-	/build
+# production
+/build
 
-	#configuration
-	.env
+#configuration
+.env
 
-	# misc
-	.DS_Store
-	npm-debug.log*
-	yarn-debug.log*
-	yarn-error.log*
+# misc
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 ```
 Notre application pourra faire référence à la même variable d'environnement (**process.env.REACT_APP_API_URL** par exemple) pour nos deux environnements d'exécution (toujours recette et production), mais lors de la compilation, cette variable aura une valeur différente selon l'environnement.
@@ -91,7 +90,7 @@ Créons maintenant ce fichier *.env* à la racine du projet.
 Puis ajoutons une variable :
 
 ```
-	REACT_APP_API_URL=http://api-url.com
+REACT_APP_API_URL=http://api-url.com
 ```
 
 Affichons cette variable dans notre application. Pour ce faire, éditons le fichier **App.js** de notre application en remplaçant le code par celui-ci :
@@ -112,8 +111,8 @@ Nous demandons ensuite à notre component App d'afficher cette variable sur la h
 
 Après sauvegarde du fichier, relancez ensuite votre application :
 ```bash
-	Ctrl + C
-	npm start
+Ctrl + C
+npm start
 ```
 nous pouvons voir apparaître la valeur de notre variable.
 

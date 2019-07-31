@@ -23,34 +23,34 @@ Vous devez maintenant créer un dossier *commands* à la racine du projet et ajo
 Ajoutez le code suivant dans votre fichier :  
 
 ```js
-const { Storage } =  require('@google-cloud/storage');
-const  fs  =  require('fs');
+const { Storage } = require('@google-cloud/storage');
+const fs = require('fs');
 
-const  projectId  =  'react-app';
-const  bucketName  =  'react-app.appspot.com';
-const  keyFile  =  'key.json';
-const  gcloudKey  = process.argv[2];
-const  env  = process.argv[3];
+const projectId = 'id_de_votre_projet';
+const bucketName = 'id_de_votre_projet.appspot.com';
+const keyFile = 'key.json';
+const gcloudKey = process.argv[2];
+const env = process.argv[3];
 
-async  function  createKeyFile() {
-    await  fs.writeFile(keyFile, gcloudKey, (resp,  err)  => {
-    if  (err)  throw  err;
-    return  resp;
+async function createKeyFile() {
+    await fs.writeFile(keyFile, gcloudKey, (resp, err) => {
+        if (err) throw err;
+        return resp;
     });
 }
 
 // write to a new key file
-async  function  getConfigFile() {
+async function getConfigFile() {
     console.log(`Downloading config .env.${env} from bucket "${bucketName}"`);
-    await  createKeyFile(keyFile, gcloudKey);
-    const  storage  =  new  Storage({ projectId, keyFilename:  keyFile });
-    const  directory  =  `.env.${env}`;
-    await  storage
+    await createKeyFile(keyFile, gcloudKey);
+    const storage = new Storage({ projectId, keyFilename:  keyFile });
+    const directory = `.env.${env}`;
+    await storage
     .bucket(bucketName)
     .file(directory)
-    .download({ destination:  '.env' })
-    .then(()  =>  console.info(`Config .env.${env} file downloaded successfully`))
-    .catch(error  =>  error);
+    .download({ destination: '.env' })
+    .then(() => console.info(`Config .env.${env} file downloaded successfully`))
+    .catch(error => error);
 }
 getConfigFile();
 
@@ -118,6 +118,6 @@ Gitlab CI devra faire le reste.
 Nous pouvons observer l'exécution du script dans les logs de la CI.
 
 Vous pouvez ainsi vérifier le résultat en allant sur les deux URLS suivantes :
-https://react-app-recette.react-app.appspot.com et https://react-app.appspot.com
+https://id_de_votre_projet-recette.react-app.appspot.com et https://id_de_votre_projet.appspot.com
 
 Si tout s'est bien passé, la valeur affichée doit être différente selon l'environnement !
