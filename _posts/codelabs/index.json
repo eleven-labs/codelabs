@@ -186,7 +186,6 @@
     "stepTitles": [
       "Introduction",
       "Creation de l'application React",
-      "Utilisation des variables d'environnement",
       "Déploiement du projet sur App Engine",
       "Déploiement de l'application React ( recette et production ) via Gitlab CI",
       "Script de récupération des fichiers de configuration sur Google Cloud Storage"
