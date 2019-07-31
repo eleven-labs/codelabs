@@ -1,35 +1,26 @@
 ## Script de récupération des fichiers de configuration sur Google Cloud Storage
 
-  
-Nous avons maintenant deux applications distinctes mais nous utilisons toujours le même fichier d'environnement *.env*
-Souvenez vous, notre application pourra faire référence à la même variable d'environnement ( **process.env.REACT_APP_API_URL** ) pour nos deux applications ( Recette et Production ).
-
-  
+Nous avons maintenant deux applications distinctes mais nous utilisons toujours le même fichier d'environnement *.env*.
+Souvenez-vous, notre application pourra faire référence à la même variable d'environnement (**process.env.REACT_APP_API_URL**) pour nos deux applications (recette et production).
 
 Nous devons donc créer deux fichiers *.env.recette* et *.env.production* et les déposer dans le bucket de notre projet GCP.
-Contenu *.env.recette*
+Dans le fichier *.env.recette*, vous devez renseigner :
 
 ```bash
 REACT_APP_API_URL=http://api-url-recette.com
 ```
 
-  
+Et dans le fichier *.env.production* :
 
-Contenu *.env.production*
 ```bash
 REACT_APP_API_URL=http://api-url-prod.com
 ```
 
-  
+En se rendant dans notre console GCP et dans l'onglet Google Cloud Storage ([En savoir plus](https://cloud.google.com/storage/)), déposons dans le bucket *react-app.appspot.com* nos fichiers d'environnement.
+Nous allons maintenant ajouter un script qui permettra lors du déploiement de récupèrer le fichier de configuration nécessaire à l'application en fonction de l'environenent (recette ou production).
 
-Allons dans notre console GCP dans l'onglet Google Cloud Storage ([En savoir plus](https://cloud.google.com/storage/)) et déposer dans le bucket *react-app.appspot.com* nos fichiers d'environnement.
-Nous allons maintenant ajouter un script qui permettra lors déploiement de récupèrer le fichier de configuration nécessaire à l'application en fonction de l'environenent ( Recette ou Production ).
-
-  
-Créer un dossier *commands* à la racine du projet et ajouter un fichier : *loadEnvCloudStorage.js*
-Ajouter le code suivant dans votre fichier :
-
-  
+Vous devez maintenant créer un dossier *commands* à la racine du projet et ajouter un fichier : *loadEnvCloudStorage.js*.
+Ajoutez le code suivant dans votre fichier :  
 
 ```js
 const { Storage } =  require('@google-cloud/storage');
@@ -65,21 +56,18 @@ getConfigFile();
 
 ```
 
-  
-
-Le script utilise deux librairies:
-- **fs**, pour la manipulation de fichier.
-- **@google-cloud/storage** pour interagir avec le service Google Cloud Storage.
+Le script utilise deux librairies :
+- **fs**, pour la manipulation de fichier
+- **@google-cloud/storage** pour interagir avec le service Google Cloud Storage
 
  
-Dans notre function, nous allons créer un fichier contenant notre secret key. Ce fichier est nécessaire lors de l'implémentation du service Storage.
-Ensuite, on récupère le bon fichier pour le sauvegarder dans le code source de l'application en le renommant en .env
-
-  
+Dans notre fonction, nous allons créer un fichier contenant notre secret key. Ce fichier est nécessaire lors de l'implémentation du service Storage.
+Ensuite, récupérons le bon fichier pour le sauvegarder dans le code source de l'application en le renommant en .env.
 
 ### Mise en place du script via Gitlab CI
 
-Il nous suffit maintenant d'ajouter la commande qui executera ce script lors de la CI
+Il nous suffit maintenant d'ajouter la commande qui executera ce script lors de la CI.
+
 Exemple : 
 ```bash
 npm run start:config '$DEPLOY_KEY_JSON_PRODUCTION' production
@@ -123,7 +111,8 @@ deploy_production:
     - gcloud app deploy ./app.yml --version=$CI_PIPELINE_ID --promote --stop-previous-version
 
 ```
-Comme pour le step précédent, je vous invite à pusher vos modifications sur votre repository.
+
+Comme pour la step précédente, je vous invite à pusher vos modifications sur votre repository.
 
 Gitlab CI devra faire le reste.
 Nous pouvons observer l'execution du script dans les logs de la CI.
@@ -131,5 +120,4 @@ Nous pouvons observer l'execution du script dans les logs de la CI.
 Vous pouvez ainsi vérifiez le résultat en allant sur les deux URLS suivantes :
 https://react-app-recette.react-app.appspot.com et https://react-app.appspot.com
 
-
-Si tout c'est bien passé, la valeur affichée doit être différente selon l'environnement. :)
+Si tout c'est bien passé, la valeur affichée doit être différente selon l'environnement !
