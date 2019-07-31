@@ -64,7 +64,7 @@ Et allons insérer ce compte de service dans CI/CD >> Variables.
 Indiquez *DEPLOY_KEY_JSON_PRODUCTION* dans le champ *KEY*. Et dans le champ *VALUE*, ajoutez le contenu de notre fichier **key.json**.
 Ceci permettra à notre script de récupérer notre clé secrète sans qu'elle puisse être accessible par des tiers.
 
-Enfin si nous jetons un oeil aux deux parties qui concernent les déploiements, le script va tout d'abord ajouter nos dépendances et ensuite lancer la commande que nous avons lancé à la main dans le step précédente.
+Enfin si nous jetons un oeil aux deux parties qui concernent les déploiements, le script va tout d'abord ajouter nos dépendances et ensuite lancer la commande que nous avons lancé à la main dans le step précédent.
 
 Pour rappel, l'option version (*--version=$CI_PIPELINE_ID*) va utiliser l'ID de la pipeline, et permettra d'avoir des URLs différentes selon les versions.
 
