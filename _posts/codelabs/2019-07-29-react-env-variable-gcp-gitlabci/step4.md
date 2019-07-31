@@ -1,7 +1,7 @@
 ## Script de récupération des fichiers de configuration sur Google Cloud Storage
   
 Nous avons maintenant deux applications distinctes mais nous utilisons toujours le même fichier d'environnement *.env*.
-Souvenez-vous, notre application pourra faire référence à la même variable d'environnement (**process.env.REACT_APP_API_URL**) pour nos deux applications (recette et production). Ceci permet également de sécuriser l'application et de ne pas divulger les secrets key par exemple.
+Souvenez-vous, notre application pourra faire référence à la même variable d'environnement (**process.env.REACT_APP_API_URL**) pour nos deux applications (recette et production). Ceci permet également de sécuriser l'application et de ne pas divulger les secret keys par exemple.
 
 Nous devons donc créer deux fichiers *.env.recette* et *.env.production* et les déposer dans le bucket de notre projet GCP.
 Dans le fichier *.env.recette*, vous devez renseigner :
@@ -17,7 +17,7 @@ REACT_APP_API_URL=http://api-url-prod.com
 ```
 
 En se rendant dans notre console GCP et dans l'onglet Google Cloud Storage ([En savoir plus](https://cloud.google.com/storage/)), déposons dans le bucket *react-app.appspot.com* nos fichiers d'environnement.
-Nous allons maintenant ajouter un script qui permettra lors du déploiement de récupèrer le fichier de configuration nécessaire à l'application en fonction de l'environenent (recette ou production).
+Nous allons maintenant ajouter un script qui permettra lors du déploiement de récupérer le fichier de configuration nécessaire à l'application en fonction de l'environenent (recette ou production).
 
 Vous devez maintenant créer un dossier *commands* à la racine du projet et ajouter un fichier : *loadEnvCloudStorage.js*.
 Ajoutez le code suivant dans votre fichier :  
@@ -66,7 +66,7 @@ Ensuite, récupérons le bon fichier pour le sauvegarder dans le code source de 
 
 ### Mise en place du script via Gitlab CI
 
-Il nous suffit maintenant d'ajouter la commande qui executera ce script lors de la CI.
+Il nous suffit maintenant d'ajouter la commande qui exécutera ce script lors de la CI.
 
 Exemple : 
 ```bash
@@ -112,12 +112,12 @@ deploy_production:
 
 ```
 
-Comme pour la step précédente, je vous invite à pusher vos modifications sur votre repository.
+Comme pour le step précédente, je vous invite à pusher vos modifications sur votre repository.
 
 Gitlab CI devra faire le reste.
-Nous pouvons observer l'execution du script dans les logs de la CI.
+Nous pouvons observer l'exécution du script dans les logs de la CI.
 
-Vous pouvez ainsi vérifiez le résultat en allant sur les deux URLS suivantes :
+Vous pouvez ainsi vérifier le résultat en allant sur les deux URLS suivantes :
 https://react-app-recette.react-app.appspot.com et https://react-app.appspot.com
 
-Si tout c'est bien passé, la valeur affichée doit être différente selon l'environnement !
+Si tout s'est bien passé, la valeur affichée doit être différente selon l'environnement !
