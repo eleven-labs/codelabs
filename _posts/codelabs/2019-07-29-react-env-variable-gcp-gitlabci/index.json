@@ -1,0 +1,33 @@
+{
+  "title": "Gestion d'environnement Recette-Production d'une App React avec Google Cloud Storage et GitlabCI",
+  "slug": "react-env-variable-gcp-gitlabci",
+  "permalink": "/fr/react-env-variable-gcp-gitlabci/",
+  "excerpt": "Le but de ce tutoriel est de gérer des variables d'environnements distinctes (Recette & Production) pour une application React avec Google Cloud Plateform et Gitlab CI.",
+  "stepTitles": [
+    "Introduction",
+    "Creation de l'application React",
+    "Déploiement du projet sur App Engine",
+    "Déploiement de l'application React (recette et production) via Gitlab CI",
+    "Script de récupération des fichiers de configuration sur Google Cloud Storage"
+  ],
+  "date": "2019-07-29",
+  "authors": [
+    {
+      "name": "Pierre Lerouge",
+      "username": "plerouge"
+    }
+  ],
+  "category": [
+    "React",
+    "Google Cloud Platform",
+    "AppEngine",
+    "Gitlab CI"
+  ],
+  "tags": [
+    "React",
+    "Google Cloud Platform",
+    "AppEngine",
+    "Gitlab CI",
+    "Environnement"
+  ]
+}

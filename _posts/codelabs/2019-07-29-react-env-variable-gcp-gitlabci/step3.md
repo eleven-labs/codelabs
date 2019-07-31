@@ -1,159 +1,74 @@
-## Déploiement du projet sur App Engine
+## Déploiement de l'application React (recette et production) via Gitlab CI
+
+Nous allons survoler également cette étape assez rapidement.
+Pour commencer, je vous invite à lire [ceci](https://codelabs.eleven-labs.com/course/fr/gitlab-ci-js/)
+
+
+### Pré-requis
+
+Vous devez posséder un compte gitlab.
+Créer un projet et un repository dans lequel vous aurez déposé votre code source.
+
+ 
+### Mise en place de la CI ( Continuous integration )
+
+Le service CI/CD va nous permettre de déployer notre application.
+Pour se faire, il nous faut d'abord créer un fichier **gitlabci.yml** à la racine de notre projet et ajouter les instructions suivantes :
 
   
-Nous allons survoler cette étape assez rapidement, car ceci n'est pas le sujet du CodeLabs mais elle reste essentielle pour la suite.
-
-Nous utiliserons le service **App Engine** qui permet de déployer des applications web très facilement.
-Si vous voulez en savoir plus sur AppEngine, rendez vous ici : https://cloud.google.com/appengine/
-Vous devriez également lire l'article [suivant](https://blog.eleven-labs.com/fr/google-cloud-platform-appengine-pour-vos-projets/) si vous n'avez aucun connaissance sur le service App Engine.
-
-Dans l'ordre, nous allons créer un projet sur GCP,  installer le **SDK** et enfin déployer une application de recette et de production.
-
-
-### Création du projet GCP
-
-Je vous invite tout simplement à lire l'article suivant :
-https://blog.eleven-labs.com/fr/google-cloud-platform-pour-les-nuls/
-il vous permettra de créer un projet GCP.
-
-le seul pré-requis dans cette étape est de créer un projet avec le nom suivant : **react-app**
-
-  
-
-### Installation du SDK GCP en vue du déploiement
-
-  
-
-#### Création d'un compte de service
-
-Avant toute chose, il est nécessaire de créer un compte de service pour utiliser le SDK.
-
-Je vous invite à aller dans l'onglet **IAM et administration** de la console GCP et de créer un compte de service :
-
 ```bash
 
-Nom du compte de service : react-app
+image: node:10
+cache:
+    paths:
+    - node_modules/
 
-Description du compte de service : react-app
+stages:
+    - deploy_recette
+    - deploy_production
 
-```
-Ensuite il vous demandera de définir les autorisations du compte:
-Nous choisirons dans notre cas : Projet >> propriétaire ( pour plus de simplicité )
-Enfin créez un clé de sécurité au format **JSON** et enregistrer cette clé sur votre machine à l'extérieur de votre projet.
-Si vous désirez plus d'informations sur les comptes de services, rendez-vous [ici](https://cloud.google.com/compute/docs/access/service-accounts?hl=fr)
+before_script:
+    - echo  "deb http://packages.cloud.google.com/apt cloud-sdk-jessie main"  | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+    - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+    - apt-get update && apt-get install -y google-cloud-sdk
+    - echo  $DEPLOY_KEY_JSON_PRODUCTION  > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - npm install
 
+
+after_script:
+    - rm /tmp/$CI_PIPELINE_ID.json
   
+deploy_recette:
+    environment: recette
+    script:
+    - npm run build
+    - gcloud app deploy ./app.recette.yml --version=$CI_PIPELINE_ID --promote --stop-previous-version
 
-#### Installation du SDK GCP
-
-Je vous invite à suivre les instructions disponibles [ici](https://cloud.google.com/sdk/install)
-Une fois l’installation terminée vous devriez pouvoir lancer la commande suivante dans votre terminal :
-```bash
-gcloud auth activate-service-account --key-file chemin/vers/key.json
-```
-  
-Ensuite il nous faut configurer votre SDK avec la commande suivante:
-
-```bash
-gcloud init
-```
-
-
-Suivre les instructions du prompteur en choisissant le compte de service que vous avez créer et le projet que nous avons créer précédemment.
-Nous sommes fin prêt à déployer notre application sur AppEngine.
-
-  
-
-### Déploiement sur App Engine
-
-  
-Afin de déployer notre application via le SDK, nous allons utiliser un fichier au format YAML reconnu par App Engine.
-Nous allons donc ajouter un fichier **app.yaml** qui permet de configurer votre service App Engine. Vous trouverez la documentation complète [ici](https://cloud.google.com/appengine/docs/standard/python/config/appref?hl=fr).
-
-  
-
-Dans le fichier, nous allons mettre en place la configuration de base pour un environnement node.
-
-```bash
-#app.yml
-service: default
-runtime: nodejs10
-instance_class: F1
-
-handlers:
-    - url: /
-    static_files: build/index.html
-    upload: build/index.html
-    - url: /(.*)/
-    static_files: build/\1/index.html
-    upload: build/(.*)/index.html
-    - url: /static
-    static_dir: build/static
-    - url: /(.*)
-    static_files: build/index.html
-    upload: build/index.html
+deploy_production:
+    environment: production
+    script:
+    - npm run build
+    - gcloud app deploy ./app.yml --version=$CI_PIPELINE_ID --promote --stop-previous-version
 
 ```
 
+Cet exemple est une version simplifiée, mais elle contient les éléments nécessaires au déploiement de nos deux applications.
 
-Le premier service aura toujours pour nom : **default**
-Le paramètre **runtime** permet de définir l'environnement d'execution.
-**instance_class** définit le type d'instance que l'on va utiliser.
-et le paramètre **handlers** permet de lister les formats d'un URL de notre application React.
+Les principaux éléments ici sont :
+**before_script** : cette partie nous permet d'installer le *SDK GCP* nécessaire au déploiement et d'initialiser ce dernier avec notre compte de service créé dans l'étape précédente via la variable d'environnement Gitlab (*DEPLOY_KEY_JSON_PRODUCTION*).
 
-  
+D'ailleurs, rendons nous dans notre projet Gitlab, dans l'onglet *Settings* du repository.
+Et allons insérer ce compte de service dans CI/CD >> Variables.
 
-#### Déploiement de l'application de production
+Indiquez *DEPLOY_KEY_JSON_PRODUCTION* dans le champ *KEY*. Et dans le champ *VALUE*, ajoutez le contenu de notre fichier **key.json**.
+Ceci permettra à notre script de récupérer notre clé secrète sans qu'elle puisse être accessible par des tiers.
 
-La mise en prod est maintenant simple, il nous suffit de lancer la commande suivante à la racine du projet:
+Enfin si nous jetons un oeil aux deux parties qui concernent les déploiements, le script va tout d'abord ajouter nos dépendances et ensuite lancer la commande que nous avons lancé à la main dans la step précédente.
 
-```bash
-gcloud app deploy ./app.yml --version version1
-```
-L’option *–version* vous permet de donner un nom à votre version. App Engine permet de gérer différentes versions pour un même service.
+Pour rappel, l'option version (*--version=$CI_PIPELINE_ID*) va utiliser l'ID de la pipeline, et permettra d'avoir des URLs différentes selon les versions.
 
-Ceci peut être utile en cas de rollback ou de tests.
-Allons vérifier que notre application est bien déployée :
-Rendez-vous dans la console Cloud dans l’onglet App Engine.
-Puis dans *SERVICES >> VERSIONS*, vous devriez voir la version de votre application *default* apparaître.
+Une fois ce fichier créé, je vous invite à pusher vos modifications sur votre repository.
+Gitlab va détecter automatiquement notre fichier de CI et va l'executer.
 
-Quand le déploiement sera terminé, nous pourrons accéder à notre front React en cliquant sur le nom de la version.
-
-  
-
-#### Deploiement de l'application de production
-
-
-Pour obtenir une version de recette de notre application, nous allons déployer un second service de la manière que précédemment
-
-il nous suffit de créer un second fichier **app.recette.yml** et d'y ajouter la configuration suivante:
-
-  
-
-```bash
-service: react-app-recette
-runtime: nodejs10
-instance_class: F1
-
-handlers:
-    - url: /
-    static_files: build/index.html
-    upload: build/index.html
-    - url: /(.*)/
-    static_files: build/\1/index.html
-    upload: build/(.*)/index.html
-    - url: /static
-    static_dir: build/static
-    - url: /(.*)
-    static_files: build/index.html
-    upload: build/index.html
-
-```
-
-  
-Le seul changement est au niveau du nom de notre service.
-Nous aurons ainsi deux services distincts que nous pourrons déployer indépendamment l'un de l'autre.
-
-  
-Dans la prochaine étape, nous allons maintenant industrialiser ce process en utilisant les fonctionnalités offertes par GitlabCI.
-Ceci nous évitera déployer *à la main* nos versions.
+A la fin du script de CI, si tout s'est bien passé, nous pouvons voir le résultat dans votre console GCP et verifier que de nouvelles versions de nos services sont maintenant fonctionnelles.
