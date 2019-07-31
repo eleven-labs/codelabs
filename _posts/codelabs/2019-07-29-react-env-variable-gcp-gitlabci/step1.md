@@ -1,23 +1,23 @@
-## Creation de l'application React
+## Création de l'application React
 
 ### Pré-requis
 Pour commencer, vous devez installer [Npm & Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ### Création de l'application REACT
 
-A l'heure où je rédige ce CodeLabs, le framework **React** permet facilement de créer des interfaces utilisateurs interactives.
+À l'heure où je rédige ce CodeLabs, le framework **React** permet facilement de créer des interfaces utilisateurs interactives.
 
 Nous allons donc créer une application très simple avec React.
 Si vous désirez plus d'informations sur ce framework, rendez-vous [ici](https://fr.reactjs.org/).
 
 Pour créer votre application, suivez les instructions suivantes.
-Dans un dossier *react-app*, lancer la commande suivante :
+Dans un dossier *react-app*, lancez la commande suivante :
 ```bash
 	npx create-react-app react-app
 	cd react-app
 	npm start
 ```
-Nous avons utilisé **create-react-app** qui génere automatiquement les fichiers nécessaires au bon fonctionnement d'une application React et ses dépendances. Nous pouvons consulter maintenant tous ces fichiers à la racine de notre projet.
+Nous avons utilisé **create-react-app** qui génère automatiquement les fichiers nécessaires au bon fonctionnement d'une application React et ses dépendances. Nous pouvons consulter maintenant tous ces fichiers à la racine de notre projet.
 
 Ensuite en nous plaçant dans le dossier du projet, nous avons lancer l'application avec la dernière ligne de commande.
 
@@ -31,9 +31,9 @@ Notre objectif est de déployer notre application dans l'écosystème Google Clo
 
 Il est important de savoir que toutes les applications déployées sur App Engine sont servies via le port **8080**.
 
-Vous l'avez surement compris, notre application est disponible via le port 3000 par défaut. Nous devons donc préventivement faire en sorte que notre application utilise le port 8080 afin d'éviter des surprises dans un futur proche.
+Vous l'aurez sûrement compris, notre application est disponible via le port 3000 par défaut. Nous devons donc préventivement faire en sorte que notre application utilise le port 8080 afin d'éviter des surprises dans un futur proche.
 
-Pour se faire, nous allons éditer le fichier **package.json**, qui gère une grande partie de la configuration de notre application.
+Pour ce faire, nous allons éditer le fichier **package.json**, qui gère une grande partie de la configuration de notre application.
 
 Nous allons remplacer la ligne suivante :
 ```js
@@ -43,7 +43,7 @@ par :
 ```js
 	"start": "PORT=8080 react-scripts start"
 ```
-Relancer ensuite votre application :
+Relancez ensuite votre application :
 ```bash
 	Ctrl + C
 	npm start
@@ -54,7 +54,7 @@ Ce simple changement permettra de forcer l'application React à utiliser le port
 
 ### Utiliser des variables d'environnement
 
-Un des moyens simple de gérer les variables d'environnement pour une application React est d'utiliser un fichier **.env** dans lequel on stockera toutes les variables relatives à l'environnement.
+Un des moyens simples de gérer les variables d'environnement pour une application React est d'utiliser un fichier **.env** dans lequel on stockera toutes les variables relatives à l'environnement.
 
 Pour éviter que personne ne puisse accéder à ce fichier sensible, nous allons ajouter ce dernier dans un fichier **.gitignore**, qui se trouve à la racine du projet.
 
@@ -85,7 +85,7 @@ Exemple de .gitignore :
 	yarn-error.log*
 
 ```
-Notre application pourra faire référence à la même variable d'environnement (**process.env.REACT_APP_API_URL** par exemple) pour nos deux environnements d'execution (toujours recette et production), mais lors de la compilation cette variable aura une valeur différente selon l'environnement.
+Notre application pourra faire référence à la même variable d'environnement (**process.env.REACT_APP_API_URL** par exemple) pour nos deux environnements d'exécution (toujours recette et production), mais lors de la compilation, cette variable aura une valeur différente selon l'environnement.
 
 Créons maintenant ce fichier *.env* à la racine du projet.
 Puis ajoutons une variable :
@@ -110,14 +110,14 @@ Avec ces modifications, nous avons supprimé le logo et le texte par défaut de 
 Nous avons défini une variable qui récupère la valeur de notre variable d'environnement.
 Nous demandons ensuite à notre component App d'afficher cette variable sur la home page de notre application.
 
-Après sauvegarde du fichier, relancer ensuite votre application :
+Après sauvegarde du fichier, relancez ensuite votre application :
 ```bash
 	Ctrl + C
 	npm start
 ```
-nous pouvons voir apparaitre la valeur de notre variable.
+nous pouvons voir apparaître la valeur de notre variable.
 
-Nous verrons plus tard comment faire pour que cette variable change de valeur selon l'environnement d'execution.
+Nous verrons plus tard comment faire pour que cette variable change de valeur selon l'environnement d'exécution.
 
-Notre application est fin prête, nous allons pouvoir la déployer sur Google Cloud Platform via le service App Engine.
+Notre application est fin prête ! Nous allons pouvoir la déployer sur Google Cloud Platform via le service App Engine.
 Pour cela, nous allons voir dans la prochaine étape comment créer un projet sur Google Cloud Platform.
