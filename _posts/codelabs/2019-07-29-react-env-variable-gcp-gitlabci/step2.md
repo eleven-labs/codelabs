@@ -117,4 +117,4 @@ Après sauvegarde du fichier, l'application va se recharger automatiquement et n
 Nous verrons plus tard comment faire pour que cette variable changer de valeur selon l'environnement d'execution.
 
 Notre application est fin prête, nous allons pouvoir la déployer sur Google Cloud Platform via le service App Engine.
-Pour se faire nous verrons dans la prochaine étape comment un projet sur Google Cloud Platform.
+Pour cela nous verrons dans la prochaine étape comment créer un projet sur Google Cloud Platform.

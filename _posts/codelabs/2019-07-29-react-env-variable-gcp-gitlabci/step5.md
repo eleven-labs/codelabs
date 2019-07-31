@@ -2,9 +2,7 @@
 
   
 Nous avons maintenant deux applications distinctes mais nous utilisons toujours le même fichier d'environnement *.env*
-Souvenez vous, notre application pourra faire référence à la même variable d'environnement ( **process.env.REACT_APP_API_URL** ) pour nos deux applications ( Recette et Production ).
-
-  
+Souvenez vous, notre application pourra faire référence à la même variable d'environnement ( **process.env.REACT_APP_API_URL** ) pour nos deux applications ( Recette et Production ). Ceci permet également de sécuriser l'application et de ne pas divulger les secrets key par exemple.
 
 Nous devons donc créer deux fichiers *.env.recette* et *.env.production* et les déposer dans le bucket de notre projet GCP.
 Contenu *.env.recette*

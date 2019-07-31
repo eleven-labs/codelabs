@@ -65,6 +65,7 @@ D'ailleurs, nous allons nous rendre dans notre projet Gitlab, dans l'onglet *Set
 Et nous allons insérer ce compte de service, dans CI/CD >> Variables.
 Indiquez *DEPLOY_KEY_JSON_PRODUCTION* dans le champ *KEY*, et dans le champ *VALUE*, ajoutez le contenu de notre fichier **key.json**
 Ceci permettra à notre script de récupérer notre clé secrete, sans qu'elle puisse accessible par des tiers.
+Pour rappel, l'option version (*--version=$CI_PIPELINE_ID*) va utiliser l'ID de la pipeline, et permettra d'avoir des URLs différentes selon les versions.
 
 Enfin si nous jetons un oeil aux deux parties qui concernent les déploiements, le script va tout d'abord ajouter nos dépendances et ensuite lancer la commande que nous avons lancé à la main dans le step précédent.
 Une fois ce fichier crée, je vous invite à pusher vos modifications sur votre repository.

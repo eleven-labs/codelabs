@@ -75,12 +75,11 @@ Exemple de .gitignore :
 	# production
 	/build
 
+	#configuration
+	.env
+
 	# misc
 	.DS_Store
-	.env.local
-	.env.development.local
-	.env.test.local
-	.env.production.local
 	npm-debug.log*
 	yarn-debug.log*
 	yarn-error.log*

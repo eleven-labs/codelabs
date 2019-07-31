@@ -1,10 +1,10 @@
 ## Déploiement du projet sur App Engine
 
   
-Nous allons survoler cette étape assez rapidement, car ceci n'est le sujet du CodeLabs mais elle reste essentielle pour la suite.
+Nous allons survoler cette étape assez rapidement, car ceci n'est pas le sujet du CodeLabs mais elle reste essentielle pour la suite.
 
 Nous utiliserons le service **App Engine** qui permet de déployer des applications web très facilement.
-Si vous voulez en savoir sur AppEngine rendez vous ici : https://cloud.google.com/appengine/
+Si vous voulez en savoir plus sur AppEngine, rendez vous ici : https://cloud.google.com/appengine/
 Vous devriez également lire l'article [suivant](https://blog.eleven-labs.com/fr/google-cloud-platform-appengine-pour-vos-projets/) si vous n'avez aucun connaissance sur le service App Engine.
 
 Dans l'ordre, nous allons créer un projet sur GCP,  installer le **SDK** et enfin déployer une application de recette et de production.
@@ -24,7 +24,7 @@ le seul pré-requis dans cette étape est de créer un projet avec le nom suivan
 
   
 
-## Création d'un compte de service
+#### Création d'un compte de service
 
 Avant toute chose, il est nécessaire de créer un compte de service pour utiliser le SDK.
 
@@ -44,7 +44,7 @@ Si vous désirez plus d'informations sur les comptes de services, rendez-vous [i
 
   
 
-## Installation du SDK GCP
+#### Installation du SDK GCP
 
 Je vous invite à suivre les instructions disponibles [ici](https://cloud.google.com/sdk/install)
 Une fois l’installation terminée vous devriez pouvoir lancer la commande suivante dans votre terminal :
@@ -103,7 +103,7 @@ et le paramètre **handlers** permet de lister les formats d'un URL de notre app
 
   
 
-## Déploiement de l'application de production
+#### Déploiement de l'application de production
 
 La mise en prod est maintenant simple, il nous suffit de lancer la commande suivante à la racine du projet:
 
@@ -121,7 +121,7 @@ Quand le déploiement sera terminé, nous pourrons accéder à notre front React
 
   
 
-## Deploiement de l'application de production
+#### Deploiement de l'application de production
 
 
 Pour obtenir une version de recette de notre application, nous allons déployer un second service de la manière que précédemment
