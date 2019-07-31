@@ -7,13 +7,13 @@ Pour commencer, je vous invite à lire [ceci](https://codelabs.eleven-labs.com/c
 ### Pré-requis
 
 Vous devez posséder un compte gitlab.
-Créer un projet et un repository dans lequel vous aurez déposé votre code source.
+Créez un projet et un repository dans lequel vous aurez déposé votre code source.
 
  
-### Mise en place de la CI ( Continuous integration )
+### Mise en place de la CI (Continuous integration)
 
 Le service CI/CD va nous permettre de déployer notre application.
-Pour se faire, il nous faut d'abord créer un fichier **gitlabci.yml** à la racine de notre projet et ajouter les instructions suivantes :
+Pour ce faire, il nous faut d'abord créer un fichier **gitlabci.yml** à la racine de notre projet et ajouter les instructions suivantes :
 
   
 ```bash
@@ -58,17 +58,17 @@ Cet exemple est une version simplifiée, mais elle contient les éléments néce
 Les principaux éléments ici sont :
 **before_script** : cette partie nous permet d'installer le *SDK GCP* nécessaire au déploiement et d'initialiser ce dernier avec notre compte de service créé dans l'étape précédente via la variable d'environnement Gitlab (*DEPLOY_KEY_JSON_PRODUCTION*).
 
-D'ailleurs, rendons nous dans notre projet Gitlab, dans l'onglet *Settings* du repository.
+D'ailleurs, rendons-nous dans notre projet Gitlab, dans l'onglet *Settings* du repository.
 Et allons insérer ce compte de service dans CI/CD >> Variables.
 
 Indiquez *DEPLOY_KEY_JSON_PRODUCTION* dans le champ *KEY*. Et dans le champ *VALUE*, ajoutez le contenu de notre fichier **key.json**.
 Ceci permettra à notre script de récupérer notre clé secrète sans qu'elle puisse être accessible par des tiers.
 
-Enfin si nous jetons un oeil aux deux parties qui concernent les déploiements, le script va tout d'abord ajouter nos dépendances et ensuite lancer la commande que nous avons lancé à la main dans la step précédente.
+Enfin si nous jetons un oeil aux deux parties qui concernent les déploiements, le script va tout d'abord ajouter nos dépendances et ensuite lancer la commande que nous avons lancé à la main dans le step précédente.
 
 Pour rappel, l'option version (*--version=$CI_PIPELINE_ID*) va utiliser l'ID de la pipeline, et permettra d'avoir des URLs différentes selon les versions.
 
 Une fois ce fichier créé, je vous invite à pusher vos modifications sur votre repository.
-Gitlab va détecter automatiquement notre fichier de CI et va l'executer.
+Gitlab va détecter automatiquement notre fichier de CI et va l'exécuter.
 
-A la fin du script de CI, si tout s'est bien passé, nous pouvons voir le résultat dans votre console GCP et verifier que de nouvelles versions de nos services sont maintenant fonctionnelles.
+À la fin du script de CI, si tout s'est bien passé, nous pourrons voir le résultat dans votre console GCP et vérifier que de nouvelles versions de nos services sont maintenant fonctionnelles.
