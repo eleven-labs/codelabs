@@ -14,9 +14,6 @@ Dans l'ordre, nous allons créer un projet sur GCP, installer le **SDK** et enfi
 Je vous invite tout simplement à lire l'article suivant, il vous permettra de créer un projet GCP :
 https://blog.eleven-labs.com/fr/google-cloud-platform-pour-les-nuls/
 
-Le seul pré-requis dans cette étape est de créer un projet avec le nom suivant : **react-app**.
-
-
 ### Installation du SDK GCP en vue du déploiement
  
 
@@ -26,12 +23,13 @@ Avant toute chose, il est nécessaire de créer un compte de service pour utilis
 
 Je vous invite à aller dans l'onglet **IAM et administration** de la console GCP et de créer un compte de service :
 
+Nom du compte de service :
 ```bash
-
-Nom du compte de service : react-app
-
-Description du compte de service : react-app
-
+react-app
+```
+Description du compte de service :
+```bash
+react-app
 ```
 Ensuite il vous demandera de définir les autorisations du compte :
 
@@ -119,6 +117,7 @@ Pour obtenir une version de recette de notre application, nous allons déployer 
   
 
 ```bash
+#app.recette.yml
 service: react-app-recette
 runtime: nodejs10
 instance_class: F1
