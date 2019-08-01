@@ -17,6 +17,7 @@ REACT_APP_API_URL=http://api-url-prod.com
 ```
 
 En se rendant dans notre console GCP et dans l'onglet Google Cloud Storage ([En savoir plus](https://cloud.google.com/storage/)), déposons dans le bucket *id_de_votre_projet.appspot.com* nos fichiers d'environnement.
+
 Nous allons maintenant ajouter un script qui permettra lors du déploiement de récupérer le fichier de configuration nécessaire à l'application en fonction de l'environenent (recette ou production).
 
 Vous devez maintenant créer un dossier *commands* à la racine du projet et ajouter un fichier : *loadEnvCloudStorage.js*.
@@ -33,10 +34,10 @@ const gcloudKey = process.argv[2];
 const env = process.argv[3];
 
 async function createKeyFile() {
-    await fs.writeFile(keyFile, gcloudKey, (resp, err) => {
-        if (err) throw err;
-        return resp;
-    });
+  await fs.writeFile(keyFile, gcloudKey, (resp, err) => {
+   if (err) throw err;
+      return resp;
+  });
 }
 
 // write to a new key file

@@ -14,7 +14,6 @@ Dans l'ordre, nous allons créer un projet sur GCP, installer le **SDK** et enfi
 Je vous invite tout simplement à lire l'article suivant, il vous permettra de créer un projet GCP :
 https://blog.eleven-labs.com/fr/google-cloud-platform-pour-les-nuls/
 
-
 ### Installation du SDK GCP en vue du déploiement
  
 
