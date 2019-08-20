@@ -1,0 +1,26 @@
+{
+  "title": "Développer une application efficacement",
+  "permalink": "/fr/développer-une-application-react-efficacement",
+  "excerpt": "Nouveau sur React ? Venez apprendre les bases afin de développer une application React de manière efficace !",
+  "slug": "développer-une-application-react",
+  "stepTitles": [
+    "Introduction à React",
+    "Initialisation d'un nouveau projet, et architecture",
+    "Premiers composants",
+    "Composants avancés",
+    "Initiation aux hooks",
+    "Traductions",
+    "Formulaire avec Formik",
+    "Storybook",
+    "Optimisons (index.js), fichiers constants, etc",
+    "Test des composants avec Enzyme"
+  ],
+  "date": "2019-08-01",
+  "authors": [
+    {
+      "name": "Rémi Mavillaz",
+      "username": "rmavillaz"
+    }
+  ]
+  }
+  
