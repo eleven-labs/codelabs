@@ -33,11 +33,8 @@ Pour commencer nous allons créer une variable privé de type SimpleExoPlayer et
 ```java
 class Player(val context: Context) {
 
-    private var player: SimpleExoPlayer? = null
+    private var player: SimpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context)
 
-    init {
-        player = ExoPlayerFactory.newSimpleInstance(context)
-    }
 }
 ```
 
@@ -64,7 +61,7 @@ Nous allons donc pour l'instant ajouter une methode pour fournir à notre objet 
 
 ```java
     fun setVideoSurface(surfaceview: SurfaceView) {
-        player?.setVideoSurfaceView(surfaceview)
+        player.setVideoSurfaceView(surfaceview)
     }
 ```
 
@@ -74,7 +71,7 @@ Pour charger notre média :
 
 ```java
     fun prepare(uri: Uri) {
-        player?.prepare(buildMediaSource(uri), false, true);
+        player.prepare(buildMediaSource(uri), false, true);
     }
 ```
 
@@ -82,8 +79,8 @@ Pour reset notre player :
 
 ```java
     fun stop() {
-        player?.stop(true)
-        player?.seekToDefaultPosition()
+        player.stop(true)
+        player.seekToDefaultPosition()
     }
 ```
 
@@ -91,15 +88,23 @@ Pour lancer la lecture :
 
 ```java
     fun play() {
-        player?.playWhenReady = true
+        player.playWhenReady = true
     }
 ```
 
-Et pour le mettre en pause :
+pour le mettre en pause :
 
 ```java
     fun pause() {
-        player?.playWhenReady = false
+        player.playWhenReady = false
+    }
+```
+
+Et un getter sur son etat en lecture ou pas :
+
+```java
+    fun isPlaying() {
+        return player.playWhenReady 
     }
 ```
 

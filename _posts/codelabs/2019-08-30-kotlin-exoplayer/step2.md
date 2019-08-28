@@ -50,7 +50,7 @@ class PlayerView @JvmOverloads constructor(
 on va y initialiser notre PlayerManager :
 
 ```java
-lateinit var playerManager: PlayerManager
+  private lateinit var playerManager: PlayerManager
 
   private fun initPlayer() {
         playerManager = PlayerManager(context = context)
