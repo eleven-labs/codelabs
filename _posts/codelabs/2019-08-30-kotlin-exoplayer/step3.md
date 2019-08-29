@@ -1,11 +1,11 @@
 ## Allons plus loin
 
-Bon dans ces deux premieres étapes nous avons était plutot straightforward pour avoir un player qui tourne bien.
+Bon dans ces deux premieres étapes nous avons était plutôt straightforward pour avoir un player qui tourne bien.
 Il s'agirait maintenant de l'étoffer un peu, et d'utiliser plus d'outil de la librairie.
 
-Retournons sur notre class player et ajoutons un listener. La librairie exoplayer met à disposition un lister, Player.EventListener pour pouvoir écouter et être notifier tout changement de configuration, ou d'état du player.
+Retournons sur notre class PlayerManager et ajoutons un listener. La librairie exoplayer met à disposition un lister, Player.EventListener pour pouvoir écouter et être notifier de tout changement de configuration, ou d'état du player.
 
-Nous allons ici nous interesser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas de changement d'état et en cas d'erreur du player. Ces informations nous allosn les remontés à notre Custom View par le biais d'un listener que nous allons créer, un PlayerListener définis comme suit :
+Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas de changement d'état et en cas d'erreur du player. Ces informations nous allons les remontés à notre Custom View par le biais d'un listener que nous allons créer, un PlayerListener définis comme suit :
 
 ```java
 interface PlayerListener {
@@ -53,7 +53,7 @@ sealed class PlayerState {
 
 Maintenant que nous avons nos objets communiquant, nous allons faire la connexion :
 
-On va implementer Player.EventListener, ajouter en paramètre d'entrée notre nouveau listener et nous enregistrer sur le player Exoplayer:
+On va implementer Player.EventListener, ajouter en paramètre d'entrée, notre nouveau listener et nous enregistrer sur le player Exoplayer:
 
 ```java
 class Player(val context: Context, listener: PlayerListener) : Player.EventListener {
@@ -89,12 +89,11 @@ Ensuite nous allons faire de même pour la méthode onPlayerError :
         listener.onError()
  }
 ```
+Ici nous n'entrons pas dans le détail des types d'erreurs et l'adaptation du message qui irait avec, dans le cadre de notre tutoriel nous allons juste remonté qu'il y a un soucis et rendre visible l'erreur. 
 
-Ici nous entrons pas dans le détail des types d'erreurs et l'adaptation du message qui irait avec, dans le cadre de notre tutoriel nous allons juste remonté qu'il y a un soucis et rendre visible l'erreur. 
+### Côté UI :
 
-## Côté UI :
-
-Retournons sur notre PlayerView, desormais elle va implémenter notre nouveau listener, PlayerListener, et régir à ces changements, je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
+Retournons sur notre PlayerView, désormais elle va implémenter notre nouveau listener, PlayerListener, et réagir à ces changements. Je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
 
 Occupons nous de nos nouvelles méthodes, onStateChanged et onError. Nous allons ajouter un peu de composant UI pour nous aider à mieux visualiser nos états !
 
@@ -110,29 +109,17 @@ Dans votre fichier player_view.xml ajoutez :
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone" />
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/retry_button"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/exo_controls_play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone" />
-
+        
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/error_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/retry_button" />
+        app:layout_constraintBottom_toTopOf="@+id/play_pause_button" />
 ```
 
-Ici nous avons une progressBar qui indiquera le buffering, un retryButton et un textView pour indiquer une erreur et proposer de relancer la vidéo.
+Ici nous avons une progressBar qui indiquera le buffering et un textView pour indiquer une erreur.
 
 Dans notre fichier PlayerView, nous pouvons donc remplir nos deux méthodes :
 
@@ -150,19 +137,19 @@ Dans notre fichier PlayerView, nous pouvons donc remplir nos deux méthodes :
                 spinner.visibility = View.VISIBLE
             }
             is PlayerState.PLAYING -> {
-            	spinner.visibility = GONE
+              spinner.visibility = GONE
                 play_pause_button.setBackgroundResource(R.drawable.exo_controls_pause)
                 play_pause_button.visibility = View.VISIBLE
             }
             is PlayerState.PAUSED -> {
-            	spinner.visibility = GONE
+              spinner.visibility = GONE
                 play_pause_button.setBackgroundResource(R.drawable.exo_controls_play)
                 play_pause_button.visibility = View.VISIBLE
             }
         }
     }
 ```
-
-Vous pouvez supprimer le changement d'icone dans le onClickListener du play_plause_button et lancer votre application !
+Le code est un peu barbare,  ici il est suffisant au vue du peu de composants impactés par les changements d'états.
+Vous pouvez supprimer le changement d'icône dans le onClickListener du play_plause_button et lancer votre application ! 
 
 
