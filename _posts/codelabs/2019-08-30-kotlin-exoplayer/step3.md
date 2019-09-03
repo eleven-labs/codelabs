@@ -149,7 +149,7 @@ Dans notre fichier PlayerView, nous pouvons donc remplir nos deux méthodes :
         }
     }
 ```
-Le code est un peu barbare,  ici il est suffisant au vue du peu de composants impactés par les changements d'états.
+Le code est un peu barbare, ici il est suffisant au vue du peu de composants impactés par les changements d'états.
 Vous pouvez supprimer le changement d'icône dans le onClickListener du play_plause_button et lancer votre application ! 
 
 
