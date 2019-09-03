@@ -2,9 +2,8 @@
 
 ### Prérequis :
 
-Créer un fichier versions.gradle dans le repertoire de votre projet et listez vos dépendances en spécifiant leurs version comme ceci : 
-Y introduire la liste des versions que vous utiliserez dans vos dépendances,
-ici :
+Créez un fichier versions.gradle dans le répertoire de votre projet et listez vos dépendances en spécifiant leur version. N'oubliez pas d'y introduire la liste des versions que vous utiliserez dans vos dépendances.
+Ici :
 
 ```java
 ext {
@@ -16,7 +15,7 @@ Dans votre fichier build.gradle applicatif ajoutez en haut :
 
 apply from: 'versions.gradle'
 
-enfin ajoutez dans votre fichier build.gradle les dépendances à exoplayer :
+Enfin, ajoutez dans votre fichier build.gradle les dépendances à ExoPlayer :
 
 ```java
     // exoplayer
@@ -26,7 +25,7 @@ enfin ajoutez dans votre fichier build.gradle les dépendances à exoplayer :
 
 ### En ce qui concerne le Player
 
-Nous allons créer une classe Player. Cette classe va avoir un role de façade sur notre player exoplayer pour exécuter toutes nos actions type play, pause, instancier notre player, le configurer en fonction du flux d'entrée, etc.
+Nous allons créer une classe Player. Cette classe va avoir un rôle de façade sur notre player ExoPlayer pour exécuter toutes nos actions type play, pause, instancier notre player, le configurer en fonction du flux d'entrée...
 
 Pour commencer nous allons créer une variable privé de type SimpleExoPlayer et l'initialiser dans notre objet :
 
@@ -38,9 +37,9 @@ class Player(val context: Context) {
 }
 ```
 
-A partir d'ici nous avons notre player instancié, maintenant il faut lui permettre de lire des vidéos locales. Pour se faire nous allons créer une méthode qui va lui permettre de décoder notre fichier video. Exoplayer est capable de lire un nombre assez conséquent de format vidéo différent, que ce soit des vidéos locales ou des streams live. Pour différencier ces types de flux d'entrées nous devons créer un fichier de type MediaSource, qui est le media finale que nous passerons à notre player exoplayer pour qu'il le lise. Pour créer ce fichier, nous devons passer par une des factory Exoplayer, qui différera en fonction du flux. A savoir qu'en entrée, la factory va demander une URI.
+À partir d'ici, nous avons notre player instancié. Maintenant il faut lui permettre de lire des vidéos locales. Nous allons donc créer une méthode qui va lui permettre de décoder notre fichier video. ExoPlayer est capable de lire un nombre assez conséquent de formats vidéos différents, que ce soient des vidéos locales ou des streams live. Pour différencier ces types de flux d'entrées nous devons créer un fichier de type MediaSource, qui est le media final que nous passerons à notre player ExoPlayer pour qu'il le lise. Pour créer ce fichier, nous devons passer par une des factories ExoPlayer, qui différera en fonction du flux. À savoir qu'en entrée, la factory va demander une URI.
 
-Ici j'ai choisis de lire un fichier MP4, donc format considéré comme standard par exoplayer :
+Ici j'ai choisi de lire un fichier MP4, format considéré comme standard par exoplayer :
 
 ```java
     private fun buildMediaSource(uri: Uri): MediaSource {
@@ -55,7 +54,7 @@ Ici j'ai choisis de lire un fichier MP4, donc format considéré comme standard 
     }
 ```
 
-Nous avons donc notre player, notre MediaSource resultant de la transformation de notre URI. Il nous manque un dernier détail. Pour pouvoir s'afficher correctement, exoplayer a besoin qu'on lui fournisse une SurfaceView, custom view de la librairie Exoplayer sur laquelle il va pouvoir afficher son contenu.
+Nous avons notre player, notre MediaSource résultant de la transformation de notre URI. Mais il nous manque un dernier détail... Pour pouvoir s'afficher correctement, ExoPlayer a besoin qu'on lui fournisse une SurfaceView, custom view de la librairie Exoplayer sur laquelle il va pouvoir afficher son contenu.
 
 Nous allons donc pour l'instant ajouter une méthode pour fournir à notre objet Player une surfaceView :
 
@@ -92,7 +91,7 @@ Pour lancer la lecture :
     }
 ```
 
-pour le mettre en pause :
+Pour le mettre en pause :
 
 ```java
     fun pause() {
@@ -100,7 +99,7 @@ pour le mettre en pause :
     }
 ```
 
-Et un getter sur son etat en lecture ou pas :
+Et un getter sur son état en lecture ou pas :
 
 ```java
     fun isPlaying() {
@@ -108,5 +107,5 @@ Et un getter sur son etat en lecture ou pas :
     }
 ```
 
-A savoir que pour indiquer que l'on veux jouer la vidéo de notre player, il faut modifier la valeur du boolean playWhenReady, Exoplayer écoute cette valeur, dès qu'elle est modifié et si il n'est pas en cours d'initialisation, il lancera instantanément la vidéo, sinon il attendra de finir son initialisation puis la lancera.
+À savoir que pour indiquer que l'on veut jouer la vidéo de notre player, il faut modifier la valeur du boolean playWhenReady. ExoPlayer écoute cette valeur. Dès qu'elle est modifiée et s'il n'est pas en cours d'initialisation il lancera instantanément la vidéo. Sinon il attendra de finir son initialisation puis la lancera.
 
