@@ -14,7 +14,7 @@ interface PlayerListener {
 }
 ```
 
-puis nous allons créer une sealed class PlayerState qui comportera tout les différents état de notre player. L'utilisation d'une sealed class est plus approprié ici car elle marche très bien avec l'utilisation du when en kotlin :) Si jamais vous ne connaissez pas les sealed class, il s'agit d'une interface dont les objets pouvant en hériter sont limités aux objets définis dans son fichier, ça nous permet d'avoir une liste d'objet finis et maitrisé, réunis en un même fichier.
+Puis nous allons créer une sealed class PlayerState qui comportera tout les différents état de notre player. L'utilisation d'une sealed class est plus approprié ici car elle marche très bien avec l'utilisation du when en kotlin :) Si jamais vous ne connaissez pas les sealed class, il s'agit d'une interface dont les objets pouvant en hériter sont limités aux objets définis dans son fichier, ça nous permet d'avoir une liste d'objet finis et maîtrisé, réunis en un même fichier.
 
 Concernant les états, si l'on regarde du coté d'exoplayer on a : 
 
