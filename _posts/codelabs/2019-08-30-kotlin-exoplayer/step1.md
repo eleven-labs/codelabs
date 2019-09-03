@@ -2,7 +2,7 @@
 
 ### Prérequis :
 
-Créer un fichier versions.gradle dans le repertoire de votre projet
+Créer un fichier versions.gradle dans le repertoire de votre projet et listez vos dépendances en spécifiant leurs version comme ceci : 
 Y introduire la liste des versions que vous utiliserez dans vos dépendances,
 ici :
 
@@ -26,7 +26,7 @@ enfin ajoutez dans votre fichier build.gradle les dépendances à exoplayer :
 
 ### En ce qui concerne le Player
 
-Nous allons créer une classe Player. cette classe va avoir un role de façade sur notre player exoplayer pour executer toutes nos actions type play, pause, instancier notre player, le configurer en fonction du flux d'entrée etc..
+Nous allons créer une classe Player. Cette classe va avoir un role de façade sur notre player exoplayer pour exécuter toutes nos actions type play, pause, instancier notre player, le configurer en fonction du flux d'entrée, etc.
 
 Pour commencer nous allons créer une variable privé de type SimpleExoPlayer et l'initialiser dans notre objet :
 

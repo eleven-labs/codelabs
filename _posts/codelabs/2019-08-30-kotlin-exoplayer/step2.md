@@ -48,7 +48,7 @@ class PlayerView @JvmOverloads constructor(
 }
 ```
 
-on va y initialiser notre PlayerManager :
+On va y initialiser notre PlayerManager :
 
 ```java
   private lateinit var playerManager: PlayerManager
@@ -59,7 +59,8 @@ on va y initialiser notre PlayerManager :
         playerManager.prepare(Uri.parse("file:/android_asset/example_video.mp4"))
     }
 ```
-Et dans notre bloc init l'on va executer cette initPlayer, et définir un listener sur notre bouton pour modifier l'icône, histoire d'avoir un petit retour UX entre nos play et pause :
+
+Et dans notre bloc init on va exécuter notre initPlayer puis définir un listener sur notre bouton pour modifier l'icone et ainsi nous permettre d'avoir un retour UX entre nos lectures et nos pauses :
 
 A savoir que des ressources sont mises à disposition par la librairie exoplayer pour avoir des images de contrôles ISO sur tout les players, les ressources exo_controls_play et exo_controls_pause sont donc accessibles sans avoir à ajouter d'icônes dans votre projet.
 
@@ -113,3 +114,4 @@ Afin de tester, créer une MainActivity et dans son layout activity_main défini
 ```
 
 Si tout s'aligne bien, vous pouvez exécuter votre code et lancer votre application !
+

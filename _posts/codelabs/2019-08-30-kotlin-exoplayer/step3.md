@@ -1,11 +1,11 @@
 ## Allons plus loin
 
-Bon dans ces deux premieres étapes nous avons était plutôt straightforward pour avoir un player qui tourne bien.
+Dans les deux premieres étapes nous avons était plutôt straightforward pour avoir un player qui tourne bien.
 Il s'agirait maintenant de l'étoffer un peu, et d'utiliser plus d'outil de la librairie.
 
 Retournons sur notre class PlayerManager et ajoutons un listener. La librairie exoplayer met à disposition un lister, Player.EventListener pour pouvoir écouter et être notifier de tout changement de configuration, ou d'état du player.
 
-Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas de changement d'état et en cas d'erreur du player. Ces informations nous allons les remontés à notre Custom View par le biais d'un listener que nous allons créer, un PlayerListener définis comme suit :
+Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas d'erreur du player et en cas de changement d'état. Ces informations nous allons les remontés à notre Custom View par le biais d'un listener que nous allons créer comme ceci :
 
 ```java
 interface PlayerListener {
@@ -14,7 +14,7 @@ interface PlayerListener {
 }
 ```
 
-puis nous allons créer une sealed class PlayerState qui comportera tout les différents état de notre player. L'utilisation d'une sealed class est plus approprié ici car elle marche très bien avec l'utilisation du when en kotlin :) Si jamais vous ne connaissez pas les sealed class, il s'agit d'une interface dont les objets pouvant en hériter sont limités aux objets définis dans son fichier, ça nous permet d'avoir une liste d'objet finis et maitrisé, réunis en un même fichier.
+Puis nous allons créer une sealed class PlayerState qui comportera tout les différents état de notre player. L'utilisation d'une sealed class est plus approprié ici car elle marche très bien avec l'utilisation du when en kotlin :) Si jamais vous ne connaissez pas les sealed class, il s'agit d'une interface dont les objets pouvant en hériter sont limités aux objets définis dans son fichier, ça nous permet d'avoir une liste d'objet finis et maîtrisé, réunis en un même fichier.
 
 Concernant les états, si l'on regarde du coté d'exoplayer on a : 
 
@@ -53,7 +53,7 @@ sealed class PlayerState {
 
 Maintenant que nous avons nos objets communiquant, nous allons faire la connexion :
 
-On va implementer Player.EventListener, ajouter en paramètre d'entrée, notre nouveau listener et nous enregistrer sur le player Exoplayer:
+On va implementer Player.EventListener en ajoutant en paramètre d'entrée notre nouveau listener puis en nous enregistrant sur le player Exoplayer:
 
 ```java
 class Player(val context: Context, listener: PlayerListener) : Player.EventListener {
@@ -93,7 +93,7 @@ Ici nous n'entrons pas dans le détail des types d'erreurs et l'adaptation du me
 
 ### Côté UI :
 
-Retournons sur notre PlayerView, désormais elle va implémenter notre nouveau listener, PlayerListener, et réagir à ces changements. Je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
+Retournons sur notre PlayerView. Désormais elle va implémenter notre nouveau listener `PlayerListener` et réagir à ces changements. Je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
 
 Occupons nous de nos nouvelles méthodes, onStateChanged et onError. Nous allons ajouter un peu de composant UI pour nous aider à mieux visualiser nos états !
 
@@ -149,7 +149,7 @@ Dans notre fichier PlayerView, nous pouvons donc remplir nos deux méthodes :
         }
     }
 ```
-Le code est un peu barbare,  ici il est suffisant au vue du peu de composants impactés par les changements d'états.
+Le code est un peu barbare, ici il est suffisant au vue du peu de composants impactés par les changements d'états.
 Vous pouvez supprimer le changement d'icône dans le onClickListener du play_plause_button et lancer votre application ! 
 
 
