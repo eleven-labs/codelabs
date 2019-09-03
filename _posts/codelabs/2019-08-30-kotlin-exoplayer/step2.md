@@ -1,8 +1,8 @@
 
 ## Création de notre vue PlayerView :
 
-Créer un fichier player_view.xml dans le dossier layout de votre projet.
-Dans ce fichier nous allons ajouter une SurfaceView, receptacle de notre player, et un bouton play/pause qui permettra de lancer/arrêter le flux :
+Créez un fichier player_view.xml dans le dossier layout de votre projet.
+Dans ce fichier nous allons ajouter une SurfaceView, réceptacle de notre player, et un bouton play/pause qui permettra de lancer/arrêter le flux :
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -33,7 +33,7 @@ Dans ce fichier nous allons ajouter une SurfaceView, receptacle de notre player,
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
-Ensuite nous allons créer une classe PlayerView qui héritera de FrameLayout dans laquelle on va définir différents comportements, notamment la gestion de l'état du bouton play/pause, son logo, et les actions que ce bouton va effectuer.
+Ensuite nous allons créer une classe PlayerView qui héritera de FrameLayout, dans laquelle on va définir différents comportements, notamment la gestion de l'état du bouton play/pause, son logo, et les actions que ce bouton va effectuer.
 
 ```java
 class PlayerView @JvmOverloads constructor(
@@ -60,9 +60,9 @@ On va y initialiser notre PlayerManager :
     }
 ```
 
-Et dans notre bloc init on va exécuter notre initPlayer puis définir un listener sur notre bouton pour modifier l'icone et ainsi nous permettre d'avoir un retour UX entre nos lectures et nos pauses :
+Et dans notre bloc init, on va exécuter notre initPlayer puis définir un listener sur notre bouton pour modifier l'icône et ainsi nous permettre d'avoir un retour UX entre nos lectures et nos pauses :
 
-A savoir que des ressources sont mises à disposition par la librairie exoplayer pour avoir des images de contrôles ISO sur tout les players, les ressources exo_controls_play et exo_controls_pause sont donc accessibles sans avoir à ajouter d'icônes dans votre projet.
+À savoir que des ressources sont mises à disposition par la librairie pour avoir des images de contrôles ISO sur tout les players, les ressources exo_controls_play et exo_controls_pause sont donc accessibles sans avoir à ajouter d'icônes dans votre projet.
 
 ```java
 init {
@@ -81,16 +81,16 @@ init {
     }
 ```
 
-### Ressources: 
+### Ressources : 
 
-Niveau ressource, créer un dossier assets dans votre dossier main à coté des dossiers res et java et mettez y vos ressources videos.
-Ainsi vous pourrez y accéder dans vos tests comme définis plus haut :
+Niveau ressourcee, créez un dossier assets dans votre dossier main à coté des dossiers res et java et mettez y vos ressources vidéos.
+Ainsi vous pourrez y accéder dans vos tests comme défini plus haut :
 
 "file:/android_asset/example_video.mp4"
 
-### Tests: 
+### Tests : 
 
-Afin de tester, créer une MainActivity et dans son layout activity_main définissez un PlayerView comme bon vous semble niveau format : 
+Afin de tester, créer une MainActivity. Dans son layout activity_main définissez un PlayerView comme bon vous semble niveau format : 
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
