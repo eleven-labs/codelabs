@@ -53,7 +53,7 @@ sealed class PlayerState {
 
 Maintenant que nous avons nos objets communiquant, nous allons faire la connexion :
 
-On va implementer Player.EventListener, ajouter en paramètre d'entrée, notre nouveau listener et nous enregistrer sur le player Exoplayer:
+On va implementer Player.EventListener en ajoutant en paramètre d'entrée notre nouveau listener puis en nous enregistrant sur le player Exoplayer:
 
 ```java
 class Player(val context: Context, listener: PlayerListener) : Player.EventListener {
