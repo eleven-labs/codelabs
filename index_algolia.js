@@ -7,12 +7,12 @@ const index = client.initIndex('codelabs');
 
 index.clearIndex((err, content) => {
   if (err) {
-    console.error(content);
+    console.error('clearIndex :: error', err, content);
   }
 
   index.addObjects(data, (addObjectsErr, addObjectsContent) => {
     if (addObjectsErr) {
-      console.error(addObjectsContent);
+      console.error('addObjects :: error', addObjectsErr, addObjectsContent);
     }
 
     index.setSettings({
@@ -23,7 +23,7 @@ index.clearIndex((err, content) => {
       ],
     }, (setSettingsErr, setSettingsContent) => {
       if (setSettingsErr) {
-        console.error(setSettingsContent);
+        console.error('setSettings :: error', setSettingsErr, setSettingsContent);
       }
     });
   });
