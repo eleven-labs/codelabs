@@ -58,7 +58,7 @@ On va y initialiser notre PlayerManager :
         playerManager.prepare(Uri.parse("file:/android_asset/example_video.mp4"))
     }
 ```
-Et dans notre bloc init l'on va executer cette initPlayer, et definir un listener sur notre bouton pour modifier l'icone, histoire d'avoir un petit retour UX entre nos play et pause :
+Et dans notre bloc init on va exécuter notre initPlayer puis définir un listener sur notre bouton pour modifier l'icone et ainsi nous permettre d'avoir un retour UX entre nos lectures et nos pauses :
 
 A savoir que des ressources sont mises à disposition par la librairie exoplayer pour avoir des images de control ISO sur tout les players, les ressources exo_controls_play et exo_controls_pause sont donc accessibles sans avoir à ajouter d'icones dans votre projet.
 
