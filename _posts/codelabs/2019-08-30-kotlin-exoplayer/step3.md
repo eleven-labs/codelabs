@@ -1,6 +1,6 @@
 ## Allons plus loin
 
-Bon dans ces deux premieres étapes nous avons était plutôt straightforward pour avoir un player qui tourne bien.
+Dans les deux premieres étapes nous avons était plutôt straightforward pour avoir un player qui tourne bien.
 Il s'agirait maintenant de l'étoffer un peu, et d'utiliser plus d'outil de la librairie.
 
 Retournons sur notre class PlayerManager et ajoutons un listener. La librairie exoplayer met à disposition un lister, Player.EventListener pour pouvoir écouter et être notifier de tout changement de configuration, ou d'état du player.
