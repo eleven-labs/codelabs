@@ -1,0 +1,23 @@
+{
+  "title": "Créer votre player Netflix avec Exoplayer",
+  "permalink": "/fr/kotlin-exoplayer",
+  "excerpt": "Dans ce tutoriel nous allons créer un player android en Kotlin grâce à Exoplayer, pour pouvoir lire une vidéo locale mp4",
+  "slug": "kotlin-exoplayer",
+  "stepTitles": [
+    "Création du Player",
+    "Création de l'UI",
+    "Gestion des états"
+  ],
+  "date": "2019-08-30",
+  "authors": [
+    {
+      "name": "Bastien Calone",
+      "username": "babas"
+    }
+  ],
+  "tags": [
+    "kotlin",
+    "exoplayer",
+    "android"
+  ]
+}
