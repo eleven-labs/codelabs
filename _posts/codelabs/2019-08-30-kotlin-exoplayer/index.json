@@ -4,6 +4,7 @@
   "excerpt": "Dans ce tutoriel nous allons créer un player android en Kotlin grâce à Exoplayer, pour pouvoir lire une vidéo locale mp4",
   "slug": "kotlin-exoplayer",
   "stepTitles": [
+    "Introduction",
     "Création du Player",
     "Création de l'UI",
     "Gestion des états"
