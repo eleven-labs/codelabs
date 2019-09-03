@@ -47,7 +47,7 @@ class PlayerView @JvmOverloads constructor(
 }
 ```
 
-on va y initialiser notre PlayerManager :
+On va y initialiser notre PlayerManager :
 
 ```java
   private lateinit var playerManager: PlayerManager
