@@ -5,7 +5,7 @@ Il s'agirait maintenant de l'étoffer un peu, et d'utiliser plus d'outil de la l
 
 Retournons sur notre class PlayerManager et ajoutons un listener. La librairie exoplayer met à disposition un lister, Player.EventListener pour pouvoir écouter et être notifier de tout changement de configuration, ou d'état du player.
 
-Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas de changement d'état et en cas d'erreur du player. Ces informations nous allons les remontés à notre Custom View par le biais d'un listener que nous allons créer, un PlayerListener définis comme suit :
+Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas d'erreur du player et en cas de changement d'état. Ces informations nous allons les remontés à notre Custom View par le biais d'un listener que nous allons créer comme ceci :
 
 ```java
 interface PlayerListener {
