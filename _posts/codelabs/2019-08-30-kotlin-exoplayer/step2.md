@@ -1,4 +1,5 @@
-##Création de notre vue PlayerView :
+
+## Création de notre vue PlayerView :
 
 Créer un fichier player_view.xml dans le dossier layout de votre projet.
 Dans ce fichier nous allons ajouter une SurfaceView, receptacle de notre player, et un bouton play/pause qui permettra de lancer/arrêter le flux :
@@ -32,7 +33,7 @@ Dans ce fichier nous allons ajouter une SurfaceView, receptacle de notre player,
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
-Ensuite nous allons créer une classe PlayerView qui héritera de FrameLayout dans laquelle on va définir différent comportement, nottament la gestion de l'état du bouton play/pause, son logo, et les actions que ce bouton va effectuer.
+Ensuite nous allons créer une classe PlayerView qui héritera de FrameLayout dans laquelle on va définir différents comportements, notamment la gestion de l'état du bouton play/pause, son logo, et les actions que ce bouton va effectuer.
 
 ```java
 class PlayerView @JvmOverloads constructor(
@@ -58,9 +59,9 @@ on va y initialiser notre PlayerManager :
         playerManager.prepare(Uri.parse("file:/android_asset/example_video.mp4"))
     }
 ```
-Et dans notre bloc init l'on va executer cette initPlayer, et definir un listener sur notre bouton pour modifier l'icone, histoire d'avoir un petit retour UX entre nos play et pause :
+Et dans notre bloc init l'on va executer cette initPlayer, et définir un listener sur notre bouton pour modifier l'icône, histoire d'avoir un petit retour UX entre nos play et pause :
 
-A savoir que des ressources sont mises à disposition par la librairie exoplayer pour avoir des images de control ISO sur tout les players, les ressources exo_controls_play et exo_controls_pause sont donc accessibles sans avoir à ajouter d'icones dans votre projet.
+A savoir que des ressources sont mises à disposition par la librairie exoplayer pour avoir des images de contrôles ISO sur tout les players, les ressources exo_controls_play et exo_controls_pause sont donc accessibles sans avoir à ajouter d'icônes dans votre projet.
 
 ```java
 init {
@@ -79,14 +80,14 @@ init {
     }
 ```
 
-## Ressources: 
+### Ressources: 
 
 Niveau ressource, créer un dossier assets dans votre dossier main à coté des dossiers res et java et mettez y vos ressources videos.
 Ainsi vous pourrez y accéder dans vos tests comme définis plus haut :
 
 "file:/android_asset/example_video.mp4"
 
-## Tests: 
+### Tests: 
 
 Afin de tester, créer une MainActivity et dans son layout activity_main définissez un PlayerView comme bon vous semble niveau format : 
 
@@ -111,4 +112,4 @@ Afin de tester, créer une MainActivity et dans son layout activity_main défini
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-Si tout s'aligne bien, vous pouvez executer votre code et lancer votre application !
+Si tout s'aligne bien, vous pouvez exécuter votre code et lancer votre application !
