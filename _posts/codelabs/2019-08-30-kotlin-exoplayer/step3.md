@@ -1,11 +1,11 @@
 ## Allons plus loin
 
-Dans les deux premieres étapes nous avons était plutôt straightforward pour avoir un player qui tourne bien.
-Il s'agirait maintenant de l'étoffer un peu, et d'utiliser plus d'outil de la librairie.
+Dans les deux premières étapes nous avons été plutôt "straightforward" pour avoir un player qui tourne bien.
+Il s'agirait maintenant de l'étoffer un peu, et d'utiliser plus d'outils de la librairie.
 
-Retournons sur notre class PlayerManager et ajoutons un listener. La librairie exoplayer met à disposition un lister, Player.EventListener pour pouvoir écouter et être notifier de tout changement de configuration, ou d'état du player.
+Retournons sur notre class PlayerManager et ajoutons un listener. La librairie ExoPlayer met à disposition un listener, Player.EventListener, pour pouvoir écouter et être notifié de tout changement de configuration ou d'état du player.
 
-Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener, onPlayerError et onPlayerStateChanged qui notifie en cas d'erreur du player et en cas de changement d'état. Ces informations nous allons les remontés à notre Custom View par le biais d'un listener que nous allons créer comme ceci :
+Nous allons ici nous intéresser plus particulièrement à deux des méthodes de ce listener : onPlayerError et onPlayerStateChanged, qui notifient en cas d'erreur du player et en cas de changement d'état. Ces informations nous allons les remonter à notre Custom View par le biais d'un listener que nous allons créer comme ceci :
 
 ```java
 interface PlayerListener {
@@ -14,14 +14,13 @@ interface PlayerListener {
 }
 ```
 
-Puis nous allons créer une sealed class PlayerState qui comportera tout les différents état de notre player. L'utilisation d'une sealed class est plus approprié ici car elle marche très bien avec l'utilisation du when en kotlin :) Si jamais vous ne connaissez pas les sealed class, il s'agit d'une interface dont les objets pouvant en hériter sont limités aux objets définis dans son fichier, ça nous permet d'avoir une liste d'objet finis et maîtrisé, réunis en un même fichier.
+Puis nous allons créer une sealed class PlayerState qui comportera tous les différents états de notre player. L'utilisation d'une sealed class est plus appropriée ici car elle marche très bien avec l'utilisation du when en kotlin :) Si jamais vous ne connaissez pas les sealed class, il s'agit d'une interface dont les objets pouvant en hériter sont limités aux objets définis dans son fichier, ça nous permet d'avoir une liste d'objets finie et maîtrisée, ces derniers étant réunis en un même fichier.
 
-Pour en savoir un peu plus sur les sealed class je vous laisse avec la documentation officielle :
+Pour en savoir un peu plus sur les sealed class je vous laisse avec la documentation officielle : 
+[Sealed class](https://kotlinlang.org/docs/reference/sealed-classes.html)
 
 
 Concernant les états, si l'on regarde du coté d'exoplayer on a : 
-
-- [Sealed class](https://kotlinlang.org/docs/reference/sealed-classes.html)
 
 ```java
   /**
@@ -56,9 +55,9 @@ sealed class PlayerState {
 }
 ```
 
-Maintenant que nous avons nos objets communiquant, nous allons faire la connexion :
+Maintenant que nous avons nos objets communiquants, nous allons faire la connexion :
 
-On va implementer Player.EventListener en ajoutant en paramètre d'entrée notre nouveau listener puis en nous enregistrant sur le player Exoplayer:
+On va implémenter Player.EventListener en ajoutant en paramètre d'entrée notre nouveau listener puis en nous enregistrant sur le player Exoplayer :
 
 ```java
 class Player(val context: Context, listener: PlayerListener) : Player.EventListener {
@@ -94,13 +93,13 @@ Ensuite nous allons faire de même pour la méthode onPlayerError :
         listener.onError()
  }
 ```
-Ici nous n'entrons pas dans le détail des types d'erreurs et l'adaptation du message qui irait avec, dans le cadre de notre tutoriel nous allons juste remonté qu'il y a un soucis et rendre visible l'erreur. 
+Ici nous n'entrons pas dans le détail des types d'erreurs et l'adaptation du message qui irait avec. Dans le cadre de notre tutoriel nous allons juste remonter qu'il y a un souci et rendre visible l'erreur. 
 
 ### Côté UI :
 
 Retournons sur notre PlayerView. Désormais elle va implémenter notre nouveau listener `PlayerListener` et réagir à ces changements. Je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
 
-Occupons nous de nos nouvelles méthodes, onStateChanged et onError. Nous allons ajouter un peu de composant UI pour nous aider à mieux visualiser nos états !
+Occupons-nous de nos nouvelles méthodes, onStateChanged et onError. Nous allons ajouter un peu de composants UI pour nous aider à mieux visualiser nos états !
 
 Dans votre fichier player_view.xml ajoutez :
 
@@ -154,8 +153,8 @@ Dans notre fichier PlayerView, nous pouvons donc remplir nos deux méthodes :
         }
     }
 ```
-Le code est un peu barbare, ici il est suffisant au vue du peu de composants impactés par les changements d'états.
+Le code est un peu barbare, ici il est suffisant au vu du peu de composants impactés par les changements d'états.
 Vous pouvez supprimer le changement d'icône dans le onClickListener du play_plause_button et lancer votre application ! 
 
 
-Voila pour ce tutoriel, j'espère qu'il vous aura aidé un peu à comprendre comment fonctionne exoplayer, et vous a donné une idée d'approche sur comment construire sa brique player dans son application. Bonne route ami astronautes !
+Voila pour ce tutoriel, j'espère qu'il vous aura aidé un peu à comprendre comment fonctionne ExoPlayer, et vous aura donné une idée d'approche sur comment construire sa brique player dans son application. Bonne route amis astronautes !
