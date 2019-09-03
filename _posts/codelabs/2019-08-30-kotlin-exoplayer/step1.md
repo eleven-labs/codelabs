@@ -2,7 +2,7 @@
 
 ### Prérequis :
 
-Créer un fichier versions.gradle dans le repertoire de votre projet
+Créer un fichier versions.gradle dans le repertoire de votre projet et listez vos dépendances en spécifiant leurs version comme ceci : 
 Y introduire la liste des versions que vous utiliserez dans vos dépendances,
 ici :
 
