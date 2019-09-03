@@ -93,7 +93,7 @@ Ici nous n'entrons pas dans le détail des types d'erreurs et l'adaptation du me
 
 ### Côté UI :
 
-Retournons sur notre PlayerView, désormais elle va implémenter notre nouveau listener, PlayerListener, et réagir à ces changements. Je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
+Retournons sur notre PlayerView. Désormais elle va implémenter notre nouveau listener `PlayerListener` et réagir à ces changements. Je vous laisse aussi le soin d'ajouter à la création du PlayerManager notre listener.
 
 Occupons nous de nos nouvelles méthodes, onStateChanged et onError. Nous allons ajouter un peu de composant UI pour nous aider à mieux visualiser nos états !
 
