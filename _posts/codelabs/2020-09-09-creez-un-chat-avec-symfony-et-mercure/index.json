@@ -1,0 +1,36 @@
+{
+    "title": "Créez un chat avec Mercure et Symfony",
+    "permalink": "/fr/chat-mercure-symfony/",
+    "excerpt": "Le but de ce tutoriel est de maîtriser le protocole Mercure. Pour cela, nous allons le combiner au framework Symfony pour créer un petit système de chat.",
+    "slug": "chat-mercure-symfony",
+    "stepTitles": [
+      "Introduction",
+      "Initialisation du projet",
+      "Vues et logique de base",
+      "Envoi de message",
+      "Configuration de Mercure",
+      "Discovery, abonnement et publication avec Mercure",
+      "Gestion de la sécurité avec Mercure",
+      "Conclusion"
+    ],
+    "date": "2020-09-30",
+    "authors": [
+      {
+        "name": "Arthur Jacquemin",
+        "username": "ajacquemin"
+      }
+    ],
+    "tags": [
+      "mercure",
+      "hub",
+      "symfony",
+      "serveur",
+      "javascript",
+      "chat",
+      "SSE",
+      "temps réel",
+      "real time",
+      "notification"
+    ]
+  }
+  
