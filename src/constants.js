@@ -1,5 +1,5 @@
 // TODO: think about dev environment
-export const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/tutos/codelabs/' : `http://${location.hostname}:9000/`;
+export const API_ROOT = process.env.NODE_ENV === 'production' ? '/codelabs/' : `http://${location.hostname}:9000/`;
 export const SITE_ROOT = process.env.NODE_ENV === 'production' ? 'https://codelabs.eleven-labs.com/' : `http://${location.hostname}:9000/`;
 export const NOOP = () => {};
 
