@@ -1,0 +1,20 @@
+{
+    "title": "Composition over inheritance et typage générique avec Symfony et Doctrine",
+    "permalink": "/fr/composition-over-inheritance-et-typage-generique-avec-symfony-et-doctrine",
+    "excerpt": "Abordons ensemble une solution pour utiliser l'injection de dépendance plutôt que l'héritage pour créer nos Repository Doctrine, tout en tirant parti du typage générique grâce à PHPStan.",
+    "slug": "composition-over-inheritance-et-typage-generique-avec-symfony-et-doctrine",
+    "stepTitles": [
+      "Introduction",
+      "Initialisation du projet",
+      "Refactoring du repository",
+      "Typage générique avec PHPStan",
+      "Conclusion"
+    ],
+    "date": "2023-08-23",
+    "authors": [
+      {
+        "name": "Arthur Jacquemin",
+        "username": "ajacquemin"
+      }
+    ]
+  }

@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:bookworm
 
 MAINTAINER Maxence POUTORD <maxence.poutord@gmail.com>
 
